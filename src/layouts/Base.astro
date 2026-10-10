@@ -1,0 +1,114 @@
+---
+import '@fontsource-variable/geist';
+import fontUrl from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
+import '../styles/global.css';
+import '../styles/motion.css';
+import { site } from '../site.js';
+import { socials } from '../socials.js';
+
+const { title, description, jsonld = [], ogImage } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#0b0d10" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={new URL(ogImage, Astro.site)} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    {jsonld.map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap bar">
+        <a class="brand" href="/">
+          <span class="word">Sakib <b>Islam</b><i aria-hidden="true">.</i></span>
+        </a>
+        <nav aria-label="Main">
+          <a href="/#work">Work</a>
+          <a href="/#services">Services</a>
+          <a href="/#reviews">Reviews</a>
+          <a href="/#faq">FAQ</a>
+          <a class="btn btn-small" href="/#contact">Start a project</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap foot">
+        <p>
+          {site.name}, {site.role} in {site.location}. Founder of{' '}<a href={site.wrkbase} target="_blank" rel="noopener">Wrkbase</a>.
+        </p>
+        <p class="foot-links">
+          {socials.map((s) => (
+            <a href={s.url} target="_blank" rel="noopener" aria-label={s.name} title={s.name}><svg class="ico" viewBox={`0 0 ${s.box} ${s.box}`} width="18" height="18" aria-hidden="true"><path d={s.path} /></svg></a>
+          ))}
+        </p>
+      </div>
+    </footer>
+    <script is:inline>
+      // Reveal on scroll, number tickers, typed headings, the cursor spotlight and the page glow. All of it is skipped under reduced motion.
+      (() => {
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce || !('IntersectionObserver' in window)) return;
+        document.documentElement.classList.add('js');
+        const tick = (el) => {
+          const end = +el.dataset.count, dec = +(el.dataset.dec || 0), t0 = performance.now();
+          const step = (t) => {
+            const k = Math.min((t - t0) / 900, 1);
+            el.textContent = (end * (1 - Math.pow(1 - k, 3))).toFixed(dec);
+            if (k < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        };
+        // Section headings type themselves out. The height is reserved first so nothing below moves.
+        const type = (el) => {
+          const text = el.textContent.trim(), gap = Math.min(32, 1100 / text.length);
+          el.style.minHeight = el.offsetHeight + 'px';
+          el.setAttribute('aria-label', text);
+          el.textContent = '';
+          el.classList.add('typing');
+          let i = 0;
+          const next = () => {
+            el.textContent = text.slice(0, ++i);
+            if (i < text.length) setTimeout(next, gap);
+            else setTimeout(() => el.classList.remove('typing'), 1400);
+          };
+          next();
+        };
+        const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('in');
+          if (e.target.dataset.count) tick(e.target);
+          if (e.target.tagName === 'H2') type(e.target);
+          io.unobserve(e.target);
+        }), { threshold: 0.15 });
+        document.querySelectorAll('[data-reveal], [data-count], main h2').forEach((el) => io.observe(el));
+        if (matchMedia('(hover: hover)').matches) {
+          addEventListener('pointermove', (e) => {
+            document.documentElement.style.setProperty('--gx', e.clientX + 'px');
+            document.documentElement.style.setProperty('--gy', e.clientY + 'px');
+          }, { passive: true });
+          document.querySelectorAll('[data-spot]').forEach((el) => el.addEventListener('pointermove', (e) => {
+            const r = el.getBoundingClientRect();
+            el.style.setProperty('--mx', e.clientX - r.left + 'px');
+            el.style.setProperty('--my', e.clientY - r.top + 'px');
+          }));
+        }
+      })();
+    </script>
+  </body>
+</html>

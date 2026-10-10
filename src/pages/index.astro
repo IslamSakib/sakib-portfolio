@@ -1,0 +1,295 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import photo from '../assets/sakib-islam.png';
+import appShot from '../assets/work/extra/wrkbase-1.jpg';
+import { site } from '../site.js';
+import { socials } from '../socials.js';
+import { work } from '../work.js';
+import { reviews, allReviewsUrl, initials } from '../reviews.js';
+
+const title = 'Sakib Islam | WordPress & Full-Stack Developer for Startups';
+const description =
+  'WordPress and custom developer for SaaS and AI startups. Front end, back end, custom plugins and web products, built fast and fixed at the root.';
+
+const host = (url) => new URL(url).hostname.replace('www.', '');
+
+const proof = [
+  { num: 1.5, dec: 1, suffix: ' s', label: 'TubeOnAI load time, down from 5 seconds' },
+  { num: 60, dec: 0, suffix: '%', label: 'less time to onboard a merchant at Moneybag' },
+  { num: 90, dec: 0, suffix: '+', label: 'Core Web Vitals on Tabby after launch' },
+];
+
+const services = [
+  {
+    name: 'WordPress development',
+    text: 'The whole job, front end and back end: custom themes, custom features, plugin development, WooCommerce, payments and integrations.',
+  },
+  {
+    name: 'Custom development',
+    text: 'Web products built from scratch when WordPress is the wrong tool. Wrkbase, my own SaaS platform and its website, is the example.',
+  },
+  {
+    name: 'Speed and rescue',
+    text: 'Slow sites made fast and broken sites fixed. I find the cause first, then fix it at the root instead of adding another plugin.',
+  },
+];
+
+const steps = [
+  { name: 'Find the cause', text: 'I test the site, read the errors and check what changed before I touch anything.' },
+  { name: 'Fix the root', text: 'One clean fix where the problem lives, not a patch on top of it.' },
+  { name: 'Measure it', text: 'Before and after numbers from PageSpeed Insights that you can check yourself.' },
+  { name: 'Hand it over', text: 'You get notes on what was done, so the next change does not undo it.' },
+];
+
+const faq = [
+  {
+    q: 'Can you fix a WordPress site that keeps going down?',
+    a: "Yes. I start by finding the cause, not by adding another plugin. On TubeOnAI the downtime came from leftover cache plugin files clashing with the host's own speed plugin. I removed them, kept one caching layer, and load time went from 5 seconds to 1.5.",
+  },
+  {
+    q: 'What WordPress work do you take on?',
+    a: 'All of it, front end and back end. That covers custom themes, custom features, plugin development, WooCommerce and payments, integrations with other tools, security and speed. A build from a Figma design is one kind of project, not the only one.',
+  },
+  {
+    q: 'Do you only work with WordPress?',
+    a: 'No. I also build custom web products. Wrkbase, a team management platform with an AI agent, is my own product: I designed it, built the software and built its website without WordPress.',
+  },
+  {
+    q: 'What does a WordPress speed fix involve?',
+    a: 'I measure the site with PageSpeed Insights, then work through what the report shows: caching set up once and properly, unused CSS and JavaScript removed, images resized and served in modern formats, and heavy page-builder layouts rebuilt. You get the before and after numbers.',
+  },
+  {
+    q: 'How do you measure the result?',
+    a: 'With Google PageSpeed Insights and Core Web Vitals, on mobile, before and after the work. You see the same numbers I do, and you can run the test yourself at any time.',
+  },
+  {
+    q: 'Do you offer ongoing maintenance?',
+    a: "Yes. I still maintain and update Tabby's website after building it, and I can do the same for a site I have built or fixed for you.",
+  },
+  {
+    q: 'Do you work with companies outside Bangladesh?',
+    a: 'Yes. I work remotely from Dhaka. Tabby is a US product, and I have built for clients in Denmark and the UK.',
+  },
+];
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: site.name,
+    jobTitle: site.role,
+    address: { '@type': 'PostalAddress', addressLocality: 'Dhaka', addressCountry: 'BD' },
+    url: Astro.site,
+    telephone: site.phone,
+    sameAs: [site.linkedin, site.wrkbase, site.github, site.facebook].filter(Boolean),
+    knowsAbout: ['WordPress development', 'WordPress plugin development', 'Core Web Vitals', 'WooCommerce', 'SaaS development'],
+  },
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: Astro.site },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+<Base title={title} description={description} jsonld={jsonld}>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">WordPress and custom development</p>
+        <h1>I build fast websites and web products for SaaS and AI startups.</h1>
+        <p class="lead">
+          WordPress front end and back end, custom plugins, and products built from scratch. Fast, stable and measured.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="#contact">Start a project</a>
+          <a class="btn btn-ghost" href="#work">See the work</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <Picture src={photo} formats={['avif', 'webp']} width={340} height={340} alt="Sakib Islam" loading="eager" fetchpriority="high" />
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Results">
+    <dl class="wrap proof">
+      {proof.map((p) => (
+        <div>
+          <dt class="num"><span data-count={p.num} data-dec={p.dec}>{p.num.toFixed(p.dec)}</span>{p.suffix}</dt>
+          <dd>{p.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <h2>Selected work</h2>
+        <p class="lead">Each project has the brief, what I built, and a link to the live site.</p>
+      </div>
+      <div class="work-grid">
+        {work.map((w, i) => (
+          <article class:list={['work-card', { wide: i === 0 }]} data-spot data-reveal style={`--d:${(i % 2) * 0.08}s`}>
+            <a class="shot" href={`/work/${w.slug}/`} tabindex="-1" aria-hidden="true">
+              <Picture
+                src={w.shot}
+                formats={['avif', 'webp']}
+                widths={[480, 760, 1120]}
+                sizes="(max-width: 860px) 100vw, 560px"
+                alt=""
+                loading="lazy"
+              />
+            </a>
+            <div class="work-body">
+              <h3><a href={`/work/${w.slug}/`}>{w.client}</a></h3>
+              <p class="muted">{w.summary}</p>
+              <p class="result num">{w.result}</p>
+              <p class="card-links">
+                <a href={`/work/${w.slug}/`}>Case study</a>
+                <a href={w.clientUrl} target="_blank" rel="noopener">{host(w.clientUrl)} ↗</a>
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="wrkbase">
+    <div class="wrap showcase">
+      <div class="showcase-copy" data-reveal>
+        <h2>Wrkbase, software I designed and built</h2>
+        <p class="lead">
+          My own team management platform. Custom-built from the database to the dashboard, with an AI agent that does the admin after you approve it.
+        </p>
+        <ul>
+          <li>Tasks, time tracking, attendance, leave and payroll</li>
+          <li>An AI agent that shows every step before it acts</li>
+          <li>Role-based access and a full audit log</li>
+        </ul>
+        <p class="card-links">
+          <a href="/work/wrkbase/">Case study</a>
+          <a href={site.wrkbase} target="_blank" rel="noopener">mywrkbase.com ↗</a>
+        </p>
+      </div>
+      <div class="frame" data-reveal style="--d:0.1s">
+        <Picture
+          src={appShot}
+          formats={['avif', 'webp']}
+          widths={[640, 960, 1568]}
+          sizes="(max-width: 860px) 100vw, 660px"
+          alt="The Wrkbase dashboard showing tasks, attendance, performance and payroll for a company"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap services">
+      <h2 data-reveal>What I do</h2>
+      <ul class="service-list">
+        {services.map((s, i) => (
+          <li data-reveal style={`--d:${i * 0.08}s`}>
+            <h3>{s.name}</h3>
+            <p class="muted">{s.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <h2>How I work</h2>
+      </div>
+      <ol class="steps">
+        {steps.map((s, i) => (
+          <li data-reveal style={`--d:${i * 0.08}s`}>
+            <h3>{s.name}</h3>
+            <p class="muted">{s.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <h2>What people I have worked with say</h2>
+        <p class="lead">Recommendations from clients and colleagues, copied word for word from my LinkedIn profile.</p>
+      </div>
+    </div>
+    <div class="marquee">
+      <div class="track">
+        {[0, 1].map((copy) =>
+          reviews.map((r) => (
+            <blockquote class="review" aria-hidden={copy === 1 ? 'true' : undefined}>
+              <p>&ldquo;{r.text}&rdquo;</p>
+              <footer>
+                <span class="avatar" aria-hidden="true">{initials(r.name)}</span>
+                <span class="who">
+                  <a href={r.url} target="_blank" rel="noopener" tabindex={copy === 1 ? -1 : undefined}>{r.name}</a>
+                  <span>{r.role}</span>
+                  <span>{r.date}</span>
+                </span>
+                <svg class="li" viewBox="0 0 16 16" width="20" height="20" role="img" aria-label="Recommendation on LinkedIn">
+                  <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+                </svg>
+              </footer>
+            </blockquote>
+          )),
+        )}
+      </div>
+    </div>
+    <div class="wrap">
+      <p class="review-note">
+        Every one of these can be checked on
+        <a href={allReviewsUrl} target="_blank" rel="noopener">my LinkedIn recommendations ↗</a>.
+      </p>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <h2>Questions clients ask</h2>
+      </div>
+      <div class="faq">
+        {faq.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact" data-spot data-reveal>
+        <h2>Have a site to build, speed up or fix?</h2>
+        <p class="lead">Tell me what it is and what is going wrong. I reply with what I would check first.</p>
+        <div class="hero-actions">
+          {socials.slice(0, 2).map((s, i) => (
+            <a class:list={['btn', { 'btn-ghost': i > 0 }]} href={s.url} target="_blank" rel="noopener">
+              <svg class="ico" viewBox={`0 0 ${s.box} ${s.box}`} width="18" height="18" aria-hidden="true"><path d={s.path} /></svg>
+              {i === 0 ? 'Chat on WhatsApp' : 'Message me on LinkedIn'}
+            </a>
+          ))}
+          {site.email && <a class="btn btn-ghost" href={`mailto:${site.email}`}>{site.email}</a>}
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
