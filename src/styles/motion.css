@@ -20,8 +20,8 @@ body::before { content: ''; position: fixed; inset: 0; z-index: 50; pointer-even
 
 /* Hero: a dot field drawn on canvas that ripples and reacts to the cursor. Without script it is a plain dot grid. */
 .hero { position: relative; isolation: isolate; }
-.dots, .hero::before { position: absolute; inset: -76px 0 0 0; z-index: -1; pointer-events: none; -webkit-mask-image: linear-gradient(#000 45%, transparent 98%); mask-image: linear-gradient(#000 45%, transparent 98%); }
-.dots { width: 100%; height: calc(100% + 76px); }
+.hero .dots, .hero::before { position: absolute; inset: -76px 0 0 0; z-index: -1; pointer-events: none; -webkit-mask-image: linear-gradient(#000 45%, transparent 98%); mask-image: linear-gradient(#000 45%, transparent 98%); }
+.hero .dots { width: 100%; height: calc(100% + 76px); }
 .hero::before { content: ''; background: radial-gradient(rgb(245 244 239 / 0.1) 1px, transparent 1.5px) 0 0 / 26px 26px; }
 .js .hero::before { display: none; }
 
@@ -43,7 +43,7 @@ figure.portrait::before { inset: calc(17% - 1px) -1px -1px -1px; z-index: -1; }
 .portrait .badge { animation: bob 5s ease-in-out infinite; }
 @property --beam { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 @keyframes beam { to { --beam: 360deg; } }
-.portrait::before, .contact::before {
+.portrait::before, .cta-card::before {
   content: ''; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none;
   background: conic-gradient(from var(--beam), transparent 0 68%, var(--accent) 88%, transparent 100%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -102,7 +102,7 @@ figure.portrait::before { inset: calc(17% - 1px) -1px -1px -1px; z-index: -1; }
 
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
-  .w, .hero-copy > *, .hero-photo, .portrait .badge, .portrait::before, .contact::before, .track, .stage .frame, .steps::after, .bigmark, .progress { animation: none !important; }
+  .w, .hero-copy > *, .hero-photo, .portrait .badge, .portrait::before, .cta-card::before, .track, .stage .frame, .steps::after, .bigmark, .progress { animation: none !important; }
   .steps::after { transform: none; }
   .marquee { overflow-x: auto; }
   body::before, .progress { display: none; }

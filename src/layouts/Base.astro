@@ -66,9 +66,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       // All motion that needs script: scroll reveals, number tickers, typed headings, the cursor glow and spotlight,
       // magnetic buttons, the tilting portrait, the hero dot field and the Dhaka clock. Skipped under reduced motion.
       (() => {
-        const clock = document.querySelector('[data-clock]');
-        if (clock) {
-          const show = () => { clock.textContent = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Dhaka' }).format(new Date()) + ' local'; };
+        const clocks = document.querySelectorAll('[data-clock]');
+        if (clocks.length) {
+          const show = () => {
+            const now = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Dhaka' }).format(new Date()) + ' local';
+            clocks.forEach((c) => { c.textContent = now; });
+          };
           show(); setInterval(show, 30000);
         }
         const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -107,11 +110,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         }), { threshold: 0.15 });
         document.querySelectorAll('[data-reveal], [data-count], main h2').forEach((el) => io.observe(el));
 
-        // Hero dot field: a slow wave runs through it, and dots near the cursor light up and move away from it.
-        const cv = document.querySelector('.dots');
-        let mx = -999, my = -999;
-        if (cv) {
-          const ctx = cv.getContext('2d'), gap = 26;
+        // Dot fields (hero and contact): a slow wave runs through each, and dots near the cursor light up and move away from it.
+        // Each canvas only draws while it is on screen.
+        const fields = [...document.querySelectorAll('.dots')].map((cv) => {
+          const ctx = cv.getContext('2d'), gap = 26, f = { cv, mx: -999, my: -999 };
           let w = 0, h = 0, on = false;
           const size = () => {
             const d = Math.min(devicePixelRatio || 1, 2);
@@ -122,7 +124,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           const draw = (t) => {
             ctx.clearRect(0, 0, w, h);
             for (let y = gap / 2; y < h; y += gap) for (let x = gap / 2; x < w; x += gap) {
-              const dx = x - mx, dy = y - my, near = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / 190);
+              const dx = x - f.mx, dy = y - f.my, near = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / 190);
               if (near > 0.02) {
                 const a = Math.atan2(dy, dx), push = near * near * 14;
                 ctx.fillStyle = 'rgba(255,133,82,' + (0.2 + near * 0.8) + ')';
@@ -136,13 +138,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           };
           size(); addEventListener('resize', size);
           new IntersectionObserver(([e]) => { const was = on; on = e.isIntersecting; if (on && !was) requestAnimationFrame(draw); }).observe(cv);
-        }
+          return f;
+        });
 
         if (matchMedia('(hover: hover)').matches) {
           addEventListener('pointermove', (e) => {
             document.documentElement.style.setProperty('--gx', e.clientX + 'px');
             document.documentElement.style.setProperty('--gy', e.clientY + 'px');
-            if (cv) { const r = cv.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; }
+            fields.forEach((f) => { const r = f.cv.getBoundingClientRect(); f.mx = e.clientX - r.left; f.my = e.clientY - r.top; });
           }, { passive: true });
           document.querySelectorAll('[data-spot]').forEach((el) => el.addEventListener('pointermove', (e) => {
             const r = el.getBoundingClientRect();
