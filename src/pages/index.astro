@@ -164,10 +164,11 @@ const jsonld = [
           <li class="project" data-reveal style={`--d:${i === 0 ? 0 : ((i - 1) % 2) * 0.1}s`}>
             <article class="project-card" data-spot>
               <div class="project-copy">
-                <span class="idx">{pad(i + 1)} / {pad(work.length)}</span>
+                <span class="ghost" aria-hidden="true">{pad(i + 1)}</span>
+                <span class="idx">Project {pad(i + 1)} of {pad(work.length)}</span>
                 <h3><a href={`/work/${w.slug}/`}>{w.client}</a></h3>
                 <p class="muted">{w.summary}</p>
-                <p class="result">{w.result}</p>
+                <p class="outcome"><b class="num">{w.metricValue}</b><span>{w.metricLabel}</span></p>
                 <ul class="tags">{w.stack.slice(0, 3).map((t) => <li>{t}</li>)}</ul>
                 <p class="card-links">
                   <a href={`/work/${w.slug}/`}>Case study</a>

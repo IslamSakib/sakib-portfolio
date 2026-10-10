@@ -93,8 +93,14 @@ figure.portrait::before { inset: calc(17% - 1px) -1px -1px -1px; z-index: -1; }
 [data-spot]:hover::after { opacity: 1; }
 
 /* Project screenshots drift up inside their frame on hover, like scrolling the real page */
-.project-shot img { transition: transform 1.2s var(--ease); transform-origin: top left; }
-.project-card:hover .project-shot img { transform: scale(1.06) translateY(-3%); }
+.project-shot { transition: transform 0.9s var(--ease), box-shadow 0.9s ease; will-change: transform; }
+.project-card:hover .project-shot, .project:nth-child(even) .project-card:hover .project-shot { transform: none; }
+.project-shot img { transition: transform 1.4s var(--ease); transform-origin: top left; }
+.project-card:hover .project-shot img { transform: scale(1.05) translateY(-3%); }
+.project-copy h3 a { transition: background-size 0.5s var(--ease); }
+.project-card:hover .project-copy h3 a { background-size: 100% 3px; }
+.project-copy .ghost { transition: -webkit-text-stroke-color 0.5s ease, transform 0.9s var(--ease); }
+.project-card:hover .ghost { -webkit-text-stroke-color: rgb(var(--accent-rgb) / 0.7); transform: translateY(-8px); }
 
 @supports (animation-timeline: view()) {
   @keyframes grow { to { transform: scaleX(1); } }
