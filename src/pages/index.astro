@@ -21,7 +21,8 @@ const host = (url) => new URL(url).hostname.replace('www.', '');
 const pad = (n) => String(n).padStart(2, '0');
 
 // The headline is split into words so each one can animate in. The word in `hot` takes the accent colour.
-const headline = 'WordPress developer for fast, stable startup sites.'.split(' ');
+// Three fixed lines on desktop; on phones the words wrap naturally.
+const headline = ['WordPress developer', 'for fast, stable', 'startup sites.'].map((line) => line.split(' '));
 const hot = 'fast,';
 
 // Trust numbers. Each one can be checked: the client list is the strip above, the recommendations are on LinkedIn,
@@ -111,10 +112,14 @@ const jsonld = [
       <div class="hero-copy">
         <p class="label">WordPress, custom development and AI</p>
         <h1>
-          {headline.map((word, i) => (
-            <Fragment>
-              <span class="w" style={`--i:${i}`}>{word === hot ? <em>{word}</em> : word}</span>{' '}
-            </Fragment>
+          {headline.map((line, l) => (
+            <span class="hl">
+              {line.map((word, i) => (
+                <Fragment>
+                  <span class="w" style={`--i:${headline.slice(0, l).flat().length + i}`}>{word === hot ? <em>{word}</em> : word}</span>{' '}
+                </Fragment>
+              ))}
+            </span>
           ))}
         </h1>
         <p class="lead">
