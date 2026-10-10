@@ -1,5 +1,6 @@
 // Recommendations copied from Sakib's LinkedIn profile. Text is quoted, never rewritten; long ones are cut to whole sentences.
 // LinkedIn recommendations have no star ratings, so none are shown.
+// Only founders, managers and senior people are listed here, at Sakib's request; the rest stay on LinkedIn.
 export const allReviewsUrl = 'https://www.linkedin.com/in/sakibislamofficial/details/recommendations/';
 
 const li = (slug) => `https://www.linkedin.com/in/${slug}/`;
@@ -13,18 +14,18 @@ export const reviews = [
     text: "Sakib has done a fantastic job with our Tabby 2.0 launch work along with continuous maintenance and updates on Tabby's website. He is very responsive and dedicated to any project he works on. I highly recommend him.",
   },
   {
+    name: 'Sakil Mahmud Khan',
+    role: 'Senior Instructional Design Consultant, Open Academy London',
+    date: 'October 2026',
+    url: li('sakil-mahmud-khan'),
+    text: 'He is highly reliable and resourceful, with a great ability to solve problems effectively, even with limited tools and resources. His practical approach and problem-solving skills make him a valuable member of our team.',
+  },
+  {
     name: 'Md. Shahid Hossain',
     role: 'Key Account Manager at Nagad, formerly at Moneybag',
     date: 'January 2026',
     url: li('shahidhossain26'),
     text: 'Sakib Islam is an exceptional Senior WordPress Developer with deep expertise in custom development, performance optimization, and clean, scalable code. Reliable, proactive, and easy to work with, they consistently deliver high-quality results.',
-  },
-  {
-    name: 'Shamsi Nur',
-    role: 'Content Strategist and UX Copywriter at Musemind',
-    date: 'January 2026',
-    url: li('shamsi-nur'),
-    text: "He's highly responsive, communicative, and consistently delivers work on time without compromising on quality. Sakib understands requirements quickly, executes with precision, and is proactive when it comes to solving problems or suggesting improvements.",
   },
   {
     name: 'Soummo Supriya',
@@ -46,13 +47,6 @@ export const reviews = [
     date: 'November 2024',
     url: li('franklin-b-gomes-b02b64202'),
     text: 'I had the pleasure of working with Sakib Islam on several projects, and I was really happy with his performance and commitment.',
-  },
-  {
-    name: 'Azaz Youlee',
-    role: 'Worked with Sakib on the same team',
-    date: 'November 2024',
-    url: li('azaz-youlee'),
-    text: 'Highly professional, quality oriented and deadline maintaining web developer!',
   },
 ];
 

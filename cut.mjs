@@ -4,7 +4,7 @@ import sharp from 'sharp';
 const src = 'src/assets/sakib-islam.png', out = 'src/assets/sakib-islam-cut.png';
 const { data, info } = await sharp(src).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
 const W = info.width, H = info.height, bg = new Uint8Array(W * H), stack = [];
-const isBg = (i) => { const r = data[i * 4], g = data[i * 4 + 1], b = data[i * 4 + 2]; const mx = Math.max(r, g, b), mn = Math.min(r, g, b); const x = i % W, y = (i - x) / W; if (y >= 224 && x >= 150 && x <= 271) return false; return mx - mn < 26 && mx > 95; };
+const isBg = (i) => { const r = data[i * 4], g = data[i * 4 + 1], b = data[i * 4 + 2]; const mx = Math.max(r, g, b), mn = Math.min(r, g, b); const x = i % W, y = (i - x) / W; if (y >= 224 && x >= (y < 238 ? 157 : 150) && x <= Math.min(271, 260 + (y - 224) * 0.6)) return false; return mx - mn < 26 && mx > 95; };
 const push = (x, y) => { const i = y * W + x; if (x >= 0 && y >= 0 && x < W && y < H && !bg[i] && isBg(i)) { bg[i] = 1; stack.push(i); } };
 for (let x = 0; x < W; x++) push(x, 0);
 for (let y = 0; y < H; y++) { push(0, y); push(W - 1, y); }
