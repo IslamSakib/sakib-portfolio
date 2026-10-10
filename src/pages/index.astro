@@ -1,11 +1,12 @@
 ---
 import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import photo from '../assets/sakib-islam.png';
+import photo from '../assets/sakib-islam-cut.png';
 import appShot from '../assets/work/extra/wrkbase-1.jpg';
 import { site } from '../site.js';
 import { socials } from '../socials.js';
 import { work } from '../work.js';
+import { clients } from '../clients.js';
 import { reviews, allReviewsUrl, initials } from '../reviews.js';
 
 const title = 'Sakib Islam | WordPress & Full-Stack Developer for Startups';
@@ -128,7 +129,8 @@ const jsonld = [
       </div>
       <div class="hero-photo">
         <figure class="portrait" data-tilt>
-          <Picture src={photo} formats={['avif', 'webp']} width={360} height={360} alt="Sakib Islam" loading="eager" fetchpriority="high" />
+          <Picture src={photo} formats={['avif', 'webp']} widths={[420, 800]} sizes="(max-width: 860px) 220px, 420px" width={420} height={420} alt="Sakib Islam" loading="eager" fetchpriority="high" />
+          <span class="badge">Founder, Wrkbase</span>
           <figcaption><b>Dhaka, Bangladesh</b><span data-clock>GMT+6</span></figcaption>
         </figure>
       </div>
@@ -139,7 +141,7 @@ const jsonld = [
     <div class="wrap"><p>Built for</p></div>
     <div class="marquee">
       <div class="track">
-        {[0, 1].map((copy) => work.map((w) => <span aria-hidden={copy === 1 ? 'true' : undefined}>{w.client}</span>))}
+        {[0, 1].map((copy) => clients.map((name) => <span aria-hidden={copy === 1 ? 'true' : undefined}>{name}</span>))}
       </div>
     </div>
   </section>
