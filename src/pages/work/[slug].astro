@@ -28,6 +28,7 @@ const jsonld = [
     description: w.description,
     author: { '@type': 'Person', name: site.name, url: site.linkedin },
     about: w.client,
+    image: { '@type': 'ImageObject', url: new URL(w.shot.src, Astro.site), width: w.shot.width, height: w.shot.height, caption: `${w.client} website home page, built by Sakib Islam` },
     mainEntityOfPage: url,
   },
   {

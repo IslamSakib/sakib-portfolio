@@ -88,6 +88,7 @@ const jsonld = [
     jobTitle: site.role,
     address: { '@type': 'PostalAddress', addressLocality: 'Dhaka', addressCountry: 'BD' },
     url: Astro.site,
+    image: { '@type': 'ImageObject', url: new URL(photo.src, Astro.site), width: photo.width, height: photo.height, caption: 'Sakib Islam, WordPress developer and founder of Wrkbase' },
     telephone: site.phone,
     sameAs: [site.linkedin, site.wrkbase, site.github, site.facebook].filter(Boolean),
     knowsAbout: ['WordPress development', 'WordPress plugin development', 'WordPress speed optimization', 'Core Web Vitals', 'WooCommerce', 'SaaS development', 'AI agents', 'LLM integration'],
