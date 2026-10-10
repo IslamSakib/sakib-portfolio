@@ -6,7 +6,6 @@ import '../styles/global.css';
 import '../styles/motion.css';
 import { site } from '../site.js';
 import { socials } from '../socials.js';
-import { services } from '../services.js';
 
 const { title, description, jsonld = [], ogImage = '/og.png', focus } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -60,27 +59,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     </main>
     <footer class="site-footer">
       <span class="bigmark" aria-hidden="true">Sakib Islam<i>.</i></span>
-      <nav class="wrap foot-nav" aria-label="Footer">
-        <div>
-          <p class="label">Services</p>
-          <ul>{services.map((sv) => <li><a href={`/${sv.slug}/`}>{sv.name}</a></li>)}</ul>
-        </div>
-        <div>
-          <p class="label">Site</p>
-          <ul>
-            <li><a href="/#work">Selected work</a></li>
-            <li><a href="/#audit">Free audit</a></li>
-            <li><a href="/#reviews">Reviews</a></li>
-            <li><a href="/#faq">FAQ</a></li>
-            <li><a href="/#contact">Start a project</a></li>
-          </ul>
-        </div>
-      </nav>
       <div class="wrap foot">
         <p>
           {site.name}, {site.role} in {site.location}. Founder of{' '}<a href={site.wrkbase} target="_blank" rel="noopener">Wrkbase</a>.
         </p>
-        <button class="sound" type="button" aria-pressed="true" data-sound>Sound on</button>
         <p class="foot-links">
           {socials.map((s) => (
             <a href={s.url} target="_blank" rel="noopener" aria-label={s.name} title={s.name}><svg class="ico" viewBox={`0 0 ${s.box} ${s.box}`} width="18" height="18" aria-hidden="true"><path d={s.path} /></svg></a>
@@ -132,17 +114,18 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           };
           show(); setInterval(show, 30000);
         }
-        // Click sound: a short soft tick made with Web Audio, higher for links and buttons. The footer button turns it off, and the choice is remembered.
-        let audio, muted = false;
-        try { muted = localStorage.getItem('sound') === 'off'; } catch (e) {}
-        const toggle = document.querySelector('[data-sound]');
-        const label = () => { if (toggle) { toggle.textContent = muted ? 'Sound off' : 'Sound on'; toggle.setAttribute('aria-pressed', String(!muted)); } };
-        label();
-        const tick = (freq) => {
-          if (muted) return;
+        // Sound: a soft tick on every click and a continuous, quiet generated music bed, both made with Web Audio (no audio files).
+        // Browsers only allow sound after the visitor's first click or key press, so the music starts then. There is no off switch, by request.
+        let audio, music = null;
+        const ctx = () => {
           const AC = window.AudioContext || window.webkitAudioContext;
-          if (!AC) return;
+          if (!AC) return null;
           audio = audio || new AC();
+          if (audio.state === 'suspended') audio.resume();
+          return audio;
+        };
+        const tick = (freq) => {
+          if (!ctx()) return;
           const o = audio.createOscillator(), g = audio.createGain(), t = audio.currentTime;
           o.type = 'sine';
           o.frequency.setValueAtTime(freq, t);
@@ -153,8 +136,52 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           o.connect(g).connect(audio.destination);
           o.start(t); o.stop(t + 0.12);
         };
-        if (toggle) toggle.addEventListener('click', () => { muted = !muted; try { localStorage.setItem('sound', muted ? 'off' : 'on'); } catch (e) {} label(); tick(880); });
-        addEventListener('pointerdown', (e) => tick(e.target.closest && e.target.closest('a, button, summary') ? 880 : 420), { passive: true });
+        // Music: four slow chords on a warm pad, with a light plucked note on top to keep it moving.
+        const chords = [[220, 261.63, 329.63, 392], [174.61, 220, 261.63, 329.63], [130.81, 196, 246.94, 329.63], [196, 246.94, 293.66, 392]];
+        const startMusic = () => {
+          if (music || !ctx()) return;
+          const out = audio.createGain(), filter = audio.createBiquadFilter();
+          out.gain.value = 0.0001;
+          out.gain.exponentialRampToValueAtTime(0.9, audio.currentTime + 3);
+          filter.type = 'lowpass'; filter.frequency.value = 1100; filter.Q.value = 0.4;
+          filter.connect(out).connect(audio.destination);
+          let bar = 0;
+          const play = () => {
+            const t = audio.currentTime, chord = chords[bar % chords.length];
+            chord.forEach((f, i) => {
+              [-4, 4].forEach((cents) => {
+                const o = audio.createOscillator(), g = audio.createGain();
+                o.type = i === 0 ? 'triangle' : 'sine';
+                o.frequency.value = f; o.detune.value = cents;
+                g.gain.setValueAtTime(0.0001, t);
+                g.gain.exponentialRampToValueAtTime(0.012, t + 2.2);
+                g.gain.exponentialRampToValueAtTime(0.0001, t + 7.6);
+                o.connect(g).connect(filter);
+                o.start(t); o.stop(t + 7.8);
+              });
+            });
+            for (let n = 0; n < 8; n++) {
+              const o = audio.createOscillator(), g = audio.createGain(), at = t + n * 0.9 + 0.45;
+              o.type = 'triangle';
+              o.frequency.value = chord[(n * 3 + bar) % chord.length] * 2;
+              g.gain.setValueAtTime(0.0001, at);
+              g.gain.exponentialRampToValueAtTime(0.014, at + 0.02);
+              g.gain.exponentialRampToValueAtTime(0.0001, at + 0.8);
+              o.connect(g).connect(filter);
+              o.start(at); o.stop(at + 0.85);
+            }
+            bar += 1;
+          };
+          play();
+          music = { out, timer: setInterval(play, 7200) };
+        };
+        addEventListener('pointerdown', (e) => {
+          tick(e.target.closest && e.target.closest('a, button, summary') ? 880 : 420);
+          startMusic();
+        }, { passive: true });
+        addEventListener('keydown', startMusic, { once: true });
+        // Silence when the tab is in the background.
+        document.addEventListener('visibilitychange', () => { if (audio) document.hidden ? audio.suspend() : audio.resume(); });
 
         const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (reduce || !('IntersectionObserver' in window)) return;
