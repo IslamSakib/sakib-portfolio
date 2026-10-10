@@ -1,10 +1,11 @@
 ---
 order: 6
 client: Piola Pizza
+focus: restaurant website
 clientUrl: https://piolapizza.dk/
-title: Online ordering for a pizzeria in Denmark
-seoTitle: "Piola Pizza: WooCommerce Online Ordering for a Pizzeria"
-description: I built the WooCommerce ordering site for Piola Pizza in Esbjerg, Denmark, with a dynamic menu, combo deals and a mobile-first checkout.
+title: "A restaurant website with online ordering for a pizzeria in Denmark"
+seoTitle: "Restaurant Website With Online Ordering | Piola Pizza"
+description: "A restaurant website for Piola Pizza in Esbjerg, Denmark: WooCommerce ordering, a menu the owner can change, and a checkout built for phones."
 summary: A WooCommerce ordering site with a dynamic menu, combo deals and a checkout built for phones.
 result: Mobile-first ordering
 role: WordPress and WooCommerce developer
@@ -25,3 +26,11 @@ Piola Pizza is a Neapolitan pizzeria in Esbjerg, Denmark. It needed a site where
 - Customer accounts for repeat orders and order tracking
 - Promotional banners for seasonal and daily deals
 - Local SEO so the site is found by people nearby
+
+## What is on the site today
+
+Checked on the live site on 11 October 2026.
+
+- The site is in Danish, written for people looking for pizza in Esbjerg
+- Orders for pickup are placed on the site, and delivery goes through Wolt
+- The page title and description name the town and the food, which is what local search needs

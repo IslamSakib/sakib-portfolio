@@ -1,10 +1,11 @@
 ---
 order: 7
 client: Pixmge
+focus: agency website
 clientUrl: https://pixmge.com/
-title: A marketing site for a visual content agency
-seoTitle: "Pixmge: Marketing Website for a Visual Content Agency"
-description: I built the marketing site for Pixmge, an image editing and animation agency, with service pages, a portfolio and a quote request flow.
+title: "An agency website that turns visitors into quote requests"
+seoTitle: "Agency Website for a Visual Content Company | Pixmge"
+description: "An agency website for Pixmge, an image editing and animation company, with service pages, pricing, a portfolio and a short quote request flow."
 summary: An agency site with clear service pages, a visual portfolio and a simple quote request flow.
 result: Quote requests from day one
 role: WordPress developer
@@ -29,3 +30,12 @@ Pixmge is an image editing, animation and digital marketing agency. It needed a 
 
 - Delivered on schedule
 - The quote request system was live and receiving enquiries from day one
+
+## What is on the site today
+
+Checked on the live site on 11 October 2026.
+
+- A page for each service, from background removal and clipping paths to jewelry editing and vector conversion
+- Pricing, a user guide, an FAQ and a blog
+- English and German versions
+- WordPress with Elementor and Rank Math

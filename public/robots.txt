@@ -1,4 +1,6 @@
+# Everyone is welcome, AI crawlers included.
 User-agent: *
 Allow: /
+Disallow: /lead.php
 
-Sitemap: https://example.com/sitemap-index.xml
+Sitemap: https://sakib.mywrkbase.com/sitemap-index.xml

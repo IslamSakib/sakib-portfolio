@@ -1,10 +1,11 @@
 ---
 order: 1
 client: Tabby
+focus: Figma to WordPress
 clientUrl: https://www.usetabby.com/
-title: The full website for an AI bookkeeping product, front end and back end
-seoTitle: "Tabby: Full WordPress Build for an AI Bookkeeping Product"
-description: How I built Tabby's WordPress site end to end, custom plugins and payments included, then the full Tabby 2.0 website.
+title: "Figma to WordPress for an AI bookkeeping product, front end and back end"
+seoTitle: "Figma to WordPress Build for Tabby, an AI Bookkeeper"
+description: "A Figma to WordPress build for Tabby: custom plugins, a tax calculator, subscriptions and a 2.0 relaunch that kept its search visibility."
 summary: Front end, back end, custom plugins and payments, then the full rebuild for the 2.0 release with its SEO kept in place.
 result: Core Web Vitals above 90
 role: Full-stack WordPress developer, freelance
@@ -37,3 +38,12 @@ When Tabby released version 2.0, I built the entire new website. The condition w
 - Launched on schedule
 - Core Web Vitals above 90
 - I still maintain and update the site today
+
+## What is on the site today
+
+Checked on the live site on 11 October 2026.
+
+- Pages for each kind of customer: consultants and coaches, contractors, licensed professionals and real estate professionals
+- Four free calculators: 1099 tax, billable hour, tax bracket and tax refund
+- Comparison pages against QuickBooks and Wave, a help center, a blog and a partner program
+- WordPress with Elementor, Rank Math for search and one caching layer

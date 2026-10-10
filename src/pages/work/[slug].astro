@@ -1,6 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
+import Cta from '../../components/Cta.astro';
 import { site } from '../../site.js';
 import { work } from '../../work.js';
 import { reviews } from '../../reviews.js';
@@ -40,7 +41,7 @@ const jsonld = [
   },
 ];
 ---
-<Base title={w.seoTitle} description={w.description} jsonld={jsonld}>
+<Base title={w.seoTitle} description={w.description} jsonld={jsonld} focus={w.focus}>
   <article class="wrap">
     <header class="case-head">
       <nav class="crumbs" aria-label="Breadcrumb">
@@ -65,7 +66,7 @@ const jsonld = [
         formats={['avif', 'webp']}
         widths={[640, 1120, 1440]}
         sizes="(max-width: 1160px) 100vw, 1120px"
-        alt={`The ${w.client} website home page`}
+        alt={`${w.client} website home page, built by Sakib Islam`}
         loading="eager"
         fetchpriority="high"
       />
@@ -91,7 +92,7 @@ const jsonld = [
               formats={['avif', 'webp']}
               widths={[640, 1120, 1568]}
               sizes="(max-width: 1160px) 100vw, 1120px"
-              alt={`Inside the ${w.client} software, screen ${i + 1}`}
+              alt={`${w.client} product screen ${i + 1}`}
               loading="lazy"
             />
           </figure>
@@ -114,7 +115,8 @@ const jsonld = [
 
     <div class="next">
       <a href={`/work/${next.slug}/`}>Next: {next.client}</a>
-      <a class="btn" href="/#contact">Start a project</a>
+      <a class="btn btn-ghost" href="/#work">All work</a>
     </div>
   </article>
+  <Cta heading={`Want a result like ${w.client}?`} />
 </Base>

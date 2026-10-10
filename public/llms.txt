@@ -1,0 +1,26 @@
+# Sakib Islam
+
+> WordPress and full-stack developer in Dhaka, Bangladesh, and founder of Wrkbase. He builds and fixes WordPress sites, custom web products and AI agents for SaaS and AI startups, working remotely with clients in the US, UK and Europe.
+
+## Services
+
+- [WordPress development](https://sakib.mywrkbase.com/wordpress-development/): custom themes, custom plugins, WooCommerce, payments, LMS sites and integrations
+- [WordPress speed optimization](https://sakib.mywrkbase.com/wordpress-speed-optimization/): Core Web Vitals, caching, downtime and plugin conflicts, fixed at the cause
+- [Custom web development](https://sakib.mywrkbase.com/custom-web-development/): SaaS products, dashboards and fast static marketing sites
+- [AI agents and automation](https://sakib.mywrkbase.com/ai-development/): AI agents that act with approval, LLM API integration, WordPress chatbots, workflow automation
+
+## Case studies
+
+- [Tabby](https://sakib.mywrkbase.com/work/tabby/): Figma to WordPress build for an AI bookkeeping product, Core Web Vitals above 90
+- [TubeOnAI](https://sakib.mywrkbase.com/work/tubeonai/): a WordPress site that kept going down, fixed; load time from 5 seconds to 1.5
+- [Moneybag](https://sakib.mywrkbase.com/work/moneybag/): custom WordPress payment gateway plugin and website; merchant onboarding time down 60%
+- [Wrkbase](https://sakib.mywrkbase.com/work/wrkbase/): his own SaaS team management platform with an AI agent
+- [Open Alliance Learning](https://sakib.mywrkbase.com/work/open-alliance-learning/): WordPress LMS with dashboards for learners, teachers and assessors
+- [Piola Pizza](https://sakib.mywrkbase.com/work/piola-pizza/): restaurant website with online ordering in Denmark
+- [Pixmge](https://sakib.mywrkbase.com/work/pixmge/): agency website with a quote request flow
+
+## Contact
+
+- WhatsApp: +880 1950 025990
+- LinkedIn: https://www.linkedin.com/in/sakibislamofficial/
+- GitHub: https://github.com/IslamSakib

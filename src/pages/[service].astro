@@ -1,0 +1,162 @@
+---
+// One page per service in src/services.js: the problem, what is included, proof from the matching case studies, FAQ and the contact band.
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+import { site } from '../site.js';
+import { services } from '../services.js';
+import { work } from '../work.js';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { service: s.slug }, props: { s } }));
+}
+
+const { s } = Astro.props;
+const url = new URL(Astro.url.pathname, Astro.site);
+const pad = (n) => String(n).padStart(2, '0');
+const host = (u) => new URL(u).hostname.replace('www.', '');
+const proof = s.proof.map((slug) => work.find((w) => w.slug === slug)).filter(Boolean);
+const others = services.filter((o) => o.slug !== s.slug);
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: s.name,
+    serviceType: s.focus,
+    description: s.description,
+    url,
+    areaServed: 'Worldwide',
+    provider: { '@type': 'Person', name: site.name, url: Astro.site, jobTitle: site.role },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: s.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: Astro.site },
+      { '@type': 'ListItem', position: 2, name: s.name, item: url },
+    ],
+  },
+];
+---
+<Base title={s.title} description={s.description} jsonld={jsonld} focus={s.focus}>
+  <section class="page-head">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>/</span><a href="/#services">Services</a><span>/</span><span>{s.name}</span>
+      </nav>
+      <p class="label">{s.name}</p>
+      <h1>{s.h1}</h1>
+      <p class="lead">{s.lead}</p>
+      <div class="hero-actions">
+        <button class="btn" type="button" data-chat-open data-magnet>Tell me about your project</button>
+        <a class="btn btn-ghost" href="#proof" data-magnet>See the proof</a>
+      </div>
+      <ul class="tags">{s.chips.map((c) => <li>{c}</li>)}</ul>
+    </div>
+  </section>
+
+  <section class="sec band band-glow">
+    <div class="wrap split">
+      <div data-reveal>
+        <p class="label">The problem</p>
+        <h2>{s.problemTitle}</h2>
+      </div>
+      <p class="lead wide" data-reveal style="--d:0.1s">{s.problem}</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">What is included</p>
+        <h2>What you get</h2>
+      </div>
+      <ul class="service-list">
+        {s.includes.map((item, i) => (
+          <li data-reveal style={`--d:${(i % 3) * 0.06}s`}>
+            <span class="idx">{pad(i + 1)}</span>
+            <h3>{item.name}</h3>
+            <div class="detail"><p class="muted">{item.text}</p></div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="proof" class="sec band band-grid">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">Proof</p>
+        <h2>Where I have done this</h2>
+      </div>
+      <ol class:list={['stack', { 'stack-one': proof.length === 1 }]}>
+        {proof.map((w) => (
+          <li class="project" data-reveal>
+            <article class="project-card" data-spot>
+              <div class="project-copy">
+                <h3><a href={`/work/${w.slug}/`}>{w.client}</a></h3>
+                <p class="muted">{w.summary}</p>
+                <p class="result">{w.result}</p>
+                <p class="card-links">
+                  <a href={`/work/${w.slug}/`}>Read the case study</a>
+                  <a href={w.clientUrl} target="_blank" rel="noopener">{host(w.clientUrl)} ↗</a>
+                </p>
+              </div>
+              <a class="project-shot" href={`/work/${w.slug}/`} tabindex="-1" aria-hidden="true">
+                <div class="chrome"><i></i><i></i><i></i><span>{host(w.clientUrl)}</span></div>
+                <div>
+                  <Picture src={w.shot} formats={['avif', 'webp']} widths={[480, 760, 1120]} sizes="(max-width: 860px) 100vw, 640px" alt={`${w.client} website home page`} loading="lazy" />
+                </div>
+              </a>
+            </article>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap faq-grid">
+      <div class="faq-side">
+        <p class="label">FAQ</p>
+        <h2>Questions about {s.focus}</h2>
+        <p class="muted">Something else on your mind? Ask me directly.</p>
+        <a class="btn btn-ghost btn-small" href={site.whatsapp} target="_blank" rel="noopener">Ask on WhatsApp</a>
+      </div>
+      <div class="faq">
+        {s.faq.map((f) => (
+          <details name="faq">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec band band-dots">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">Also</p>
+        <h2>Other things I do</h2>
+      </div>
+      <ul class="service-list">
+        {others.map((o, i) => (
+          <li data-reveal style={`--d:${i * 0.06}s`}>
+            <span class="idx">{pad(i + 1)}</span>
+            <h3><a href={`/${o.slug}/`}>{o.name}</a></h3>
+            <div class="detail"><p class="muted">{o.row}</p></div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <Cta heading={`Need ${s.focus}?`} />
+</Base>

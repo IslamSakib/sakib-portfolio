@@ -1,10 +1,11 @@
 ---
 order: 2
 client: TubeOnAI
+focus: WordPress site keeps going down
 clientUrl: https://tubeonai.com/
-title: The site kept going down because of its own speed plugins
-seoTitle: "TubeOnAI: Fixing a WordPress Site That Kept Going Down"
-description: TubeOnAI's WordPress site kept going down. The cause was leftover cache plugin files. Load time went from 5 seconds to 1.5.
+title: "A WordPress site keeps going down: the cause was its own speed plugins"
+seoTitle: "WordPress Site Keeps Going Down? How I Fixed TubeOnAI"
+description: "When a WordPress site keeps going down, look at its speed plugins first. TubeOnAI went from a 5 second load to 1.5 once the cause was removed."
 summary: A WordPress site that kept going down, traced to leftover cache plugin files and fixed at the root.
 result: Load time from 5 s to 1.5 s
 role: WordPress developer, part-time
@@ -36,3 +37,12 @@ Several cache plugins had been added over time, each one meant to make the site 
 - Server load fell by 60%
 - Core Web Vitals above 90
 - An estimated $6,000 in signups was not lost
+
+## What is on the site today
+
+Checked on the live site on 11 October 2026.
+
+- A page for each summary tool: YouTube, podcasts, Drive files and articles
+- Pages for each audience: students, professors, creators, researchers and marketers
+- Two plugins written for this site: one for custom Elementor widgets and one for site features
+- WordPress with Elementor and Rank Math, served through Cloudflare
