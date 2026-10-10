@@ -144,16 +144,23 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .proof dt { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 500; line-height: 1; color: var(--accent); }
 .proof dd { color: var(--muted); margin-top: 0.9rem; max-width: 26ch; }
 
-/* Work: a stack of cards that pin and pile up as you scroll */
-.stack { display: grid; gap: 2rem; }
-.project { position: sticky; top: calc(92px + var(--i) * 14px); }
-.project-card { display: grid; grid-template-columns: 1fr 1.25fr; height: min(540px, calc(100svh - 200px)); min-height: 440px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transform-origin: 50% 0; }
-.project-copy { padding: 2.5rem; display: grid; gap: 0.9rem; align-content: center; justify-items: start; }
+/* Work: one featured project across the top, the rest in a two-column grid */
+.stack { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; }
+.project { display: grid; }
+.project:first-child { grid-column: 1 / -1; }
+.project-card { display: grid; grid-template-rows: auto 1fr; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: border-color 0.3s ease, transform 0.5s var(--ease); }
+.project-card:hover { border-color: rgb(var(--accent-rgb) / 0.55); transform: translateY(-4px); }
+.project-card .project-shot { order: -1; aspect-ratio: 16 / 9.4; }
+.project:first-child .project-card { grid-template-rows: none; grid-template-columns: 1fr 1.3fr; min-height: 460px; }
+.project:first-child .project-shot { order: 0; aspect-ratio: auto; margin: 2rem 0 0 0; border: 1px solid var(--line); border-right: 0; border-bottom: 0; border-radius: var(--radius) 0 0 0; }
+.project:first-child .project-copy { padding: 2.75rem; align-content: center; }
+.project:first-child .project-copy h3 { font-size: clamp(2rem, 3.4vw, 2.75rem); }
+.project-copy { padding: 1.9rem 2rem 2.1rem; display: grid; gap: 0.8rem; align-content: start; justify-items: start; }
 .project-copy .idx { font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); }
-.project-copy h3 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
+.project-copy h3 { font-size: 1.75rem; }
 .project-copy h3 a { text-decoration: none; }
 .project-copy .result { color: var(--accent); font-family: var(--mono); font-size: 0.9375rem; letter-spacing: -0.01em; }
-.project-shot { position: relative; display: block; margin: 2rem 0 0 0; border: 1px solid var(--line); border-right: 0; border-bottom: 0; border-radius: var(--radius) 0 0 0; overflow: hidden; background: #fff; }
+.project-shot { position: relative; display: block; border-bottom: 1px solid var(--line); overflow: hidden; background: #fff; }
 .project-shot { display: grid; grid-template-rows: auto 1fr; }
 .project-shot > div:last-child { min-height: 0; overflow: hidden; }
 .project-shot picture { display: block; height: 100%; }
@@ -277,10 +284,10 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
   .proof { grid-template-columns: 1fr; }
   .proof > div { border-left: 0; border-top: 1px solid var(--line); padding: 1.75rem 1.5rem; }
   .proof > div:first-child { border-top: 0; }
-  .project { position: static; }
-  .project-card { grid-template-columns: 1fr; height: auto; min-height: 0; }
-  .project-copy { padding: 1.75rem 1.5rem; order: 2; }
-  .project-shot { margin: 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; aspect-ratio: 16 / 10.6; }
+  .stack { grid-template-columns: 1fr; }
+  .project:first-child .project-card { grid-template-columns: 1fr; grid-template-rows: auto 1fr; min-height: 0; }
+  .project:first-child .project-shot { order: -1; margin: 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; aspect-ratio: 16 / 9.4; }
+  .project-copy, .project:first-child .project-copy { padding: 1.75rem 1.5rem; }
   .service-list > li { grid-template-columns: 1fr; gap: 0.75rem; padding: 2rem 0; }
   .service-list > li:hover { padding-left: 0; background: none; }
   .service-list .idx { padding-top: 0; }

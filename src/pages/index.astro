@@ -164,10 +164,10 @@ const jsonld = [
         <h2>Selected work</h2>
         <p class="lead">Each project has the brief, what I built, and a link to the live site.</p>
       </div>
-      <ol class="stack" style={`timeline-scope: ${work.map((_, i) => `--p${i}`).join(', ')}`}>
+      <ol class="stack">
         {work.map((w, i) => (
-          <li class="project" style={`--i:${i}; view-timeline-name: --p${i}`}>
-            <article class="project-card" data-spot style={i < work.length - 1 ? `animation-timeline: --p${i + 1}` : undefined}>
+          <li class="project" data-reveal style={`--d:${i === 0 ? 0 : ((i - 1) % 2) * 0.1}s`}>
+            <article class="project-card" data-spot>
               <div class="project-copy">
                 <span class="idx">{pad(i + 1)} / {pad(work.length)}</span>
                 <h3><a href={`/work/${w.slug}/`}>{w.client}</a></h3>

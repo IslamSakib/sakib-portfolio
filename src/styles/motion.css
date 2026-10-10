@@ -87,12 +87,6 @@ figure.portrait::before { inset: calc(17% - 1px) -1px -1px -1px; z-index: -1; }
   @keyframes grow { to { transform: scaleX(1); } }
   .progress { animation: grow linear both; animation-timeline: scroll(root); }
 
-  /* Each project card sinks back and dims as the next one slides over it. The timelines are named per card in the markup. */
-  @media (min-width: 861px) {
-    @keyframes sink { to { transform: scale(0.93); filter: brightness(0.5); } }
-    .project-card { animation: sink linear both; animation-range: cover 0% cover 55%; }
-  }
-
   /* The Wrkbase screen starts tipped back and lands flat as it scrolls in */
   @keyframes land { from { transform: rotateX(24deg) scale(0.9); opacity: 0.5; } }
   .stage .frame { transform-origin: 50% 100%; animation: land linear both; animation-timeline: view(); animation-range: entry 0% cover 42%; }
@@ -108,7 +102,7 @@ figure.portrait::before { inset: calc(17% - 1px) -1px -1px -1px; z-index: -1; }
 
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
-  .w, .hero-copy > *, .hero-photo, .portrait .badge, .portrait::before, .contact::before, .track, .project-card, .stage .frame, .steps::after, .bigmark, .progress { animation: none !important; }
+  .w, .hero-copy > *, .hero-photo, .portrait .badge, .portrait::before, .contact::before, .track, .stage .frame, .steps::after, .bigmark, .progress { animation: none !important; }
   .steps::after { transform: none; }
   .marquee { overflow-x: auto; }
   body::before, .progress { display: none; }
