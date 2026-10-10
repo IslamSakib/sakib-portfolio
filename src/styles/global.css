@@ -110,12 +110,12 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 
 /* Hero */
 .hero { padding-top: 5.5rem; padding-bottom: 2rem; }
-.hero-grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: 4rem; align-items: center; }
+.hero-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 4rem; align-items: center; }
 .hero-copy { display: grid; gap: 1.75rem; justify-items: start; }
 .hero-copy h1 em { font-style: normal; color: var(--accent); }
 .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 /* Portrait: a cutout standing in front of an orange panel, head breaking out of the top edge */
-.hero-photo { justify-self: end; width: min(100%, 340px); }
+.hero-photo { justify-self: end; width: min(100%, 460px); }
 .portrait { position: relative; isolation: isolate; border-radius: var(--radius); }
 .portrait::after {
   content: ""; position: absolute; inset: 17% 0 0 0; z-index: -1; border-radius: var(--radius); border: 1px solid var(--line);
@@ -272,7 +272,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
   .section-head { margin-bottom: 2.25rem; }
   .hero { padding-top: 3rem; }
   .hero-grid, .case-body, .faq-grid, .showcase-copy { grid-template-columns: 1fr; gap: 2rem; }
-  .hero-photo { order: -1; justify-self: start; width: 220px; }
+  .hero-photo { order: -1; justify-self: start; width: 240px; }
   .portrait figcaption, .portrait .badge { display: none; }
   .proof { grid-template-columns: 1fr; }
   .proof > div { border-left: 0; border-top: 1px solid var(--line); padding: 1.75rem 1.5rem; }
