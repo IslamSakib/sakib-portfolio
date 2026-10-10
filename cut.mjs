@@ -1,5 +1,5 @@
 // One-off: remove the grey studio backdrop from the portrait. Flood fill from the top and side edges through
-// neutral mid-grey pixels, then feather the mask and save a 2x cutout with transparency.
+// neutral mid-grey pixels, then feather the mask and save the cutout at its native size with transparency.
 import sharp from 'sharp';
 const src = 'src/assets/sakib-islam.png', out = 'src/assets/sakib-islam-cut.png';
 const { data, info } = await sharp(src).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
@@ -15,7 +15,7 @@ for (let i = 0; i < W * H; i++) { mask[i] = bg[i] ? 0 : 255; kept += bg[i] ? 0 :
 const soft = await sharp(mask, { raw: { width: W, height: H, channels: 1 } }).blur(1.6).linear(1.9, -115).toColourspace('b-w').raw().toBuffer();
 const rgba = Buffer.from(data);
 for (let i = 0; i < W * H; i++) rgba[i * 4 + 3] = soft[i];
-await sharp(rgba, { raw: { width: W, height: H, channels: 4 } }).resize(800, 800, { kernel: 'lanczos3' }).sharpen({ sigma: 0.8 }).png().toFile(out);
+await sharp(rgba, { raw: { width: W, height: H, channels: 4 } }).sharpen({ sigma: 0.6 }).png().toFile(out);
 console.log('kept', Math.round(kept / (W * H) * 100) + '% of pixels as subject');
 // preview on orange to check the edge
-await sharp({ create: { width: 800, height: 800, channels: 3, background: '#ff8552' } }).composite([{ input: out }]).jpeg({ quality: 70 }).toFile(process.argv[2]);
+await sharp({ create: { width: 400, height: 400, channels: 3, background: '#ff8552' } }).composite([{ input: out }]).jpeg({ quality: 70 }).toFile(process.argv[2]);

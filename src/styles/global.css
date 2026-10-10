@@ -115,7 +115,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .hero-copy h1 em { font-style: normal; color: var(--accent); }
 .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 /* Portrait: a cutout standing in front of an orange panel, head breaking out of the top edge */
-.hero-photo { justify-self: end; width: min(100%, 420px); }
+.hero-photo { justify-self: end; width: min(100%, 340px); }
 .portrait { position: relative; isolation: isolate; border-radius: var(--radius); }
 .portrait::after {
   content: ""; position: absolute; inset: 17% 0 0 0; z-index: -1; border-radius: var(--radius); border: 1px solid var(--line);
