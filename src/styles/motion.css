@@ -1,109 +1,110 @@
-/* Logo, animation, reviews marquee and the Wrkbase showcase. Motion is switched off under reduced motion at the end. */
+/* Everything that moves. Scroll-linked effects sit behind @supports, and all of it is switched off under reduced motion at the end. */
 
 /* Wordmark logo */
 .brand { display: inline-flex; align-items: center; }
-.brand .word { font-size: 1.375rem; line-height: 1; letter-spacing: -0.045em; font-weight: 400; color: var(--text); }
+.brand .word { font-size: 1.3125rem; line-height: 1; letter-spacing: -0.045em; font-weight: 400; color: var(--text); }
 .brand .word b { font-weight: 800; }
-.brand .word i { font-style: normal; font-weight: 800; color: var(--accent); display: inline-block; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+.brand .word i { font-style: normal; font-weight: 800; color: var(--accent); display: inline-block; transition: transform 0.3s var(--ease); }
 .brand:hover .word i { transform: translateX(4px); }
-.ico { fill: currentColor; flex: none; }
-.btn .ico { margin-right: 0.5rem; vertical-align: -0.2em; }
-.foot-links { display: flex; gap: 0.5rem; }
-.foot-links a { display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: var(--radius); color: var(--muted); transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease; }
-.foot-links a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
 
-/* Hero backdrop: a dot grid that fades out, with a soft glow behind the photo */
-.hero { position: relative; isolation: isolate; }
-.hero::before {
-  content: ''; position: absolute; inset: 0 0 -4rem 0; z-index: -1; pointer-events: none;
-  background:
-    radial-gradient(520px circle at 82% 30%, rgb(74 222 128 / 0.10), transparent 70%),
-    radial-gradient(rgb(255 255 255 / 0.10) 1px, transparent 1.5px) 0 0 / 26px 26px;
-  -webkit-mask-image: linear-gradient(#000 30%, transparent 95%);
-  mask-image: linear-gradient(#000 30%, transparent 95%);
-}
+/* Page transitions: the project screenshot morphs into the case study image */
+@view-transition { navigation: auto; }
+::view-transition-group(*) { animation-duration: 0.55s; animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.3s; }
 
-/* Hero load-in. The headline itself is not animated, so the largest text paints immediately. */
-@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
-.hero-copy > :not(h1), .hero-photo { animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
-.hero-copy > :nth-child(3) { animation-delay: 0.08s; }
-.hero-copy > :nth-child(4) { animation-delay: 0.16s; }
-.hero-photo { animation-delay: 0.12s; }
-
-/* Reveal on scroll. Only hidden when the script has run, so the page works without JavaScript. */
-.js [data-reveal] { opacity: 0; transform: translateY(18px); filter: blur(6px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease; transition-delay: var(--d, 0s); }
-.js [data-reveal].in { opacity: 1; transform: none; filter: none; }
+/* Reading progress along the top edge */
+.progress { position: fixed; inset: 0 0 auto 0; height: 2px; z-index: 60; background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; pointer-events: none; }
 
 /* A soft glow that follows the cursor across the whole page */
-body::before { content: ''; position: fixed; inset: 0; z-index: 50; pointer-events: none; background: radial-gradient(600px circle at var(--gx, -999px) var(--gy, -999px), rgb(74 222 128 / 0.07), transparent 80%); }
+body::before { content: ''; position: fixed; inset: 0; z-index: 50; pointer-events: none; background: radial-gradient(560px circle at var(--gx, -999px) var(--gy, -999px), rgb(var(--accent-rgb) / 0.07), transparent 80%); }
 
-/* Typed headings: a blinking caret while the text is written */
-@keyframes blink { 50% { opacity: 0; } }
-.typing::after { content: ''; display: inline-block; width: 3px; height: 0.85em; margin-left: 4px; vertical-align: -0.08em; background: var(--accent); animation: blink 0.8s steps(1) infinite; }
+/* Hero: a dot field drawn on canvas that ripples and reacts to the cursor. Without script it is a plain dot grid. */
+.hero { position: relative; isolation: isolate; }
+.dots, .hero::before { position: absolute; inset: -76px 0 0 0; z-index: -1; pointer-events: none; -webkit-mask-image: linear-gradient(#000 45%, transparent 98%); mask-image: linear-gradient(#000 45%, transparent 98%); }
+.dots { width: 100%; height: calc(100% + 76px); }
+.hero::before { content: ''; background: radial-gradient(rgb(245 244 239 / 0.1) 1px, transparent 1.5px) 0 0 / 26px 26px; }
+.js .hero::before { display: none; }
 
-/* Cursor spotlight on cards */
-[data-spot] { position: relative; }
-[data-spot]::after {
-  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity 0.3s ease;
-  background: radial-gradient(420px circle at var(--mx, -500px) var(--my, -500px), rgb(74 222 128 / 0.13), transparent 62%);
-}
-[data-spot]:hover::after { opacity: 1; }
-.work-card picture { overflow: hidden; display: block; }
-.work-card img { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-.work-card:hover img { transform: scale(1.035); }
+/* Hero headline: each word rises out of a blur, one after another */
+@keyframes word { from { opacity: 0; transform: translateY(0.45em); filter: blur(10px); } }
+.w { display: inline-block; animation: word 0.8s var(--ease) both; animation-delay: calc(var(--i) * 45ms); }
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } }
+.hero-copy > :not(h1), .hero-photo { animation: rise 0.8s var(--ease) both; }
+.hero-copy > .lead { animation-delay: 0.5s; }
+.hero-copy > .hero-actions { animation-delay: 0.6s; }
+.hero-photo { animation-delay: 0.35s; }
 
-/* Border beam around the contact block */
+/* Portrait: tilts toward the cursor, with a beam running round its edge */
+.portrait { transition: transform 0.5s var(--ease); will-change: transform; }
 @property --beam { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 @keyframes beam { to { --beam: 360deg; } }
-.contact::before {
+.portrait::before, .contact::before {
   content: ''; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none;
-  background: conic-gradient(from var(--beam), transparent 0 70%, var(--accent) 88%, transparent 100%);
+  background: conic-gradient(from var(--beam), transparent 0 68%, var(--accent) 88%, transparent 100%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
   animation: beam 7s linear infinite;
 }
 
-/* Reviews: one slow marquee that pauses on hover or keyboard focus */
-.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
-.track { display: flex; gap: 1.25rem; width: max-content; animation: slide 70s linear infinite; }
-.marquee:hover .track, .marquee:focus-within .track { animation-play-state: paused; }
-@keyframes slide { to { transform: translateX(calc(-50% - 0.625rem)); } }
-.review { width: 380px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; display: grid; gap: 1.1rem; align-content: space-between; }
-.review p { color: #d3d7dd; }
-.review footer { font-size: 0.875rem; color: var(--muted); display: grid; grid-template-columns: auto 1fr auto; gap: 0.75rem; align-items: center; }
-.review .who { display: grid; gap: 0.1rem; }
-.review .who a { color: var(--text); font-weight: 600; font-size: 0.9375rem; text-decoration: none; }
-.review .who a:hover { color: var(--accent); }
-.review .avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: #1b2028; border: 1px solid var(--line); color: var(--text); font-weight: 650; font-size: 0.8125rem; letter-spacing: 0.02em; }
-.review .li { fill: #0a66c2; align-self: start; }
-.review-note { margin-top: 1.5rem; color: var(--muted); font-size: 0.9375rem; }
+/* Buttons that lean toward the cursor */
+[data-magnet] { will-change: transform; }
 
-/* Wrkbase software showcase */
-.showcase { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: center; }
-.showcase-copy { display: grid; gap: 1.25rem; justify-items: start; }
-.showcase ul { display: grid; gap: 0.5rem; color: var(--muted); }
-.showcase li { padding-left: 1.4rem; position: relative; }
-.showcase li::before { content: ''; position: absolute; left: 0; top: 0.7em; width: 0.6rem; height: 2px; background: var(--accent); }
-.frame { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); box-shadow: 0 30px 80px -40px rgb(74 222 128 / 0.35); }
-.frame img { width: 100%; }
-.gallery { display: grid; gap: 1.5rem; margin-top: 4rem; }
-.case-shot.frame img { border: 0; border-radius: 0; }
+/* Client names: the one marquee on the page, paused on hover */
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.track { display: flex; align-items: center; gap: 3rem; width: max-content; animation: slide 38s linear infinite; }
+.marquee:hover .track { animation-play-state: paused; }
+@keyframes slide { to { transform: translateX(calc(-50% - 1.5rem)); } }
+.track span { font-size: 1.625rem; font-weight: 650; letter-spacing: -0.03em; color: var(--muted); white-space: nowrap; }
+.track span::after { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-left: 3rem; vertical-align: 0.2em; }
 
-/* Project cards: title link, case study link and live site link */
-.work-card .shot { display: block; overflow: hidden; }
-.work-card.wide .shot, .work-card.wide picture { height: 100%; }
-.work-body h3 a { text-decoration: none; }
-.card-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem; font-size: 0.9375rem; font-weight: 600; margin-top: 0.4rem; }
-.card-links a { color: var(--text); text-decoration-color: var(--line); }
-.card-links a:hover { color: var(--accent); }
+/* Reveal on scroll. Only hidden when the script has run, so the page works without JavaScript. */
+.js [data-reveal] { opacity: 0; transform: translateY(22px); filter: blur(8px); transition: opacity 0.8s ease, transform 0.8s var(--ease), filter 0.8s ease; transition-delay: var(--d, 0s); }
+.js [data-reveal].in { opacity: 1; transform: none; filter: none; }
 
-@media (max-width: 860px) {
-  .showcase { grid-template-columns: 1fr; gap: 2rem; }
-  .review { width: 300px; }
+/* Typed headings: a blinking caret while the text is written */
+@keyframes blink { 50% { opacity: 0; } }
+.typing::after { content: ''; display: inline-block; width: 0.07em; min-width: 3px; height: 0.82em; margin-left: 0.08em; vertical-align: -0.06em; background: var(--accent); animation: blink 0.8s steps(1) infinite; }
+
+/* Cursor spotlight on cards */
+[data-spot] { position: relative; }
+[data-spot]::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity 0.3s ease;
+  background: radial-gradient(460px circle at var(--mx, -500px) var(--my, -500px), rgb(var(--accent-rgb) / 0.14), transparent 62%);
+}
+[data-spot]:hover::after { opacity: 1; }
+
+/* Project screenshots drift up inside their frame on hover, like scrolling the real page */
+.project-shot img { transition: transform 1.2s var(--ease); transform-origin: top left; }
+.project-card:hover .project-shot img { transform: scale(1.06) translateY(-3%); }
+
+@supports (animation-timeline: view()) {
+  @keyframes grow { to { transform: scaleX(1); } }
+  .progress { animation: grow linear both; animation-timeline: scroll(root); }
+
+  /* Each project card sinks back and dims as the next one slides over it. The timelines are named per card in the markup. */
+  @media (min-width: 861px) {
+    @keyframes sink { to { transform: scale(0.93); filter: brightness(0.5); } }
+    .project-card { animation: sink linear both; animation-range: cover 0% cover 55%; }
+  }
+
+  /* The Wrkbase screen starts tipped back and lands flat as it scrolls in */
+  @keyframes land { from { transform: rotateX(24deg) scale(0.9); opacity: 0.5; } }
+  .stage .frame { transform-origin: 50% 100%; animation: land linear both; animation-timeline: view(); animation-range: entry 0% cover 42%; }
+
+  /* The process line draws itself */
+  @keyframes draw { to { transform: none; } }
+  .steps::after { animation: draw linear both; animation-timeline: view(); animation-range: entry 60% cover 55%; }
+
+  /* The footer wordmark fills in as it arrives */
+  @keyframes fill { to { color: var(--surface-2); } }
+  .bigmark { animation: fill linear both; animation-timeline: view(); animation-range: entry 20% entry 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-copy > *, .hero-photo, .contact::before, .track { animation: none !important; }
+  @view-transition { navigation: none; }
+  .w, .hero-copy > *, .hero-photo, .portrait::before, .contact::before, .track, .project-card, .stage .frame, .steps::after, .bigmark, .progress { animation: none !important; }
+  .steps::after { transform: none; }
   .marquee { overflow-x: auto; }
+  body::before, .progress { display: none; }
 }

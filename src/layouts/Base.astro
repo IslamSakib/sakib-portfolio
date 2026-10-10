@@ -1,5 +1,6 @@
 ---
 import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
 import fontUrl from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 import '../styles/motion.css';
@@ -19,7 +20,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="theme-color" content="#0b0d10" />
+    <meta name="theme-color" content="#191817" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -30,6 +31,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
+    <div class="progress" aria-hidden="true"></div>
     <header class="site-header">
       <div class="wrap bar">
         <a class="brand" href="/">
@@ -48,6 +50,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
     <footer class="site-footer">
+      <span class="bigmark" aria-hidden="true">Sakib Islam<i>.</i></span>
       <div class="wrap foot">
         <p>
           {site.name}, {site.role} in {site.location}. Founder of{' '}<a href={site.wrkbase} target="_blank" rel="noopener">Wrkbase</a>.
@@ -60,15 +63,21 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       </div>
     </footer>
     <script is:inline>
-      // Reveal on scroll, number tickers, typed headings, the cursor spotlight and the page glow. All of it is skipped under reduced motion.
+      // All motion that needs script: scroll reveals, number tickers, typed headings, the cursor glow and spotlight,
+      // magnetic buttons, the tilting portrait, the hero dot field and the Dhaka clock. Skipped under reduced motion.
       (() => {
+        const clock = document.querySelector('[data-clock]');
+        if (clock) {
+          const show = () => { clock.textContent = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Dhaka' }).format(new Date()) + ' local'; };
+          show(); setInterval(show, 30000);
+        }
         const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (reduce || !('IntersectionObserver' in window)) return;
         document.documentElement.classList.add('js');
         const tick = (el) => {
           const end = +el.dataset.count, dec = +(el.dataset.dec || 0), t0 = performance.now();
           const step = (t) => {
-            const k = Math.min((t - t0) / 900, 1);
+            const k = Math.min((t - t0) / 1100, 1);
             el.textContent = (end * (1 - Math.pow(1 - k, 3))).toFixed(dec);
             if (k < 1) requestAnimationFrame(step);
           };
@@ -97,16 +106,63 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           io.unobserve(e.target);
         }), { threshold: 0.15 });
         document.querySelectorAll('[data-reveal], [data-count], main h2').forEach((el) => io.observe(el));
+
+        // Hero dot field: a slow wave runs through it, and dots near the cursor light up and move away from it.
+        const cv = document.querySelector('.dots');
+        let mx = -999, my = -999;
+        if (cv) {
+          const ctx = cv.getContext('2d'), gap = 26;
+          let w = 0, h = 0, on = false;
+          const size = () => {
+            const d = Math.min(devicePixelRatio || 1, 2);
+            w = cv.clientWidth; h = cv.clientHeight;
+            cv.width = w * d; cv.height = h * d;
+            ctx.setTransform(d, 0, 0, d, 0, 0);
+          };
+          const draw = (t) => {
+            ctx.clearRect(0, 0, w, h);
+            for (let y = gap / 2; y < h; y += gap) for (let x = gap / 2; x < w; x += gap) {
+              const dx = x - mx, dy = y - my, near = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / 190);
+              if (near > 0.02) {
+                const a = Math.atan2(dy, dx), push = near * near * 14;
+                ctx.fillStyle = 'rgba(255,133,82,' + (0.2 + near * 0.8) + ')';
+                ctx.beginPath(); ctx.arc(x + Math.cos(a) * push, y + Math.sin(a) * push, 1 + near * 1.8, 0, 6.2832); ctx.fill();
+              } else {
+                ctx.fillStyle = 'rgba(245,244,239,' + (0.05 + 0.1 * (0.5 + 0.5 * Math.sin(x * 0.011 + y * 0.017 - t * 0.0011))) + ')';
+                ctx.fillRect(x - 1, y - 1, 2, 2);
+              }
+            }
+            if (on) requestAnimationFrame(draw);
+          };
+          size(); addEventListener('resize', size);
+          new IntersectionObserver(([e]) => { const was = on; on = e.isIntersecting; if (on && !was) requestAnimationFrame(draw); }).observe(cv);
+        }
+
         if (matchMedia('(hover: hover)').matches) {
           addEventListener('pointermove', (e) => {
             document.documentElement.style.setProperty('--gx', e.clientX + 'px');
             document.documentElement.style.setProperty('--gy', e.clientY + 'px');
+            if (cv) { const r = cv.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; }
           }, { passive: true });
           document.querySelectorAll('[data-spot]').forEach((el) => el.addEventListener('pointermove', (e) => {
             const r = el.getBoundingClientRect();
             el.style.setProperty('--mx', e.clientX - r.left + 'px');
             el.style.setProperty('--my', e.clientY - r.top + 'px');
           }));
+          document.querySelectorAll('[data-magnet]').forEach((el) => {
+            el.addEventListener('pointermove', (e) => {
+              const r = el.getBoundingClientRect();
+              el.style.transform = 'translate(' + (e.clientX - r.left - r.width / 2) * 0.28 + 'px,' + (e.clientY - r.top - r.height / 2) * 0.4 + 'px)';
+            });
+            el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+          });
+          document.querySelectorAll('[data-tilt]').forEach((el) => {
+            el.addEventListener('pointermove', (e) => {
+              const r = el.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
+              el.style.transform = 'perspective(900px) rotateY(' + px * 14 + 'deg) rotateX(' + -py * 14 + 'deg) scale(1.03)';
+            });
+            el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+          });
         }
       })();
     </script>
