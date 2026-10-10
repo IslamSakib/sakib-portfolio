@@ -165,41 +165,52 @@ const jsonld = [
       <div class="section-head">
         <p class="label">{pad(work.length)} projects</p>
         <h2>Selected work</h2>
-        <p class="lead">Real client sites, each with the problem, what I built, the result and a link you can open.</p>
+        <p class="lead">Real client sites. Pick one to see what I built, the result and the live link.</p>
       </div>
-      <ol class="stack">
-        {work.map((w, i) => (
-          <li class="project" data-reveal style={`--d:${i === 0 ? 0 : ((i - 1) % 2) * 0.1}s`}>
-            <article class="project-card" data-spot>
-              <div class="project-copy">
-                <span class="ghost" aria-hidden="true">{pad(i + 1)}</span>
-                <span class="idx">Project {pad(i + 1)} of {pad(work.length)}</span>
-                <h3><a href={`/work/${w.slug}/`}>{w.client}</a></h3>
-                <p class="muted">{w.summary}</p>
-                <p class="outcome"><b class="num">{w.metricValue}</b><span>{w.metricLabel}</span></p>
-                <ul class="tags">{w.stack.slice(0, 3).map((t) => <li>{t}</li>)}</ul>
-                <p class="card-links">
-                  <a href={`/work/${w.slug}/`}>Case study</a>
-                  <a href={w.clientUrl} target="_blank" rel="noopener">{host(w.clientUrl)} ↗</a>
-                </p>
-              </div>
-              <a class="project-shot" href={`/work/${w.slug}/`} tabindex="-1" aria-hidden="true">
+      <div class="reel" data-reel>
+        <div class="reel-list" role="tablist" aria-label="Projects" aria-orientation="vertical">
+          {work.map((w, i) => (
+            <button type="button" role="tab" id={`reel-tab-${i}`} aria-controls={`reel-panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
+              <span class="idx">{pad(i + 1)}</span>
+              <span class="name">{w.client}</span>
+              <span class="num">{w.metricValue}</span>
+            </button>
+          ))}
+        </div>
+        <div class="reel-stage">
+          {work.map((w, i) => (
+            <article class:list={['reel-panel', { on: i === 0 }]} role="tabpanel" id={`reel-panel-${i}`} aria-labelledby={`reel-tab-${i}`}>
+              <a class="project-shot" href={`/work/${w.slug}/`} aria-label={`${w.client} case study`}>
                 <div class="chrome"><i></i><i></i><i></i><span>{host(w.clientUrl)}</span></div>
                 <div style={`view-transition-name: shot-${w.slug}`}>
                   <Picture
                     src={w.shot}
                     formats={['avif', 'webp']}
                     widths={[480, 760, 1120]}
-                    sizes="(max-width: 860px) 100vw, 640px"
+                    sizes="(max-width: 860px) 100vw, 760px"
                     alt={`${w.client} website home page, built by Sakib Islam`}
-                    loading="lazy"
+                    loading={i === 0 ? 'eager' : 'lazy'}
                   />
                 </div>
               </a>
+              <div class="reel-info">
+                <div>
+                  <h3><a href={`/work/${w.slug}/`}>{w.client}</a></h3>
+                  <p class="muted">{w.summary}</p>
+                  <ul class="tags">{w.stack.slice(0, 3).map((t) => <li>{t}</li>)}</ul>
+                </div>
+                <div class="reel-side">
+                  <p class="outcome"><b class="num">{w.metricValue}</b><span>{w.metricLabel}</span></p>
+                  <p class="card-links">
+                    <a href={`/work/${w.slug}/`}>Case study</a>
+                    <a href={w.clientUrl} target="_blank" rel="noopener">{host(w.clientUrl)} ↗</a>
+                  </p>
+                </div>
+              </div>
             </article>
-          </li>
-        ))}
-      </ol>
+          ))}
+        </div>
+      </div>
     </div>
   </section>
 
@@ -335,3 +346,7 @@ const jsonld = [
 
   <Cta />
 </Base>
+
+<script>
+  import '../scripts/reel.js';
+</script>

@@ -92,6 +92,15 @@ figure.portrait::before { inset: calc(17% - 1px) -1px -1px -1px; z-index: -1; }
 }
 [data-spot]:hover::after { opacity: 1; }
 
+/* Work reel: the chosen project tips forward into place; while it plays by itself, a bar fills beside the current name */
+.reel-panel { transition: opacity 0.45s ease, visibility 0.45s; }
+.reel-panel .project-shot { transform: rotateX(10deg) translateY(18px) scale(0.97); transform-origin: 50% 100%; transition: transform 0.8s var(--ease); }
+.reel-panel.on .project-shot { transform: none; }
+.reel-panel .reel-info { transform: translateY(14px); opacity: 0; transition: transform 0.7s var(--ease) 0.1s, opacity 0.5s ease 0.1s; }
+.reel-panel.on .reel-info { transform: none; opacity: 1; }
+@keyframes fillbar { from { transform: scaleY(0); } }
+.reel.auto .reel-list button[aria-selected="true"]::before { animation: fillbar 5s linear both; }
+
 /* Project screenshots drift up inside their frame on hover, like scrolling the real page */
 .project-shot { transition: transform 0.9s var(--ease), box-shadow 0.9s ease; will-change: transform; }
 .project-card:hover .project-shot, .project:nth-child(even) .project-card:hover .project-shot { transform: none; }
@@ -121,7 +130,7 @@ figure.portrait::before { inset: calc(17% - 1px) -1px -1px -1px; z-index: -1; }
 
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
-  .w, .hero-copy > *, .hero-photo, .chat-msg, .chat-msg.typing i, .chat-panel, .portrait .badge, .portrait::before, .cta-card::before, .track, .stage .frame, .steps::after, .bigmark, .progress { animation: none !important; }
+  .w, .hero-copy > *, .hero-photo, .chat-msg, .chat-msg.typing i, .chat-panel, .portrait .badge, .portrait::before, .cta-card::before, .track, .reel-list button::before, .stage .frame, .steps::after, .bigmark, .progress { animation: none !important; }
   .steps::after { transform: none; }
   .marquee { overflow-x: auto; }
   body::before, .progress { display: none; }
