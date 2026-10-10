@@ -21,13 +21,16 @@ const host = (url) => new URL(url).hostname.replace('www.', '');
 const pad = (n) => String(n).padStart(2, '0');
 
 // The headline is split into words so each one can animate in. The word in `hot` takes the accent colour.
-const headline = 'A WordPress developer who makes startup sites fast, stable and ready to sell.'.split(' ');
+const headline = 'WordPress developer for fast, stable startup sites.'.split(' ');
 const hot = 'fast,';
 
+// Trust numbers. Each one can be checked: the client list is the strip above, the recommendations are on LinkedIn,
+// the countries are where those clients are, and the saved signups figure is from the TubeOnAI case study.
 const proof = [
-  { num: 1.5, dec: 1, suffix: ' s', label: 'TubeOnAI load time, down from 5 seconds' },
-  { num: 60, dec: 0, suffix: '%', label: 'less time to onboard a merchant at Moneybag' },
-  { num: 90, dec: 0, suffix: '+', label: 'Core Web Vitals on Tabby after launch' },
+  { num: 25, dec: 0, prefix: '', suffix: '+', label: 'client websites built or fixed' },
+  { num: 12, dec: 0, prefix: '', suffix: '', label: 'LinkedIn recommendations from founders, managers and teammates' },
+  { num: 4, dec: 0, prefix: '', suffix: '', label: 'countries served: US, UK, Denmark and Bangladesh' },
+  { num: 6, dec: 0, prefix: '$', suffix: 'K', label: 'in signups saved for TubeOnAI by ending its downtime (estimate)' },
 ];
 
 const steps = [
@@ -145,7 +148,7 @@ const jsonld = [
     <dl class="wrap proof" data-reveal>
       {proof.map((p) => (
         <div>
-          <dt class="num"><span data-count={p.num} data-dec={p.dec}>{p.num.toFixed(p.dec)}</span>{p.suffix}</dt>
+          <dt class="num">{p.prefix}<span data-count={p.num} data-dec={p.dec}>{p.num.toFixed(p.dec)}</span>{p.suffix}</dt>
           <dd>{p.label}</dd>
         </div>
       ))}

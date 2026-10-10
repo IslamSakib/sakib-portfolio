@@ -138,10 +138,10 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 
 /* Proof numbers */
 .proof-wrap { padding: 4rem 0 7rem; }
-.proof { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-.proof > div { padding: 2.25rem 2rem; border-left: 1px solid var(--line); }
+.proof { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.proof > div { padding: 2.25rem 1.75rem; border-left: 1px solid var(--line); }
 .proof > div:first-child { border-left: 0; }
-.proof dt { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 500; line-height: 1; color: var(--accent); }
+.proof dt { font-size: clamp(2.5rem, 4.4vw, 3.5rem); font-weight: 500; line-height: 1; color: var(--accent); }
 .proof dd { color: var(--muted); margin-top: 0.9rem; max-width: 26ch; }
 
 /* Work: each project is an open row, sides alternating. The screenshot sits in a browser frame tipped back in 3D
@@ -150,7 +150,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .project { padding: 4.5rem 0; border-top: 1px solid var(--line); }
 .project:first-child { border-top: 0; padding-top: 1rem; }
 .project:last-child { padding-bottom: 0; }
-.project-card { position: relative; display: grid; grid-template-columns: 1fr 1.25fr; gap: 4.5rem; align-items: center; perspective: 1600px; }
+.project-card { position: relative; display: grid; grid-template-columns: 1fr 1.25fr; gap: 4.5rem; align-items: center; perspective: 1600px; padding-inline: 0.75rem; }
 .project:nth-child(even) .project-card { grid-template-columns: 1.25fr 1fr; }
 .project:nth-child(even) .project-copy { order: 2; }
 .project-copy { position: relative; isolation: isolate; display: grid; gap: 1rem; align-content: center; justify-items: start; }
@@ -389,9 +389,10 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
   .hero-grid, .case-body, .faq-grid, .showcase-copy { grid-template-columns: 1fr; gap: 2rem; }
   .hero-photo { order: -1; justify-self: start; width: 240px; }
   .portrait figcaption, .portrait .badge { display: none; }
-  .proof { grid-template-columns: 1fr; }
-  .proof > div { border-left: 0; border-top: 1px solid var(--line); padding: 1.75rem 1.5rem; }
-  .proof > div:first-child { border-top: 0; }
+  .proof { grid-template-columns: 1fr 1fr; }
+  .proof > div:nth-child(odd) { border-left: 0; }
+  .proof > div { border-top: 1px solid var(--line); padding: 1.5rem 1.25rem; }
+  .proof > div:nth-child(-n+2) { border-top: 0; }
   .project { padding: 3rem 0; }
   .project-card, .project:nth-child(even) .project-card { grid-template-columns: 1fr; gap: 2rem; }
   .project:nth-child(even) .project-copy { order: 0; }

@@ -136,56 +136,72 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           o.connect(g).connect(audio.destination);
           o.start(t); o.stop(t + 0.12);
         };
-        // Music: a bright, steady loop in C major (C, G, A minor, F) at 112 beats a minute: a soft pad, a bouncing bass,
-        // a plucked melody on every eighth note and a light beat. Notes are scheduled slightly ahead on the audio clock,
-        // so the loop never drops out, and it carries on from page to page once the visitor has clicked anywhere.
-        const chords = [[261.63, 329.63, 392.0], [196.0, 246.94, 293.66], [220.0, 261.63, 329.63], [174.61, 220.0, 261.63]];
-        const melody = [0, 1, 2, 1, 2, 1, 0, 2];
+        // Music: a slow, warm groove to match the dark page. Four seventh chords (A minor 7, F major 7, C major 7, E minor 7)
+        // at 84 beats a minute: a filtered pad that slowly opens and closes, a deep bass, a few bell notes with an echo,
+        // and a soft swung beat. Notes are scheduled ahead on the audio clock, so it never drops out, and it carries on
+        // from page to page once the visitor has clicked anywhere.
+        const chords = [[220.0, 261.63, 329.63, 392.0], [174.61, 220.0, 261.63, 329.63], [130.81, 164.81, 196.0, 246.94], [164.81, 196.0, 246.94, 293.66]];
+        const bells = [3, -1, 2, -1, -1, 1, -1, 2, -1, 3, -1, -1, 0, -1, 2, -1];
         const startMusic = () => {
           if (music || !ctx()) return;
           try { sessionStorage.setItem('music', 'on'); } catch (e) {}
-          const out = audio.createGain(), tone = audio.createBiquadFilter();
+          const out = audio.createGain(), pad = audio.createBiquadFilter(), lfo = audio.createOscillator(), depth = audio.createGain();
+          const echo = audio.createDelay(1), feedback = audio.createGain(), echoTone = audio.createBiquadFilter();
           out.gain.setValueAtTime(0.0001, audio.currentTime);
-          out.gain.exponentialRampToValueAtTime(0.8, audio.currentTime + 1.5);
-          tone.type = 'lowpass'; tone.frequency.value = 2600;
-          tone.connect(out).connect(audio.destination);
-          const noise = audio.createBuffer(1, audio.sampleRate * 0.1, audio.sampleRate);
+          out.gain.exponentialRampToValueAtTime(0.85, audio.currentTime + 2);
+          out.connect(audio.destination);
+          // the pad's brightness drifts up and down over about twenty seconds
+          pad.type = 'lowpass'; pad.frequency.value = 620; pad.Q.value = 0.8;
+          lfo.frequency.value = 0.05; depth.gain.value = 260;
+          lfo.connect(depth).connect(pad.frequency); lfo.start();
+          pad.connect(out);
+          const beat = 60 / 84 / 2;
+          echo.delayTime.value = beat * 1.5; feedback.gain.value = 0.38;
+          echoTone.type = 'lowpass'; echoTone.frequency.value = 1800;
+          echo.connect(echoTone).connect(feedback).connect(echo);
+          echoTone.connect(out);
+          const noise = audio.createBuffer(1, audio.sampleRate * 0.12, audio.sampleRate);
           const nd = noise.getChannelData(0);
           for (let i = 0; i < nd.length; i++) nd[i] = Math.random() * 2 - 1;
-          const note = (type, freq, at, peak, attack, length) => {
+          const note = (type, freq, at, peak, attack, length, dest, detune) => {
             const o = audio.createOscillator(), g = audio.createGain();
-            o.type = type; o.frequency.setValueAtTime(freq, at);
+            o.type = type; o.frequency.setValueAtTime(freq, at); o.detune.value = detune || 0;
             g.gain.setValueAtTime(0.0001, at);
             g.gain.exponentialRampToValueAtTime(peak, at + attack);
             g.gain.exponentialRampToValueAtTime(0.0001, at + length);
-            o.connect(g).connect(tone);
+            o.connect(g).connect(dest);
             o.start(at); o.stop(at + length + 0.05);
-            return o;
+            return [o, g];
           };
-          const beat = 60 / 112 / 2;
           let step = 0, when = audio.currentTime + 0.1;
           const schedule = () => {
-            while (when < audio.currentTime + 0.4) {
-              const chord = chords[Math.floor(step / 8) % chords.length], s8 = step % 8;
-              // pad: one long chord per bar, overlapping the next so there is never silence
-              if (s8 === 0) chord.forEach((f) => note('sine', f, when, 0.03, 0.25, beat * 8 + 0.6));
-              // bass on the beat, an octave down
-              if (s8 % 2 === 0) note('triangle', chord[0] / 2, when, s8 === 0 ? 0.09 : 0.06, 0.01, beat * 1.6);
-              // melody: a short bright pluck on every eighth note
-              note('triangle', chord[melody[s8]] * 2, when, 0.035, 0.008, beat * 1.4);
-              // beat: a soft kick on one and three, a tick of noise on the off-beats
-              if (s8 === 0 || s8 === 4) note('sine', 110, when, 0.12, 0.004, 0.16).frequency.exponentialRampToValueAtTime(45, when + 0.14);
+            while (when < audio.currentTime + 0.5) {
+              const bar = Math.floor(step / 8), chord = chords[bar % chords.length], s8 = step % 8;
+              const swing = s8 % 2 === 1 ? beat * 0.16 : 0, at = when + swing;
+              // pad: the whole chord for a bar, each bar overlapping the next
+              if (s8 === 0) chord.forEach((f) => { note('sawtooth', f, when, 0.022, 0.9, beat * 8 + 1.4, pad, -6); note('sawtooth', f, when, 0.022, 0.9, beat * 8 + 1.4, pad, 6); });
+              // bass: root on one, a push before three, an octave down
+              if (s8 === 0 || s8 === 3 || s8 === 6) note('sine', chord[0] / 2, at, s8 === 0 ? 0.2 : 0.13, 0.015, beat * (s8 === 0 ? 2.6 : 1.4), out);
+              // bells: a sparse line with an echo
+              const bell = bells[step % bells.length];
+              if (bell >= 0) {
+                const [, g] = note('sine', chord[bell] * 2, at, 0.05, 0.006, 0.9, out);
+                g.connect(echo);
+              }
+              // beat: soft kick on one and the push, a quiet rim on two and four, brushed noise on the off-beats
+              if (s8 === 0 || s8 === 5) note('sine', 120, at, 0.22, 0.004, 0.2, out)[0].frequency.exponentialRampToValueAtTime(42, at + 0.16);
+              if (s8 === 2 || s8 === 6) note('triangle', 880, at, 0.035, 0.002, 0.06, out);
               if (s8 % 2 === 1) {
                 const n = audio.createBufferSource(), g = audio.createGain(), hp = audio.createBiquadFilter();
-                n.buffer = noise; hp.type = 'highpass'; hp.frequency.value = 6000;
-                g.gain.setValueAtTime(0.02, when); g.gain.exponentialRampToValueAtTime(0.0001, when + 0.05);
-                n.connect(hp).connect(g).connect(out); n.start(when); n.stop(when + 0.06);
+                n.buffer = noise; hp.type = 'highpass'; hp.frequency.value = 7000;
+                g.gain.setValueAtTime(0.014, at); g.gain.exponentialRampToValueAtTime(0.0001, at + 0.07);
+                n.connect(hp).connect(g).connect(out); n.start(at); n.stop(at + 0.1);
               }
               step += 1; when += beat;
             }
           };
           schedule();
-          music = { out, timer: setInterval(schedule, 80) };
+          music = { out, timer: setInterval(schedule, 100) };
         };
         addEventListener('pointerdown', (e) => {
           tick(e.target.closest && e.target.closest('a, button, summary') ? 880 : 420);
