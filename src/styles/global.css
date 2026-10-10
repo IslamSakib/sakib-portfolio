@@ -2,6 +2,7 @@
    Shape rule: buttons and chips are pills, every container uses --radius. Geist for text, Geist Mono for figures and labels. */
 :root {
   --bg: #191817;
+  --bg-deep: #100f0e;
   --surface: #222120;
   --surface-2: #2b2a28;
   --line: #383632;
@@ -70,8 +71,42 @@ ul, ol { padding: 0; list-style: none; }
 .site-header nav a:not(.btn) { text-decoration: none; color: var(--muted); transition: color 0.2s ease; }
 .site-header nav a:not(.btn):hover { color: var(--text); }
 
-section { padding: 8rem 0 0; }
+section { padding: 7rem 0; }
 .section-head { margin-bottom: 3.5rem; display: grid; gap: 1rem; }
+
+/* Section rhythm. Every numbered section opens with a rule and a tag, and every second one is a darker, textured band,
+   so the eye can tell where one part ends and the next begins. */
+main { counter-reset: sec; }
+.sec { position: relative; counter-increment: sec; border-top: 1px solid var(--line); isolation: isolate; }
+.sec::before { content: "0" counter(sec); position: absolute; top: 0; left: max(1.25rem, calc((100% - var(--wrap)) / 2)); translate: 0 -50%; padding: 0.2rem 0.8rem; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); font-family: var(--mono); font-size: 0.75rem; color: var(--accent); }
+.sec::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.band { background: var(--bg-deep); }
+.band::before { background: var(--bg-deep); }
+.band-grid::after {
+  background:
+    radial-gradient(900px 480px at 50% 0%, rgb(var(--accent-rgb) / 0.13), transparent 70%),
+    linear-gradient(rgb(245 244 239 / 0.045) 1px, transparent 1px) 0 0 / 64px 64px,
+    linear-gradient(90deg, rgb(245 244 239 / 0.045) 1px, transparent 1px) 0 0 / 64px 64px;
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 0%, #000 35%, transparent 100%);
+  mask-image: radial-gradient(120% 90% at 50% 0%, #000 35%, transparent 100%);
+}
+.band-dots::after {
+  background:
+    radial-gradient(700px 420px at 100% 100%, rgb(var(--accent-rgb) / 0.1), transparent 70%),
+    radial-gradient(rgb(245 244 239 / 0.13) 1px, transparent 1.5px) 0 0 / 24px 24px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+}
+.band-glow::after {
+  background:
+    radial-gradient(760px 560px at 0% 40%, rgb(var(--accent-rgb) / 0.12), transparent 70%),
+    repeating-linear-gradient(135deg, rgb(245 244 239 / 0.028) 0 1px, transparent 1px 14px);
+}
+.tint-a::after { background: radial-gradient(900px 600px at 100% 0%, rgb(var(--accent-rgb) / 0.07), transparent 70%); }
+.tint-b::after { background: radial-gradient(900px 600px at 0% 0%, rgb(var(--accent-rgb) / 0.07), transparent 70%); }
+
+/* Fine grain over the whole page, so the dark surfaces are not flat */
+body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-events: none; opacity: 0.06; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27180%27 height=%27180%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.9%27 numOctaves=%272%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27/%3E%3C/svg%3E"); }
 
 /* Hero */
 .hero { padding-top: 5.5rem; padding-bottom: 2rem; }
@@ -86,11 +121,11 @@ section { padding: 8rem 0 0; }
 .portrait figcaption b { color: var(--text); font-weight: 500; }
 
 /* Client names strip */
-.clients { padding-top: 4rem; }
+.clients { padding: 4rem 0 0; }
 .clients p { font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 1.25rem; }
 
 /* Proof numbers */
-.proof-wrap { padding-top: 4rem; }
+.proof-wrap { padding: 4rem 0 7rem; }
 .proof { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
 .proof > div { padding: 2.25rem 2rem; border-left: 1px solid var(--line); }
 .proof > div:first-child { border-left: 0; }
@@ -182,7 +217,7 @@ section { padding: 8rem 0 0; }
 .contact h2 { font-size: clamp(2.25rem, 5.6vw, 4.5rem); max-width: 14ch; }
 
 /* Footer */
-.site-footer { margin-top: 7rem; color: var(--muted); font-size: 0.9375rem; overflow: hidden; }
+.site-footer { margin-top: 0; border-top: 1px solid var(--line); padding-top: 4rem; color: var(--muted); font-size: 0.9375rem; overflow: hidden; }
 .foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding: 2rem 0; border-top: 1px solid var(--line); }
 .foot-links { display: flex; gap: 0.5rem; }
 .foot-links a { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); transition: color 0.2s ease, border-color 0.2s ease, transform 0.3s var(--ease); }
@@ -220,7 +255,8 @@ section { padding: 8rem 0 0; }
 .next { margin-top: 4rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 2rem; }
 
 @media (max-width: 860px) {
-  section { padding-top: 5rem; }
+  section { padding: 4.5rem 0; }
+  .proof-wrap { padding-bottom: 4.5rem; }
   .section-head { margin-bottom: 2.25rem; }
   .hero { padding-top: 3rem; }
   .hero-grid, .case-body, .faq-grid, .showcase-copy { grid-template-columns: 1fr; gap: 2rem; }
