@@ -73,10 +73,29 @@ figure.portrait::before { inset: calc(17% - 1px) -1px -1px -1px; z-index: -1; }
 .track { display: flex; align-items: center; gap: 3rem; width: max-content; animation: slide 110s linear infinite; }
 .marquee:hover .track { animation-play-state: paused; }
 @keyframes slide { to { transform: translateX(calc(-50% - 1.5rem)); } }
-.clients .track span { font-size: 1.625rem; font-weight: 650; letter-spacing: -0.03em; color: var(--muted); white-space: nowrap; display: inline-flex; align-items: center; gap: 0.6rem; height: 30px; line-height: 30px; }
-/* Client logos: every one the same height and one flat colour, so no brand outweighs another */
-.clients .track img { height: 30px; width: auto; max-width: none; filter: brightness(0) invert(1); opacity: 0.66; }
-.clients .track span::after { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-left: 2.4rem; flex: none; }
+/* Client strip: logos straight on the dark background, all one height, with the accent dot between them.
+   Real logos are dark-theme versions of the client's own; the rest are wordmarks, each with its own lettering. */
+.clients .track { gap: 0; animation-name: slide-logos; }
+@keyframes slide-logos { to { transform: translateX(-50%); } }
+.chip { flex: none; display: flex; align-items: center; gap: 0.6rem; height: 44px; opacity: 0.82; transition: opacity 0.3s ease; }
+.chip:hover { opacity: 1; }
+.chip::after { content: ""; flex: none; width: 6px; height: 6px; margin: 0 2.6rem; border-radius: 50%; background: var(--accent); }
+.chip img { width: auto; height: 40px; max-width: none; }
+.chip img + .wm { font-size: 1.375rem; }
+.wm { display: flex; align-items: center; gap: 0.55rem; color: var(--ink); font-size: 1.25rem; line-height: 1; font-weight: 700; white-space: nowrap; }
+.wm i { flex: none; display: grid; place-items: center; min-width: 32px; height: 32px; padding: 0 0.4rem; border-radius: 9px; background: var(--ink); color: var(--bg); font-style: normal; font-size: 0.9375rem; font-weight: 800; letter-spacing: 0; }
+.wm-heavy { font-weight: 850; letter-spacing: -0.045em; text-transform: uppercase; }
+.wm-plain { font-weight: 750; letter-spacing: -0.03em; }
+.wm-round { font-weight: 800; letter-spacing: -0.03em; }
+.wm-round i { border-radius: 50%; }
+.wm-caps { font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.18em; text-transform: uppercase; }
+.wm-caps i { background: none; color: var(--ink); border: 2px solid var(--ink); border-radius: 50%; }
+.wm-mono { font-family: var(--mono); font-weight: 600; letter-spacing: -0.02em; }
+.wm-mono i { border-radius: 4px; font-family: var(--mono); }
+.wm-serif { font-family: Georgia, 'Times New Roman', serif; letter-spacing: 0.01em; }
+.wm-serif i { font-family: Georgia, serif; border-radius: 50% 50% 9px 9px; }
+.wm-script { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 1.5rem; letter-spacing: -0.02em; }
+.wm-script i { font-family: Georgia, serif; font-style: italic; border-radius: 50%; }
 
 /* Reveal on scroll. Only hidden when the script has run, so the page works without JavaScript. */
 .js [data-reveal] { opacity: 0; transform: translateY(22px); filter: blur(8px); transition: opacity 0.8s ease, transform 0.8s var(--ease), filter 0.8s ease; transition-delay: var(--d, 0s); }

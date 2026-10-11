@@ -100,5 +100,52 @@ $body = '--' . $boundary . "\r\nContent-Type: text/plain; charset=utf-8\r\n\r\n"
     . '--' . $boundary . "--\r\n";
 
 // The subject is one of two fixed strings, so no visitor text reaches a mail header.
-$sent = mail(LEAD_TO, $isAudit ? 'Free Audit request' : 'New project lead from the portfolio chat', $body, implode("\r\n", $headers));
+$subject = $isAudit ? 'Free Audit request' : 'New project lead from the portfolio chat';
+
+// This host refuses PHP mail(), so the message is handed to the mailbox's own SMTP server.
+// The password lives in lead-config.php beside this file. That file is created on the server only: it is not in the
+// repository and not part of a deploy. Until a password is set, sending fails and the page offers WhatsApp instead.
+$config = is_file(__DIR__ . '/lead-config.php') ? require __DIR__ . '/lead-config.php' : [];
+$sent = ($config['pass'] ?? '') !== '' && smtp_send($config['pass'], LEAD_TO, $subject, $headers, $body);
+if (!$sent) {
+    @unlink($stamp);
+}
 finish($sent ? 200 : 500, ['ok' => $sent]);
+
+// A minimal SMTP client: implicit TLS, AUTH LOGIN, one recipient. Returns true only if the server accepted the message.
+function smtp_send(string $pass, string $to, string $subject, array $headers, string $body): bool
+{
+    $socket = @stream_socket_client('ssl://smtp.hostinger.com:465', $errno, $errstr, 15);
+    if (!$socket) {
+        error_log("lead smtp connect: $errstr");
+        return false;
+    }
+    stream_set_timeout($socket, 15);
+    // Reads one reply (which may span several lines) and checks its status code.
+    $expect = function (int $code) use ($socket): bool {
+        do {
+            $line = fgets($socket, 600);
+        } while ($line !== false && isset($line[3]) && $line[3] === '-');
+        $ok = $line !== false && (int) substr($line, 0, 3) === $code;
+        if (!$ok) {
+            error_log('lead smtp: wanted ' . $code . ', got ' . trim((string) $line));
+        }
+        return $ok;
+    };
+    $say = fn (string $line) => fwrite($socket, $line . "\r\n");
+    $message = implode("\r\n", array_merge($headers, ['To: ' . $to, 'Subject: ' . $subject, 'Date: ' . date('r'), 'Message-ID: <' . bin2hex(random_bytes(12)) . '@mywrkbase.com>']))
+        . "\r\n\r\n" . preg_replace('/^\./m', '..', $body);
+
+    $ok = $expect(220)
+        && $say('EHLO sakib.mywrkbase.com') && $expect(250)
+        && $say('AUTH LOGIN') && $expect(334)
+        && $say(base64_encode(LEAD_FROM)) && $expect(334)
+        && $say(base64_encode($pass)) && $expect(235)
+        && $say('MAIL FROM:<' . LEAD_FROM . '>') && $expect(250)
+        && $say('RCPT TO:<' . $to . '>') && $expect(250)
+        && $say('DATA') && $expect(354)
+        && $say($message . "\r\n.") && $expect(250);
+    $say('QUIT');
+    fclose($socket);
+    return $ok;
+}

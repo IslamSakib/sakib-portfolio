@@ -23,6 +23,6 @@ Options -Indexes
 </IfModule>
 
 # Upload packages and the host's placeholder page are not part of the site
-<FilesMatch "(\.zip|^default\.php|^d-[a-z0-9]+\.php)$">
+<FilesMatch "(\.zip|^default\.php|^d-[a-z0-9]+\.php|^lead-config\.php)$">
   Require all denied
 </FilesMatch>
