@@ -9,10 +9,12 @@ const W = 1200, H = 630, font = 'Arial, Helvetica, sans-serif';
 const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 // Breaks a sentence into lines of at most `max` characters; a number stays with its unit ("5 s").
 const wrap = (t, max) => t.replace(/(\d) s\b/g, '$1\u00a0s').split(' ').reduce((l, w) => ((l.at(-1) + ' ' + w).trim().length <= max ? l.splice(-1, 1, (l.at(-1) + ' ' + w).trim()) : l.push(w), l), ['']);
+// Same number of lines as `wrap`, but evenly filled, so the last line is not a single short word.
+const balance = (t, max) => { const n = wrap(t, max).length; for (let w = Math.ceil(t.length / n); w < max; w++) if (wrap(t, w).length <= n) return wrap(t, w); return wrap(t, max); };
 
 // Text column on the left; `room` is its width in pixels, so the headline is sized to fit it.
 const card = (label, lines, room, right) => {
-  const size = Math.min(84, Math.floor(room / (Math.max(...lines.map((l) => l.length)) * 0.5)));
+  const size = Math.min(84, Math.floor(room / (Math.max(...lines.map((l) => l.length)) * 0.54)));
   const top = 315 - ((lines.length - 1) * size * 1.12) / 2;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
   <defs><pattern id="d" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#f2efe6" fill-opacity="0.1"/></pattern></defs>
@@ -29,8 +31,8 @@ const panel = '<rect x="740" y="150" width="380" height="480" rx="6" fill="#1b55
 const photo = await sharp('src/assets/sakib-islam-cut.png').resize(470, 470).toBuffer();
 const withPhoto = (label, lines) => sharp(Buffer.from(card(label, lines, 600, panel))).composite([{ input: photo, left: 695, top: 160 }]);
 
-await withPhoto('WordPress · Custom development · AI', ['WordPress developer', 'for SaaS and', 'AI startups.']).png({ compressionLevel: 9 }).toFile('public/og.png');
-for (const s of services) await withPhoto(s.name, wrap(s.h1, 18)).jpeg({ quality: 88 }).toFile(`public/og-${s.slug}.jpg`);
+await withPhoto('WordPress · Custom development · AI', ['WordPress developer', 'for SaaS and AI startups.']).png({ compressionLevel: 9 }).toFile('public/og.png');
+for (const s of services) await withPhoto(s.name, s.h1Lines).jpeg({ quality: 88 }).toFile(`public/og-${s.slug}.jpg`);
 
 // Case studies: the result as the headline, the client's site in a frame on the right.
 const frame = '<rect x="619" y="151" width="502" height="316" rx="8" fill="#131b27" stroke="#2a3445" stroke-width="2"/>';
@@ -39,7 +41,7 @@ for (const f of readdirSync('src/work')) {
   const slug = f.replace('.md', ''), md = readFileSync(`src/work/${f}`, 'utf8');
   const get = (k) => (md.match(new RegExp(`^${k}: (.*)$`, 'm')) || [])[1].replace(/^"|"$/g, '');
   const shot = await sharp(`src/assets/work/${slug}.png`).resize(500, 313, { position: 'top' }).composite([{ input: mask, blend: 'dest-in' }]).png().toBuffer();
-  await sharp(Buffer.from(card(`Case study · ${get('client')}`, wrap(get('result'), 16), 480, frame)))
+  await sharp(Buffer.from(card(`Case study · ${get('client')}`, balance(get('result'), 16), 480, frame)))
     .composite([{ input: shot, left: 620, top: 152 }]).jpeg({ quality: 88 }).toFile(`public/og-${slug}.jpg`);
 }
 console.log('public/og.png and public/og-*.jpg written');
