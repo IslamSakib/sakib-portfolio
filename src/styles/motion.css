@@ -73,8 +73,10 @@ figure.portrait::before { inset: calc(17% - 1px) -1px -1px -1px; z-index: -1; }
 .track { display: flex; align-items: center; gap: 3rem; width: max-content; animation: slide 110s linear infinite; }
 .marquee:hover .track { animation-play-state: paused; }
 @keyframes slide { to { transform: translateX(calc(-50% - 1.5rem)); } }
-.clients .track span { font-size: 1.625rem; font-weight: 650; letter-spacing: -0.03em; color: var(--muted); white-space: nowrap; }
-.clients .track span::after { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-left: 3rem; vertical-align: 0.2em; }
+.clients .track span { font-size: 1.625rem; font-weight: 650; letter-spacing: -0.03em; color: var(--muted); white-space: nowrap; display: inline-flex; align-items: center; gap: 0.6rem; height: 30px; line-height: 30px; }
+/* Client logos: every one the same height and one flat colour, so no brand outweighs another */
+.clients .track img { height: 30px; width: auto; max-width: none; filter: brightness(0) invert(1); opacity: 0.66; }
+.clients .track span::after { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-left: 2.4rem; flex: none; }
 
 /* Reveal on scroll. Only hidden when the script has run, so the page works without JavaScript. */
 .js [data-reveal] { opacity: 0; transform: translateY(22px); filter: blur(8px); transition: opacity 0.8s ease, transform 0.8s var(--ease), filter 0.8s ease; transition-delay: var(--d, 0s); }

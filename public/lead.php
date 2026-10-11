@@ -5,7 +5,7 @@
 declare(strict_types=1);
 
 const LEAD_TO = 'islamsakib.official@gmail.com';
-const LEAD_FROM = 'no-reply@mywrkbase.com';
+const LEAD_FROM = 'support@mywrkbase.com';
 const ALLOWED_HOSTS = ['sakib.mywrkbase.com'];
 
 header('Content-Type: application/json; charset=utf-8');

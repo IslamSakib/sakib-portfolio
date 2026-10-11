@@ -141,7 +141,14 @@ const jsonld = [
     <div class="wrap"><p>Built for</p></div>
     <div class="marquee">
       <div class="track">
-        {[0, 1].map((copy) => clients.map((name) => <span aria-hidden={copy === 1 ? 'true' : undefined}>{name}</span>))}
+        {[0, 1].map((copy) =>
+          clients.map((c) => (
+            <span aria-hidden={copy === 1 ? 'true' : undefined}>
+              {c.logo && <img src={c.logo.src} width={Math.round((c.logo.width / c.logo.height) * 30)} height="30" alt={c.showName ? '' : c.name} loading="lazy" decoding="async" />}
+              {c.showName && c.name}
+            </span>
+          )),
+        )}
       </div>
     </div>
   </section>
