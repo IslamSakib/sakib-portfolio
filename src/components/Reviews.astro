@@ -18,7 +18,10 @@ const LI = 'M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708
       {[0, 1, 2, 3].map((copy) =>
         reviews.map((r) => (
           <blockquote class="rcard" aria-hidden={copy > 0 ? 'true' : undefined}>
-            <p>&ldquo;{tidy(r.text)}&rdquo;</p>
+            <div>
+              <svg class="rq" viewBox="0 0 32 24" width="34" height="26" aria-hidden="true"><path d="M0 24V13C0 5.5 4 1 12 0v5c-3.500 .800-5 2.700-5 6h5v13zm18 0V13c0-7.500 4-12 12-13v5c-3.500 .800-5 2.700-5 6h5v13z" /></svg>
+              <p>{tidy(r.text)}</p>
+            </div>
             <footer>
               <span class="who"><b>{r.name}</b><span>{r.role}</span></span>
               <a href={allReviewsUrl} target="_blank" rel="noopener" aria-label={`Read ${r.name}'s recommendation on LinkedIn`} tabindex={copy > 0 ? -1 : undefined}>

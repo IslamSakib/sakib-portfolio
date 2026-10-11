@@ -32,10 +32,10 @@ const hot = ['fast'];
 // Trust numbers. Each one can be checked: the client list is the strip above, the recommendations are on LinkedIn,
 // the countries are where those clients are, and the saved signups figure is from the TubeOnAI case study.
 const proof = [
-  { num: 25, dec: 0, prefix: '', suffix: '+', label: 'client websites built or fixed' },
-  { num: 12, dec: 0, prefix: '', suffix: '', label: 'LinkedIn recommendations from founders, managers and teammates' },
-  { num: 4, dec: 0, prefix: '', suffix: '', label: 'countries served: US, UK, Denmark and Bangladesh' },
-  { num: 6, dec: 0, prefix: '$', suffix: 'K', label: 'in signups saved for TubeOnAI by ending its downtime (estimate)' },
+  { num: 25, dec: 0, prefix: '', suffix: '+', label: 'client websites built or fixed', viz: 'dots', n: 25 },
+  { num: 12, dec: 0, prefix: '', suffix: '', label: 'LinkedIn recommendations from founders, managers and teammates', viz: 'dots', n: 12 },
+  { num: 4, dec: 0, prefix: '', suffix: '', label: 'countries served', viz: 'tags', tags: ['US', 'UK', 'Denmark', 'Bangladesh'] },
+  { num: 6, dec: 0, prefix: '$', suffix: 'K', label: 'in signups saved for TubeOnAI by ending its downtime (estimate)', viz: 'bars' },
 ];
 
 const faq = [
@@ -159,6 +159,11 @@ const jsonld = [
         <div>
           <dt class="num">{p.prefix}<span data-count={p.num} data-dec={p.dec}>{p.num.toFixed(p.dec)}</span>{p.suffix}</dt>
           <dd>{p.label}</dd>
+          <dd class="viz" aria-hidden="true">
+            {p.viz === 'dots' && Array.from({ length: p.n }, (_, k) => <i style={`--k:${k}`}></i>)}
+            {p.viz === 'tags' && p.tags.map((t) => <span>{t}</span>)}
+            {p.viz === 'bars' && <Fragment><b class="down"></b><b class="up"></b></Fragment>}
+          </dd>
         </div>
       ))}
     </dl>

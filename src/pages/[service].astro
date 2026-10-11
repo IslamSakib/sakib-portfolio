@@ -11,6 +11,7 @@ import Faq from '../components/Faq.astro';
 import { site } from '../site.js';
 import { services } from '../services.js';
 import { work } from '../work.js';
+import { iconFor } from '../icons.js';
 
 export function getStaticPaths() {
   return services.map((s) => ({ params: { service: s.slug }, props: { s } }));
@@ -109,8 +110,11 @@ const jsonld = [
       </div>
       <ul class="kit">
         {s.includes.map((item, i) => (
-          <li data-reveal data-spot style={`--d:${(i % 3) * 0.07}s`}>
-            <span class="idx">{pad(i + 1)}</span>
+          <li data-reveal style={`--d:${(i % 3) * 0.07}s`}>
+            <span class="kit-top">
+              <svg class="kit-ico" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d={iconFor(item.name)} /></svg>
+              <span class="idx">{pad(i + 1)}</span>
+            </span>
             <h3>{item.name}</h3>
             <p class="muted">{item.text}</p>
           </li>
@@ -138,8 +142,8 @@ const jsonld = [
       </div>
       <ul class="kit kit-links">
         {others.map((o, i) => (
-          <li data-reveal data-spot style={`--d:${i * 0.07}s`}>
-            <span class="idx">{pad(i + 1)}</span>
+          <li data-reveal style={`--d:${i * 0.07}s`}>
+            <div class="kit-art"><ServiceArt slug={o.slug} /></div>
             <h3><a href={`/${o.slug}/`}>{o.name}</a></h3>
             <p class="muted">{o.short}</p>
             <ul class="tags">{o.chips.slice(0, 3).map((c) => <li>{c}</li>)}</ul>
