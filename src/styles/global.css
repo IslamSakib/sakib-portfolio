@@ -217,6 +217,40 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .frame { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.7); }
 .frame img { width: 100%; }
 
+/* Services on the home page: four cards, each led by a picture of the work instead of a paragraph */
+.svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.svc { position: relative; display: grid; grid-template-rows: 250px auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: border-color 0.3s ease, transform 0.5s var(--ease); }
+.svc:hover { border-color: rgb(var(--accent-rgb) / 0.55); transform: translateY(-4px); }
+.svc-visual { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); background: radial-gradient(70% 90% at 50% 110%, rgb(var(--accent-rgb) / 0.22), transparent 70%), radial-gradient(rgb(245 244 239 / 0.09) 1px, transparent 1.5px) 0 0 / 22px 22px, var(--bg-deep); }
+.svc-body { padding: 1.6rem 1.75rem 1.8rem; display: grid; gap: 0.7rem; justify-items: start; }
+.svc-body .idx { font-family: var(--mono); font-size: 0.8125rem; color: var(--accent); }
+.svc-body h3 { font-size: 1.625rem; }
+.svc-body h3 a { text-decoration: none; }
+.svc-body h3 a::after { content: ""; position: absolute; inset: 0; }
+/* WordPress: three real client sites fanned out */
+.fan { position: absolute; left: 50%; top: 34px; width: 250px; margin-left: -125px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 20px 40px -18px rgb(0 0 0 / 0.8); }
+.fan img { width: 100%; aspect-ratio: 16 / 10.5; object-fit: cover; object-position: top; }
+.fan:nth-child(1) { transform: translateX(-118px) translateY(18px) rotate(-9deg); }
+.fan:nth-child(2) { transform: translateX(118px) translateY(18px) rotate(9deg); }
+.fan:nth-child(3) { transform: translateY(-2px); }
+/* Speed: the TubeOnAI before and after as two bars */
+.speed { position: absolute; inset: 0; display: grid; align-content: center; gap: 1rem; padding: 0 2rem; font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); }
+.speed p { color: var(--text); }
+.speed .meter { display: grid; grid-template-columns: 3.6rem 1fr 3.2rem; align-items: center; gap: 0.75rem; }
+.speed .meter i { height: 14px; border-radius: 999px; background: var(--line); transform-origin: 0 50%; }
+.speed .after i { background: var(--accent); width: 30%; }
+.speed .meter b { font-weight: 500; color: var(--text); }
+.speed .after b { color: var(--accent); }
+/* Custom development: the real Wrkbase dashboard, tipped back */
+.svc-visual.v-custom-web-development { perspective: 900px; }
+.dash { position: absolute; left: 8%; right: 8%; top: 30px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; transform: rotateX(22deg) rotateZ(-3deg); transform-origin: 50% 0; box-shadow: 0 30px 50px -20px rgb(0 0 0 / 0.85); }
+.dash img { width: 100%; }
+/* AI: the agent's four steps ticking off */
+.agent { position: absolute; inset: 0; display: grid; align-content: center; gap: 0.7rem; padding: 0 2rem; font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); }
+.agent li { position: relative; padding-left: 1.9rem; }
+.agent li::before { content: ""; position: absolute; left: 0; top: 50%; width: 14px; height: 14px; margin-top: -7px; border-radius: 50%; border: 1px solid var(--line); }
+.agent em { font-style: normal; margin-left: 0.6rem; padding: 0.15rem 0.6rem; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+
 /* Services: big numbered rows, not cards */
 .service-list { border-top: 1px solid var(--line); }
 .service-list > li { position: relative; display: grid; grid-template-columns: 5rem 1fr 1.3fr; gap: 2rem; align-items: start; padding: 2.5rem 1rem; border-bottom: 1px solid var(--line); transition: background 0.4s ease, padding 0.5s var(--ease); }
@@ -417,8 +451,8 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
   .section-head { margin-bottom: 2.25rem; }
   .hero { padding-top: 3rem; }
   .hero-grid, .case-body, .faq-grid, .showcase-copy { grid-template-columns: 1fr; gap: 2rem; }
-  .hero-photo { order: -1; justify-self: start; width: 240px; }
-  .portrait figcaption, .portrait .badge { display: none; }
+  .hero-photo { order: -1; justify-self: stretch; width: 100%; max-width: 460px; margin: 1.25rem auto 0; }
+  .portrait .badge { left: 0.6rem; }
   .proof { grid-template-columns: 1fr 1fr; }
   .proof > div:nth-child(odd) { border-left: 0; }
   .proof > div { border-top: 1px solid var(--line); padding: 1.5rem 1.25rem; }
@@ -435,6 +469,11 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
   .project:nth-child(even) .project-copy { order: 0; }
   .project-shot, .project:nth-child(even) .project-shot { order: -1; transform: none; box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.8), 0 0 80px -30px rgb(var(--accent-rgb) / 0.45); }
   .project-copy .ghost { font-size: 6rem; }
+  .svc-grid { grid-template-columns: 1fr; }
+  .svc { grid-template-rows: 220px auto; }
+  .fan { width: 200px; margin-left: -100px; }
+  .fan:nth-child(1) { transform: translateX(-70px) translateY(18px) rotate(-9deg); }
+  .fan:nth-child(2) { transform: translateX(70px) translateY(18px) rotate(9deg); }
   .service-list > li { grid-template-columns: 1fr; gap: 0.75rem; padding: 2rem 0; }
   .service-list > li:hover { padding-left: 0; background: none; }
   .service-list .idx { padding-top: 0; }

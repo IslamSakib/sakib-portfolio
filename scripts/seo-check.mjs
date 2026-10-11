@@ -40,7 +40,7 @@ for (const file of files.sort()) {
       if (!has(h1s[0] || '')) errors.push('focus keyword missing from H1');
     }
   }
-  const noAlt = [...html.matchAll(/<img\b[^>]*>/gi)].filter((m) => !/\salt=/.test(m[0])).length;
+  const noAlt = [...html.matchAll(/<img\b[^>]*>/gi)].filter((m) => !/\salt(=|\s|>)/.test(m[0])).length;
   if (noAlt) errors.push(`${noAlt} image(s) without alt`);
   if (titles.has(title)) errors.push('same title as ' + titles.get(title)); else titles.set(title, page);
   if (descriptions.has(description)) errors.push('same description as ' + descriptions.get(description)); else descriptions.set(description, page);

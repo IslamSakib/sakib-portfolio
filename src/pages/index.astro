@@ -19,6 +19,7 @@ const description =
 
 const host = (url) => new URL(url).hostname.replace('www.', '');
 const pad = (n) => String(n).padStart(2, '0');
+const shotOf = (slug) => work.find((w) => w.slug === slug).shot;
 
 // The headline is split into words so each one can animate in. The word in `hot` takes the accent colour.
 // Three fixed lines on desktop; on phones the words wrap naturally.
@@ -133,7 +134,7 @@ const jsonld = [
       </div>
       <div class="hero-photo">
         <figure class="portrait" data-tilt>
-          <Picture src={photo} formats={['avif', 'webp']} widths={[460, 800]} sizes="(max-width: 860px) 240px, 460px" width={460} height={460} alt="Sakib Islam, WordPress developer and founder of Wrkbase" loading="eager" fetchpriority="high" />
+          <Picture src={photo} formats={['avif', 'webp']} widths={[460, 800]} sizes="(max-width: 860px) 92vw, 460px" width={460} height={460} alt="Sakib Islam, WordPress developer and founder of Wrkbase" loading="eager" fetchpriority="high" />
           <span class="badge">Founder, Wrkbase</span>
           <figcaption><b>Dhaka, Bangladesh</b><span data-clock>GMT+6</span></figcaption>
         </figure>
@@ -258,19 +259,45 @@ const jsonld = [
         <p class="label">Services</p>
         <h2>What I can do for you</h2>
       </div>
-      <ul class="service-list">
+      <div class="svc-grid">
         {services.map((sv, i) => (
-          <li data-reveal style={`--d:${i * 0.08}s`}>
-            <span class="idx">{pad(i + 1)}</span>
-            <h3><a href={`/${sv.slug}/`}>{sv.name}</a></h3>
-            <div class="detail">
-              <p class="muted">{sv.row}</p>
-              <ul class="tags">{sv.chips.map((c) => <li>{c}</li>)}</ul>
-              <p class="card-links"><a href={`/${sv.slug}/`}>More on {sv.name.toLowerCase().replace('ai ', 'AI ').replace('wordpress', 'WordPress')}</a></p>
+          <article class="svc" data-spot data-reveal style={`--d:${(i % 2) * 0.1}s`}>
+            <div class:list={['svc-visual', `v-${sv.slug}`]} aria-hidden="true">
+              {sv.slug === 'wordpress-development' && ['moneybag', 'open-alliance-learning', 'tabby'].map((slug) => (
+                <div class="fan">
+                  <Picture src={shotOf(slug)} formats={['avif', 'webp']} widths={[320, 480]} sizes="260px" alt="" loading="lazy" />
+                </div>
+              ))}
+              {sv.slug === 'wordpress-speed-optimization' && (
+                <div class="speed">
+                  <p>TubeOnAI load time</p>
+                  <div class="meter before"><span>Before</span><i></i><b>5.0 s</b></div>
+                  <div class="meter after"><span>After</span><i></i><b>1.5 s</b></div>
+                </div>
+              )}
+              {sv.slug === 'custom-web-development' && (
+                <div class="dash">
+                  <Picture src={appShot} formats={['avif', 'webp']} widths={[480, 760]} sizes="520px" alt="" loading="lazy" />
+                </div>
+              )}
+              {sv.slug === 'ai-development' && (
+                <ol class="agent">
+                  <li>Plans the task</li>
+                  <li>Shows every step</li>
+                  <li>Waits for your approval <em>Approve</em></li>
+                  <li>Acts, and logs it</li>
+                </ol>
+              )}
             </div>
-          </li>
+            <div class="svc-body">
+              <span class="idx">{pad(i + 1)}</span>
+              <h3><a href={`/${sv.slug}/`}>{sv.name}</a></h3>
+              <p class="muted">{sv.short}</p>
+              <ul class="tags">{sv.chips.slice(0, 4).map((c) => <li>{c}</li>)}</ul>
+            </div>
+          </article>
         ))}
-      </ul>
+      </div>
     </div>
   </section>
 

@@ -5,6 +5,7 @@ export const services = [
   {
     slug: 'wordpress-development',
     name: 'WordPress development',
+    short: 'Themes, plugins, stores and payments, built as one job.',
     focus: 'custom WordPress development',
     title: 'Custom WordPress Development Services | Sakib Islam',
     description:
@@ -36,6 +37,7 @@ export const services = [
   {
     slug: 'wordpress-speed-optimization',
     name: 'Speed and rescue',
+    short: 'Slow or broken sites, fixed at the cause and measured.',
     focus: 'WordPress speed optimization',
     title: 'WordPress Speed Optimization Service | Sakib Islam',
     description:
@@ -67,6 +69,7 @@ export const services = [
   {
     slug: 'custom-web-development',
     name: 'Custom development',
+    short: 'Web products built from scratch when WordPress is the wrong tool.',
     focus: 'custom web development',
     title: 'Custom Web Development for Startups | Sakib Islam',
     description:
@@ -97,6 +100,7 @@ export const services = [
   {
     slug: 'ai-development',
     name: 'AI agents and automation',
+    short: 'AI that does real work inside your product, with your approval.',
     focus: 'AI agent development',
     title: 'AI Agent Development & AI Automation | Sakib Islam',
     description:
