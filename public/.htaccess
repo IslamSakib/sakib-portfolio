@@ -21,3 +21,8 @@ Options -Indexes
     Header set Cache-Control "public, max-age=600"
   </FilesMatch>
 </IfModule>
+
+# Upload packages and the host's placeholder page are not part of the site
+<FilesMatch "(\.zip|^default\.php)$">
+  Require all denied
+</FilesMatch>

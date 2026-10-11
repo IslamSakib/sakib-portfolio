@@ -100,5 +100,5 @@ $body = '--' . $boundary . "\r\nContent-Type: text/plain; charset=utf-8\r\n\r\n"
     . '--' . $boundary . "--\r\n";
 
 // The subject is one of two fixed strings, so no visitor text reaches a mail header.
-$sent = mail(LEAD_TO, $isAudit ? 'Free Audit request' : 'New project lead from the portfolio chat', $body, implode("\r\n", $headers), '-f' . LEAD_FROM);
+$sent = mail(LEAD_TO, $isAudit ? 'Free Audit request' : 'New project lead from the portfolio chat', $body, implode("\r\n", $headers));
 finish($sent ? 200 : 500, ['ok' => $sent]);
