@@ -74,7 +74,7 @@ button { font: inherit; color: inherit; }
 
 /* Header: a floating pill */
 .site-header { position: sticky; top: 12px; z-index: 40; }
-.bar { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 1rem; padding: 0 0.5rem 0 1.4rem; border: 1px solid var(--line); border-radius: 999px; background: rgb(19 36 44 / 0.82); backdrop-filter: blur(14px) saturate(1.4); }
+.bar { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 1rem; padding: 0 0.5rem 0 1.4rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
 .brand { text-decoration: none; padding: 0.75rem 0; }
 .site-header nav { display: flex; align-items: center; gap: 1.6rem; font-size: 0.9375rem; }
 .site-header nav a:not(.btn) { text-decoration: none; color: var(--muted); transition: color 0.2s ease; }
@@ -231,21 +231,15 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .steps li::before { content: ''; position: absolute; top: calc(-2.75rem + 2px); left: 0; z-index: 1; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
 .steps .idx { font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); }
 
-/* Recommendations: the same reel as Selected work. The chosen one is set large in a quiet panel; the accent is kept
-   to the quotation mark. */
-.quote-stage { display: grid; min-height: 440px; padding: 2.75rem 3rem 2.5rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-.qmark { display: block; height: 3.2rem; font-family: var(--display); font-size: 6.5rem; line-height: 1; font-weight: 800; color: var(--accent); }
-.quote-panel { grid-area: 1 / 1; display: grid; gap: 2.5rem; align-content: space-between; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.4s ease, transform 0.5s var(--ease), visibility 0.4s; }
-.quote-panel.on { opacity: 1; visibility: visible; transform: none; }
-.reel > *, .quote-panel { min-width: 0; }
-.quote-panel p { max-width: 32ch; font-family: var(--display); font-size: clamp(1.5rem, 2.4vw, 2.125rem); line-height: 1.24; font-weight: 600; letter-spacing: -0.02em; text-wrap: pretty; }
-.quote-panel footer { display: flex; justify-content: space-between; align-items: end; gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
-.quote-panel .who { display: grid; gap: 0.15rem; }
-.quote-panel .who b { font-size: 1.125rem; }
-.quote-panel .who span { font-size: 0.9375rem; color: var(--muted); }
-.quote-panel a { flex: none; display: inline-flex; align-items: center; gap: 0.55rem; min-height: 44px; font-weight: 600; font-size: 0.9375rem; text-decoration: none; color: var(--text); }
-.quote-panel a svg { fill: #3b8fe0; border-radius: 3px; }
-.quote-panel a:hover { color: var(--accent-hi); }
+/* Recommendations: one row of cards drifting sideways */
+.rcard { width: 440px; flex: none; display: grid; gap: 1.5rem; align-content: space-between; padding: 1.75rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.rcard p { font-size: 1.0625rem; line-height: 1.55; color: var(--text); text-wrap: pretty; }
+.rcard footer { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-top: 1.1rem; border-top: 1px solid var(--line); }
+.rcard .who { display: grid; gap: 0.1rem; min-width: 0; }
+.rcard .who b { font-size: 1rem; }
+.rcard .who span { font-size: 0.875rem; color: var(--muted); }
+.rcard a { flex: none; display: grid; place-items: center; width: 44px; height: 44px; margin: -0.5rem -0.6rem -0.5rem 0; }
+.rcard a svg { fill: #3b8fe0; border-radius: 3px; }
 .review-note { margin-top: 2rem; color: var(--muted); font-size: 0.9375rem; }
 
 /* FAQ: heading pinned on the left, answers on the right */
@@ -265,7 +259,6 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 
 /* Contact: a full-width closing band with the dot field behind it */
 .cta { padding: 8rem 0 9rem; }
-.cta .dots { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; pointer-events: none; -webkit-mask-image: linear-gradient(transparent, #000 30%, #000 70%, transparent); mask-image: linear-gradient(transparent, #000 30%, #000 70%, transparent); }
 .cta-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 4.5rem; align-items: center; }
 .cta-grid > * { min-width: 0; }
 .cta-copy { display: grid; gap: 1.75rem; justify-items: start; }
@@ -336,7 +329,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 /* What is included, and the other services: a grid of cards instead of long rows */
 .kit { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 .kit > li { position: relative; display: grid; gap: 0.7rem; align-content: start; min-width: 0; padding: 1.75rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; transition: border-color 0.3s ease, translate 0.4s var(--ease); }
-.kit > li::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.5s var(--ease); }
+.kit > li::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.5s var(--ease); }
 .kit > li:hover { border-color: rgb(var(--accent-rgb) / 0.55); translate: 0 -4px; }
 .kit > li:hover::before { transform: none; }
 .kit .idx { font-family: var(--mono); font-size: 2rem; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgb(var(--accent-rgb) / 0.8); }
@@ -498,10 +491,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
   .term-body { grid-template-columns: 1fr; min-height: 0; }
   .term-side { border-right: 0; border-bottom: 1px solid var(--line); padding: 1.25rem 1rem; }
   .term-out { padding: 1.25rem 1rem 1.5rem; }
-  .quote-stage { min-height: 0; padding: 2rem 1.5rem 1.5rem; }
-  .qmark { height: 2.6rem; font-size: 5rem; }
-  .quote-panel p { font-size: 1.3125rem; overflow-wrap: anywhere; }
-  .quote-panel footer { flex-direction: column; align-items: start; gap: 0.75rem; }
+  .rcard { width: 310px; padding: 1.4rem; }
   .service-list > li { grid-template-columns: 1fr; gap: 0.75rem; padding: 2rem 0; }
   .service-list > li:hover { padding-left: 0; background: none; }
   .service-list .idx { padding-top: 0; }
