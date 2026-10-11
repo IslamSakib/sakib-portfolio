@@ -124,7 +124,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       import '../scripts/chat.js';
     </script>
     <script is:inline>
-      // All motion that needs script: number tickers, typed headings, the tilting portrait and the Dhaka clock.
+      // All motion that needs script: number tickers, typed headings, the dot fields, the tilting portrait and the Dhaka clock.
       // Skipped under reduced motion.
       (() => {
         const clocks = document.querySelectorAll('[data-clock]');
@@ -289,7 +289,44 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         }), { threshold: 0.15 });
         document.querySelectorAll('[data-reveal], [data-count], main h2').forEach((el) => io.observe(el));
 
+        // Dot fields: each canvas draws a grid of dots with a slow wave through it. Dots near the pointer turn the
+        // accent colour, grow and lean away. A field only draws while it is on screen, and fades out towards its edges.
+        const fields = [...document.querySelectorAll('.dots')].map((cv) => {
+          const g = cv.getContext('2d'), gap = 28, f = { cv, mx: -999, my: -999 };
+          let w = 0, h = 0, on = false;
+          const size = () => {
+            const d = Math.min(devicePixelRatio || 1, 2);
+            w = cv.clientWidth; h = cv.clientHeight;
+            cv.width = w * d; cv.height = h * d;
+            g.setTransform(d, 0, 0, d, 0, 0);
+          };
+          const draw = (t) => {
+            g.clearRect(0, 0, w, h);
+            for (let y = gap / 2; y < h; y += gap) {
+              const edge = Math.max(0, Math.min(1, y / 90, (h - y) / 150));
+              for (let x = gap / 2; x < w; x += gap) {
+                const dx = x - f.mx, dy = y - f.my, near = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / 200);
+                if (near > 0.02) {
+                  const a = Math.atan2(dy, dx), push = near * near * 16;
+                  g.fillStyle = 'rgba(107,151,255,' + (0.25 + near * 0.75) * edge + ')';
+                  g.beginPath(); g.arc(x + Math.cos(a) * push, y + Math.sin(a) * push, 1 + near * 2, 0, 6.2832); g.fill();
+                } else {
+                  g.fillStyle = 'rgba(242,239,230,' + (0.04 + 0.09 * (0.5 + 0.5 * Math.sin(x * 0.011 + y * 0.017 - t * 0.0011))) * edge + ')';
+                  g.fillRect(x - 1, y - 1, 2, 2);
+                }
+              }
+            }
+            if (on) requestAnimationFrame(draw);
+          };
+          size(); addEventListener('resize', size);
+          new IntersectionObserver(([e]) => { const was = on; on = e.isIntersecting; if (on && !was) requestAnimationFrame(draw); }).observe(cv);
+          return f;
+        });
+
         if (matchMedia('(hover: hover)').matches) {
+          addEventListener('pointermove', (e) => {
+            fields.forEach((f) => { const r = f.cv.getBoundingClientRect(); f.mx = e.clientX - r.left; f.my = e.clientY - r.top; });
+          }, { passive: true });
           document.querySelectorAll('[data-tilt]').forEach((el) => {
             el.addEventListener('pointermove', (e) => {
               const r = el.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;

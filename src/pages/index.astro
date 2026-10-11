@@ -12,6 +12,7 @@ import { clients } from '../clients.js';
 import WorkReel from '../components/WorkReel.astro';
 import Process from '../components/Process.astro';
 import Reviews from '../components/Reviews.astro';
+import Faq from '../components/Faq.astro';
 
 // Focus keyword for this page. It must appear in the title, the description and the H1 (scripts/seo-check.mjs).
 const focus = 'WordPress developer';
@@ -104,6 +105,7 @@ const jsonld = [
 ---
 <Base title={title} description={description} jsonld={jsonld} focus={focus}>
   <section class="hero">
+    <canvas class="dots" aria-hidden="true"></canvas>
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <h1>
@@ -252,23 +254,7 @@ const jsonld = [
 
   <Reviews />
 
-  <section id="faq" class="sec band band-glow">
-    <div class="wrap faq-grid">
-      <div class="faq-side">
-        <h2>Questions clients ask</h2>
-        <p class="muted">Something else on your mind? Ask me directly.</p>
-        <a class="btn btn-ghost btn-small" href={site.whatsapp} target="_blank" rel="noopener">Ask on WhatsApp</a>
-      </div>
-      <div class="faq">
-        {faq.map((f) => (
-          <details name="faq">
-            <summary>{f.q}</summary>
-            <p>{f.a}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
+  <Faq items={faq} />
 
   <Cta />
 </Base>

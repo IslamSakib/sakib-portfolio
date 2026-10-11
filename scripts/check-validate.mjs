@@ -13,6 +13,8 @@ assert.equal(hostOf('mysite.co.uk'), 'mysite.co.uk');
 ['hello', 'asdf.qwer', 'not a site', 'site.123', 'http://'].forEach((v) => assert.equal(hostOf(v), '', `"${v}" is not a site`));
 
 ok('need', 'Speed up a slow site'); bad('need', 'jk'); bad('need', 'sdfsdfsdf');
+bad('need', 'AGASGAG'); bad('need', 'lorem bapi kotun'); ok('need', 'SEO'); ok('need', 'Something else'); ok('need', 'I want a booking system for my clinic'); ok('need', 'আমার একটি ওয়েবসাইট দরকার');
+bad('goal', 'blah fooble'); ok('goal', 'Rank higher on Google'); ok('goal', 'faster checkout');
 ok('site', 'usetabby.com'); ok('site', 'No site yet'); ok('site', 'not yet'); bad('site', 'asdasd'); bad('site', 'my website');
 ok('goal', 'More signups from the pricing page'); bad('goal', 'yes'); bad('goal', 'asdf asdf');
 ok('timeline', 'Within a month'); ok('timeline', 'by December'); ok('timeline', '3 weeks'); bad('timeline', 'banana'); bad('timeline', 'asdf1234');

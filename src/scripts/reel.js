@@ -1,6 +1,7 @@
 // Pick-one-of-many panels, used for Selected work and for the recommendations. A list of tabs and a stage of panels:
 // hover, focus or click a tab to show its panel. Until the visitor touches it, each reel moves on by itself every few
 // seconds (data-interval, default 5000 ms), but only while it is on screen and never under reduced motion.
+// data-auto="off" (the FAQ) turns that off: it only changes when the visitor picks something.
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.querySelectorAll('[data-reel]').forEach((reel) => {
@@ -15,7 +16,7 @@ document.querySelectorAll('[data-reel]').forEach((reel) => {
     panels.forEach((p, n) => p.classList.toggle('on', n === current));
   };
   const stop = () => { clearInterval(timer); timer = null; reel.classList.remove('auto'); };
-  const start = () => { if (reduce || timer || touched) return; reel.classList.add('auto'); timer = setInterval(() => show(current + 1), every); };
+  const start = () => { if (reduce || timer || touched || reel.dataset.auto === 'off') return; reel.classList.add('auto'); timer = setInterval(() => show(current + 1), every); };
   const pick = (i) => { touched = true; stop(); show(i); };
 
   tabs.forEach((t, i) => {

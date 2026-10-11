@@ -1,11 +1,12 @@
 ---
-// "How I work": the four steps, shared by the home page and the service pages.
+// "How I work": four steps, each with a small animated drawing of what happens in it. Shared by the home page and
+// the service pages. The drawings are decoration (hidden from screen readers); the step text carries the meaning.
 const pad = (n) => String(n).padStart(2, '0');
 const steps = [
-  { name: 'Find the cause', text: 'I test the site, read the errors and check what changed before I touch anything.' },
-  { name: 'Fix the root', text: 'One clean fix where the problem lives, not a patch on top of it.' },
-  { name: 'Measure it', text: 'Before and after numbers from PageSpeed Insights that you can check yourself.' },
-  { name: 'Hand it over', text: 'You get notes on what was done, so the next change does not undo it.' },
+  { art: 'find', name: 'Find the cause', text: 'I test the site, read the errors and check what changed before I touch anything.' },
+  { art: 'fix', name: 'Fix the root', text: 'One clean fix where the problem lives, not a patch on top of it.' },
+  { art: 'measure', name: 'Measure it', text: 'Before and after numbers from PageSpeed Insights that you can check yourself.' },
+  { art: 'hand', name: 'Hand it over', text: 'You get notes on what was done, so the next change does not undo it.' },
 ];
 ---
 <section id="process" class="sec tint-a">
@@ -16,6 +17,30 @@ const steps = [
     <ol class="steps">
       {steps.map((s, i) => (
         <li data-reveal style={`--d:${i * 0.1}s`}>
+          <div class:list={['pa', `pa-${s.art}`]} aria-hidden="true">
+            {s.art === 'find' && (
+              <Fragment>
+                <i></i><i></i><i class="bad"></i><i></i><i></i>
+                <b class="lens"></b>
+              </Fragment>
+            )}
+            {s.art === 'fix' && (
+              <Fragment>
+                <span>patch</span><span>plugin</span><span class="root">cause <em>fixed ✓</em></span>
+              </Fragment>
+            )}
+            {s.art === 'measure' && (
+              <Fragment>
+                <p><span>Before</span><i class="slow"></i><b>5.0 s</b></p>
+                <p><span>After</span><i class="fast"></i><b>1.5 s</b></p>
+              </Fragment>
+            )}
+            {s.art === 'hand' && (
+              <Fragment>
+                <p><b></b><i></i></p><p><b></b><i></i></p><p><b></b><i></i></p>
+              </Fragment>
+            )}
+          </div>
           <span class="idx">Step {pad(i + 1)}</span>
           <h3>{s.name}</h3>
           <p class="muted">{s.text}</p>
@@ -24,3 +49,41 @@ const steps = [
     </ol>
   </div>
 </section>
+
+<style>
+  /* Each drawing sits in the same small panel and loops every eight seconds */
+  .pa { position: relative; display: grid; align-content: center; gap: 0.5rem; height: 132px; margin-bottom: 0.9rem; padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+
+  /* Find the cause: lines of a log, one of them wrong, and a lens that settles on it */
+  .pa-find i { height: 7px; border-radius: 4px; background: var(--surface-2); }
+  .pa-find i:nth-child(1) { width: 78%; } .pa-find i:nth-child(2) { width: 52%; } .pa-find i:nth-child(4) { width: 66%; } .pa-find i:nth-child(5) { width: 40%; }
+  .pa-find .bad { width: 60%; animation: found 8s ease infinite; }
+  .pa-find .lens { position: absolute; left: 12%; top: 50%; width: 34px; height: 34px; margin-top: -17px; border: 2px solid var(--text); border-radius: 50%; animation: scan 8s ease-in-out infinite; }
+  .pa-find .lens::after { content: ''; position: absolute; right: -9px; bottom: -6px; width: 12px; height: 2px; background: var(--text); rotate: 45deg; }
+  @keyframes scan { 0% { transform: translate(120px, -38px); } 18% { transform: translate(10px, 30px); } 36%, 100% { transform: translate(70px, 0); } }
+  @keyframes found { 0%, 34% { background: var(--surface-2); } 42%, 100% { background: #e0624a; } }
+
+  /* Fix the root: the layers on top are left alone; the bottom one is the one that changes */
+  .pa-fix span { display: flex; justify-content: space-between; padding: 0.35rem 0.6rem; border: 1px dashed var(--line); border-radius: 4px; }
+  .pa-fix .root { border-style: solid; color: var(--text); animation: mend 8s ease infinite; }
+  .pa-fix em { font-style: normal; color: #9fd8a8; animation: appear 8s ease infinite; }
+  @keyframes mend { 0%, 30% { border-color: #e0624a; } 45%, 100% { border-color: var(--accent); } }
+  @keyframes appear { 0%, 40% { opacity: 0; } 50%, 100% { opacity: 1; } }
+
+  /* Measure it: the same two numbers as the TubeOnAI case study */
+  .pa-measure p { display: grid; grid-template-columns: 3.2rem 1fr 2.6rem; gap: 0.5rem; align-items: center; }
+  .pa-measure b { color: var(--text); font-weight: 500; text-align: right; }
+  .pa-measure i { height: 9px; border-radius: 5px; background: var(--surface-2); transform-origin: 0 50%; animation: grow-bar 8s ease-out infinite; }
+  .pa-measure .fast { width: 30%; background: var(--accent); animation-delay: 1.2s; }
+  @keyframes grow-bar { 0% { transform: scaleX(0); } 18%, 100% { transform: none; } }
+
+  /* Hand it over: a short list of notes, ticked off one by one */
+  .pa-hand p { display: grid; grid-template-columns: 16px 1fr; gap: 0.6rem; align-items: center; }
+  .pa-hand b { width: 16px; height: 16px; border: 2px solid var(--line); border-radius: 4px; animation: tick 8s ease infinite; }
+  .pa-hand i { height: 7px; border-radius: 4px; background: var(--surface-2); }
+  .pa-hand p:nth-child(1) i { width: 80%; } .pa-hand p:nth-child(2) i { width: 58%; } .pa-hand p:nth-child(3) i { width: 70%; }
+  .pa-hand p:nth-child(2) b { animation-delay: 0.9s; } .pa-hand p:nth-child(3) b { animation-delay: 1.8s; }
+  @keyframes tick { 0%, 12% { background: transparent; border-color: var(--line); } 20%, 100% { background: var(--accent-fill); border-color: var(--accent-fill); } }
+
+  @media (prefers-reduced-motion: reduce) { .pa * { animation: none !important; } .pa-find .bad { background: #e0624a; } .pa-hand b { background: var(--accent-fill); border-color: var(--accent-fill); } }
+</style>

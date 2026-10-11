@@ -91,6 +91,11 @@ button { font: inherit; color: inherit; }
 .site-header nav a:not(.btn) { text-decoration: none; color: var(--muted); transition: color 0.2s ease; }
 .site-header nav a:not(.btn):hover { color: var(--text); }
 
+/* Dot field: a canvas of small dots behind the hero and the contact band. It ripples slowly, and the dots near the
+   pointer light up in the accent and lean away from it (script in Base.astro). It fades out at its own edges. */
+.dots { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; pointer-events: none; }
+.cta { position: relative; isolation: isolate; }
+
 section { padding: 7rem 0; }
 .section-head { margin-bottom: 3.5rem; display: grid; gap: 1rem; }
 
@@ -254,6 +259,17 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .review-note { margin-top: 2rem; color: var(--muted); font-size: 0.9375rem; }
 
 /* FAQ: heading pinned on the left, answers on the right */
+/* FAQ on the home and service pages: questions on the left, the chosen answer on the right */
+.faq-top { display: flex; justify-content: space-between; align-items: end; gap: 2rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.faq-reel { grid-template-columns: 1fr 1.1fr; gap: 3rem; }
+.faq-reel .reel-list button { grid-template-columns: 2.25rem 1fr; padding: 0.95rem 1rem; }
+.faq-reel .reel-list .name { font-family: var(--sans); font-size: 1.0625rem; font-weight: 600; letter-spacing: 0; line-height: 1.35; }
+.faq-stage { position: sticky; top: 110px; display: grid; align-content: start; min-height: 340px; padding: 2.5rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.faq-panel { grid-area: 1 / 1; display: grid; gap: 1.25rem; align-content: start; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity 0.3s ease, transform 0.4s var(--ease), visibility 0.3s; }
+.faq-panel.on { opacity: 1; visibility: visible; transform: none; }
+.faq-panel h3 { font-size: clamp(1.5rem, 2.3vw, 2rem); }
+.faq-panel p { font-size: 1.1875rem; line-height: 1.6; color: var(--muted); text-wrap: pretty; }
+
 .faq-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start; }
 .faq-side { position: sticky; top: 110px; display: grid; gap: 1.25rem; justify-items: start; }
 .faq details { border-bottom: 1px solid var(--line); }
@@ -509,6 +525,11 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
   .steps::after { transform: scaleY(0); transform-origin: 50% 0; }
   .steps li::before { top: 0.2rem; left: -2.25rem; }
   .faq-side { position: static; }
+  .faq-reel .reel-list { display: none; }
+  .faq-stage { position: static; min-height: 0; padding: 0; border: 0; background: none; }
+  .faq-panel { grid-area: auto; opacity: 1; visibility: visible; transform: none; gap: 0.6rem; padding: 1.5rem 0; border-top: 1px solid var(--line); }
+  .faq-panel h3 { font-size: 1.1875rem; }
+  .faq-panel p { font-size: 1.0625rem; }
   .page-head { padding: 3rem 0 4rem; }
   .audit-grid { grid-template-columns: 1fr; gap: 2rem; }
   .console-log { min-height: 240px; }
