@@ -124,7 +124,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       import '../scripts/chat.js';
     </script>
     <script is:inline>
-      // All motion that needs script: number tickers, magnetic buttons, the tilting portrait and the Dhaka clock.
+      // All motion that needs script: number tickers, typed headings, the tilting portrait and the Dhaka clock.
       // Skipped under reduced motion.
       (() => {
         const clocks = document.querySelectorAll('[data-clock]');
@@ -280,11 +280,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         document.querySelectorAll('[data-reveal], [data-count], main h2').forEach((el) => io.observe(el));
 
         if (matchMedia('(hover: hover)').matches) {
-          document.querySelectorAll('[data-magnet]').forEach((el) => {
-            el.addEventListener('pointermove', (e) => {
-              const r = el.getBoundingClientRect();
-              el.style.transform = 'translate(' + (e.clientX - r.left - r.width / 2) * 0.28 + 'px,' + (e.clientY - r.top - r.height / 2) * 0.4 + 'px)';
-            });
             el.addEventListener('pointerleave', () => { el.style.transform = ''; });
           });
           document.querySelectorAll('[data-tilt]').forEach((el) => {

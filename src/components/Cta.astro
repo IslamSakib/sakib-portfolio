@@ -37,9 +37,9 @@ const nextSteps = [
         </ul>
       </div>
       <div class="hero-actions">
-        <button class="btn" type="button" data-chat-open data-magnet>Tell me about your project</button>
+        <button class="btn" type="button" data-chat-open>Tell me about your project</button>
         {socials.slice(0, 2).map((s) => (
-          <a class="btn btn-ghost" href={s.url} target="_blank" rel="noopener" data-magnet>
+          <a class="btn btn-ghost" href={s.url} target="_blank" rel="noopener">
             <svg class="ico" viewBox={`0 0 ${s.box} ${s.box}`} width="18" height="18" aria-hidden="true"><path d={s.path} /></svg>
             {s.name}
           </a>
