@@ -13,6 +13,13 @@ period: 2023
 stack: [WordPress, WooCommerce, Local SEO]
 metricValue: WooCommerce
 metricLabel: online ordering with a mobile-first checkout
+faq:
+  - q: "What should a restaurant website include?"
+    a: "A restaurant website should show the menu with prices, opening hours, the address and a way to order, all easy to use on a phone. It should also carry restaurant structured data so Google can show the hours, location and rating in local results."
+  - q: "Can a restaurant take orders on its own WordPress site?"
+    a: "Yes. Piola Pizza takes pickup orders through WooCommerce on its own site, with a menu and deals the owner can change. Delivery goes through Wolt."
+  - q: "How does a restaurant website show up in local search?"
+    a: "By saying clearly where it is and what it serves. The page title and description name the town and the food, and structured data gives Google the address, map position and opening hours."
 ---
 
 ## The brief
@@ -27,10 +34,15 @@ Piola Pizza is a Neapolitan pizzeria in Esbjerg, Denmark. It needed a site where
 - Promotional banners for seasonal and daily deals
 - Local SEO so the site is found by people nearby
 
-## What is on the site today
+## What a restaurant website has to do
 
-Checked on the live site on 11 October 2026.
+People open a restaurant site on a phone, hungry, and want three things: the menu, the price and a way to order. Everything on this site is arranged around that. The menu and deals are editable by the owner, so a new pizza or a daily offer does not wait for a developer.
 
-- The site is in Danish, written for people looking for pizza in Esbjerg
-- Orders for pickup are placed on the site, and delivery goes through Wolt
-- The page title and description name the town and the food, which is what local search needs
+## Site audit, 11 October 2026
+
+Read from the public site.
+
+- Restaurant structured data with the address, map position, opening hours and rating, which is what Google uses for local results
+- The page title and description name the town and the food
+- The site is in Danish, for people searching in Esbjerg
+- Pickup orders are placed on the site, and delivery goes through Wolt

@@ -20,13 +20,20 @@ const host = new URL(w.clientUrl).hostname.replace('www.', '');
 // A review is shown on a case study when its role line names the client.
 const review = reviews.find((r) => r.role.includes(w.client));
 
+const faqSchema = w.faq
+  ? [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: w.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }]
+  : [];
+
 const jsonld = [
+  ...faqSchema,
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: w.title,
     description: w.description,
-    author: { '@type': 'Person', name: site.name, url: site.linkedin },
+    author: { '@type': 'Person', name: site.name, url: Astro.site },
+    keywords: [w.focus, ...w.stack].join(', '),
+    dateModified: '2026-10-11',
     about: w.client,
     image: { '@type': 'ImageObject', url: new URL(w.shot.src, Astro.site), width: w.shot.width, height: w.shot.height, caption: `${w.client} website home page, built by Sakib Islam` },
     mainEntityOfPage: url,
@@ -99,6 +106,20 @@ const jsonld = [
           </figure>
         ))}
       </div>
+    )}
+
+    {w.faq && (
+      <section class="case-faq">
+        <h2>Questions about {w.focus}</h2>
+        <div class="faq">
+          {w.faq.map((f) => (
+            <details name="faq">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
     )}
 
     {review && (

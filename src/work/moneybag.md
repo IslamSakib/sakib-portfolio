@@ -13,6 +13,13 @@ period: 2025
 stack: [WordPress, WooCommerce, Custom plugin, OTP authentication, CRM integration]
 metricValue: 60%
 metricLabel: less time to onboard a merchant
+faq:
+  - q: "When do you need a custom WordPress plugin?"
+    a: "You need a custom WordPress plugin when a feature is specific to your business and no existing plugin does it cleanly. A payment gateway is a clear case: verification, fees and failed payments follow your own rules, so the logic belongs in code written for it."
+  - q: "Can WooCommerce work with a custom payment gateway?"
+    a: "Yes. WooCommerce is built to accept new payment gateways through plugins. For Moneybag I wrote the gateway plugin, with OTP sign-in and a merchant onboarding flow around it."
+  - q: "How do you keep a payment site fast?"
+    a: "Ship as little code as possible. The current Moneybag home page loads no external scripts and two stylesheets, which is why the first response arrives in under half a second."
 ---
 
 ## The brief
@@ -34,11 +41,17 @@ Moneybag is an online payment gateway in Bangladesh, licensed by Bangladesh Bank
 - Merchant onboarding time fell by 60%
 - The platform handles thousands of transactions a day
 
-## What is on the site today
+## Why a custom WordPress plugin
 
-Checked on the live site on 11 October 2026.
+A payment gateway cannot be bolted on with a general-purpose plugin. The rules are specific: how a merchant is verified, what happens when a payment fails halfway, which fee applies to which plan. Writing the gateway as its own plugin kept that logic in one place where it can be tested and changed safely.
 
+## Site audit, 11 October 2026
+
+Read from the public site.
+
+- 77 pages in the sitemap
+- The home page loads no external scripts and only two stylesheets, and the first response arrived in under half a second
+- Served through Cloudflare with modern compression
+- Structured data for the organisation and the website
 - Product pages for the payment gateway, payment links, invoices, subscriptions and EMI
 - A developer area with a sandbox, an API lab, documentation and an AI integration kit
-- Onboarding requirements, a help center and a merchant application flow
-- The current site is a static build served through Cloudflare, so pages arrive ready to read

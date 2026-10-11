@@ -430,6 +430,8 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .metric strong { display: block; font-size: 3rem; line-height: 1; color: var(--accent); font-weight: 500; }
 .metric span { color: var(--muted); display: block; margin-top: 0.8rem; }
 .gallery { display: grid; gap: 1.5rem; margin-top: 4rem; }
+.case-faq { margin-top: 4.5rem; display: grid; gap: 1.5rem; max-width: 860px; }
+.case-faq h2 { font-size: clamp(1.75rem, 3vw, 2.25rem); }
 .case-quote { margin-top: 4rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 2.25rem; display: grid; gap: 1.25rem; max-width: 70ch; }
 .case-quote p { font-size: 1.3125rem; line-height: 1.45; }
 .case-quote footer { color: var(--muted); font-size: 0.9375rem; }

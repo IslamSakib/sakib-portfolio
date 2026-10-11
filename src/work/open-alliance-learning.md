@@ -13,6 +13,13 @@ period: 2026
 stack: [WordPress, LearnDash, WooCommerce, Custom dashboards]
 metricValue: "3"
 metricLabel: dashboards, one each for learners, teachers and IQA
+faq:
+  - q: "What is a WordPress LMS?"
+    a: "A WordPress LMS is a learning management system built on WordPress: courses, lessons, quizzes, progress tracking and certificates, usually through a plugin such as LearnDash. Open Alliance Learning runs on LearnDash, with WooCommerce for enrolment and payment."
+  - q: "Can a WordPress LMS have different dashboards for different users?"
+    a: "Yes. Open Alliance Learning has three: one for learners, one for teachers and one for the people who check assessment quality. Each role signs in and sees only what it needs."
+  - q: "Can you sell courses with WooCommerce and LearnDash together?"
+    a: "Yes. WooCommerce takes the payment and LearnDash grants access to the course, so a learner pays and starts in one step."
 ---
 
 ## The brief
@@ -30,10 +37,17 @@ Open Alliance Learning needed a new website and a learning management system in 
 
 When one system serves several roles, the first design question is who is looking, not what the feature is. Each group sees only what it needs.
 
-## What is on the site today
+## How the WordPress LMS is put together
 
-Checked on the live site on 11 October 2026.
+- LearnDash runs the courses, lessons and progress
+- WooCommerce handles enrolment and payment, so buying a course and getting access is one step
+- Each role signs in to its own dashboard: a learner sees courses and progress, a teacher sees learners and marking, an assessor sees what needs quality checking
 
+## Site audit, 11 October 2026
+
+Read from the public site.
+
+- 21 pages in the sitemap
+- Pages are served from a cache, with modern compression
+- A content security policy is in place
 - A course catalogue covering health care, CPD, and education and training certificates
-- Enrolment and payment through WooCommerce, with login and registration for learners
-- WordPress with Elementor and one caching layer

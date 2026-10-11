@@ -13,6 +13,13 @@ period: 2026 to present
 stack: [Custom development, SaaS, AI agent]
 metricValue: Custom
 metricLabel: software and website, built from scratch without WordPress
+faq:
+  - q: "What does SaaS development from scratch involve?"
+    a: "SaaS development from scratch means building the accounts, the data, the rules for who can do what, the screens and the billing, then the site that sells it. For Wrkbase I did all of it: tasks, time tracking, attendance, leave, payroll, chat, an AI agent and the marketing website."
+  - q: "What should a SaaS MVP include first?"
+    a: "The one thing users must be able to do, and sign-in. I built Wrkbase's sign-in first, then tasks with automatic time tracking. Everything else was added on top once that core worked."
+  - q: "How do you add an AI agent to a SaaS product safely?"
+    a: "Give it only the permissions its user has, make it show its plan, wait for approval before acting and log every action. That is how the Wrkbase agent works."
 ---
 
 ## Why I built it
@@ -37,10 +44,23 @@ I kept seeing the same problem on client teams: daily operations spread across f
 
 This is custom development, not WordPress. I designed the product, built the software, and built the site it is sold from.
 
-## What is on the site today
+## How the SaaS development went
 
-Checked on the live site on 11 October 2026.
+- I built sign-in first, so everything after it knew who the user was
+- Time tracking is automatic. I removed manual timers because people forget to start them
+- Tasks sit behind sign-in on purpose: a person who has not signed in cannot start work, so attendance takes care of itself
+- The AI agent came last, on top of data the product already had
 
-- Feature pages for tasks, time tracking, team chat, automations, attendance, shift scheduling, timesheets, leave, payroll, performance, leads, finance and reports
-- An audit log, and an API with webhooks
-- A free plan for teams of up to 5 people
+## A bug worth describing
+
+The agent started telling users it was unavailable. The API was answering and the model's replies were fine. The fault was earlier: the agent was not being triggered, and a render delay made it look like a failure. I fixed the trigger. It is a good example of why an AI feature needs someone who can follow the whole path, not only the model call.
+
+## Site audit, 11 October 2026
+
+Read from the public site.
+
+- 79 pages in the sitemap
+- The home page loads one script and two stylesheets
+- HTTPS enforced and a content security policy in place
+- Structured data for the software product, its price and its FAQ
+- Every image on the home page has alt text and loads only when scrolled to
