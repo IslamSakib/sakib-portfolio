@@ -33,7 +33,10 @@ const jsonld = [
     description: w.description,
     author: { '@type': 'Person', name: site.name, url: Astro.site },
     keywords: [w.focus, ...w.stack].join(', '),
+    // The case studies were written and first published with the site on 11 October 2026.
+    datePublished: '2026-10-11',
     dateModified: '2026-10-11',
+    publisher: { '@type': 'Person', name: site.name, url: Astro.site },
     about: w.client,
     image: { '@type': 'ImageObject', url: new URL(w.shot.src, Astro.site), width: w.shot.width, height: w.shot.height, caption: `${w.client} website home page, built by Sakib Islam` },
     mainEntityOfPage: url,

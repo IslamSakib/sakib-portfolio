@@ -410,7 +410,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .console-bar { display: flex; align-items: center; gap: 0.4rem; height: 40px; padding: 0 1rem; background: var(--surface-2); border-bottom: 1px solid var(--line); color: var(--muted); font-size: 0.75rem; }
 .console-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
 .console-bar span { margin-left: 0.6rem; }
-.console-bar b { margin-left: auto; font-weight: 500; color: var(--accent); }
+.console-bar b { margin-left: auto; font-weight: 500; color: var(--accent-hi); }
 .console-log { min-height: 300px; padding: 1.1rem 1.1rem 0.9rem; display: grid; gap: 0.5rem; align-content: start; }
 .line { color: var(--muted); line-height: 1.5; overflow-wrap: anywhere; }
 .line.you { color: var(--text); }

@@ -27,7 +27,7 @@ const pad = (n) => String(n).padStart(2, '0');
   <div class="reel-stage" data-reel-stage>
     {items.map((w, i) => (
       <div class:list={['reel-panel', { on: i === 0 }]} role="tabpanel" id={`reel-panel-${i}`} aria-labelledby={`reel-tab-${i}`}>
-        <a class="project-shot" href={`/work/${w.slug}/`} aria-label={`${w.client} case study`}>
+        <a class="project-shot" href={`/work/${w.slug}/`} aria-label={`${host(w.clientUrl)}: ${w.client} case study`}>
           <div class="chrome"><i></i><i></i><i></i><span>{host(w.clientUrl)}</span></div>
           <div style={`view-transition-name: shot-${w.slug}`}>
             <Picture
