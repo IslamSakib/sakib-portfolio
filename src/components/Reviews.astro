@@ -1,6 +1,6 @@
 ---
 // LinkedIn recommendations as two rows of cards drifting in opposite directions. Shared by the home page and the service pages.
-import { reviews, allReviewsUrl, initials } from '../reviews.js';
+import { reviews, allReviewsUrl } from '../reviews.js';
 ---
 <section id="reviews" class="sec tint-b">
   <div class="wrap">
@@ -19,7 +19,6 @@ import { reviews, allReviewsUrl, initials } from '../reviews.js';
               <blockquote class="rcard" aria-hidden={copy > 0 ? 'true' : undefined}>
                 <p>&ldquo;{r.text.replace(/ (\S+)$/, ' $1')}&rdquo;</p>
                 <footer>
-                  <span class="avatar" aria-hidden="true">{initials(r.name)}</span>
                   <span class="who">
                     <a href={r.url} target="_blank" rel="noopener" tabindex={copy > 0 ? -1 : undefined}>{r.name}</a>
                     <span>{r.role}</span>
