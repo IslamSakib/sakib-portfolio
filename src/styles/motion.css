@@ -17,7 +17,7 @@
 
 /* Cursor: a clean arrowhead with no tail. Over anything clickable it grows, so the change is obvious. Pure CSS, so it never lags. */
 html { cursor: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2734%27 height=%2734%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M5 3.2v17.2l5.4-5.2 7.6-.4z%27 fill=%27%23f2efe6%27 stroke=%27%230d1a20%27 stroke-width=%271.2%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E") 7 5, auto; }
-a, button, summary, label, [role="tab"], [data-magnet], a *, button *, summary * { cursor: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2744%27 height=%2744%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M5 3.2v17.2l5.4-5.2 7.6-.4z%27 fill=%27%23f2efe6%27 stroke=%27%2308131a%27 stroke-width=%271.6%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E") 9 6, pointer !important; }
+a, button, summary, label, [role="tab"], [data-magnet], a *, button *, summary * { cursor: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2744%27 height=%2744%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M5 3.2v17.2l5.4-5.2 7.6-.4z%27 fill=%27%237fe3c4%27 stroke=%27%2308131a%27 stroke-width=%271.6%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E") 9 6, pointer !important; }
 
 /* Chat: the three dots while the assistant is typing */
 @keyframes dot { 0%, 60%, 100% { opacity: 0.3; transform: none; } 30% { opacity: 1; transform: translateY(-3px); } }
@@ -48,7 +48,7 @@ a, button, summary, label, [role="tab"], [data-magnet], a *, button *, summary *
 [data-magnet] { will-change: transform; }
 
 /* Client names: the one marquee on the page, paused on hover */
-.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.marquee { overflow: hidden; }
 .track { display: flex; align-items: center; gap: 3rem; width: max-content; animation: slide 110s linear infinite; }
 .marquee:hover .track { animation-play-state: paused; }
 @keyframes slide { to { transform: translateX(calc(-50% - 1.5rem)); } }
@@ -58,7 +58,7 @@ a, button, summary, label, [role="tab"], [data-magnet], a *, button *, summary *
 @keyframes slide-logos { to { transform: translateX(-50%); } }
 .chip { flex: none; display: flex; align-items: center; gap: 0.6rem; height: 44px; opacity: 0.85; transition: opacity 0.3s ease; }
 .chip:hover { opacity: 1; }
-.chip::after { content: ""; flex: none; width: 6px; height: 6px; margin: 0 2.6rem; border-radius: 50%; background: var(--line); }
+.chip::after { content: ""; flex: none; width: 6px; height: 6px; margin: 0 2.6rem; border-radius: 50%; background: var(--accent); }
 .chip img { width: auto; height: 40px; max-width: none; }
 .wm { font-family: var(--display); font-size: 1.375rem; line-height: 1; font-weight: 800; letter-spacing: -0.04em; text-transform: uppercase; white-space: nowrap; color: var(--text); }
 
@@ -66,7 +66,9 @@ a, button, summary, label, [role="tab"], [data-magnet], a *, button *, summary *
 .rrow .track { gap: 1.25rem; align-items: stretch; animation-name: slide-rev; animation-duration: 80s; }
 @keyframes slide-rev { to { transform: translateX(calc(-50% - 0.625rem)); } }
 
-/* Sections are simply there when you scroll to them. The hero headline is the one entrance on the page. */
+/* Typed headings: each section heading writes itself out once, with a caret, when it scrolls into view */
+@keyframes blink { 50% { opacity: 0; } }
+.typing::after { content: ''; display: inline-block; width: 0.07em; min-width: 3px; height: 0.82em; margin-left: 0.08em; vertical-align: -0.06em; background: var(--accent); animation: blink 0.8s steps(1) infinite; }
 
 /* Services terminal: when a service is picked its lines print one after another */
 @keyframes print { from { opacity: 0; transform: translateX(-6px); } }
@@ -92,6 +94,13 @@ a, button, summary, label, [role="tab"], [data-magnet], a *, button *, summary *
 .project-card:hover .ghost { -webkit-text-stroke-color: rgb(var(--accent-rgb) / 0.7); transform: translateY(-8px); }
 
 @supports (animation-timeline: view()) {
+  /* Parallax: the backdrop words travel up the screen at three different speeds over the length of the page */
+  @keyframes drift { to { transform: translateY(var(--by)); } }
+  .bd { animation: drift linear both; animation-timeline: scroll(root); }
+  .bd-1 { --by: -55vh; }
+  .bd-2 { --by: -120vh; }
+  .bd-3 { --by: -210vh; }
+
   @keyframes grow { to { transform: scaleX(1); } }
   .progress { animation: grow linear both; animation-timeline: scroll(root); }
 
@@ -103,7 +112,7 @@ a, button, summary, label, [role="tab"], [data-magnet], a *, button *, summary *
 
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
-  .w, .hero-copy > *, .hero-photo, .chat-msg, .chat-msg.typing i, .chat-panel, .track, .agent li, .agent li::before, .agent em, .speed .meter i, .reel-list button::before, .steps::after, .progress, .console form { animation: none !important; }
+  .w, .hero-copy > *, .hero-photo, .chat-msg, .chat-msg.typing i, .chat-panel, .track, .agent li, .agent li::before, .agent em, .speed .meter i, .reel-list button::before, .steps::after, .progress, .console form, .bd, .bigmark .run { animation: none !important; }
   .steps::after { transform: none; }
   .marquee { overflow-x: auto; }
   .progress { display: none; }

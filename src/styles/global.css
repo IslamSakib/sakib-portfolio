@@ -1,5 +1,5 @@
-/* Dark only, by request. Deep petrol and cream, and nothing else: no accent colour, no glows, no gradients.
-   Emphasis comes from type size, weight and the cream fill of the main button.
+/* Dark only, by request. Deep petrol and cream with one soft mint accent, a neighbour of the ground colour so it
+   belongs to it. Everything is flat: no glows and no gradients anywhere.
    Shape rule: small radii everywhere, no pills. Structure comes from hairlines and spacing, not from boxes.
    Type: Bricolage Grotesque for headings, Hanken Grotesk for text, Geist Mono for figures and code. */
 :root {
@@ -10,10 +10,10 @@
   --line: #274450;
   --text: #f2efe6;
   --muted: #9fb2b8;
-  --accent: #f2efe6;
-  --accent-hi: #ffffff;
-  --accent-ink: #0d1a20;
-  --accent-rgb: 242 239 230;
+  --accent: #7fe3c4;
+  --accent-hi: #a6efd8;
+  --accent-ink: #04201a;
+  --accent-rgb: 127 227 196;
   --radius: 6px;
   --wrap: 1240px;
   --sans: 'Hanken Grotesk Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -81,6 +81,15 @@ button { font: inherit; color: inherit; }
 .site-header nav a:not(.btn) { text-decoration: none; color: var(--muted); transition: color 0.2s ease; }
 .site-header nav a:not(.btn):hover { color: var(--text); }
 
+/* Backdrop: three huge outlined words fixed behind the page. Each moves at its own speed as the page scrolls
+   (see motion.css), which is what gives the background depth. Sections on the deeper ground cover it. */
+.backdrop { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.bd { position: absolute; left: -4vw; width: 108vw; height: auto; overflow: visible; }
+.bd text { font-family: var(--display); font-size: 200px; font-weight: 800; fill: var(--bg); stroke: var(--line); stroke-width: 1.5px; paint-order: stroke; vector-effect: non-scaling-stroke; opacity: 0.55; }
+.bd-1 { top: 16vh; }
+.bd-2 { top: 78vh; left: 18vw; }
+.bd-3 { top: 150vh; left: -10vw; }
+
 section { padding: 7rem 0; }
 .section-head { margin-bottom: 3.5rem; display: grid; gap: 1rem; }
 
@@ -94,7 +103,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .hero { padding-top: 5.5rem; padding-bottom: 2rem; }
 .hero-grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: 4rem; align-items: center; }
 .hero-copy { display: grid; gap: 1.75rem; justify-items: start; }
-.hero-copy h1 em { font-style: normal; text-decoration: underline; text-decoration-thickness: 0.09em; text-underline-offset: 0.12em; }
+.hero-copy h1 em { font-style: normal; color: var(--accent); }
 .hero-copy h1 { font-size: clamp(2.1rem, 4.1vw, 3.6rem); line-height: 1.04; letter-spacing: -0.035em; text-wrap: wrap; }
 @media (min-width: 861px) { .hero-copy h1 .hl { display: block; white-space: nowrap; } }
 .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
@@ -136,7 +145,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .project-copy { position: relative; isolation: isolate; display: grid; gap: 1rem; align-content: center; justify-items: start; }
 .project-copy .ghost { position: absolute; z-index: -1; top: -0.66em; left: -0.06em; font-family: var(--mono); font-size: clamp(7rem, 15vw, 13rem); font-weight: 500; line-height: 1; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 1px var(--line); user-select: none; pointer-events: none; }
 .project-copy h3 { font-size: clamp(2.25rem, 4.4vw, 3.75rem); }
-.project-copy h3 a { text-decoration: none; background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 3px no-repeat; }
+.project-copy h3 a { text-decoration: none; }
 .outcome { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; margin-top: 0.4rem; }
 .outcome b { font-size: clamp(2rem, 3.6vw, 3rem); font-weight: 500; line-height: 1; color: var(--accent); }
 .outcome span { color: var(--muted); font-size: 0.9375rem; max-width: 26ch; }
@@ -294,7 +303,10 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 /* The fill is the page colour and is painted over the inner half of the stroke, which hides the overlapping contours
    a variable font would otherwise show inside each letter. */
 .bigmark { display: block; width: 100%; height: auto; user-select: none; }
-.bigmark text { font-family: var(--display); font-size: 205px; font-weight: 800; fill: var(--bg); stroke: url(#shine); stroke-width: 3px; stroke-linejoin: round; paint-order: stroke; vector-effect: non-scaling-stroke; }
+.bigmark text { font-family: var(--display); font-size: 205px; font-weight: 800; fill: var(--bg); stroke: var(--line); stroke-width: 3px; stroke-linejoin: round; paint-order: stroke; vector-effect: non-scaling-stroke; }
+/* The shine: a second outline in the accent, drawn as one short dash that runs along the letters */
+.bigmark .run { fill: none; stroke: var(--accent); stroke-width: 2px; stroke-linecap: round; stroke-dasharray: 90 1400; animation: run 9s linear infinite; }
+@keyframes run { to { stroke-dashoffset: -1490; } }
 .ico { fill: currentColor; flex: none; }
 .btn .ico { margin-right: 0.5rem; }
 

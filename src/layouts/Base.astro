@@ -45,6 +45,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <body>
     <a class="skip" href="#main">Skip to content</a>
     <div class="progress" aria-hidden="true"></div>
+    <div class="backdrop" aria-hidden="true">
+      <svg class="bd bd-1" viewBox="0 0 1500 220"><text x="0" y="180">WordPress</text></svg>
+      <svg class="bd bd-2" viewBox="0 0 1500 220"><text x="0" y="180">SaaS</text></svg>
+      <svg class="bd bd-3" viewBox="0 0 1500 220"><text x="0" y="180">AI agents</text></svg>
+    </div>
     <header class="site-header">
       <div class="wrap bar">
         <a class="brand" href="/">
@@ -75,18 +80,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
     <footer class="site-footer">
-      <!-- The wordmark as an outline, drawn in SVG so the stroke stays crisp at any size. A highlight travels along it. -->
+      <!-- The wordmark as an outline, drawn in SVG so the stroke stays crisp at any size. A short bright dash runs along it. -->
       <svg class="bigmark" viewBox="0 0 1200 236" aria-hidden="true" focusable="false">
-        <defs>
-          <linearGradient id="shine" gradientUnits="userSpaceOnUse" x1="-500" y1="0" x2="0" y2="0">
-            <stop offset="0" stop-color="var(--line)" />
-            <stop offset="0.5" stop-color="var(--accent)" />
-            <stop offset="1" stop-color="var(--line)" />
-            <animate attributeName="x1" values="-500;1200" dur="7s" repeatCount="indefinite" />
-            <animate attributeName="x2" values="0;1700" dur="7s" repeatCount="indefinite" />
-          </linearGradient>
-        </defs>
         <text x="600" y="186" text-anchor="middle" textLength="1110" lengthAdjust="spacingAndGlyphs">Sakib Islam.</text>
+        <text class="run" x="600" y="186" text-anchor="middle" textLength="1110" lengthAdjust="spacingAndGlyphs">Sakib Islam.</text>
       </svg>
       <div class="wrap foot">
         <p>
@@ -251,7 +248,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         document.addEventListener('visibilitychange', () => { if (audio) document.hidden ? audio.suspend() : audio.resume(); });
 
         const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduce) document.querySelector('.bigmark')?.pauseAnimations();
         if (reduce || !('IntersectionObserver' in window)) return;
         document.documentElement.classList.add('js');
         const count = (el) => {
@@ -263,13 +259,30 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           };
           requestAnimationFrame(step);
         };
+        // Section headings type themselves out once. The height is reserved first so nothing below moves,
+        // and the full text stays available to screen readers through aria-label.
+        const type = (el) => {
+          const text = el.textContent;
+          el.style.minHeight = el.offsetHeight + 'px';
+          el.setAttribute('aria-label', text);
+          el.textContent = '';
+          el.classList.add('typing');
+          let i = 0;
+          const next = () => {
+            el.textContent = text.slice(0, ++i);
+            if (i < text.length) setTimeout(next, 26);
+            else setTimeout(() => el.classList.remove('typing'), 1400);
+          };
+          next();
+        };
         const io = new IntersectionObserver((entries) => entries.forEach((e) => {
           if (!e.isIntersecting) return;
           e.target.classList.add('in');
           if (e.target.dataset.count) count(e.target);
+          if (e.target.tagName === 'H2') type(e.target);
           io.unobserve(e.target);
         }), { threshold: 0.15 });
-        document.querySelectorAll('[data-reveal], [data-count]').forEach((el) => io.observe(el));
+        document.querySelectorAll('[data-reveal], [data-count], main h2').forEach((el) => io.observe(el));
 
         if (matchMedia('(hover: hover)').matches) {
           document.querySelectorAll('[data-magnet]').forEach((el) => {
