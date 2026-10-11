@@ -94,7 +94,7 @@ const { slug } = Astro.props;
   .art-bar span { margin-left: 0.6rem; }
   .art-bar em { margin-left: auto; font-style: normal; color: var(--accent); }
   .art-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .art-tags li { padding: 0.2rem 0.7rem; border: 1px solid rgb(var(--accent-rgb) / 0.5); border-radius: 999px; color: var(--accent-hi); font-size: 0.75rem; }
+  .art-tags li { padding: 0.2rem 0.7rem; border: 1px solid rgb(var(--accent-rgb) / 0.5); border-radius: 6px; color: var(--accent-hi); font-size: 0.75rem; }
   .art-note { font-size: 0.6875rem; }
 
   /* One loop for every drawing: each part comes in at its turn, stays, and all leave together before the restart */
@@ -111,11 +111,11 @@ const { slug } = Astro.props;
   .wp-nav b { width: 22px; height: 22px; border-radius: 6px; background: var(--accent); }
   .wp-nav i { width: 34px; height: 6px; border-radius: 3px; background: var(--line); }
   .wp-nav i:first-of-type { margin-left: auto; }
-  .wp-nav em { width: 56px; height: 20px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); }
+  .wp-nav em { width: 56px; height: 20px; border-radius: 6px; background: var(--surface-2); border: 1px solid var(--line); }
   .wp-hero { display: grid; gap: 0.5rem; padding: 1.1rem; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); }
   .wp-hero b { height: 10px; width: 70%; border-radius: 5px; background: var(--text); opacity: 0.85; }
   .wp-hero b + b { width: 46%; opacity: 0.4; }
-  .wp-hero em { width: 84px; height: 24px; margin-top: 0.3rem; border-radius: 999px; background: var(--accent); }
+  .wp-hero em { width: 84px; height: 24px; margin-top: 0.3rem; border-radius: 6px; background: var(--accent); }
   .wp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
   .wp-cards span { height: 62px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); }
   .wp-pay { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0.9rem; border-radius: 10px; border: 1px dashed rgb(var(--accent-rgb) / 0.6); color: var(--text); }
@@ -156,7 +156,7 @@ const { slug } = Astro.props;
   .cd-chart { display: flex; align-items: flex-end; gap: 0.5rem; height: 120px; padding: 0.8rem; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); }
   .cd-chart i { flex: 1; height: var(--h); border-radius: 4px 4px 0 0; background: var(--accent); transform-origin: 50% 100%; animation: bars 9s ease-out infinite; animation-delay: calc(1.4s + var(--k) * 0.12s); }
   .cd-roles { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .cd-roles span { padding: 0.2rem 0.7rem; border: 1px solid var(--line); border-radius: 999px; font-size: 0.75rem; color: var(--text); }
+  .cd-roles span { padding: 0.2rem 0.7rem; border: 1px solid var(--line); border-radius: 6px; font-size: 0.75rem; color: var(--text); }
   .cd-roles span:first-child { border-color: var(--accent); color: var(--accent-hi); }
   @keyframes bars { 0% { transform: scaleY(0); } 10%, 100% { transform: none; } }
 
@@ -169,7 +169,7 @@ const { slug } = Astro.props;
   .ai-step { color: var(--text); }
   .ai-step::before { content: '○ '; color: var(--muted); }
   .ai-ask { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; margin-top: 0.3rem; padding: 0.55rem 0.6rem 0.55rem 0.9rem; border: 1px solid rgb(var(--accent-rgb) / 0.6); border-radius: 12px; color: var(--text); }
-  .ai-ask b { padding: 0.3rem 0.9rem; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-weight: 600; animation: press 9s ease infinite; }
+  .ai-ask b { padding: 0.3rem 0.9rem; border-radius: 6px; background: var(--accent); color: var(--accent-ink); font-weight: 600; animation: press 9s ease infinite; }
   .ai-done { color: #9fd8a8; }
   .ai-done::before { content: '✓ '; }
   @keyframes press { 0%, 30%, 40%, 100% { transform: none; box-shadow: 0 0 0 0 rgb(var(--accent-rgb) / 0.6); } 35% { transform: scale(0.94); box-shadow: 0 0 0 10px rgb(var(--accent-rgb) / 0); } }
