@@ -184,7 +184,7 @@ const jsonld = [
         </div>
         <div class="reel-stage" data-reel-stage>
           {work.map((w, i) => (
-            <article class:list={['reel-panel', { on: i === 0 }]} role="tabpanel" id={`reel-panel-${i}`} aria-labelledby={`reel-tab-${i}`}>
+            <div class:list={['reel-panel', { on: i === 0 }]} role="tabpanel" id={`reel-panel-${i}`} aria-labelledby={`reel-tab-${i}`}>
               <a class="project-shot" href={`/work/${w.slug}/`} aria-label={`${w.client} case study`}>
                 <div class="chrome"><i></i><i></i><i></i><span>{host(w.clientUrl)}</span></div>
                 <div style={`view-transition-name: shot-${w.slug}`}>
@@ -212,7 +212,7 @@ const jsonld = [
                   </p>
                 </div>
               </div>
-            </article>
+            </div>
           ))}
         </div>
       </div>

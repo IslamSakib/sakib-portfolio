@@ -147,7 +147,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 /* Proof numbers */
 .proof-wrap { padding: 4rem 0 7rem; }
 .proof { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-.proof > div { padding: 2.25rem 1.75rem; border-left: 1px solid var(--line); }
+.proof > div { min-width: 0; padding: 2.25rem 1.75rem; border-left: 1px solid var(--line); }
 .proof > div:first-child { border-left: 0; }
 .proof dt { font-size: clamp(2.5rem, 4.4vw, 3.5rem); font-weight: 500; line-height: 1; color: var(--accent); }
 .proof dd { color: var(--muted); margin-top: 0.9rem; max-width: 26ch; }
@@ -210,7 +210,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 
 /* Wrkbase software showcase */
 .showcase { display: grid; gap: 3.5rem; }
-.showcase-copy { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.5rem 4rem; align-items: end; }
+.showcase-copy { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.5rem 4rem; align-items: start; }
 .showcase-copy > div { display: grid; gap: 1.25rem; justify-items: start; }
 .showcase ul { display: grid; gap: 0.6rem; color: var(--muted); }
 .showcase li { padding-left: 1.5rem; position: relative; }
@@ -443,7 +443,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
   .hero { padding-top: 3rem; }
   .hero-grid, .case-body, .faq-grid, .showcase-copy { grid-template-columns: 1fr; gap: 2rem; }
   .hero-photo { order: -1; justify-self: stretch; width: 100%; max-width: 460px; margin: 1.25rem auto 0; }
-  .portrait .badge { left: 0.5rem; top: 19%; padding: 0.3rem 0.6rem; font-size: 0.6875rem; }
+  .portrait .badge { left: 0.5rem; top: 19%; padding: 0.3rem 0.6rem; font-size: 0.75rem; }
   .proof { grid-template-columns: 1fr 1fr; }
   .proof > div:nth-child(odd) { border-left: 0; }
   .proof > div { border-top: 1px solid var(--line); padding: 1.5rem 1.25rem; }
@@ -490,6 +490,9 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 }
 
 @media (max-width: 400px) {
+  .proof { grid-template-columns: 1fr; }
+  .proof > div, .proof > div:nth-child(-n+2) { border-left: 0; border-top: 1px solid var(--line); }
+  .proof > div:first-child { border-top: 0; }
   .btn { padding: 0.8rem 1.05rem; font-size: 0.9375rem; }
   .hero-actions .btn { flex: 1 1 auto; }
 }
