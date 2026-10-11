@@ -231,16 +231,18 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .steps li::before { content: ''; position: absolute; top: calc(-2.75rem + 2px); left: 0; z-index: 1; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
 .steps .idx { font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); }
 
-/* Recommendations: two full-width rows of cards drifting in opposite directions */
-.rows { display: grid; gap: 1.5rem; }
-.rcard { width: 420px; flex: none; display: grid; gap: 1.25rem; align-content: space-between; padding: 1.6rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); transition: border-color 0.3s ease; }
-.rcard:hover { border-color: rgb(var(--accent-rgb) / 0.6); }
-.rcard p { color: #dedbd2; text-wrap: pretty; }
-.rcard footer { display: grid; grid-template-columns: 1fr auto; gap: 0.8rem; align-items: center; font-size: 0.8125rem; color: var(--muted); }
-.rcard .who { display: grid; gap: 0.1rem; }
-.rcard .who a { color: var(--text); font-weight: 600; font-size: 0.9375rem; text-decoration: none; }
-.rcard .who a:hover { color: var(--accent-hi); }
-.rcard .li { fill: #0a66c2; align-self: start; }
+/* Recommendations: the same reel as Selected work. The chosen one is set large on a flat accent panel. */
+.quote-stage { position: relative; display: grid; min-height: 440px; padding: 3rem 3rem 2.5rem; border-radius: var(--radius); background: var(--accent); color: var(--accent-ink); }
+.qmark { position: absolute; top: 1.4rem; right: 2.2rem; font-family: var(--display); font-size: 9rem; line-height: 1; font-weight: 800; opacity: 0.16; }
+.quote-panel { grid-area: 1 / 1; display: grid; gap: 2.5rem; align-content: space-between; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.4s ease, transform 0.5s var(--ease), visibility 0.4s; }
+.quote-panel.on { opacity: 1; visibility: visible; transform: none; }
+.quote-panel p { position: relative; max-width: 30ch; font-family: var(--display); font-size: clamp(1.5rem, 2.5vw, 2.25rem); line-height: 1.22; font-weight: 650; letter-spacing: -0.02em; text-wrap: pretty; }
+.quote-panel footer { display: flex; justify-content: space-between; align-items: end; gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgb(26 20 0 / 0.25); }
+.quote-panel .who { display: grid; gap: 0.15rem; }
+.quote-panel .who b { font-size: 1.125rem; }
+.quote-panel .who span { font-size: 0.9375rem; opacity: 0.75; }
+.quote-panel a { flex: none; font-weight: 700; color: inherit; }
+.quote-panel a:hover { color: inherit; text-decoration-thickness: 2px; }
 .review-note { margin-top: 2rem; color: var(--muted); font-size: 0.9375rem; }
 
 /* FAQ: heading pinned on the left, answers on the right */
@@ -488,7 +490,9 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
   .term-body { grid-template-columns: 1fr; min-height: 0; }
   .term-side { border-right: 0; border-bottom: 1px solid var(--line); padding: 1.25rem 1rem; }
   .term-out { padding: 1.25rem 1rem 1.5rem; }
-  .rcard { width: 300px; }
+  .quote-stage { min-height: 0; padding: 2rem 1.5rem 1.5rem; }
+  .qmark { display: none; }
+  .quote-panel footer { flex-direction: column; align-items: start; gap: 0.75rem; }
   .service-list > li { grid-template-columns: 1fr; gap: 0.75rem; padding: 2rem 0; }
   .service-list > li:hover { padding-left: 0; background: none; }
   .service-list .idx { padding-top: 0; }
