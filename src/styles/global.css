@@ -74,21 +74,13 @@ button { font: inherit; color: inherit; }
 .btn-small { padding: 0.5rem 1rem; min-height: 44px; font-size: 0.9375rem; }
 
 /* Header: a floating pill */
-.site-header { position: sticky; top: 0; z-index: 40; background: var(--bg); border-bottom: 1px solid var(--line); }
-.bar { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+.site-header { position: sticky; top: 12px; z-index: 40; }
+.bar { display: flex; align-items: center; justify-content: space-between; height: 58px; gap: 1rem; padding: 0 0.45rem 0 1.4rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+.bar .btn { border-radius: 999px; }
 .brand { text-decoration: none; padding: 0.75rem 0; }
 .site-header nav { display: flex; align-items: center; gap: 1.6rem; font-size: 0.9375rem; }
 .site-header nav a:not(.btn) { text-decoration: none; color: var(--muted); transition: color 0.2s ease; }
 .site-header nav a:not(.btn):hover { color: var(--text); }
-
-/* Backdrop: three huge outlined words fixed behind the page. Each moves at its own speed as the page scrolls
-   (see motion.css), which is what gives the background depth. Sections on the deeper ground cover it. */
-.backdrop { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
-.bd { position: absolute; left: -4vw; width: 108vw; height: auto; overflow: visible; }
-.bd text { font-family: var(--display); font-size: 200px; font-weight: 800; fill: var(--bg); stroke: var(--line); stroke-width: 1.5px; paint-order: stroke; vector-effect: non-scaling-stroke; opacity: 0.55; }
-.bd-1 { top: 16vh; }
-.bd-2 { top: 78vh; left: 18vw; }
-.bd-3 { top: 150vh; left: -10vw; }
 
 section { padding: 7rem 0; }
 .section-head { margin-bottom: 3.5rem; display: grid; gap: 1rem; }

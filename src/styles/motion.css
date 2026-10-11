@@ -94,12 +94,6 @@ a, button, summary, label, [role="tab"], [data-magnet], a *, button *, summary *
 .project-card:hover .ghost { -webkit-text-stroke-color: rgb(var(--accent-rgb) / 0.7); transform: translateY(-8px); }
 
 @supports (animation-timeline: view()) {
-  /* Parallax: the backdrop words travel up the screen at three different speeds over the length of the page */
-  @keyframes drift { to { transform: translateY(var(--by)); } }
-  .bd { animation: drift linear both; animation-timeline: scroll(root); }
-  .bd-1 { --by: -55vh; }
-  .bd-2 { --by: -120vh; }
-  .bd-3 { --by: -210vh; }
 
   @keyframes grow { to { transform: scaleX(1); } }
   .progress { animation: grow linear both; animation-timeline: scroll(root); }
@@ -112,7 +106,7 @@ a, button, summary, label, [role="tab"], [data-magnet], a *, button *, summary *
 
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
-  .w, .hero-copy > *, .hero-photo, .chat-msg, .chat-msg.typing i, .chat-panel, .track, .agent li, .agent li::before, .agent em, .speed .meter i, .reel-list button::before, .steps::after, .progress, .console form, .bd, .bigmark .run { animation: none !important; }
+  .w, .hero-copy > *, .hero-photo, .chat-msg, .chat-msg.typing i, .chat-panel, .track, .agent li, .agent li::before, .agent em, .speed .meter i, .reel-list button::before, .steps::after, .progress, .console form, .bigmark .run { animation: none !important; }
   .steps::after { transform: none; }
   .marquee { overflow-x: auto; }
   .progress { display: none; }
