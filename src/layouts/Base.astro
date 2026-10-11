@@ -160,7 +160,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         // Music: a laid-back lo-fi beat. Jazzy chords (D minor 9, G13, C major 9, A7) played as soft electric-piano stabs,
         // a round sub bass, a relaxed kick and snare with swung hats, a quiet top line with an echo, and a little vinyl
         // crackle, all through one warm low-pass filter. Notes are scheduled ahead on the audio clock so it never drops
-        // out, and it carries on from page to page once the visitor has clicked anywhere.
+        // out. Once the visitor has clicked anywhere it carries on from page to page, picking up at the same place in the tune.
         const chords = [
           { bass: 73.42, keys: [174.61, 220.0, 261.63, 329.63] },
           { bass: 98.0, keys: [174.61, 246.94, 329.63, 440.0] },
@@ -172,8 +172,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           if (music || !ctx()) return;
           try { sessionStorage.setItem('music', 'on'); } catch (e) {}
           const out = audio.createGain(), warm = audio.createBiquadFilter();
+          // Where the last page left off, if there was one: the step it had reached and when.
+          let saved = null;
+          try { saved = JSON.parse(sessionStorage.getItem('music-at')); } catch (e) {}
           out.gain.setValueAtTime(0.0001, audio.currentTime);
-          out.gain.exponentialRampToValueAtTime(0.9, audio.currentTime + 2);
+          out.gain.exponentialRampToValueAtTime(0.9, audio.currentTime + (saved ? 0.25 : 2));
           warm.type = 'lowpass'; warm.frequency.value = 3200; warm.Q.value = 0.3;
           warm.connect(out).connect(audio.destination);
           const beat = 60 / 78 / 2;
@@ -207,7 +210,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
             g.gain.setValueAtTime(peak, at); g.gain.exponentialRampToValueAtTime(0.0001, at + length);
             n.connect(f).connect(g).connect(warm); n.start(at); n.stop(at + length + 0.02);
           };
-          let step = 0, when = audio.currentTime + 0.1;
+          // Carry on from the same place in the tune: the saved step plus however many beats the page change took.
+          // The whole pattern is 32 steps long.
+          let step = saved ? (saved.step + Math.round((Date.now() - saved.t) / 1000 / beat)) % 32 : 0, when = audio.currentTime + 0.1;
           const schedule = () => {
             while (when < audio.currentTime + 0.5) {
               const chord = chords[Math.floor(step / 8) % chords.length], s8 = step % 8;
@@ -232,6 +237,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           };
           schedule();
           music = { out, timer: setInterval(schedule, 100) };
+          // Remember the position when the page is left. A step that is scheduled but not yet heard is counted back out.
+          addEventListener('pagehide', () => {
+            const ahead = Math.max(0, Math.round((when - audio.currentTime) / beat));
+            try { sessionStorage.setItem('music-at', JSON.stringify({ step: (step - ahead + 320) % 32, t: Date.now() })); } catch (e) {}
+          });
         };
         addEventListener('pointerdown', (e) => {
           tick(e.target.closest && e.target.closest('a, button, summary') ? 880 : 420);
