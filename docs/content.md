@@ -55,3 +55,4 @@ Google PageSpeed Insights, mobile:
 
 The case studies state the speed results as at the time of the work, and the TubeOnAI page says the figures are not today's numbers.
 Things seen on sites Sakib built that he may want to fix: Open Alliance Learning home page has no H1 and no structured data; Moneybag home page has 10 images without alt text; Piola Pizza home page has two H1 tags and 1.8 MB of HTML; Pixmge home page has six H1 tags.
+More things seen while reading the sites page by page (not published): Open Alliance Learning's sitemap lists leftover pages (/hello-world, /form-test, /41-2, /42-2); Pixmge's sitemap lists /sample-page and /elementskit-content pages; Piola Pizza has a page with a copied slug (/the-history-and-origins-of-neapolitan-pizza-copy-copy-5).

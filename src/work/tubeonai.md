@@ -54,14 +54,29 @@ Several cache plugins had been added over time, each one meant to make the site 
 - The old cache plugins had been switched off, but their files were still on the server and still being loaded
 - Two caching systems were fighting over the same pages, which is what took the site down under load
 
-## Site audit, 11 October 2026
+## Inside the site, 11 October 2026
 
-Read from the public site and Google PageSpeed Insights (mobile).
+Read from the live site, page by page, and from Google PageSpeed Insights (mobile).
 
-- 174 pages in the sitemap
-- Served through Cloudflare with modern compression and HTTPS enforced
+**Size.** 174 pages in the sitemap. Most are articles and tool pages: guides, tool round-ups and pages comparing TubeOnAI with alternatives.
+
+**What the pages do.**
+
+- Each tool page follows one pattern: what the tool is, how to use it, who it is for by role, then an FAQ. The YouTube Video Summarizer page is the model
+- A pricing page with the plans side by side and its own FAQ
+- Pages for students, professors, creators, researchers and marketers
+
+**How it is built.**
+
+- WordPress with Elementor Pro, on the Hello Elementor base theme
+- Two plugins written for this site: one for custom Elementor widgets and one for site features
+- Rank Math for search, Fluent Forms for forms
+- Served through Cloudflare with Brotli compression and HTTPS enforced
+
+**What search engines see.**
+
 - Best practices score 96 in PageSpeed Insights
-- Every image on the home page has alt text
-- A page for each summary tool and each audience, plus two plugins written for this site
+- Structured data for the organisation and the website
+- Every one of the 22 images on the home page has alt text
 
 The speed figures above are from when I did the work. The site has changed a great deal since, so they are not today's numbers.

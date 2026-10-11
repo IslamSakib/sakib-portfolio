@@ -421,6 +421,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .prose { display: grid; gap: 1.1rem; max-width: 65ch; }
 .prose h2 { font-size: 1.75rem; margin-top: 2rem; }
 .prose h2:first-child { margin-top: 0; }
+.prose strong { color: var(--text); font-weight: 600; }
 .prose p, .prose li { color: #d3d0c6; }
 .prose ul { display: grid; gap: 0.55rem; }
 .prose li { padding-left: 1.5rem; position: relative; }

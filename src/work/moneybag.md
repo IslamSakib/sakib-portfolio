@@ -45,13 +45,26 @@ Moneybag is an online payment gateway in Bangladesh, licensed by Bangladesh Bank
 
 A payment gateway cannot be bolted on with a general-purpose plugin. The rules are specific: how a merchant is verified, what happens when a payment fails halfway, which fee applies to which plan. Writing the gateway as its own plugin kept that logic in one place where it can be tested and changed safely.
 
-## Site audit, 11 October 2026
+## Inside the site, 11 October 2026
 
-Read from the public site.
+Read from the live site, page by page.
 
-- 77 pages in the sitemap
-- The home page loads no external scripts and only two stylesheets, and the first response arrived in under half a second
-- Served through Cloudflare with modern compression
+**Size.** 77 pages in the sitemap, including a library of articles on how payment gateways work, fraud prevention and WooCommerce payment gateways in Bangladesh, plus 6 support pages.
+
+**What the pages do.**
+
+- The payment gateway page explains the product in order: how a payment runs, what happens after the customer pays, and five ways to ask for money
+- A developer area: four steps to a first payment, a sandbox, an API lab, maintained libraries and an AI integration kit
+- An onboarding page listing the documents needed for 11 kinds of organisation, from a sole proprietorship to a government agency
+- A pricing page that explains how charges work and how money reaches the merchant
+
+**How it is built.**
+
+- The current site is a static build: the home page loads no external scripts and only two stylesheets
+- The first response arrived in under half a second
+- Served through Cloudflare with Brotli compression
+
+**What search engines see.**
+
 - Structured data for the organisation and the website
-- Product pages for the payment gateway, payment links, invoices, subscriptions and EMI
-- A developer area with a sandbox, an API lab, documentation and an AI integration kit
+- A sitemap referenced from robots.txt, and a canonical address on every page

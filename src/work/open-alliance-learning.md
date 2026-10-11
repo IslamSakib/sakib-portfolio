@@ -43,11 +43,23 @@ When one system serves several roles, the first design question is who is lookin
 - WooCommerce handles enrolment and payment, so buying a course and getting access is one step
 - Each role signs in to its own dashboard: a learner sees courses and progress, a teacher sees learners and marking, an assessor sees what needs quality checking
 
-## Site audit, 11 October 2026
+## Inside the site, 11 October 2026
 
-Read from the public site.
+Read from the live site, page by page.
 
-- 21 pages in the sitemap
-- Pages are served from a cache, with modern compression
-- A content security policy is in place
-- A course catalogue covering health care, CPD, and education and training certificates
+**Size.** 21 pages in the sitemap, including 4 courses on sale.
+
+**What the pages do.**
+
+- A course catalogue in four groups: health care sector, CPD, education and training, and IT and digital skills
+- A courses page with a filter, so a learner can narrow the list
+- Login and registration for learners
+- An about page covering who the provider is, how learning works and accreditation
+- Terms of sale and a refund policy, which a site that takes payment needs
+
+**How it is built.**
+
+- WordPress with Elementor, on the Hello Elementor base theme
+- LearnDash for courses and WooCommerce for enrolment and payment
+- Pages served from a LiteSpeed cache with Brotli compression
+- A content security policy in place

@@ -55,12 +55,32 @@ This is custom development, not WordPress. I designed the product, built the sof
 
 The agent started telling users it was unavailable. The API was answering and the model's replies were fine. The fault was earlier: the agent was not being triggered, and a render delay made it look like a failure. I fixed the trigger. It is a good example of why an AI feature needs someone who can follow the whole path, not only the model call.
 
-## Site audit, 11 October 2026
+## Inside the site, 11 October 2026
 
-Read from the public site.
+Read from the live site, page by page.
 
-- 79 pages in the sitemap
+**Size.** 79 pages in the sitemap:
+
+- 22 blog articles
+- 18 feature pages
+- 13 free tools
+- 5 pages comparing Wrkbase with a named alternative
+- 3 solution pages
+
+**What the pages do.**
+
+- A pricing page built so nobody needs a sales call: every feature side by side, and what the price replaces
+- A comparison page that includes a section on what Wrkbase does not do
+- A help center, a glossary, a changelog, a status page and a security page
+- A free plan for teams of up to 5 people
+
+**How it is built.**
+
+- Custom-built, no WordPress
 - The home page loads one script and two stylesheets
 - HTTPS enforced and a content security policy in place
+
+**What search engines see.**
+
 - Structured data for the software product, its price and its FAQ
-- Every image on the home page has alt text and loads only when scrolled to
+- Every one of the 33 images on the home page has alt text and loads only when scrolled to

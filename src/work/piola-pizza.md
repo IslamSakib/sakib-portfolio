@@ -38,11 +38,21 @@ Piola Pizza is a Neapolitan pizzeria in Esbjerg, Denmark. It needed a site where
 
 People open a restaurant site on a phone, hungry, and want three things: the menu, the price and a way to order. Everything on this site is arranged around that. The menu and deals are editable by the owner, so a new pizza or a daily offer does not wait for a developer.
 
-## Site audit, 11 October 2026
+## Inside the site, 11 October 2026
 
-Read from the public site.
+Read from the live site, page by page.
+
+**Size.** 8 pages: home, menu, about, contact, terms and articles.
+
+**What the pages do.**
+
+- The menu lists each pizza with its price in kroner, from 89 for a Margherita to 145 for the truffle pizza
+- A contact page with a form
+- Pickup orders are placed on the site, and delivery goes through Wolt
+- The whole site is in Danish, for people searching in Esbjerg
+
+**What search engines see.**
 
 - Restaurant structured data with the address, map position, opening hours and rating, which is what Google uses for local results
 - The page title and description name the town and the food
-- The site is in Danish, for people searching in Esbjerg
-- Pickup orders are placed on the site, and delivery goes through Wolt
+- Every one of the 29 images on the home page has alt text

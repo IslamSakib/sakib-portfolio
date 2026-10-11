@@ -55,12 +55,33 @@ When Tabby released version 2.0, I built the entire new website. The condition w
 - Content the team updates often (help articles, blog posts, product updates) shares one structure, so adding a page does not need a developer
 - Search settings from the old site were carried into the new one before the 2.0 switch, so pages kept their addresses and titles
 
-## Site audit, 11 October 2026
+## Inside the site, 11 October 2026
 
-Read from the public site and Google PageSpeed Insights (mobile).
+Read from the live site, page by page, and from Google PageSpeed Insights (mobile).
 
-- 302 pages in the sitemap, all reachable by search engines
+**Size.** 302 pages in the sitemap:
+
+- 164 blog articles
+- 36 help center documents
+- 26 pages of free financial tools
+- 25 pages under the 1099 tax calculator
+- 11 solution pages, one per kind of customer
+- 5 product pages
+
+**What the pages do.**
+
+- The 1099 tax calculator is a working form for income and deductions, not a static page
+- A pricing page, a page written for accountants, a comparison page and a security page
+- A public roadmap, user reviews, events, a partner program and an affiliate program
+
+**How it is built.**
+
+- WordPress with Elementor, on the Hello Elementor base theme
+- Rank Math for search, WP Rocket as the one caching layer
+- BetterDocs for the help center, Fluent Forms for forms, The Events Calendar for events
+
+**What search engines see.**
+
 - SEO score 100, accessibility 96 and best practices 96 in PageSpeed Insights
-- Structured data for the organisation, the website, the software product and its reviews
-- Every image on the home page has alt text, and most load only when scrolled to
-- Pages for each kind of customer, four free tax calculators, comparison pages, a help center, a blog and a partner program
+- Structured data for the organisation, the website, the software product, its offer and its reviews
+- Every one of the 39 images on the home page has alt text
