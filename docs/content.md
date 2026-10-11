@@ -46,3 +46,12 @@ Collected from your LinkedIn profile on 10 Oct 2026. Only these facts are used o
 3. The Tabby project says the platform is "serving 70M+ solopreneurs". That reads as the size of the market, not Tabby's users, so it is not used.
 4. Ahad's recommendation mentions continuous maintenance, so the FAQ can say you offer it. Confirm this is a service you want to sell.
 5. The contact email address.
+
+## Live measurements, 11 October 2026 (not published on the site)
+
+Google PageSpeed Insights, mobile:
+- TubeOnAI: performance 31, accessibility 89, best practices 96, SEO 85. LCP 26.1 s, TBT 1,550 ms, CLS 0.142, page weight 11.5 MB.
+- Tabby: performance 54, accessibility 96, best practices 96, SEO 100. LCP 9.4 s, TBT 450 ms, CLS 0.015.
+
+The case studies state the speed results as at the time of the work, and the TubeOnAI page says the figures are not today's numbers.
+Things seen on sites Sakib built that he may want to fix: Open Alliance Learning home page has no H1 and no structured data; Moneybag home page has 10 images without alt text; Piola Pizza home page has two H1 tags and 1.8 MB of HTML; Pixmge home page has six H1 tags.
