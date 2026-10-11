@@ -1,4 +1,5 @@
 // The four services. Each one is a page (src/pages/[service].astro) and a row on the home page.
+// `h1Lines` is the same headline split where it should break on a wide screen.
 // `focus` is the page's focus keyword: it must appear in `title`, `description` and `h1` (scripts/seo-check.mjs checks this).
 // Every claim here comes from the case studies in src/work or from what Sakib has confirmed.
 export const services = [
@@ -10,7 +11,8 @@ export const services = [
     title: 'Custom WordPress Development Services | Sakib Islam',
     description:
       'Custom WordPress development by one senior developer: themes, plugins, WooCommerce, payments and integrations, built fast and handed over clean.',
-    h1: 'Custom WordPress development, front to back.',
+    h1: 'Custom WordPress development from theme to checkout.',
+    h1Lines: ['Custom WordPress', 'development from', 'theme to checkout.'],
     lead: 'One developer for the whole job: the theme, the plugins, the payments and the integrations. Built to load fast and to survive the next update.',
     row: 'The whole job, front end and back end: custom themes, custom plugins, WooCommerce, payments and integrations.',
     chips: ['Custom themes', 'Plugin development', 'WooCommerce', 'Payments', 'LMS', 'Integrations'],
@@ -45,6 +47,7 @@ export const services = [
     description:
       'WordPress speed optimization that fixes the cause, not the score: caching, Core Web Vitals, images and heavy layouts. Before and after numbers included.',
     h1: 'WordPress speed optimization that fixes the cause.',
+    h1Lines: ['WordPress speed', 'optimization that', 'fixes the cause.'],
     lead: 'Slow sites made fast and broken sites made stable. I find what is actually wrong first, then fix it once, where the problem lives.',
     row: 'Slow sites made fast and broken sites fixed. I find the cause first, then fix it at the root instead of adding another plugin.',
     chips: ['Core Web Vitals', 'Caching', 'Image delivery', 'Downtime', 'Technical SEO'],
@@ -79,6 +82,7 @@ export const services = [
     description:
       'Custom web development for startups: SaaS products, dashboards and fast marketing sites built from scratch when WordPress is the wrong tool.',
     h1: 'Custom web development for real products.',
+    h1Lines: ['Custom web development', 'for real products.'],
     lead: 'Web products built from scratch: the sign-in, the data, the dashboard and the site that sells it. Wrkbase, my own SaaS platform, is the proof.',
     row: 'Web products built from scratch when WordPress is the wrong tool. Wrkbase, my own SaaS platform and its website, is the example.',
     chips: ['SaaS platforms', 'Dashboards', 'Marketing sites', 'Free tools', 'APIs'],
@@ -112,6 +116,7 @@ export const services = [
     description:
       'AI agent development for web products: agents that act with your approval, LLM API integration, WordPress AI chatbots and workflow automation.',
     h1: 'AI agent development for products that act.',
+    h1Lines: ['AI agent development', 'for products that act.'],
     lead: 'AI built into your product or site so it does real work: agents that take actions, chatbots that answer from your content, and automations that remove the repeat tasks.',
     row: 'AI agents that take real actions, LLM APIs wired into your product, chatbots for WordPress and automations that remove repeat work.',
     chips: ['AI agents', 'LLM API integration', 'WordPress chatbots', 'Workflow automation'],

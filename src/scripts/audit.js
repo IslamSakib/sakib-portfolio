@@ -9,6 +9,21 @@ if (box) {
   let stage = 'site', busy = false, startedAt = Date.now();
 
   const wait = (ms) => new Promise((r) => setTimeout(r, reduce ? 0 : ms));
+
+  // Until the visitor types, the empty field shows example addresses being typed, so it reads as a place to write.
+  // It stops for good at the first focus or keystroke.
+  if (!reduce) {
+    const examples = ['yoursite.com', 'myshop.com', 'yourstartup.io'];
+    let n = 0, i = 0, dir = 1;
+    const hint = setInterval(() => {
+      if (stage !== 'site' || input.value || document.activeElement === input) { clearInterval(hint); input.placeholder = examples[0]; return; }
+      const word = examples[n];
+      i += dir;
+      input.placeholder = word.slice(0, i) + '▍';
+      if (i === word.length + 8) dir = -1;
+      if (i === 0) { dir = 1; n = (n + 1) % examples.length; }
+    }, 110);
+  }
   const line = (text, kind = 'sys') => {
     const p = document.createElement('p');
     p.className = 'line ' + kind;

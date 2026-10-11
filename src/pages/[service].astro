@@ -56,7 +56,7 @@ const jsonld = [
         <nav class="crumbs" aria-label="Breadcrumb">
           <a href="/">Home</a><span>/</span><a href="/#services">Services</a><span>/</span><span>{s.name}</span>
         </nav>
-        <h1>{tidy(s.h1)}</h1>
+        <h1>{s.h1Lines.map((l) => <Fragment><span class="hl">{l}</span>{' '}</Fragment>)}</h1>
         <p class="lead">{tidy(s.lead)}</p>
         <div class="hero-actions">
           <button class="btn" type="button" data-chat-open data-magnet>Start a project</button>

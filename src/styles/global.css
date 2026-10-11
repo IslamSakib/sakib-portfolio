@@ -231,19 +231,21 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .steps li::before { content: ''; position: absolute; top: calc(-2.75rem + 2px); left: 0; z-index: 1; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
 .steps .idx { font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); }
 
-/* Recommendations: the same reel as Selected work. The chosen one is set large on a flat accent panel. */
-.quote-stage { position: relative; display: grid; min-height: 440px; padding: 3rem 3rem 2.5rem; border-radius: var(--radius); background: var(--accent); color: var(--accent-ink); }
-.qmark { position: absolute; top: 1.4rem; right: 2.2rem; font-family: var(--display); font-size: 9rem; line-height: 1; font-weight: 800; opacity: 0.16; }
+/* Recommendations: the same reel as Selected work. The chosen one is set large in a quiet panel; the accent is kept
+   to the quotation mark. */
+.quote-stage { display: grid; min-height: 440px; padding: 2.75rem 3rem 2.5rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.qmark { display: block; height: 3.2rem; font-family: var(--display); font-size: 6.5rem; line-height: 1; font-weight: 800; color: var(--accent); }
 .quote-panel { grid-area: 1 / 1; display: grid; gap: 2.5rem; align-content: space-between; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.4s ease, transform 0.5s var(--ease), visibility 0.4s; }
 .quote-panel.on { opacity: 1; visibility: visible; transform: none; }
 .reel > *, .quote-panel { min-width: 0; }
-.quote-panel p { position: relative; max-width: 30ch; font-family: var(--display); font-size: clamp(1.5rem, 2.5vw, 2.25rem); line-height: 1.22; font-weight: 650; letter-spacing: -0.02em; text-wrap: pretty; }
-.quote-panel footer { display: flex; justify-content: space-between; align-items: end; gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgb(26 20 0 / 0.25); }
+.quote-panel p { max-width: 32ch; font-family: var(--display); font-size: clamp(1.5rem, 2.4vw, 2.125rem); line-height: 1.24; font-weight: 600; letter-spacing: -0.02em; text-wrap: pretty; }
+.quote-panel footer { display: flex; justify-content: space-between; align-items: end; gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
 .quote-panel .who { display: grid; gap: 0.15rem; }
 .quote-panel .who b { font-size: 1.125rem; }
-.quote-panel .who span { font-size: 0.9375rem; opacity: 0.75; }
-.quote-panel a { flex: none; font-weight: 700; color: inherit; }
-.quote-panel a:hover { color: inherit; text-decoration-thickness: 2px; }
+.quote-panel .who span { font-size: 0.9375rem; color: var(--muted); }
+.quote-panel a { flex: none; display: inline-flex; align-items: center; gap: 0.55rem; min-height: 44px; font-weight: 600; font-size: 0.9375rem; text-decoration: none; color: var(--text); }
+.quote-panel a svg { fill: #3b8fe0; border-radius: 3px; }
+.quote-panel a:hover { color: var(--accent-hi); }
 .review-note { margin-top: 2rem; color: var(--muted); font-size: 0.9375rem; }
 
 /* FAQ: heading pinned on the left, answers on the right */
@@ -312,7 +314,8 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .svc-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 4rem; align-items: center; }
 .page-head .svc-grid { justify-items: stretch; }
 .svc-copy { display: grid; gap: 1.5rem; justify-items: start; min-width: 0; }
-.svc-copy h1 { max-width: 15ch; font-size: clamp(2.3rem, 4.4vw, 3.75rem); line-height: 1.04; text-wrap: balance; }
+.svc-copy h1 { font-size: clamp(2.2rem, 3.9vw, 3.4rem); line-height: 1.05; }
+@media (min-width: 861px) { .svc-copy h1 .hl { display: block; white-space: nowrap; } }
 .proof { grid-template-columns: repeat(var(--cols, 4), 1fr); }
 .proof dd b { color: var(--text); font-weight: 600; }
 
@@ -394,7 +397,11 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .console form[hidden] { display: none; }
 .console .prompt { color: var(--accent); }
 .console input[name="value"] { min-width: 0; padding: 0.6rem 0; border: 0; background: transparent; color: var(--text); font: inherit; font-size: 1rem; outline: none; }
-.console form:focus-within { box-shadow: inset 0 0 0 1px var(--accent); }
+/* The input row asks to be used: its edge pulses gently until it has focus. */
+@keyframes ask { 50% { box-shadow: inset 0 0 0 1px rgb(var(--accent-rgb) / 0.75); } }
+.console form { animation: ask 2.4s ease-in-out infinite; }
+.console form:focus-within { animation: none; box-shadow: inset 0 0 0 1px var(--accent); }
+.console input[name="value"]::placeholder { color: var(--muted); opacity: 0.9; }
 .console form .btn { font-family: var(--sans); border: 0; }
 
 /* Back to top */
@@ -492,7 +499,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
   .term-side { border-right: 0; border-bottom: 1px solid var(--line); padding: 1.25rem 1rem; }
   .term-out { padding: 1.25rem 1rem 1.5rem; }
   .quote-stage { min-height: 0; padding: 2rem 1.5rem 1.5rem; }
-  .qmark { display: none; }
+  .qmark { height: 2.6rem; font-size: 5rem; }
   .quote-panel p { font-size: 1.3125rem; overflow-wrap: anywhere; }
   .quote-panel footer { flex-direction: column; align-items: start; gap: 0.75rem; }
   .service-list > li { grid-template-columns: 1fr; gap: 0.75rem; padding: 2rem 0; }
@@ -514,7 +521,6 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
   .case-aside { position: static; }
   .site-header nav a:not(.btn), .has-menu { display: none; }
   .svc-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .svc-copy h1 { max-width: none; }
   .versus { grid-template-columns: 1fr; }
   .vs-arrow { justify-self: center; rotate: 90deg; }
   .vs-card { padding: 1.5rem; }
