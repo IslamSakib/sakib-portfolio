@@ -92,17 +92,16 @@ figure.portrait::before { inset: calc(17% - 1px) -1px -1px -1px; z-index: -1; }
 }
 [data-spot]:hover::after { opacity: 1; }
 
-/* Service cards: each picture moves a little. The fan spreads on hover, the bars grow in, the dashboard lifts,
+/* Service tiles: each picture moves a little. The fan spreads on hover, the bars grow in, the dashboard lifts,
    and the agent steps tick off one after another in a loop. */
-.fan { transition: transform 0.7s var(--ease); }
-.svc:hover .fan:nth-child(1) { transform: translateX(-150px) translateY(10px) rotate(-13deg); }
-.svc:hover .fan:nth-child(2) { transform: translateX(150px) translateY(10px) rotate(13deg); }
-.svc:hover .fan:nth-child(3) { transform: translateY(-10px) scale(1.04); }
+.fan, .dash { transition: transform 0.8s var(--ease); }
+.tile:hover .fan:nth-child(1) { transform: translateX(-62%) translateY(26px) rotate(-11deg) scale(0.9); }
+.tile:hover .fan:nth-child(2) { transform: translateX(62%) translateY(26px) rotate(11deg) scale(0.9); }
+.tile:hover .fan:nth-child(3) { transform: translateY(-10px) scale(1.03); }
 @keyframes growbar { from { transform: scaleX(0); } }
-.js .svc.in .speed .meter i { animation: growbar 1.1s var(--ease) both; }
-.js .svc.in .speed .after i { animation-delay: 0.35s; }
-.dash { transition: transform 0.9s var(--ease); }
-.svc:hover .dash { transform: rotateX(8deg) rotateZ(0deg) translateY(-6px); }
+.js .tile.in .speed .meter i { animation: growbar 1.1s var(--ease) both; }
+.js .tile.in .speed .after i { animation-delay: 0.35s; }
+.tile:hover .dash { transform: rotateX(6deg) rotateZ(0deg) translateY(-8px); }
 @keyframes stepdone { 0%, 12% { color: var(--muted); } 20%, 88% { color: var(--text); } 100% { color: var(--muted); } }
 @keyframes dotdone { 0%, 12% { background: transparent; border-color: var(--line); } 20%, 88% { background: var(--accent); border-color: var(--accent); } 100% { background: transparent; border-color: var(--line); } }
 @keyframes approve { 0%, 40% { opacity: 0; transform: scale(0.9); } 46%, 60% { opacity: 1; transform: scale(1); } 66%, 100% { opacity: 0; transform: scale(0.9); } }
@@ -111,6 +110,13 @@ figure.portrait::before { inset: calc(17% - 1px) -1px -1px -1px; z-index: -1; }
 .agent li:nth-child(1) { --n: 0; } .agent li:nth-child(2) { --n: 1; } .agent li:nth-child(3) { --n: 2.4; } .agent li:nth-child(4) { --n: 3.4; }
 .agent em { display: inline-block; animation: approve 8s linear infinite; }
 
+/* Recommendations: the quote fades and rises in; while it plays by itself a line fills under the current person */
+.quote-panel { transition: opacity 0.5s ease, visibility 0.5s; }
+.quote-panel p, .quote-panel footer { transform: translateY(16px); transition: transform 0.8s var(--ease); }
+.quote-panel.on p, .quote-panel.on footer { transform: none; }
+@keyframes fillline { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.quotes.auto .quote-tabs button[aria-selected="true"]::after { animation: fillline var(--reel-time, 7s) linear both; }
+
 /* Work reel: the chosen project tips forward into place; while it plays by itself, a bar fills beside the current name */
 .reel-panel { transition: opacity 0.45s ease, visibility 0.45s; }
 .reel-panel .project-shot { transform: rotateX(10deg) translateY(18px) scale(0.97); transform-origin: 50% 100%; transition: transform 0.8s var(--ease); }
@@ -118,7 +124,7 @@ figure.portrait::before { inset: calc(17% - 1px) -1px -1px -1px; z-index: -1; }
 .reel-panel .reel-info { transform: translateY(14px); opacity: 0; transition: transform 0.7s var(--ease) 0.1s, opacity 0.5s ease 0.1s; }
 .reel-panel.on .reel-info { transform: none; opacity: 1; }
 @keyframes fillbar { from { transform: scaleY(0); } }
-.reel.auto .reel-list button[aria-selected="true"]::before { animation: fillbar 5s linear both; }
+.reel.auto .reel-list button[aria-selected="true"]::before { animation: fillbar var(--reel-time, 5s) linear both; }
 
 /* Project screenshots drift up inside their frame on hover, like scrolling the real page */
 .project-shot { transition: transform 0.9s var(--ease), box-shadow 0.9s ease; will-change: transform; }
