@@ -1,4 +1,4 @@
-/* Dark only, by request. Deep petrol and cream with one soft mint accent, a neighbour of the ground colour so it
+/* Dark only, by request. Deep petrol and cream with one blue accent, a cooler neighbour of the ground colour so it
    belongs to it. Everything is flat: no glows and no gradients anywhere.
    Shape rule: small radii everywhere, no pills. Structure comes from hairlines and spacing, not from boxes.
    Type: Bricolage Grotesque for headings, Hanken Grotesk for text, Geist Mono for figures and code. */
@@ -10,10 +10,10 @@
   --line: #274450;
   --text: #f2efe6;
   --muted: #9fb2b8;
-  --accent: #7fe3c4;
-  --accent-hi: #a6efd8;
-  --accent-ink: #04201a;
-  --accent-rgb: 127 227 196;
+  --accent: #5b8cff;
+  --accent-hi: #86aaff;
+  --accent-ink: #04102e;
+  --accent-rgb: 91 140 255;
   --radius: 6px;
   --wrap: 1240px;
   --sans: 'Hanken Grotesk Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
