@@ -10,12 +10,12 @@
   --line: #2a3445;
   --text: #f2efe6;
   --muted: #9aa6b8;
-  --accent: #6b97ff;
-  --accent-hi: #8fb0ff;
-  --accent-fill: #2f62e0;
-  --accent-fill-hi: #3f72ee;
+  --accent: #4f83ff;
+  --accent-hi: #7aa2ff;
+  --accent-fill: #1b55ff;
+  --accent-fill-hi: #3a6dff;
   --accent-ink: #ffffff;
-  --accent-rgb: 107 151 255;
+  --accent-rgb: 79 131 255;
   --radius: 6px;
   --wrap: 1240px;
   --sans: 'Hanken Grotesk Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;

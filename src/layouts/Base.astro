@@ -308,7 +308,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
                 const dx = x - f.mx, dy = y - f.my, near = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / 200);
                 if (near > 0.02) {
                   const a = Math.atan2(dy, dx), push = near * near * 16;
-                  g.fillStyle = 'rgba(107,151,255,' + (0.25 + near * 0.75) * edge + ')';
+                  g.fillStyle = 'rgba(79,131,255,' + (0.25 + near * 0.75) * edge + ')';
                   g.beginPath(); g.arc(x + Math.cos(a) * push, y + Math.sin(a) * push, 1 + near * 2, 0, 6.2832); g.fill();
                 } else {
                   g.fillStyle = 'rgba(242,239,230,' + (0.04 + 0.09 * (0.5 + 0.5 * Math.sin(x * 0.011 + y * 0.017 - t * 0.0011))) * edge + ')';
