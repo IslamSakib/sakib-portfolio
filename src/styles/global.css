@@ -1,19 +1,21 @@
-/* Dark only, by request. Deep petrol and cream with one blue accent, a cooler neighbour of the ground colour so it
-   belongs to it. Everything is flat: no glows and no gradients anywhere.
+/* Dark only, by request. Ink navy and cream with one blue accent. Neutrals are blue-greys with no green in them.
+   --accent is for text and lines on the dark ground; --accent-fill is the deeper blue behind white text (buttons). Everything is flat: no glows and no gradients anywhere.
    Shape rule: small radii everywhere, no pills. Structure comes from hairlines and spacing, not from boxes.
    Type: Bricolage Grotesque for headings, Hanken Grotesk for text, Geist Mono for figures and code. */
 :root {
-  --bg: #0d1a20;
-  --bg-deep: #08131a;
-  --surface: #13242c;
-  --surface-2: #1a303a;
-  --line: #274450;
+  --bg: #0c121b;
+  --bg-deep: #080d14;
+  --surface: #131b27;
+  --surface-2: #1b2534;
+  --line: #2a3445;
   --text: #f2efe6;
-  --muted: #9fb2b8;
-  --accent: #5b8cff;
-  --accent-hi: #86aaff;
-  --accent-ink: #04102e;
-  --accent-rgb: 91 140 255;
+  --muted: #9aa6b8;
+  --accent: #6b97ff;
+  --accent-hi: #8fb0ff;
+  --accent-fill: #2f62e0;
+  --accent-fill-hi: #3f72ee;
+  --accent-ink: #ffffff;
+  --accent-rgb: 107 151 255;
   --radius: 6px;
   --wrap: 1240px;
   --sans: 'Hanken Grotesk Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -35,7 +37,7 @@ body {
   line-height: 1.6;
   overflow-x: clip;
 }
-::selection { background: var(--accent); color: var(--accent-ink); }
+::selection { background: var(--accent-fill); color: var(--accent-ink); }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-underline-offset: 3px; }
 a:hover { color: var(--accent-hi); }
@@ -64,10 +66,10 @@ button { font: inherit; color: inherit; }
   display: inline-flex; align-items: center; justify-content: center;
   padding: 0.85rem 1.4rem; border-radius: 6px;
   border: 1px solid transparent;
-  background: var(--accent); color: var(--accent-ink); font-weight: 600; text-decoration: none; white-space: nowrap;
+  background: var(--accent-fill); color: var(--accent-ink); font-weight: 600; text-decoration: none; white-space: nowrap;
   transition: transform 0.25s var(--ease), background 0.2s ease, border-color 0.2s ease;
 }
-.btn:hover { background: var(--accent-hi); color: var(--accent-ink); }
+.btn:hover { background: var(--accent-fill-hi); color: var(--accent-ink); }
 .btn:active { scale: 0.97; }
 .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
 .btn-ghost:hover { background: var(--surface-2); color: var(--text); border-color: var(--muted); }
@@ -104,12 +106,12 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .portrait { position: relative; isolation: isolate; border-radius: var(--radius); }
 .portrait::after {
   content: ""; position: absolute; inset: 17% 0 0 0; z-index: -1; border-radius: var(--radius); border: 1px solid var(--line);
-  background: var(--accent);
+  background: var(--accent-fill);
 }
 .portrait picture { display: block; }
 .portrait img { width: 100%; border-radius: 0 0 var(--radius) var(--radius); filter: drop-shadow(0 14px 26px rgb(0 0 0 / 0.4)) contrast(1.04) saturate(1.06); }
 .portrait .badge { position: absolute; left: -1.1rem; top: 27%; padding: 0.45rem 0.85rem; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); font-family: var(--mono); font-size: 0.75rem; color: var(--text); box-shadow: 0 10px 24px -8px rgb(0 0 0 / 0.6); }
-.portrait .badge::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-right: 0.5rem; vertical-align: 0.1em; }
+.portrait .badge::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent-fill); margin-right: 0.5rem; vertical-align: 0.1em; }
 .portrait figcaption { position: absolute; left: 0.75rem; right: 0.75rem; bottom: 0.75rem; display: flex; justify-content: space-between; gap: 1rem; padding: 0.65rem 0.9rem; border-radius: 10px; background: rgb(25 24 23 / 0.78); border: 1px solid rgb(255 255 255 / 0.08); font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
 .portrait figcaption b { color: var(--text); font-weight: 500; }
 
@@ -163,7 +165,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .reel-left .section-head { margin-bottom: 2.25rem; }
 .reel-list { display: grid; border-top: 1px solid var(--line); }
 .reel-list button { position: relative; display: grid; grid-template-columns: 2.25rem 1fr auto; align-items: baseline; gap: 0.5rem; padding: 1.05rem 0.9rem 1.05rem 1rem; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--muted); font: inherit; text-align: left; transition: color 0.3s ease, background 0.3s ease, padding 0.4s var(--ease); }
-.reel-list button::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--accent); transform: scaleY(0); transform-origin: 50% 0; }
+.reel-list button::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--accent-fill); transform: scaleY(0); transform-origin: 50% 0; }
 .reel-list .idx { font-family: var(--mono); font-size: 0.75rem; }
 .reel-list .name { font-family: var(--display); font-size: 1.375rem; font-weight: 650; letter-spacing: -0.025em; }
 .reel-list .num { font-size: 0.875rem; letter-spacing: -0.02em; opacity: 0; transition: opacity 0.3s ease; }
@@ -187,7 +189,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .showcase-copy > div { display: grid; gap: 1.25rem; justify-items: start; }
 .showcase ul { display: grid; gap: 0.6rem; color: var(--muted); }
 .showcase li { padding-left: 1.5rem; position: relative; }
-.showcase li::before { content: ''; position: absolute; left: 0; top: 0.75em; width: 0.7rem; height: 2px; background: var(--accent); }
+.showcase li::before { content: ''; position: absolute; left: 0; top: 0.75em; width: 0.7rem; height: 2px; background: var(--accent-fill); }
 .stage { perspective: 1400px; }
 .frame { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.7); }
 .frame img { width: 100%; }
@@ -213,12 +215,12 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .term-panel .sys { margin-bottom: 0.6rem; }
 .term-panel .plan a { color: var(--accent); text-decoration-color: rgb(var(--accent-rgb) / 0.5); }
 .term-panel .plan:first-of-type { margin-top: 0.6rem; }
-.caret { display: inline-block; width: 0.55em; height: 1.05em; margin-left: 0.4em; vertical-align: -0.18em; background: var(--accent); }
+.caret { display: inline-block; width: 0.55em; height: 1.05em; margin-left: 0.4em; vertical-align: -0.18em; background: var(--accent-fill); }
 
 /* Services: big numbered rows, not cards */
 .service-list { border-top: 1px solid var(--line); }
 .service-list > li { position: relative; display: grid; grid-template-columns: 5rem 1fr 1.3fr; gap: 2rem; align-items: start; padding: 2.5rem 1rem; border-bottom: 1px solid var(--line); transition: background 0.4s ease, padding 0.5s var(--ease); }
-.service-list > li::after { content: ''; position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%; background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.7s var(--ease); }
+.service-list > li::after { content: ''; position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%; background: var(--accent-fill); transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.7s var(--ease); }
 .service-list > li:hover { background: var(--surface); padding-left: 1.75rem; }
 .service-list > li:hover::after { transform: scaleX(1); }
 .service-list .idx { font-family: var(--mono); font-size: 0.875rem; color: var(--accent); padding-top: 0.6rem; }
@@ -228,7 +230,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 /* How I work: a line that draws itself across four steps */
 .steps { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; padding-top: 2.75rem; }
 .steps::before, .steps::after { content: ''; position: absolute; top: 9px; left: 0; height: 2px; width: 100%; background: var(--line); }
-.steps::after { background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; }
+.steps::after { background: var(--accent-fill); transform: scaleX(0); transform-origin: 0 50%; }
 .steps li { position: relative; display: grid; gap: 0.6rem; align-content: start; }
 .steps li::before { content: ''; position: absolute; top: calc(-2.75rem + 2px); left: 0; z-index: 1; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
 .steps .idx { font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); }
@@ -252,7 +254,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .faq summary { cursor: pointer; padding: 1.4rem 3rem 1.4rem 0; font-weight: 600; font-size: 1.1875rem; letter-spacing: -0.01em; list-style: none; position: relative; transition: color 0.2s ease; }
 .faq summary:hover { color: var(--accent-hi); }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary::before, .faq summary::after { content: ''; position: absolute; right: 0.4rem; top: 50%; width: 14px; height: 2px; background: var(--accent); transition: transform 0.4s var(--ease); }
+.faq summary::before, .faq summary::after { content: ''; position: absolute; right: 0.4rem; top: 50%; width: 14px; height: 2px; background: var(--accent-fill); transition: transform 0.4s var(--ease); }
 .faq summary::after { transform: rotate(90deg); }
 .faq details[open] summary::after { transform: rotate(0deg); }
 .faq details::details-content { block-size: 0; overflow: clip; transition: block-size 0.45s var(--ease), content-visibility 0.45s allow-discrete; }
@@ -327,7 +329,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .vs-no li { color: var(--muted); text-decoration: line-through; text-decoration-color: rgb(170 167 157 / 0.45); }
 .vs-no li::before { content: "✕"; background: var(--surface-2); color: var(--muted); }
 .vs-yes { border-top-color: var(--text); }
-.vs-yes li::before { content: "✓"; background: var(--accent); color: var(--accent-ink); }
+.vs-yes li::before { content: "✓"; background: var(--accent-fill); color: var(--accent-ink); }
 .vs-arrow { font-size: 2rem; color: var(--accent); }
 
 /* What is included, and the other services: a grid of cards instead of long rows */
@@ -367,7 +369,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .audit-copy { display: grid; gap: 1.4rem; justify-items: start; }
 .audit-copy ul { display: grid; gap: 0.6rem; color: var(--muted); }
 .audit-copy li { padding-left: 1.5rem; position: relative; }
-.audit-copy li::before { content: ""; position: absolute; left: 0; top: 0.75em; width: 0.7rem; height: 2px; background: var(--accent); }
+.audit-copy li::before { content: ""; position: absolute; left: 0; top: 0.75em; width: 0.7rem; height: 2px; background: var(--accent-fill); }
 .small { font-size: 0.9375rem; }
 .console { background: var(--bg-deep); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; font-family: var(--mono); font-size: 0.875rem; box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.8); }
 .console-bar { display: flex; align-items: center; gap: 0.4rem; height: 40px; padding: 0 1rem; background: var(--surface-2); border-bottom: 1px solid var(--line); color: var(--muted); font-size: 0.75rem; }
@@ -405,7 +407,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 
 /* Lead chat */
 .chat { position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 46; display: grid; justify-items: end; gap: 0.9rem; }
-.chat-launcher { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 50%; border: 0; background: var(--accent); color: var(--accent-ink); box-shadow: 0 12px 28px -12px rgb(0 0 0 / 0.7); transition: transform 0.3s var(--ease), background 0.2s ease; }
+.chat-launcher { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 50%; border: 0; background: var(--accent-fill); color: var(--accent-ink); box-shadow: 0 12px 28px -12px rgb(0 0 0 / 0.7); transition: transform 0.3s var(--ease), background 0.2s ease; }
 .chat-launcher:hover { background: var(--accent-hi); transform: scale(1.06); }
 .chat-panel { width: min(380px, calc(100vw - 2.5rem)); height: min(560px, calc(100svh - 7.5rem)); display: grid; grid-template-rows: auto 1fr auto auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: 0 30px 70px -20px rgb(0 0 0 / 0.8); }
 .chat-panel[hidden] { display: none; }
@@ -418,7 +420,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .chat-log { overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem; scrollbar-width: thin; }
 .chat-msg { max-width: 86%; padding: 0.65rem 0.9rem; border-radius: 14px; font-size: 0.9375rem; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
 .chat-msg.bot { align-self: flex-start; background: var(--surface-2); border-bottom-left-radius: 4px; }
-.chat-msg.user { align-self: flex-end; background: var(--accent); color: var(--accent-ink); border-bottom-right-radius: 4px; }
+.chat-msg.user { align-self: flex-end; background: var(--accent-fill); color: var(--accent-ink); border-bottom-right-radius: 4px; }
 .chat-msg.link { text-decoration: none; font-weight: 600; color: var(--accent); border: 1px solid var(--accent); background: transparent; }
 .chat-msg.typing { display: flex; gap: 4px; padding: 0.85rem 0.9rem; }
 .chat-msg.typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
@@ -430,7 +432,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .chat-panel form[hidden] { display: none; }
 .chat-panel input[name="msg"] { min-width: 0; padding: 0.7rem 0.9rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--text); font: inherit; font-size: 1rem; }
 .chat-panel input[name="msg"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
-.chat-panel form button { display: grid; place-items: center; width: 46px; height: 46px; border: 0; border-radius: 50%; background: var(--accent); color: var(--accent-ink); }
+.chat-panel form button { display: grid; place-items: center; width: 46px; height: 46px; border: 0; border-radius: 50%; background: var(--accent-fill); color: var(--accent-ink); }
 .chat-trap, .chat-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .chat.open ~ .to-top, .chat.open + .to-top { display: none; }
 
@@ -451,7 +453,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .prose p, .prose li { color: #d3d0c6; }
 .prose ul { display: grid; gap: 0.55rem; }
 .prose li { padding-left: 1.5rem; position: relative; }
-.prose li::before { content: ''; position: absolute; left: 0; top: 0.75em; width: 0.7rem; height: 2px; background: var(--accent); }
+.prose li::before { content: ''; position: absolute; left: 0; top: 0.75em; width: 0.7rem; height: 2px; background: var(--accent-fill); }
 .case-aside { position: sticky; top: 110px; display: grid; gap: 1.5rem; }
 .metric { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.75rem; }
 .metric strong { display: block; font-size: 3rem; line-height: 1; color: var(--accent); font-weight: 500; }
