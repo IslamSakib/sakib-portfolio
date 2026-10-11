@@ -33,8 +33,8 @@ body::before { content: ''; position: fixed; inset: 0; z-index: 50; pointer-even
 
 /* Hero: a dot field drawn on canvas that ripples and reacts to the cursor. Without script it is a plain dot grid. */
 .hero { position: relative; isolation: isolate; }
-.hero .dots, .hero::before { position: absolute; inset: -76px 0 0 0; z-index: -1; pointer-events: none; -webkit-mask-image: linear-gradient(#000 45%, transparent 98%); mask-image: linear-gradient(#000 45%, transparent 98%); }
-.hero .dots { width: 100%; height: calc(100% + 76px); }
+.hero .dots, .svc-hero .dots, .hero::before { position: absolute; inset: -76px 0 0 0; z-index: -1; pointer-events: none; -webkit-mask-image: linear-gradient(#000 45%, transparent 98%); mask-image: linear-gradient(#000 45%, transparent 98%); }
+.hero .dots, .svc-hero .dots { width: 100%; height: calc(100% + 76px); }
 .hero::before { content: ''; background: radial-gradient(rgb(245 244 239 / 0.1) 1px, transparent 1.5px) 0 0 / 26px 26px; }
 .js .hero::before { display: none; }
 

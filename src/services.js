@@ -10,11 +10,13 @@ export const services = [
     title: 'Custom WordPress Development Services | Sakib Islam',
     description:
       'Custom WordPress development by one senior developer: themes, plugins, WooCommerce, payments and integrations, built fast and handed over clean.',
-    h1: 'Custom WordPress development, front end and back end.',
+    h1: 'Custom WordPress development, front to back.',
     lead: 'One developer for the whole job: the theme, the plugins, the payments and the integrations. Built to load fast and to survive the next update.',
     row: 'The whole job, front end and back end: custom themes, custom plugins, WooCommerce, payments and integrations.',
     chips: ['Custom themes', 'Plugin development', 'WooCommerce', 'Payments', 'LMS', 'Integrations'],
     problemTitle: 'A theme and thirty plugins is not a build',
+    before: ['A bought theme and a page builder', 'A plugin for every feature', 'Every change costs more than the last'],
+    after: ['A theme built for your design', 'Custom plugins where they matter', 'Fast, and safe to update'],
     problem:
       'Many WordPress sites are assembled, not built. A bought theme, a page builder and a plugin for every feature. It works until traffic grows, a plugin updates or you need something the theme never planned for. Then every change costs more than the last one. I build the parts that matter as code written for your site, and use plugins only where they earn their place.',
     includes: [
@@ -47,6 +49,8 @@ export const services = [
     row: 'Slow sites made fast and broken sites fixed. I find the cause first, then fix it at the root instead of adding another plugin.',
     chips: ['Core Web Vitals', 'Caching', 'Image delivery', 'Downtime', 'Technical SEO'],
     problemTitle: 'Another speed plugin is usually the problem, not the fix',
+    before: ['A second and third cache plugin', 'Images far larger than the screen', 'Heavy layouts loaded on every page'],
+    after: ['One caching layer, set up once', 'Images sized for each screen', 'Heavy layouts rebuilt at the cause'],
     problem:
       'A slow WordPress site loses visitors before they read a word, and Google measures the delay. The usual reaction is to install a cache plugin, then another one. On TubeOnAI that is exactly what took the site down: files left behind by old cache plugins clashed with the speed plugin the host runs. I removed them, kept one caching layer and rebuilt the heavy layouts. Load time went from 5 seconds to 1.5 and the downtime stopped.',
     includes: [
@@ -74,11 +78,13 @@ export const services = [
     title: 'Custom Web Development for Startups | Sakib Islam',
     description:
       'Custom web development for startups: SaaS products, dashboards and fast marketing sites built from scratch when WordPress is the wrong tool.',
-    h1: 'Custom web development for products WordPress cannot carry.',
+    h1: 'Custom web development for real products.',
     lead: 'Web products built from scratch: the sign-in, the data, the dashboard and the site that sells it. Wrkbase, my own SaaS platform, is the proof.',
     row: 'Web products built from scratch when WordPress is the wrong tool. Wrkbase, my own SaaS platform and its website, is the example.',
     chips: ['SaaS platforms', 'Dashboards', 'Marketing sites', 'Free tools', 'APIs'],
     problemTitle: 'Some products outgrow WordPress on day one',
+    before: ['Sign-in and roles forced into plugins', 'Live data on a content system', 'Slow and fragile under real use'],
+    after: ['Accounts and roles by design', 'Dashboards on live data', 'A product you can keep changing'],
     problem:
       'WordPress is the right tool for a content site or a store. It is the wrong one when the product is the software itself: accounts with different roles, live data, rules about who can see and do what. Forcing that into plugins gives you something slow and fragile. I have built that kind of product end to end. Wrkbase is a team management platform I designed and built myself, with tasks, automatic time tracking, attendance, leave, payroll, team chat, role-based access and an audit log.',
     includes: [
@@ -105,11 +111,13 @@ export const services = [
     title: 'AI Agent Development & AI Automation | Sakib Islam',
     description:
       'AI agent development for web products: agents that act with your approval, LLM API integration, WordPress AI chatbots and workflow automation.',
-    h1: 'AI agent development for products that need to act, not just chat.',
+    h1: 'AI agent development for products that act.',
     lead: 'AI built into your product or site so it does real work: agents that take actions, chatbots that answer from your content, and automations that remove the repeat tasks.',
     row: 'AI agents that take real actions, LLM APIs wired into your product, chatbots for WordPress and automations that remove repeat work.',
     chips: ['AI agents', 'LLM API integration', 'WordPress chatbots', 'Workflow automation'],
     problemTitle: 'A chat box bolted on is not an AI product',
+    before: ['A chat window bolted on', 'No limits on what it can do', 'No record of what it did'],
+    after: ['An agent that shows each step', 'It waits for approval before acting', 'Every action in an audit log'],
     problem:
       'Adding a chat window is easy. Making AI do something useful and safe inside a real product is the hard part: it needs the right data, clear limits and a record of what it did. I built this into Wrkbase. Its agent plans a piece of admin work, shows each step, waits for approval, then carries it out, and every action is logged. When the agent kept reporting itself unavailable, the API and the model were fine. I traced it to the trigger and a render delay, and fixed it there.',
     includes: [

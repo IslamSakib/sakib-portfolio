@@ -1,8 +1,12 @@
 ---
-// One page per service in src/services.js: the problem, what is included, proof from the matching case studies, FAQ and the contact band.
-import { Picture } from 'astro:assets';
+// One page per service in src/services.js, in the same order as the home page: hero with an animated picture, result numbers,
+// the problem as a before and after, what is included, proof, process, recommendations, FAQ and the contact band.
 import Base from '../layouts/Base.astro';
 import Cta from '../components/Cta.astro';
+import ServiceArt from '../components/ServiceArt.astro';
+import WorkReel from '../components/WorkReel.astro';
+import Process from '../components/Process.astro';
+import Reviews from '../components/Reviews.astro';
 import { site } from '../site.js';
 import { services } from '../services.js';
 import { work } from '../work.js';
@@ -14,7 +18,8 @@ export function getStaticPaths() {
 const { s } = Astro.props;
 const url = new URL(Astro.url.pathname, Astro.site);
 const pad = (n) => String(n).padStart(2, '0');
-const host = (u) => new URL(u).hostname.replace('www.', '');
+// Keeps the last two words of a line together, so no line ends on a single word.
+const tidy = (t) => t.replace(/ (\S+)$/, '\u00a0$1');
 const proof = s.proof.map((slug) => work.find((w) => w.slug === slug)).filter(Boolean);
 const others = services.filter((o) => o.slug !== s.slug);
 
@@ -45,29 +50,56 @@ const jsonld = [
 ];
 ---
 <Base title={s.title} description={s.description} jsonld={jsonld} focus={s.focus}>
-  <section class="page-head">
-    <div class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="/">Home</a><span>/</span><a href="/#services">Services</a><span>/</span><span>{s.name}</span>
-      </nav>
-      <p class="label">{s.name}</p>
-      <h1>{s.h1}</h1>
-      <p class="lead">{s.lead}</p>
-      <div class="hero-actions">
-        <button class="btn" type="button" data-chat-open data-magnet>Tell me about your project</button>
-        <a class="btn btn-ghost" href="#proof" data-magnet>See the proof</a>
+  <section class="page-head svc-hero">
+    <canvas class="dots" aria-hidden="true"></canvas>
+    <div class="wrap svc-grid">
+      <div class="svc-copy">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span>/</span><a href="/#services">Services</a><span>/</span><span>{s.name}</span>
+        </nav>
+        <p class="label">{s.name}</p>
+        <h1>{tidy(s.h1)}</h1>
+        <p class="lead">{tidy(s.lead)}</p>
+        <div class="hero-actions">
+          <button class="btn" type="button" data-chat-open data-magnet>Start a project</button>
+          <a class="btn btn-ghost" href="#proof" data-magnet>See the proof</a>
+        </div>
+        <ul class="tags">{s.chips.map((c) => <li>{c}</li>)}</ul>
       </div>
-      <ul class="tags">{s.chips.map((c) => <li>{c}</li>)}</ul>
+      <ServiceArt slug={s.slug} />
     </div>
   </section>
 
+  {proof.length > 1 && (
+  <section class="proof-wrap" aria-label="Results">
+    <dl class="wrap proof" style={`--cols:${proof.length}`} data-reveal>
+      {proof.map((w) => (
+        <div>
+          <dt class="num">{w.metricValue}</dt>
+          <dd><b>{w.client}.</b> {w.metricLabel}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+  )}
+
   <section class="sec band band-glow">
-    <div class="wrap split">
-      <div data-reveal>
+    <div class="wrap">
+      <div class="section-head">
         <p class="label">The problem</p>
         <h2>{s.problemTitle}</h2>
       </div>
-      <p class="lead wide" data-reveal style="--d:0.1s">{s.problem.replace(/ (\S+)$/, ' $1')}</p>
+      <div class="versus">
+        <div class="vs-card vs-no" data-reveal>
+          <p class="label">The usual way</p>
+          <ul>{s.before.map((t) => <li>{t}</li>)}</ul>
+        </div>
+        <span class="vs-arrow" aria-hidden="true">→</span>
+        <div class="vs-card vs-yes" data-reveal style="--d:0.12s" data-spot>
+          <p class="label">How I do it</p>
+          <ul>{s.after.map((t) => <li>{t}</li>)}</ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -77,51 +109,29 @@ const jsonld = [
         <p class="label">What is included</p>
         <h2>What you get</h2>
       </div>
-      <ul class="service-list">
+      <ul class="kit">
         {s.includes.map((item, i) => (
-          <li data-reveal style={`--d:${(i % 3) * 0.06}s`}>
+          <li data-reveal data-spot style={`--d:${(i % 3) * 0.07}s`}>
             <span class="idx">{pad(i + 1)}</span>
             <h3>{item.name}</h3>
-            <div class="detail"><p class="muted">{item.text}</p></div>
+            <p class="muted">{item.text}</p>
           </li>
         ))}
       </ul>
     </div>
   </section>
 
-  <section id="proof" class="sec band band-grid">
+  <section id="proof" class="sec tint-a">
     <div class="wrap">
-      <div class="section-head">
-        <p class="label">Proof</p>
-        <h2>Where I have done this</h2>
-      </div>
-      <ol class:list={['stack', { 'stack-one': proof.length === 1 }]}>
-        {proof.map((w) => (
-          <li class="project" data-reveal>
-            <article class="project-card" data-spot>
-              <div class="project-copy">
-                <h3><a href={`/work/${w.slug}/`}>{w.client}</a></h3>
-                <p class="muted">{w.summary}</p>
-                <p class="result">{w.result}</p>
-                <p class="card-links">
-                  <a href={`/work/${w.slug}/`}>Read the case study</a>
-                  <a href={w.clientUrl} target="_blank" rel="noopener">{host(w.clientUrl)} ↗</a>
-                </p>
-              </div>
-              <a class="project-shot" href={`/work/${w.slug}/`} tabindex="-1" aria-hidden="true">
-                <div class="chrome"><i></i><i></i><i></i><span>{host(w.clientUrl)}</span></div>
-                <div>
-                  <Picture src={w.shot} formats={['avif', 'webp']} widths={[480, 760, 1120]} sizes="(max-width: 860px) 100vw, 640px" alt={`${w.client} website home page`} loading="lazy" />
-                </div>
-              </a>
-            </article>
-          </li>
-        ))}
-      </ol>
+      <WorkReel items={proof} label="Proof" title="Where I have done this" lead={proof.length > 1 ? "Pick a project to see the result and the live site." : "The worked example, with the result and the live site."} />
     </div>
   </section>
 
-  <section class="sec">
+  <Process />
+
+  <Reviews />
+
+  <section class="sec band band-glow">
     <div class="wrap faq-grid">
       <div class="faq-side">
         <p class="label">FAQ</p>
@@ -140,18 +150,19 @@ const jsonld = [
     </div>
   </section>
 
-  <section class="sec band band-dots">
+  <section class="sec">
     <div class="wrap">
       <div class="section-head">
         <p class="label">Also</p>
         <h2>Other things I do</h2>
       </div>
-      <ul class="service-list">
+      <ul class="kit kit-links">
         {others.map((o, i) => (
-          <li data-reveal style={`--d:${i * 0.06}s`}>
+          <li data-reveal data-spot style={`--d:${i * 0.07}s`}>
             <span class="idx">{pad(i + 1)}</span>
             <h3><a href={`/${o.slug}/`}>{o.name}</a></h3>
-            <div class="detail"><p class="muted">{o.row}</p></div>
+            <p class="muted">{o.short}</p>
+            <ul class="tags">{o.chips.slice(0, 3).map((c) => <li>{c}</li>)}</ul>
           </li>
         ))}
       </ul>
@@ -160,3 +171,7 @@ const jsonld = [
 
   <Cta heading={`Need ${s.focus}?`} />
 </Base>
+
+<script>
+  import '../scripts/reel.js';
+</script>

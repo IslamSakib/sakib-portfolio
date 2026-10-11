@@ -1,0 +1,27 @@
+---
+// "How I work": the four steps, shared by the home page and the service pages.
+const pad = (n) => String(n).padStart(2, '0');
+const steps = [
+  { name: 'Find the cause', text: 'I test the site, read the errors and check what changed before I touch anything.' },
+  { name: 'Fix the root', text: 'One clean fix where the problem lives, not a patch on top of it.' },
+  { name: 'Measure it', text: 'Before and after numbers from PageSpeed Insights that you can check yourself.' },
+  { name: 'Hand it over', text: 'You get notes on what was done, so the next change does not undo it.' },
+];
+---
+<section id="process" class="sec tint-a">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="label">Process</p>
+      <h2>How I work</h2>
+    </div>
+    <ol class="steps">
+      {steps.map((s, i) => (
+        <li data-reveal style={`--d:${i * 0.1}s`}>
+          <span class="idx">Step {pad(i + 1)}</span>
+          <h3>{s.name}</h3>
+          <p class="muted">{s.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

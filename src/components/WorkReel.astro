@@ -1,0 +1,61 @@
+---
+// The one-screen project reel: a list of projects on the left, the picked one's screenshot and result on the right.
+// Used on the home page (all projects) and on each service page (the projects that prove that service).
+// The page that uses it must load src/scripts/reel.js.
+import { Picture } from 'astro:assets';
+
+const { items, label, title, lead } = Astro.props;
+const host = (url) => new URL(url).hostname.replace('www.', '');
+const pad = (n) => String(n).padStart(2, '0');
+---
+<div class="reel" data-reel>
+  <div class="reel-left">
+    <div class="section-head">
+      <p class="label">{label}</p>
+      <h2>{title}</h2>
+      <p class="lead">{lead}</p>
+    </div>
+    <div class="reel-list" role="tablist" aria-label="Projects" aria-orientation="vertical">
+      {items.map((w, i) => (
+        <button type="button" role="tab" id={`reel-tab-${i}`} aria-controls={`reel-panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
+          <span class="idx">{pad(i + 1)}</span>
+          <span class="name">{w.client}</span>
+          <span class="num">{w.metricValue}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+  <div class="reel-stage" data-reel-stage>
+    {items.map((w, i) => (
+      <div class:list={['reel-panel', { on: i === 0 }]} role="tabpanel" id={`reel-panel-${i}`} aria-labelledby={`reel-tab-${i}`}>
+        <a class="project-shot" href={`/work/${w.slug}/`} aria-label={`${w.client} case study`}>
+          <div class="chrome"><i></i><i></i><i></i><span>{host(w.clientUrl)}</span></div>
+          <div style={`view-transition-name: shot-${w.slug}`}>
+            <Picture
+              src={w.shot}
+              formats={['avif', 'webp']}
+              widths={[480, 760, 1120]}
+              sizes="(max-width: 860px) 100vw, 760px"
+              alt={`${w.client} website home page, built by Sakib Islam`}
+              loading={i === 0 ? 'eager' : 'lazy'}
+            />
+          </div>
+        </a>
+        <div class="reel-info">
+          <div>
+            <h3><a href={`/work/${w.slug}/`}>{w.client}</a></h3>
+            <p class="muted">{w.summary}</p>
+            <ul class="tags">{w.stack.slice(0, 3).map((t) => <li>{t}</li>)}</ul>
+          </div>
+          <div class="reel-side">
+            <p class="outcome"><b class="num">{w.metricValue}</b><span>{w.metricLabel}</span></p>
+            <p class="card-links">
+              <a href={`/work/${w.slug}/`}>Case study</a>
+              <a href={w.clientUrl} target="_blank" rel="noopener">{host(w.clientUrl)} ↗</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
