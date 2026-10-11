@@ -48,7 +48,7 @@ const jsonld = [
       <nav class="crumbs" aria-label="Breadcrumb">
         <a href="/">Home</a><span>/</span><a href="/#work">Work</a><span>/</span><span>{w.client}</span>
       </nav>
-      <h1>{w.title}</h1>
+      <h1>{w.title.replace(/ (\S+)$/, ' $1')}</h1>
       <p class="lead">{w.summary}</p>
       <div class="hero-actions">
         <a class="btn" href={w.clientUrl} target="_blank" rel="noopener">Visit {host} ↗</a>
@@ -103,7 +103,7 @@ const jsonld = [
 
     {review && (
       <blockquote class="case-quote">
-        <p>&ldquo;{review.text}&rdquo;</p>
+        <p>&ldquo;{review.text.replace(/ (\S+)$/, ' $1')}&rdquo;</p>
         <footer>
           {review.url ? (
             <a href={review.url} target="_blank" rel="noopener">{review.name} ↗</a>

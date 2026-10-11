@@ -67,7 +67,7 @@ const jsonld = [
         <p class="label">The problem</p>
         <h2>{s.problemTitle}</h2>
       </div>
-      <p class="lead wide" data-reveal style="--d:0.1s">{s.problem}</p>
+      <p class="lead wide" data-reveal style="--d:0.1s">{s.problem.replace(/ (\S+)$/, ' $1')}</p>
     </div>
   </section>
 
