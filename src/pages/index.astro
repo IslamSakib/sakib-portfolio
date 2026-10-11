@@ -142,14 +142,8 @@ const jsonld = [
         {[0, 1].map((copy) =>
           clients.map((c) => (
             <span class="chip" aria-hidden={copy === 1 ? 'true' : undefined}>
-              {c.logo && <img src={c.logo.src} width={c.logo.width} height={c.logo.height} alt={c.showName ? '' : c.name} loading="lazy" decoding="async" />}
-              {c.showName && <b class="wm wm-heavy" style="--ink:#f5f4ef">{c.name}</b>}
-              {c.mark && (
-                <b class:list={['wm', `wm-${c.mark.style}`]} style={`--ink:${c.mark.color}`}>
-                  {c.mark.badge && <i aria-hidden="true">{c.mark.badge}</i>}
-                  <span>{c.mark.text || c.name}</span>
-                </b>
-              )}
+              <img src={c.logo.src} width={c.logo.width} height={c.logo.height} alt={c.showName ? '' : c.name} loading="lazy" decoding="async" />
+              {c.showName && <b class="wm">{c.name}</b>}
             </span>
           )),
         )}

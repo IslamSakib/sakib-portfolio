@@ -128,7 +128,7 @@ const { slug } = Astro.props;
   .sp-dial circle { fill: none; stroke: var(--surface-2); stroke-width: 9; }
   .sp-dial .sp-ring { stroke: var(--accent); stroke-linecap: round; stroke-dasharray: 100; animation: ring 7s ease-in-out infinite; }
   .sp-dial p { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; }
-  .sp-dial b { grid-area: 1 / 1; font-family: 'Geist Variable', system-ui, sans-serif; font-size: 2.6rem; font-weight: 600; letter-spacing: -0.04em; color: var(--text); line-height: 1; }
+  .sp-dial b { grid-area: 1 / 1; font-family: var(--display); font-size: 2.6rem; font-weight: 600; letter-spacing: -0.04em; color: var(--text); line-height: 1; }
   .sp-dial span { font-size: 0.6875rem; }
   .sp-before { animation: swapout 7s ease-in-out infinite; }
   .sp-after { color: var(--accent) !important; animation: swapin 7s ease-in-out infinite; }

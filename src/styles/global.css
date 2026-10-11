@@ -1,5 +1,6 @@
 /* Dark only, by request. Deep petrol with cream text and one signal-yellow accent, used flat: no glows, no halos.
-   Shape rule: buttons and chips are pills, every container uses --radius. */
+   Shape rule: buttons and chips are pills, every container uses --radius.
+   Type: Bricolage Grotesque for headings, Hanken Grotesk for text, Geist Mono for figures and code. */
 :root {
   --bg: #0d1a20;
   --bg-deep: #08131a;
@@ -14,6 +15,8 @@
   --accent-rgb: 255 210 63;
   --radius: 14px;
   --wrap: 1240px;
+  --sans: 'Hanken Grotesk Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --display: 'Bricolage Grotesque Variable', 'Hanken Grotesk Variable', system-ui, sans-serif;
   --mono: 'Geist Mono Variable', ui-monospace, 'Cascadia Code', Consolas, monospace;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   color-scheme: dark;
@@ -26,7 +29,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: 'Geist Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: var(--sans);
   font-size: 1.0625rem;
   line-height: 1.6;
   overflow-x: clip;
@@ -37,7 +40,7 @@ a { color: inherit; text-underline-offset: 3px; }
 a:hover { color: var(--accent-hi); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 h1, h2, h3, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
-h1, h2, h3 { line-height: 1.08; letter-spacing: -0.03em; font-weight: 650; text-wrap: balance; padding-bottom: 0.08em; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.08; letter-spacing: -0.03em; font-weight: 700; text-wrap: balance; padding-bottom: 0.08em; }
 h1 { font-size: clamp(2.5rem, 6vw, 4.75rem); }
 h2 { font-size: clamp(2rem, 4.2vw, 3.25rem); }
 h3 { font-size: 1.375rem; letter-spacing: -0.02em; }
@@ -160,7 +163,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .reel-list button { position: relative; display: grid; grid-template-columns: 2.25rem 1fr auto; align-items: baseline; gap: 0.5rem; padding: 1.05rem 0.9rem 1.05rem 1rem; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--muted); font: inherit; text-align: left; transition: color 0.3s ease, background 0.3s ease, padding 0.4s var(--ease); }
 .reel-list button::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--accent); transform: scaleY(0); transform-origin: 50% 0; }
 .reel-list .idx { font-family: var(--mono); font-size: 0.75rem; }
-.reel-list .name { font-size: 1.375rem; font-weight: 650; letter-spacing: -0.025em; }
+.reel-list .name { font-family: var(--display); font-size: 1.375rem; font-weight: 650; letter-spacing: -0.025em; }
 .reel-list .num { font-size: 0.875rem; letter-spacing: -0.02em; opacity: 0; transition: opacity 0.3s ease; }
 .reel-list button:hover { color: var(--text); }
 .reel-list button[aria-selected="true"] { color: var(--text); background: var(--surface); padding-left: 1.5rem; }
@@ -203,7 +206,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .term-out { display: grid; padding: 1.5rem 1.75rem 1.75rem; }
 .term-panel { grid-area: 1 / 1; display: grid; gap: 0.55rem; align-content: start; opacity: 0; visibility: hidden; }
 .term-panel.on { opacity: 1; visibility: visible; }
-.term-panel h3 { font-family: 'Geist Variable', system-ui, sans-serif; font-size: clamp(1.75rem, 3.2vw, 2.5rem); color: var(--text); margin: 0.5rem 0 0.1rem; }
+.term-panel h3 { font-family: var(--display); font-size: clamp(1.75rem, 3.2vw, 2.5rem); color: var(--text); margin: 0.5rem 0 0.1rem; }
 .term-panel h3 a { text-decoration: none; }
 .term-panel .sys { margin-bottom: 0.6rem; }
 .term-panel .plan a { color: var(--accent); text-decoration-color: rgb(var(--accent-rgb) / 0.5); }
@@ -289,8 +292,10 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .foot-links { display: flex; gap: 0.5rem; }
 .foot-links a { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); transition: color 0.2s ease, border-color 0.2s ease, transform 0.3s var(--ease); }
 .foot-links a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-3px); }
-.bigmark { display: block; font-size: clamp(3rem, 15.5vw, 15rem); font-weight: 800; letter-spacing: -0.06em; line-height: 1.05; white-space: nowrap; text-align: center; color: transparent; -webkit-text-stroke: 1px var(--line); user-select: none; }
-.bigmark i { font-style: normal; color: var(--accent); -webkit-text-stroke: 0; }
+/* The fill is the page colour and is painted over the inner half of the stroke, which hides the overlapping contours
+   a variable font would otherwise show inside each letter. */
+.bigmark { display: block; width: 100%; height: auto; user-select: none; }
+.bigmark text { font-family: var(--display); font-size: 205px; font-weight: 800; fill: var(--bg); stroke: url(#shine); stroke-width: 3px; stroke-linejoin: round; paint-order: stroke; vector-effect: non-scaling-stroke; }
 .ico { fill: currentColor; flex: none; }
 .btn .ico { margin-right: 0.5rem; }
 
@@ -387,7 +392,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .console .prompt { color: var(--accent); }
 .console input[name="value"] { min-width: 0; padding: 0.6rem 0; border: 0; background: transparent; color: var(--text); font: inherit; font-size: 1rem; outline: none; }
 .console form:focus-within { box-shadow: inset 0 0 0 1px var(--accent); }
-.console form .btn { font-family: 'Geist Variable', system-ui, sans-serif; border: 0; }
+.console form .btn { font-family: var(--sans); border: 0; }
 
 /* Back to top */
 .to-top { position: fixed; right: 1.25rem; bottom: 5.75rem; z-index: 45; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); backdrop-filter: blur(10px); color: var(--text); opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.4s var(--ease), visibility 0.3s, border-color 0.2s ease, color 0.2s ease; }

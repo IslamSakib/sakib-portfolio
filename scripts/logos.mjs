@@ -2,7 +2,7 @@
 // The raw files are each client's own logo, saved from their live site and named <slug>.<anything>.
 // The strip sits on the site's dark background, so every logo gets a dark-theme version, the way brands ship one:
 // the background is removed, black and grey lettering becomes off-white, dark brand colours are lifted until they
-// read on dark, and colours that already work are left alone. Saved 96px tall at most to src/assets/clients/<slug>.png.
+// read on dark, and colours that already work are left alone. Saved 160px tall at most (four times the height it is shown at) to src/assets/clients/<slug>.png.
 import { mkdirSync, readdirSync, writeFileSync } from 'node:fs';
 import sharp from 'sharp';
 
@@ -36,7 +36,7 @@ for (const file of readdirSync(raw)) {
         data[i] = Math.min(255, Math.round(r * k + 20)); data[i + 1] = Math.min(255, Math.round(g * k + 20)); data[i + 2] = Math.min(255, Math.round(b * k + 20));
       }
     }
-    const out = await sharp(data, { raw: info }).trim().resize({ width: 330, height: 96, fit: 'inside', withoutEnlargement: true }).png().toBuffer({ resolveWithObject: true });
+    const out = await sharp(data, { raw: info }).trim().resize({ width: 560, height: 160, fit: 'inside', withoutEnlargement: true }).png().toBuffer({ resolveWithObject: true });
     writeFileSync(`src/assets/clients/${slug}.png`, out.data);
     console.log('ok  ', slug.padEnd(28), `${out.info.width}x${out.info.height}`);
   } catch (e) {

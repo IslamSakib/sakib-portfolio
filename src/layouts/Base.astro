@@ -1,7 +1,9 @@
 ---
-import '@fontsource-variable/geist';
+import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/hanken-grotesk';
 import '@fontsource-variable/geist-mono';
-import fontUrl from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
+import fontUrl from '@fontsource-variable/hanken-grotesk/files/hanken-grotesk-latin-wght-normal.woff2?url';
+import displayUrl from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 import '../styles/motion.css';
 import { site } from '../site.js';
@@ -20,6 +22,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={displayUrl} as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#0d1a20" />
     <meta property="og:type" content="website" />
@@ -72,7 +75,19 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
     <footer class="site-footer">
-      <span class="bigmark" aria-hidden="true">Sakib Islam<i>.</i></span>
+      <!-- The wordmark as an outline, drawn in SVG so the stroke stays crisp at any size. A highlight travels along it. -->
+      <svg class="bigmark" viewBox="0 0 1200 236" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="shine" gradientUnits="userSpaceOnUse" x1="-500" y1="0" x2="0" y2="0">
+            <stop offset="0" stop-color="var(--line)" />
+            <stop offset="0.5" stop-color="var(--accent)" />
+            <stop offset="1" stop-color="var(--line)" />
+            <animate attributeName="x1" values="-500;1200" dur="7s" repeatCount="indefinite" />
+            <animate attributeName="x2" values="0;1700" dur="7s" repeatCount="indefinite" />
+          </linearGradient>
+        </defs>
+        <text x="600" y="186" text-anchor="middle" textLength="1110" lengthAdjust="spacingAndGlyphs">Sakib Islam.</text>
+      </svg>
       <div class="wrap foot">
         <p>
           {site.name}, {site.role} in {site.location}. Founder of{' '}<a href={site.wrkbase} target="_blank" rel="noopener">Wrkbase</a>.
@@ -236,6 +251,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         document.addEventListener('visibilitychange', () => { if (audio) document.hidden ? audio.suspend() : audio.resume(); });
 
         const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) document.querySelector('.bigmark')?.pauseAnimations();
         if (reduce || !('IntersectionObserver' in window)) return;
         document.documentElement.classList.add('js');
         const count = (el) => {
