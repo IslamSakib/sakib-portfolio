@@ -59,6 +59,13 @@ foreach ($fields as $key => $label) {
     $lead[$key] = $value;
 }
 
+// The reply address must be an email address or a phone number, whatever the page's own checks let through.
+$digits = preg_replace('/\D/', '', $lead['contact']) ?? '';
+$isPhone = preg_match('/^[+()\d\s.-]+$/', $lead['contact']) === 1 && strlen($digits) >= 8 && strlen($digits) <= 15;
+if (!filter_var($lead['contact'], FILTER_VALIDATE_EMAIL) && !$isPhone) {
+    finish(400, ['ok' => false, 'error' => 'contact']);
+}
+
 // One message per minute per visitor address.
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $stamp = sys_get_temp_dir() . '/lead_' . hash('sha256', $ip);

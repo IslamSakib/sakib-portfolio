@@ -1,6 +1,8 @@
 // Lead chat: a scripted assistant that asks a few questions, shows a summary, then posts the answers to /lead.php,
 // which emails them to Sakib. It says plainly that it is an assistant, and it never blocks the page: if sending fails
 // (or there is no PHP, as on the local dev server) it hands the same summary to WhatsApp instead.
+import { checks } from './validate.js';
+
 const root = document.querySelector('[data-chat]');
 if (root) {
   const panel = root.querySelector('.chat-panel'), log = root.querySelector('.chat-log'), chipsBox = root.querySelector('.chat-chips');
@@ -29,7 +31,6 @@ if (root) {
     {
       key: 'contact',
       ask: () => `Thanks, ${lead.name.split(' ')[0]}. Where should Sakib reply? An email address or a WhatsApp number works.`,
-      check: (v) => (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) || v.replace(/\D/g, '').length >= 8 ? '' : 'That does not look like an email address or phone number. Could you check it?'),
     },
   ];
 
@@ -84,8 +85,11 @@ if (root) {
     if (!v || busy || step < 0 || step >= steps.length) return;
     bubble(v, 'user');
     input.value = '';
-    const problem = steps[step].check && steps[step].check(v);
-    if (problem) { await say(problem); return; }
+    chips([]);
+    // Every answer is checked (validate.js). A bad one gets a short hint and the same question stays open,
+    // with its quick options back on screen.
+    const problem = checks[steps[step].key](v);
+    if (problem) { await say(problem); chips(steps[step].chips, answer); input.focus(); return; }
     lead[steps[step].key] = v;
     next();
   };

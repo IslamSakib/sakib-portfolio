@@ -1,5 +1,7 @@
 // Free audit console. Three inputs in turn (site address, main worry, contact), with the audit plan written out line by line
 // in between. Sends to /lead.php as type "audit"; if that fails, the same request opens in WhatsApp.
+import { checks, hostOf } from './validate.js';
+
 const box = document.querySelector('[data-audit]');
 if (box) {
   const log = box.querySelector('.console-log'), chipsBox = box.querySelector('.console-chips'), state = box.querySelector('[data-audit-state]');
@@ -52,18 +54,10 @@ if (box) {
     form.hidden = false; input.focus({ preventScroll: true });
   };
 
-  // "example.com/shop" or "https://www.example.com" → host, or '' when it is not a plausible public address.
-  const hostOf = (raw) => {
-    try {
-      const u = new URL(/^https?:\/\//i.test(raw) ? raw : 'https://' + raw);
-      return /^[a-z0-9-]+(\.[a-z0-9-]+)+$/i.test(u.hostname) ? u.hostname.toLowerCase().replace(/^www\./, '') : '';
-    } catch (e) { return ''; }
-  };
-
   const onSite = async (value) => {
     const host = hostOf(value.trim());
     line('> ' + value.trim(), 'you');
-    if (!host) { line('That does not look like a site address. Try something like yoursite.com.', 'warn'); return; }
+    if (!host) { line('That does not look like a site address. Try something like yoursite.com.', 'warn'); input.select(); return; }
     req.site = host;
     busy = true; form.hidden = true; state.textContent = 'planning';
     await type('Address accepted: ' + host, 'ok');
@@ -90,7 +84,8 @@ if (box) {
   const onContact = async (value) => {
     const v = value.trim().slice(0, 200);
     line('> ' + v, 'you');
-    if (!(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) || v.replace(/\D/g, '').length >= 8)) { line('That does not look like an email address or phone number.', 'warn'); return; }
+    const problem = checks.contact(v);
+    if (problem) { line(problem, 'warn'); input.select(); return; }
     req.contact = v;
     busy = true; form.hidden = true; state.textContent = 'sending';
     await type('Sending the request to Sakib...', 'sys');
