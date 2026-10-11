@@ -236,6 +236,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .qmark { position: absolute; top: 1.4rem; right: 2.2rem; font-family: var(--display); font-size: 9rem; line-height: 1; font-weight: 800; opacity: 0.16; }
 .quote-panel { grid-area: 1 / 1; display: grid; gap: 2.5rem; align-content: space-between; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.4s ease, transform 0.5s var(--ease), visibility 0.4s; }
 .quote-panel.on { opacity: 1; visibility: visible; transform: none; }
+.reel > *, .quote-panel { min-width: 0; }
 .quote-panel p { position: relative; max-width: 30ch; font-family: var(--display); font-size: clamp(1.5rem, 2.5vw, 2.25rem); line-height: 1.22; font-weight: 650; letter-spacing: -0.02em; text-wrap: pretty; }
 .quote-panel footer { display: flex; justify-content: space-between; align-items: end; gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgb(26 20 0 / 0.25); }
 .quote-panel .who { display: grid; gap: 0.15rem; }
@@ -492,6 +493,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
   .term-out { padding: 1.25rem 1rem 1.5rem; }
   .quote-stage { min-height: 0; padding: 2rem 1.5rem 1.5rem; }
   .qmark { display: none; }
+  .quote-panel p { font-size: 1.3125rem; overflow-wrap: anywhere; }
   .quote-panel footer { flex-direction: column; align-items: start; gap: 0.75rem; }
   .service-list > li { grid-template-columns: 1fr; gap: 0.75rem; padding: 2rem 0; }
   .service-list > li:hover { padding-left: 0; background: none; }
