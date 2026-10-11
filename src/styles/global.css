@@ -217,46 +217,28 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .frame { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.7); }
 .frame img { width: 100%; }
 
-/* Services on the home page: a bento of four picture panels. The art fills the tile and the text sits over its lower edge. */
-.bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem; }
-.tile { position: relative; grid-column: span 7; height: 440px; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; isolation: isolate; background: radial-gradient(90% 80% at 50% 0%, rgb(var(--accent-rgb) / 0.26), transparent 70%), radial-gradient(rgb(245 244 239 / 0.09) 1px, transparent 1.5px) 0 0 / 22px 22px, var(--bg-deep); transition: border-color 0.3s ease, transform 0.5s var(--ease); }
-.tile:nth-child(2), .tile:nth-child(3) { grid-column: span 5; }
-.tile:hover { border-color: rgb(var(--accent-rgb) / 0.6); transform: translateY(-4px); }
-.tile-art { position: absolute; inset: 0 0 96px 0; }
-.tile-text { position: absolute; inset: auto 0 0 0; z-index: 2; padding: 4.5rem 1.75rem 1.6rem; display: grid; gap: 0.35rem; background: linear-gradient(transparent, var(--bg-deep) 46%); }
-.tile-text .idx { font-family: var(--mono); font-size: 0.8125rem; color: var(--accent); }
-.tile-text h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
-.tile-text h3 a { text-decoration: none; }
-.tile-text h3 a::after { content: ""; position: absolute; inset: -400px 0 0 0; }
-.tile-text p { color: var(--muted); }
-.tile .chrome { height: 26px; padding: 0 0.7rem; }
-.tile .chrome i { width: 7px; height: 7px; }
-/* WordPress: three real client sites, large, fanned out */
-.fan { position: absolute; left: 50%; top: 44px; width: 56%; margin-left: -28%; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #fff; box-shadow: 0 30px 60px -24px rgb(0 0 0 / 0.9); }
-.fan img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
-.fan:nth-child(1) { transform: translateX(-52%) translateY(34px) rotate(-8deg) scale(0.9); }
-.fan:nth-child(2) { transform: translateX(52%) translateY(34px) rotate(8deg) scale(0.9); }
-/* Speed: the TubeOnAI result as one big number pair */
-.speed { position: absolute; inset: 0; display: grid; align-content: center; gap: 1rem; padding: 1.5rem 2rem 0; font-family: var(--mono); color: var(--muted); }
-.speed-big { display: flex; align-items: baseline; gap: 1rem; font-size: clamp(3rem, 6vw, 5rem); line-height: 1; letter-spacing: -0.05em; }
-.speed-big s { color: var(--muted); text-decoration-thickness: 3px; text-decoration-color: rgb(var(--accent-rgb) / 0.8); }
-.speed-big span { font-size: 0.5em; color: var(--muted); }
-.speed-big b { font-weight: 500; color: var(--accent); }
-.speed-big small { font-size: 0.4em; margin-left: 0.1em; }
-.speed .meter { display: grid; grid-template-columns: 3.6rem 1fr; align-items: center; gap: 0.75rem; font-size: 0.75rem; }
-.speed .meter i { height: 10px; border-radius: 999px; background: var(--line); transform-origin: 0 50%; }
-.speed .after i { background: var(--accent); width: 30%; }
-.speed-note { font-size: 0.75rem; }
-/* Custom development: the real Wrkbase dashboard in a window, tipped back */
-.tile.t-custom-web-development .tile-art { perspective: 1100px; }
-.dash { position: absolute; left: 9%; right: 9%; top: 44px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface); transform: rotateX(16deg) rotateZ(-2deg); transform-origin: 50% 0; box-shadow: 0 40px 70px -26px rgb(0 0 0 / 0.9); }
-.dash img { width: 100%; }
-/* AI: an agent window, its four steps ticking off */
-.agent-win { position: absolute; left: 1.75rem; right: 1.75rem; top: 44px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #0c0b0a; box-shadow: 0 30px 60px -26px rgb(0 0 0 / 0.9); }
-.agent { display: grid; gap: 0.95rem; padding: 1.4rem 1.25rem 1.6rem; font-family: var(--mono); font-size: 0.875rem; color: var(--muted); }
-.agent li { position: relative; padding-left: 1.9rem; }
-.agent li::before { content: ""; position: absolute; left: 0; top: 50%; width: 14px; height: 14px; margin-top: -7px; border-radius: 50%; border: 1px solid var(--line); }
-.agent em { font-style: normal; margin-left: 0.6rem; padding: 0.15rem 0.6rem; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+/* Services on the home page: a terminal. Services are commands on the left; picking one prints what it includes on the right. */
+.term { font-size: 0.9375rem; }
+.term-body { display: grid; grid-template-columns: 0.75fr 1.5fr; min-height: 430px; }
+.term-side { display: grid; align-content: start; gap: 0.9rem; padding: 1.5rem 1.25rem; border-right: 1px solid var(--line); }
+.term-list { display: grid; gap: 0.15rem; }
+.term-list button { position: relative; display: grid; grid-template-columns: 1.1rem 1.9rem 1fr; align-items: baseline; padding: 0.6rem 0.6rem; min-height: 44px; border: 0; border-radius: 8px; background: transparent; color: var(--muted); font: inherit; text-align: left; transition: color 0.2s ease, background 0.2s ease; }
+.term-list button::before { content: ">"; color: var(--accent); opacity: 0; }
+.term-list .idx { color: var(--muted); }
+.term-list button:hover { color: var(--text); }
+.term-list button[aria-selected="true"] { color: var(--text); background: rgb(var(--accent-rgb) / 0.1); }
+.term-list button[aria-selected="true"]::before { opacity: 1; }
+.term-list button[aria-selected="true"] .idx { color: var(--accent); }
+.term .hint { font-size: 0.8125rem; }
+.term-out { display: grid; padding: 1.5rem 1.75rem 1.75rem; }
+.term-panel { grid-area: 1 / 1; display: grid; gap: 0.55rem; align-content: start; opacity: 0; visibility: hidden; }
+.term-panel.on { opacity: 1; visibility: visible; }
+.term-panel h3 { font-family: 'Geist Variable', system-ui, sans-serif; font-size: clamp(1.75rem, 3.2vw, 2.5rem); color: var(--text); margin: 0.5rem 0 0.1rem; }
+.term-panel h3 a { text-decoration: none; }
+.term-panel .sys { margin-bottom: 0.6rem; }
+.term-panel .plan a { color: var(--accent); text-decoration-color: rgb(var(--accent-rgb) / 0.5); }
+.term-panel .plan:first-of-type { margin-top: 0.6rem; }
+.caret { display: inline-block; width: 0.55em; height: 1.05em; margin-left: 0.4em; vertical-align: -0.18em; background: var(--accent); }
 
 /* Services: big numbered rows, not cards */
 .service-list { border-top: 1px solid var(--line); }
@@ -276,29 +258,17 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .steps li::before { content: ''; position: absolute; top: calc(-2.75rem + 2px); left: 0; z-index: 1; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
 .steps .idx { font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); }
 
-/* Recommendations: one large quote at a time, with the people underneath as the selector */
-.quotes { display: grid; gap: 2.5rem; }
-.quote-stage { display: grid; }
-.quote-panel { grid-area: 1 / 1; display: grid; gap: 2rem; align-content: start; opacity: 0; visibility: hidden; }
-.quote-panel.on { opacity: 1; visibility: visible; }
-.quote-panel p { position: relative; max-width: 30em; font-size: clamp(1.5rem, 2.9vw, 2.5rem); line-height: 1.25; letter-spacing: -0.025em; font-weight: 500; text-wrap: balance; padding-top: 3.25rem; }
-.quote-panel p::before { content: "\201C"; position: absolute; left: -0.04em; top: -0.32em; font-size: 5em; line-height: 1; font-weight: 700; color: var(--accent); }
-.quote-panel footer { display: flex; align-items: center; gap: 0.9rem; font-size: 0.9375rem; color: var(--muted); }
-.quote-panel footer > span { display: grid; gap: 0.1rem; }
-.quote-panel footer a { color: var(--text); font-weight: 600; font-size: 1.0625rem; text-decoration: none; }
-.quote-panel footer a:hover { color: var(--accent-hi); }
-.quote-panel .li { fill: #0a66c2; flex: none; }
-.quote-tabs { display: flex; flex-wrap: wrap; gap: 0.6rem; border-top: 1px solid var(--line); padding-top: 1.75rem; }
-.quote-tabs button { position: relative; display: flex; align-items: center; gap: 0.75rem; padding: 0.55rem 1.1rem 0.55rem 0.55rem; border: 1px solid var(--line); border-radius: 999px; background: transparent; text-align: left; overflow: hidden; transition: border-color 0.3s ease, background 0.3s ease; }
-.quote-tabs button::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; }
-.quote-tabs .avatar { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); font-family: var(--mono); font-size: 0.75rem; transition: background 0.3s ease, color 0.3s ease; }
-.quote-tabs .who { display: grid; }
-.quote-tabs b { font-size: 0.9375rem; font-weight: 600; color: var(--muted); transition: color 0.3s ease; }
-.quote-tabs .who span { font-size: 0.75rem; color: var(--muted); }
-.quote-tabs button:hover b { color: var(--text); }
-.quote-tabs button[aria-selected="true"] { border-color: rgb(var(--accent-rgb) / 0.7); background: rgb(var(--accent-rgb) / 0.08); }
-.quote-tabs button[aria-selected="true"] b { color: var(--text); }
-.quote-tabs button[aria-selected="true"] .avatar { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+/* Recommendations: two full-width rows of cards drifting in opposite directions */
+.rows { display: grid; gap: 1.5rem; }
+.rcard { width: 420px; flex: none; display: grid; gap: 1.25rem; align-content: space-between; padding: 1.6rem; background: rgb(34 33 32 / 0.85); border: 1px solid var(--line); border-radius: var(--radius); transition: border-color 0.3s ease; }
+.rcard:hover { border-color: rgb(var(--accent-rgb) / 0.6); }
+.rcard p { color: #dedbd2; text-wrap: pretty; }
+.rcard footer { display: grid; grid-template-columns: auto 1fr auto; gap: 0.8rem; align-items: center; font-size: 0.8125rem; color: var(--muted); }
+.rcard .who { display: grid; gap: 0.1rem; }
+.rcard .who a { color: var(--text); font-weight: 600; font-size: 0.9375rem; text-decoration: none; }
+.rcard .who a:hover { color: var(--accent-hi); }
+.rcard .avatar { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--mono); font-size: 0.8125rem; }
+.rcard .li { fill: #0a66c2; align-self: start; }
 .review-note { margin-top: 2rem; color: var(--muted); font-size: 0.9375rem; }
 
 /* FAQ: heading pinned on the left, answers on the right */
@@ -488,11 +458,10 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
   .project:nth-child(even) .project-copy { order: 0; }
   .project-shot, .project:nth-child(even) .project-shot { order: -1; transform: none; box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.8), 0 0 80px -30px rgb(var(--accent-rgb) / 0.45); }
   .project-copy .ghost { font-size: 6rem; }
-  .bento { grid-template-columns: 1fr; }
-  .tile, .tile:nth-child(2), .tile:nth-child(3) { grid-column: auto; height: 400px; }
-  .fan { width: 64%; margin-left: -32%; }
-  .quote-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 0.4rem; }
-  .quote-tabs button { flex: none; }
+  .term-body { grid-template-columns: 1fr; min-height: 0; }
+  .term-side { border-right: 0; border-bottom: 1px solid var(--line); padding: 1.25rem 1rem; }
+  .term-out { padding: 1.25rem 1rem 1.5rem; }
+  .rcard { width: 300px; }
   .service-list > li { grid-template-columns: 1fr; gap: 0.75rem; padding: 2rem 0; }
   .service-list > li:hover { padding-left: 0; background: none; }
   .service-list .idx { padding-top: 0; }
