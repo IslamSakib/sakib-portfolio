@@ -15,9 +15,9 @@
 /* Reading progress along the top edge */
 .progress { position: fixed; inset: 0 0 auto 0; height: 2px; z-index: 60; background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; pointer-events: none; }
 
-/* Cursor: a clean arrowhead with no tail, off-white by default and orange over anything clickable. Pure CSS, so it never lags. */
-html { cursor: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2734%27 height=%2734%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M5 3.2v17.2l5.4-5.2 7.6-.4z%27 fill=%27%23f5f4ef%27 stroke=%27%23191817%27 stroke-width=%271.2%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E") 7 5, auto; }
-a, button, summary, label, [data-magnet] { cursor: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2734%27 height=%2734%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M5 3.2v17.2l5.4-5.2 7.6-.4z%27 fill=%27%23ff8552%27 stroke=%27%23191817%27 stroke-width=%271.2%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E") 7 5, pointer !important; }
+/* Cursor: a clean arrowhead with no tail, cream by default and yellow over anything clickable. Pure CSS, so it never lags. */
+html { cursor: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2734%27 height=%2734%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M5 3.2v17.2l5.4-5.2 7.6-.4z%27 fill=%27%23f2efe6%27 stroke=%27%230d1a20%27 stroke-width=%271.2%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E") 7 5, auto; }
+a, button, summary, label, [data-magnet] { cursor: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2734%27 height=%2734%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M5 3.2v17.2l5.4-5.2 7.6-.4z%27 fill=%27%23ffd23f%27 stroke=%27%230d1a20%27 stroke-width=%271.2%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E") 7 5, pointer !important; }
 
 /* Chat: the three dots while the assistant is typing */
 @keyframes dot { 0%, 60%, 100% { opacity: 0.3; transform: none; } 30% { opacity: 1; transform: translateY(-3px); } }
@@ -28,15 +28,7 @@ a, button, summary, label, [data-magnet] { cursor: url("data:image/svg+xml,%3Csv
 .chat-msg { animation: pop 0.3s var(--ease) both; }
 .chat-panel:not([hidden]) { animation: pop 0.35s var(--ease) both; transform-origin: 100% 100%; }
 
-/* A soft glow that trails the cursor across the whole page */
-body::before { content: ''; position: fixed; inset: 0; z-index: 50; pointer-events: none; background: radial-gradient(520px circle at var(--gx, -999px) var(--gy, -999px), rgb(var(--accent-rgb) / 0.08), transparent 75%); }
-
-/* Hero: a dot field drawn on canvas that ripples and reacts to the cursor. Without script it is a plain dot grid. */
 .hero { position: relative; isolation: isolate; }
-.hero .dots, .svc-hero .dots, .hero::before { position: absolute; inset: -76px 0 0 0; z-index: -1; pointer-events: none; -webkit-mask-image: linear-gradient(#000 45%, transparent 98%); mask-image: linear-gradient(#000 45%, transparent 98%); }
-.hero .dots, .svc-hero .dots { width: 100%; height: calc(100% + 76px); }
-.hero::before { content: ''; background: radial-gradient(rgb(245 244 239 / 0.1) 1px, transparent 1.5px) 0 0 / 26px 26px; }
-.js .hero::before { display: none; }
 
 /* Hero headline: each word rises out of a blur, one after another */
 @keyframes word { from { opacity: 0; transform: translateY(0.45em); filter: blur(10px); } }
@@ -47,23 +39,10 @@ body::before { content: ''; position: fixed; inset: 0; z-index: 50; pointer-even
 .hero-copy > .hero-actions { animation-delay: 0.6s; }
 .hero-photo { animation-delay: 0.35s; }
 
-/* Portrait: tilts toward the cursor, with a beam running round its edge */
+/* Portrait: tilts toward the cursor */
 .portrait { transition: transform 0.5s var(--ease); will-change: transform; }
-figure.portrait::before { inset: calc(17% - 1px) -1px -1px -1px; z-index: -1; }
 .portrait img { transform-origin: 50% 100%; transition: transform 0.7s var(--ease); }
 .portrait:hover img { transform: scale(1.04); }
-@keyframes bob { 50% { translate: 0 -7px; } }
-.portrait .badge { animation: bob 5s ease-in-out infinite; }
-@property --beam { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
-@keyframes beam { to { --beam: 360deg; } }
-.portrait::before, .cta-card::before {
-  content: ''; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none;
-  background: conic-gradient(from var(--beam), transparent 0 68%, var(--accent) 88%, transparent 100%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-  animation: beam 7s linear infinite;
-}
 
 /* Buttons that lean toward the cursor */
 [data-magnet] { will-change: transform; }
@@ -97,26 +76,11 @@ figure.portrait::before { inset: calc(17% - 1px) -1px -1px -1px; z-index: -1; }
 .wm-script { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 1.5rem; letter-spacing: -0.02em; }
 .wm-script i { font-family: Georgia, serif; font-style: italic; border-radius: 50%; }
 
-/* Reveal on scroll. Only hidden when the script has run, so the page works without JavaScript. */
-.js [data-reveal] { opacity: 0; transform: translateY(22px); filter: blur(8px); transition: opacity 0.8s ease, transform 0.8s var(--ease), filter 0.8s ease; transition-delay: var(--d, 0s); }
-.js [data-reveal].in { opacity: 1; transform: none; filter: none; }
+/* Sections are simply there when you scroll to them. The hero headline is the one entrance on the page. */
 
-/* Typed headings: a blinking caret while the text is written */
-@keyframes blink { 50% { opacity: 0; } }
-.typing::after { content: ''; display: inline-block; width: 0.07em; min-width: 3px; height: 0.82em; margin-left: 0.08em; vertical-align: -0.06em; background: var(--accent); animation: blink 0.8s steps(1) infinite; }
-
-/* Cursor spotlight on cards */
-[data-spot] { position: relative; }
-[data-spot]::after {
-  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity 0.3s ease;
-  background: radial-gradient(460px circle at var(--mx, -500px) var(--my, -500px), rgb(var(--accent-rgb) / 0.14), transparent 62%);
-}
-[data-spot]:hover::after { opacity: 1; }
-
-/* Services terminal: when a service is picked its lines print one after another, and a block caret blinks at the end */
+/* Services terminal: when a service is picked its lines print one after another */
 @keyframes print { from { opacity: 0; transform: translateX(-6px); } }
 .term-panel.on .line { animation: print 0.35s ease-out both; animation-delay: calc(var(--i) * 90ms); }
-.caret { animation: blink 1s steps(1) infinite; }
 
 /* Recommendations: the second row runs the other way, and both rows stop while the pointer is over them */
 .rrow .track { gap: 1.5rem; align-items: stretch; animation-duration: 90s; }
@@ -147,23 +111,16 @@ figure.portrait::before { inset: calc(17% - 1px) -1px -1px -1px; z-index: -1; }
   @keyframes grow { to { transform: scaleX(1); } }
   .progress { animation: grow linear both; animation-timeline: scroll(root); }
 
-  /* The Wrkbase screen starts tipped back and lands flat as it scrolls in */
-  @keyframes land { from { transform: rotateX(24deg) scale(0.9); opacity: 0.5; } }
-  .stage .frame { transform-origin: 50% 100%; animation: land linear both; animation-timeline: view(); animation-range: entry 0% cover 42%; }
-
   /* The process line draws itself */
   @keyframes draw { to { transform: none; } }
   .steps::after { animation: draw linear both; animation-timeline: view(); animation-range: entry 60% cover 55%; }
 
-  /* The footer wordmark fills in as it arrives */
-  @keyframes fill { to { color: var(--surface-2); } }
-  .bigmark { animation: fill linear both; animation-timeline: view(); animation-range: entry 20% entry 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
-  .w, .hero-copy > *, .hero-photo, .chat-msg, .chat-msg.typing i, .chat-panel, .portrait .badge, .portrait::before, .cta-card::before, .track, .agent li, .agent li::before, .agent em, .speed .meter i, .reel-list button::before, .stage .frame, .steps::after, .bigmark, .progress { animation: none !important; }
+  .w, .hero-copy > *, .hero-photo, .chat-msg, .chat-msg.typing i, .chat-panel, .track, .agent li, .agent li::before, .agent em, .speed .meter i, .reel-list button::before, .steps::after, .progress { animation: none !important; }
   .steps::after { transform: none; }
   .marquee { overflow-x: auto; }
-  body::before, .progress { display: none; }
+  .progress { display: none; }
 }

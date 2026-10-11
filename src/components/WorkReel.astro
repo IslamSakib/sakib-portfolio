@@ -4,14 +4,13 @@
 // The page that uses it must load src/scripts/reel.js.
 import { Picture } from 'astro:assets';
 
-const { items, label, title, lead } = Astro.props;
+const { items, title, lead } = Astro.props;
 const host = (url) => new URL(url).hostname.replace('www.', '');
 const pad = (n) => String(n).padStart(2, '0');
 ---
 <div class="reel" data-reel>
   <div class="reel-left">
     <div class="section-head">
-      <p class="label">{label}</p>
       <h2>{title}</h2>
       <p class="lead">{lead}</p>
     </div>

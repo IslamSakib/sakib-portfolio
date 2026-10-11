@@ -51,13 +51,11 @@ const jsonld = [
 ---
 <Base title={s.title} description={s.description} jsonld={jsonld} focus={s.focus}>
   <section class="page-head svc-hero">
-    <canvas class="dots" aria-hidden="true"></canvas>
     <div class="wrap svc-grid">
       <div class="svc-copy">
         <nav class="crumbs" aria-label="Breadcrumb">
           <a href="/">Home</a><span>/</span><a href="/#services">Services</a><span>/</span><span>{s.name}</span>
         </nav>
-        <p class="label">{s.name}</p>
         <h1>{tidy(s.h1)}</h1>
         <p class="lead">{tidy(s.lead)}</p>
         <div class="hero-actions">
@@ -86,7 +84,6 @@ const jsonld = [
   <section class="sec band band-glow">
     <div class="wrap">
       <div class="section-head">
-        <p class="label">The problem</p>
         <h2>{s.problemTitle}</h2>
       </div>
       <div class="versus">
@@ -106,7 +103,6 @@ const jsonld = [
   <section class="sec">
     <div class="wrap">
       <div class="section-head">
-        <p class="label">What is included</p>
         <h2>What you get</h2>
       </div>
       <ul class="kit">
@@ -123,7 +119,7 @@ const jsonld = [
 
   <section id="proof" class="sec tint-a">
     <div class="wrap">
-      <WorkReel items={proof} label="Proof" title="Where I have done this" lead={proof.length > 1 ? "Pick a project to see the result and the live site." : "The worked example, with the result and the live site."} />
+      <WorkReel items={proof} title="Where I have done this" lead={proof.length > 1 ? "Pick a project to see the result and the live site." : "The worked example, with the result and the live site."} />
     </div>
   </section>
 
@@ -134,7 +130,6 @@ const jsonld = [
   <section class="sec band band-glow">
     <div class="wrap faq-grid">
       <div class="faq-side">
-        <p class="label">FAQ</p>
         <h2>Questions about {s.focus}</h2>
         <p class="muted">Something else on your mind? Ask me directly.</p>
         <a class="btn btn-ghost btn-small" href={site.whatsapp} target="_blank" rel="noopener">Ask on WhatsApp</a>
@@ -153,7 +148,6 @@ const jsonld = [
   <section class="sec">
     <div class="wrap">
       <div class="section-head">
-        <p class="label">Also</p>
         <h2>Other things I do</h2>
       </div>
       <ul class="kit kit-links">
