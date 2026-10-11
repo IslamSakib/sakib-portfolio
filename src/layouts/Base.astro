@@ -280,8 +280,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         document.querySelectorAll('[data-reveal], [data-count], main h2').forEach((el) => io.observe(el));
 
         if (matchMedia('(hover: hover)').matches) {
-            el.addEventListener('pointerleave', () => { el.style.transform = ''; });
-          });
           document.querySelectorAll('[data-tilt]').forEach((el) => {
             el.addEventListener('pointermove', (e) => {
               const r = el.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
