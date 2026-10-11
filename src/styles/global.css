@@ -186,6 +186,8 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 
 /* Selected work on the home page: project names on the left, one preview stage on the right. Fits in one screen. */
 .reel { display: grid; grid-template-columns: 0.8fr 1.7fr; gap: 3.5rem; align-items: start; }
+.reel-left { display: grid; align-content: start; }
+.reel-left .section-head { margin-bottom: 2.25rem; }
 .reel-list { display: grid; border-top: 1px solid var(--line); }
 .reel-list button { position: relative; display: grid; grid-template-columns: 2.25rem 1fr auto; align-items: baseline; gap: 0.5rem; padding: 1.05rem 0.9rem 1.05rem 1rem; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--muted); font: inherit; text-align: left; transition: color 0.3s ease, background 0.3s ease, padding 0.4s var(--ease); }
 .reel-list button::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--accent); transform: scaleY(0); transform-origin: 50% 0; }
