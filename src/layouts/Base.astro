@@ -174,19 +174,24 @@ const menu = [{ slug: 'wordpress-maintenance', name: 'Maintenance and fixes', sh
           o.connect(g).connect(audio.destination);
           o.start(t); o.stop(t + 0.12);
         };
-        // Music: a slow, dark ambient bed to match the black and violet site. Lush minor chords (A minor 9, F major 9,
-        // D minor 9, E suspended) as soft detuned pads that overlap from one chord to the next, so there is never a gap;
-        // a deep sub bass under each chord; a quiet bell-like arpeggio with an echo; everything through a long generated
-        // reverb and one warm low-pass filter. No drums. Notes are scheduled ahead on the audio clock so it never drops out,
-        // and it carries on from page to page, picking up at the same place in the tune.
+        // Music: a slow, calm ambient bed. A warm descending loop of consonant chords (F major 9, E minor 7, D minor 9,
+        // C major 9) as soft pads that swell in and overlap, so there is never a gap; a soft, round bass; and a sparse
+        // melody that only uses notes that fit every chord (C, D, E, G, A), so nothing clashes. Long gentle reverb, no drums.
+        // Notes are scheduled ahead on the audio clock so it never drops out, and it carries on from page to page,
+        // picking up at the same place in the tune.
         const chords = [
-          { bass: 55.0, keys: [220.0, 261.63, 329.63, 392.0, 493.88] },
-          { bass: 87.31, keys: [174.61, 220.0, 261.63, 329.63, 392.0] },
-          { bass: 73.42, keys: [174.61, 220.0, 261.63, 293.66, 329.63] },
-          { bass: 82.41, keys: [164.81, 220.0, 246.94, 293.66, 392.0] },
+          { bass: 87.31, keys: [261.63, 329.63, 392.0, 440.0] },
+          { bass: 82.41, keys: [246.94, 293.66, 329.63, 392.0] },
+          { bass: 73.42, keys: [220.0, 261.63, 349.23, 440.0] },
+          { bass: 65.41, keys: [246.94, 293.66, 329.63, 392.0] },
         ];
-        // Which chord note the arpeggio plays on each of the 8 steps of a chord (an octave up); -1 is a rest.
-        const arp = [0, 2, 4, 3, -1, 2, 4, 1];
+        // The melody over the 32 steps (four chords of eight); 0 is a rest. Few notes, long and soft.
+        const melody = [
+          659.25, 0, 0, 783.99, 0, 0, 0, 0,
+          587.33, 0, 0, 659.25, 0, 783.99, 0, 0,
+          523.25, 0, 0, 440.0, 0, 0, 0, 0,
+          659.25, 0, 0, 587.33, 0, 0, 523.25, 0,
+        ];
         const startMusic = () => {
           if (music || !ctx()) return;
           try { sessionStorage.setItem('music', 'on'); } catch (e) {}
@@ -195,18 +200,18 @@ const menu = [{ slug: 'wordpress-maintenance', name: 'Maintenance and fixes', sh
           let saved = null;
           try { saved = JSON.parse(sessionStorage.getItem('music-at')); } catch (e) {}
           out.gain.setValueAtTime(0.0001, audio.currentTime);
-          out.gain.exponentialRampToValueAtTime(0.85, audio.currentTime + (saved ? 0.4 : 3));
-          warm.type = 'lowpass'; warm.frequency.value = 2600; warm.Q.value = 0.2;
+          out.gain.exponentialRampToValueAtTime(0.8, audio.currentTime + (saved ? 0.5 : 4));
+          warm.type = 'lowpass'; warm.frequency.value = 2200; warm.Q.value = 0.1;
           warm.connect(out).connect(audio.destination);
-          const beat = 60 / 64 / 2;
+          const beat = 60 / 56 / 2;
           // Reverb: a 3.5 second tail made from decaying noise, mixed in quietly.
           const verb = audio.createConvolver(), wet = audio.createGain();
           const len = Math.floor(audio.sampleRate * 3.5), ir = audio.createBuffer(2, len, audio.sampleRate);
           for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.6); }
-          verb.buffer = ir; wet.gain.value = 0.55;
+          verb.buffer = ir; wet.gain.value = 0.45;
           verb.connect(wet).connect(warm);
           const echo = audio.createDelay(2), feedback = audio.createGain();
-          echo.delayTime.value = beat * 3; feedback.gain.value = 0.38;
+          echo.delayTime.value = beat * 3; feedback.gain.value = 0.28;
           echo.connect(feedback).connect(echo); echo.connect(verb); echo.connect(warm);
           // One soft voice: an oscillator with a slow rise and fall, sent dry and to the reverb.
           const note = (type, freq, at, peak, attack, length, detune = 0, send = 0.6) => {
@@ -221,17 +226,17 @@ const menu = [{ slug: 'wordpress-maintenance', name: 'Maintenance and fixes', sh
             o.start(at); o.stop(at + length + 0.05);
             return g;
           };
-          // Pads: each chord note as two slightly detuned triangles through their own soft filter, lasting a chord and a half.
+          // Pads: each chord note as a sine and a barely detuned triangle through a soft filter, swelling in slowly and lasting a chord and a half.
           const pad = (freq, at, length) => {
             const f = audio.createBiquadFilter();
-            f.type = 'lowpass'; f.frequency.setValueAtTime(700, at); f.frequency.linearRampToValueAtTime(1300, at + length / 2); f.frequency.linearRampToValueAtTime(700, at + length);
+            f.type = 'lowpass'; f.frequency.setValueAtTime(600, at); f.frequency.linearRampToValueAtTime(950, at + length / 2); f.frequency.linearRampToValueAtTime(600, at + length);
             f.connect(warm);
-            [-7, 7].forEach((d) => {
+            [['sine', 0], ['triangle', 3]].forEach(([type, d]) => {
               const o = audio.createOscillator(), g = audio.createGain(), s = audio.createGain();
-              o.type = 'triangle'; o.frequency.value = freq; o.detune.value = d;
+              o.type = type; o.frequency.value = freq; o.detune.value = d;
               g.gain.setValueAtTime(0.0001, at);
-              g.gain.exponentialRampToValueAtTime(0.02, at + 1.6);
-              g.gain.setValueAtTime(0.02, at + length - 2.2);
+              g.gain.exponentialRampToValueAtTime(0.018, at + 2.6);
+              g.gain.setValueAtTime(0.018, at + length - 2.6);
               g.gain.exponentialRampToValueAtTime(0.0001, at + length);
               s.gain.value = 0.9;
               o.connect(g); g.connect(f); g.connect(s).connect(verb);
@@ -246,14 +251,10 @@ const menu = [{ slug: 'wordpress-maintenance', name: 'Maintenance and fixes', sh
               const chord = chords[Math.floor(step / 8) % chords.length], s8 = step % 8, at = when;
               if (s8 === 0) {
                 chord.keys.forEach((f) => pad(f, at, beat * 12));
-                note('sine', chord.bass, at, 0.2, 0.8, beat * 9, 0, 0.2);
-                note('sine', chord.bass * 2, at, 0.04, 1.2, beat * 8, 0, 0.3);
+                note('sine', chord.bass * 2, at, 0.07, 1.5, beat * 9, 0, 0.3);
               }
-              const k = arp[s8];
-              if (k >= 0) {
-                const g = note('sine', chord.keys[k] * 2, at, s8 === 0 ? 0.03 : 0.02, 0.015, beat * 2.4, 0, 0.7);
-                g.connect(echo);
-              }
+              const top = melody[step % 32];
+              if (top) note('sine', top, at, 0.02, 0.08, beat * 4, 0, 0.8).connect(echo);
               step += 1; when += beat;
             }
           };
