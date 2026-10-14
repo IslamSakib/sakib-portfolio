@@ -71,7 +71,7 @@ const jsonld = [
         <h1><span class="eyebrow">WordPress maintenance services</span>Your site, looked after every month.</h1>
         <p class="lead">One senior developer who knows your site. Not a ticket queue.</p>
         <div class="btn-row">
-          <a class="btn" href="/contact/?need=maintenance">Start a care plan</a>
+          <a class="btn" href="/contact/?plan=care">Start a care plan</a>
           <a class="btn btn-ghost" href="#fix">Fix one problem first</a>
         </div>
       </div>
@@ -132,6 +132,11 @@ const jsonld = [
               ))}
             </tr>
           ))}
+          <tr>
+            <th scope="row"><span class="sr-only">Start</span></th>
+            <td><a class="btn btn-small" href="/contact/?plan=care">Start Care</a></td>
+            <td class="hi"><a class="btn btn-small" href="/contact/?plan=care-plus">Start Care + development</a></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -145,7 +150,7 @@ const jsonld = [
         <h2 style="font-size: clamp(1.75rem, 3vw, 2.5rem)">Fix one problem first. From {usd(prices.fix)}.</h2>
         <p class="mut">White screen, broken form, plugin conflict. The cause written down.</p>
       </div>
-      <a class="btn" href="/contact/?need=broken">Describe the problem</a>
+      <a class="btn" href="/contact/?need=broken">Fix my site from $150</a>
     </div>
   </section>
 

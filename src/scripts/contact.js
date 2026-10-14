@@ -22,6 +22,19 @@ if (form) {
   if (params.get('type') === 'agency') form.querySelector('input[value=agency]').checked = true;
   const needs = { maintenance: 'Monthly maintenance', broken: 'Something is broken', speed: 'My site is slow', build: 'A new build or relaunch' };
   if (needs[params.get('need')]) f.need.value = needs[params.get('need')];
+  // A plan picked on a pricing table starts the message for the visitor.
+  const plans = {
+    care: ['Monthly maintenance', 'I would like to start the Care plan ($149 a month) for my site: '],
+    'care-plus': ['Monthly maintenance', 'I would like to start the Care + development plan ($299 a month) for my site: '],
+    site: [null, 'We have a design to build in WordPress. Pages and date: '],
+    hourly: [null, 'We would like to book hourly help ($35 an hour) for: '],
+    block: [null, 'We would like a quote for a monthly block of hours, about this many hours a month: '],
+  };
+  const plan = plans[params.get('plan')];
+  if (plan) {
+    if (plan[0]) f.need.value = plan[0];
+    f.message.value = plan[1];
+  }
   setType(f.type.value);
 
   const flag = (input, message) => {

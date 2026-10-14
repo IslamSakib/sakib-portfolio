@@ -1,6 +1,8 @@
 /* Layouts from the October 2026 redesign (home, agencies, maintenance, contact, blog). Visual first: real screenshots,
    real numbers drawn as small charts, one short line of text per block. Tokens come from global.css. */
 
+.ln { display: inline; }
+@media (min-width: 700px) { .ln { white-space: nowrap; } }
 .eyebrow { display: block; font-family: var(--mono); font-size: 0.8125rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; }
 .mut { color: var(--muted); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -21,26 +23,45 @@
 .browser img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
 
 /* Home hero: copy on the left; on the right the portrait stands on a panel, one site overlaps its corner */
-.h-hero { padding: 3rem 0 4.5rem; }
-.h-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 3rem; align-items: center; }
-.h-copy { display: grid; gap: 1.5rem; justify-items: start; }
-.h-copy h1 { font-size: clamp(2.75rem, 5.8vw, 5.4rem); max-width: 14ch; }
-.h-copy .lead { max-width: 34ch; }
-.h-stage { position: relative; width: 100%; max-width: 580px; aspect-ratio: 1 / 1.02; justify-self: end; }
-.h-panel { position: absolute; inset: 0 0 0 16%; border-radius: 18px; overflow: hidden; background: var(--surface-2); border: 1px solid var(--line); }
-.h-panel img { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); height: 96%; width: auto; max-width: none; filter: grayscale(1) contrast(1.06); }
-.h-shot { position: absolute; left: 0; bottom: 7%; width: 50%; box-shadow: 0 24px 48px rgb(0 0 0 / 0.65); }
-.h-stat { position: absolute; left: 4%; top: 9%; display: grid; gap: 0.2rem; padding: 0.85rem 1rem; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 18px 36px rgb(0 0 0 / 0.5); }
+.h-hero { padding: 2.5rem 0 3.5rem; }
+.h-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; }
+.h-copy { display: grid; gap: 1.25rem; justify-items: start; }
+.h-copy .eyebrow { margin-bottom: 0.9rem; }
+.h-meta { display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; font-size: 0.8125rem; margin-top: 0.25rem; }
+.h-meta span { white-space: nowrap; }
+.h-copy .lead .ln { display: block; }
+.h-copy h1 { font-size: clamp(2.5rem, 4.6vw, 4.4rem); max-width: none; }
+.h-copy .lead { max-width: 44ch; font-size: 1.1875rem; }
+.h-collage { position: relative; width: 100%; max-width: 600px; aspect-ratio: 1 / 0.82; justify-self: end; }
+.c-back { position: absolute; right: 0; top: 0; width: 80%; box-shadow: 0 30px 60px rgb(0 0 0 / 0.5); }
+.c-front { position: absolute; left: 0; bottom: 0; width: 58%; box-shadow: 0 30px 60px rgb(0 0 0 / 0.65); }
+.h-stat { position: absolute; left: 6%; top: 10%; display: grid; gap: 0.2rem; padding: 0.85rem 1rem; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 18px 36px rgb(0 0 0 / 0.5); }
 .h-stat b { font-family: var(--mono); font-weight: 400; font-size: 1.375rem; letter-spacing: -0.03em; }
 .h-stat em { font-style: normal; color: var(--accent); }
 .h-stat small { font-family: var(--mono); font-size: 0.6875rem; color: var(--muted); }
-.names { border-top: 1px solid var(--surface-2); border-bottom: 1px solid var(--surface-2); padding: 1.25rem 0; }
-.names .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem 2.5rem; font-family: var(--mono); font-size: 0.9375rem; color: var(--muted); }
+/* The portrait, now in the About section: a cut-out standing on a panel */
+.h-panel { position: relative; aspect-ratio: 1 / 1.08; border-radius: 18px; overflow: hidden; background: var(--surface-2); border: 1px solid var(--line); }
+.h-panel img { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); height: 96%; width: auto; max-width: none; filter: grayscale(1) contrast(1.06); }
+.about-photo { margin: 0; display: grid; gap: 0.75rem; position: sticky; top: 110px; }
+.about-photo figcaption { font-size: 0.75rem; }
+/* Trust band under the hero: four checkable numbers and the real client logos */
+.trust-band { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-deep); padding: 3rem 0 2.5rem; }
+.trust-nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 0 2.5rem; }
+.trust-nums div { display: grid; gap: 0.35rem; align-content: start; padding-right: 1.25rem; }
+.trust-nums div + div { border-left: 1px solid var(--line); padding-left: 1.25rem; }
+.trust-nums dt { font-family: var(--display); font-weight: 700; font-size: clamp(2.4rem, 4.2vw, 3.6rem); letter-spacing: -0.04em; line-height: 1; }
+.trust-nums dd { margin: 0; color: var(--muted); font-size: 0.9375rem; max-width: 24ch; text-wrap: balance; }
+.logo-row { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: center; }
+.logo-row ul { display: flex; flex-wrap: wrap; gap: 1.25rem 3rem; align-items: center; }
+.logo-row li { display: flex; align-items: center; gap: 0.5rem; }
+.logo-row img { height: 30px; width: auto; opacity: 0.75; filter: grayscale(1) brightness(1.4); }
+.logo-row li:hover img { opacity: 1; filter: none; }
+.logo-row span { font-family: var(--display); font-weight: 700; font-size: 0.95rem; color: var(--muted); }
 
 /* Tiles: the two paths, the service bento */
 .tile { position: relative; display: flex; flex-direction: column; gap: 1.25rem; padding: 1.75rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; color: var(--text); text-decoration: none; transition: border-color 0.2s ease; }
 a.tile:hover { border-color: var(--accent); color: var(--text); }
-.tile h2, .tile h3 { font-size: clamp(1.5rem, 2.2vw, 2rem); max-width: 16ch; }
+.tile h2, .tile h3 { font-size: clamp(1.5rem, 2.2vw, 2rem); max-width: 22ch; }
 .tile-top { display: flex; justify-content: space-between; align-items: baseline; }
 .paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
 .bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1.25rem; }
@@ -92,9 +113,10 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .mosaic > a:hover .browser { border-color: var(--accent); }
 
 /* About and experience */
-.about { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4.5rem; align-items: start; }
+.about { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 4.5rem; align-items: start; }
 .about-copy { display: grid; gap: 1.4rem; }
-.about-copy h2 { max-width: 16ch; }
+.about-copy h2 { max-width: 20ch; }
+.about-copy .timeline { margin-top: 1rem; }
 .about-copy p { max-width: 40ch; }
 .about-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
 .about-facts div { display: grid; gap: 0.2rem; padding: 1.25rem 1rem 0 0; }
@@ -117,12 +139,14 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 
 /* Motto */
 .motto { padding: 7.5rem 0; border-bottom: 1px solid var(--line); }
-.motto p.big { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em; line-height: 0.98; font-size: clamp(3rem, 8vw, 8rem); max-width: 12ch; text-wrap: balance; }
+.motto p.big { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em; line-height: 1; font-size: clamp(2.1rem, 7.4vw, 7.5rem); }
+.motto p.big .ln { display: block; white-space: nowrap; }
 .motto em { font-style: normal; color: var(--accent); }
 
 /* Starting prices as one strip */
 .price-strip { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.price-strip div { display: grid; gap: 0.35rem; padding: 1.6rem 1.25rem 1.6rem 0; }
+.price-strip div { display: grid; gap: 0.35rem; align-content: start; justify-items: start; padding: 1.6rem 1.25rem 1.6rem 0; }
+.price-strip .btn { margin-top: 0.6rem; }
 .price-strip div + div { border-left: 1px solid var(--line); padding-left: 1.25rem; }
 .price-strip b { font-family: var(--mono); font-weight: 400; font-size: 1.875rem; letter-spacing: -0.03em; }
 .price-strip small { font-size: 1rem; color: var(--muted); }
@@ -188,7 +212,8 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .cap-grid .tile { min-height: 0; gap: 0.75rem; }
 .cap-grid h3 { font-size: 1.375rem; }
 .models { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
-.models > div { display: grid; gap: 0.6rem; padding: 1.75rem; border: 1px solid var(--line); border-radius: 10px; }
+.models > div { display: grid; gap: 0.6rem; align-content: start; justify-items: start; padding: 1.75rem; border: 1px solid var(--line); border-radius: 10px; }
+.models .btn { margin-top: 0.75rem; }
 .models > div:first-child { border-color: var(--accent); background: var(--surface); }
 .models b { font-family: var(--mono); font-weight: 400; font-size: 2.5rem; letter-spacing: -0.04em; }
 .models small { font-size: 1.125rem; color: var(--muted); }
@@ -292,7 +317,12 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 }
 @media (max-width: 900px) {
   .h-grid, .paths, .about, .rv-item, .post-grid, .post-feature, .p-grid, .two-col, .cap-grid, .models, .contact-grid, .start-steps { grid-template-columns: minmax(0, 1fr); }
-  .h-stage { justify-self: stretch; max-width: 520px; }
+  .h-collage { justify-self: stretch; max-width: 520px; }
+  .about-photo { position: static; max-width: 360px; }
+  .trust-nums { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.75rem; }
+  .trust-nums div + div { border-left: 0; padding-left: 0; }
+  .logo-row { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .eyebrow { font-size: 0.6875rem; letter-spacing: 0.05em; }
   .span-7, .span-5 { grid-column: 1 / -1; }
   .bento > * { min-height: 0; }
   .mosaic > a, .mosaic > a:first-child { grid-column: 1 / -1; grid-row: auto; }
@@ -324,6 +354,13 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
   .mnav { display: block; }
   .site-header nav { gap: 0.5rem; }
 }
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   .site-header nav .btn-small { display: none; }
+}
+
+/* Phones: the hero headline and description keep their two phrases whole, one per line, sized to fit the screen. */
+@media (max-width: 699px) {
+  .h-copy h1 { font-size: 8.3vw; }
+  .h-copy h1 .ln, .h-copy .lead .ln { display: block; white-space: nowrap; }
+  .h-copy .lead { font-size: 4.1vw; }
 }

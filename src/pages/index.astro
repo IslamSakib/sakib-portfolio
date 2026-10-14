@@ -9,6 +9,7 @@ import { site } from '../site.js';
 import { services } from '../services.js';
 import { work } from '../work.js';
 import { reviews, initials, allReviewsUrl } from '../reviews.js';
+import { clients, clientCount } from '../clients.js';
 import { posts } from '../blog.js';
 import { prices, usd } from '../prices.js';
 
@@ -23,11 +24,17 @@ const tabby = shot('tabby');
 // Selected work: the first is shown large. Wrkbase is shown by its app screen, the rest by their home pages.
 const mosaic = ['tabby', 'tubeonai', 'open-alliance-learning', 'wrkbase', 'pixmge'].map(shot).map((w) => ({ ...w, img: w.slug === 'wrkbase' ? appShot : w.shot }));
 
-// Each line is checkable: case studies are on this site, recommendations are on LinkedIn, Wrkbase is live.
-const facts = [
-  { n: String(work.length), label: 'case studies, live links' },
-  { n: String(reviews.length), label: 'recommendations quoted' },
-  { n: '1', label: 'SaaS product of my own' },
+// Trust numbers. Each can be checked: the client list is in src/clients.js (Sakib's own list of sites built or fixed),
+// full-time WordPress work starts at Oxford International School in Feb 2023, the recommendations are on LinkedIn,
+// and the two results are from the Tabby and TubeOnAI case studies.
+// The logo row shows only the best-known clients; the full list stays in src/clients.js.
+const featured = ['Tabby', 'TubeOnAI', 'Moneybag', 'Wrkbase', 'Pixmge', 'Oxford International School'];
+const logos = featured.map((n) => clients.find((c) => c.name === n)).filter(Boolean);
+const trust = [
+  { n: `${clientCount}+`, label: 'client websites built or fixed' },
+  { n: '3+', label: 'years building WordPress full-time' },
+  { n: String(reviews.length), label: 'LinkedIn recommendations from founders and managers' },
+  { n: '90+', label: 'Core Web Vitals at launch for Tabby' },
 ];
 const experience = [
   { yr: '2026 →', role: 'IT Executive', org: 'Open Academy London, online education', kind: 'Full-time' },
@@ -38,11 +45,11 @@ const experience = [
   { yr: '2023', role: 'WordPress developer', org: 'Oxford International School, Dhaka', kind: 'Full-time' },
 ];
 const strip = [
-  { price: usd(prices.care), unit: '/mo', label: 'Care plan' },
-  { price: usd(prices.fix), unit: '', label: 'Broken site fix' },
-  { price: usd(prices.speed), unit: '', label: 'Speed fix' },
-  { price: usd(prices.build), unit: '', label: 'Custom build' },
-  { price: usd(prices.agencyHour), unit: '/h', label: 'Agency white-label' },
+  { price: usd(prices.care), unit: '/mo', label: 'Care plan', href: '/contact/?plan=care', cta: 'Start a plan' },
+  { price: usd(prices.fix), unit: '', label: 'Broken site fix', href: '/contact/?need=broken', cta: 'Fix my site' },
+  { price: usd(prices.speed), unit: '', label: 'Speed fix', href: '/contact/?need=speed', cta: 'Speed it up' },
+  { price: usd(prices.build), unit: '', label: 'Custom build', href: '/contact/?need=build', cta: 'Start a build' },
+  { price: usd(prices.agencyHour), unit: '/h', label: 'Agency white-label', href: '/contact/?type=agency', cta: 'Start a trial' },
 ];
 
 const jsonld = [
@@ -71,29 +78,45 @@ const jsonld = [
   <section class="h-hero wrap">
     <div class="h-grid">
       <div class="h-copy">
-        <h1><span class="eyebrow">Sakib Islam · Senior WordPress developer</span>Fast WordPress sites that keep working.</h1>
-        <p class="lead">For businesses with a site to fix, and agencies with designs to build.</p>
+        <h1><span class="eyebrow">Senior WordPress developer</span><span class="ln">Fast WordPress sites</span> <span class="ln">that keep working.</span></h1>
+        <p class="lead"><span class="ln">Fixes, speed and care for business sites.</span> <span class="ln">White-label builds for agencies.</span></p>
         <div class="btn-row">
           <a class="btn" href="/contact/">Get a free site check</a>
           <a class="btn btn-ghost" href="/white-label-wordpress-development/">For agencies</a>
         </div>
-        <p class="mono mut" style="font-size: 0.8125rem">Dhaka, remote · Overlaps US and UK hours</p>
+        <p class="mono mut h-meta"><span>Dhaka, remote</span> <span>Overlaps US and UK hours</span> <span>Reply within 24 hours</span></p>
       </div>
-      <div class="h-stage">
-        <div class="h-panel">
-          <Picture src={photo} formats={['avif', 'webp']} widths={[480, 800]} sizes="(max-width: 900px) 80vw, 480px" alt="Sakib Islam, WordPress developer" loading="eager" fetchpriority="high" />
+      <div class="h-collage" aria-label="Sites I built">
+        <div class="browser c-back">
+          <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>usetabby.com</span></div>
+          <Picture src={tabby.shot} formats={['avif', 'webp']} widths={[560, 860]} sizes="(max-width: 900px) 78vw, 470px" alt="The Tabby website, built by Sakib Islam" loading="eager" fetchpriority="high" />
+        </div>
+        <div class="browser c-front">
+          <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>tubeonai.com</span></div>
+          <Picture src={shot('tubeonai').shot} formats={['avif', 'webp']} widths={[420, 640]} sizes="(max-width: 900px) 58vw, 340px" alt="The TubeOnAI website, built by Sakib Islam" loading="eager" />
         </div>
         <p class="h-stat"><small>TubeOnAI load time</small><b>5 s → <em>1.5 s</em></b></p>
-        <div class="browser h-shot">
-          <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>usetabby.com</span></div>
-          <Picture src={tabby.shot} formats={['avif', 'webp']} widths={[480, 720]} sizes="(max-width: 900px) 45vw, 290px" alt="The Tabby website, built by Sakib Islam" loading="eager" />
-        </div>
       </div>
     </div>
   </section>
 
-  <section class="names" aria-label="Clients">
-    <div class="wrap">{work.map((w) => <span>{w.client}</span>)}</div>
+  <section class="trust-band" aria-label="Track record">
+    <div class="wrap">
+      <dl class="trust-nums">
+        {trust.map((t) => <div><dt>{t.n}</dt><dd>{t.label}</dd></div>)}
+      </dl>
+      <div class="logo-row" aria-label="Clients">
+        <p class="label">Built for</p>
+        <ul>
+          {logos.map((c) => (
+            <li>
+              <img src={c.logo.src} width={c.logo.width} height={c.logo.height} alt={c.name} loading="lazy" decoding="async" />
+              {c.showName && <span aria-hidden="true">{c.name}</span>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   </section>
 
   <section class="wrap" style="padding: 5rem 0 1.25rem">
@@ -177,16 +200,16 @@ const jsonld = [
 
   <section id="about" class="sec-line sec-pad">
     <div class="wrap about">
+      <figure class="about-photo">
+        <div class="h-panel">
+          <Picture src={photo} formats={['avif', 'webp']} widths={[480, 800]} sizes="(max-width: 900px) 90vw, 480px" alt="Sakib Islam, WordPress developer" loading="lazy" />
+        </div>
+        <figcaption class="mono mut">Sakib Islam · Dhaka, working remotely</figcaption>
+      </figure>
       <div class="about-copy">
         <p class="label">About</p>
         <h2>I find what is actually wrong, then fix it once.</h2>
         <p class="mut">WordPress developer in Dhaka, working alone and remotely for companies in the US and UK. I also built and run my own SaaS product, Wrkbase.</p>
-        <div class="about-facts">
-          {facts.map((f) => <div><b>{f.n}</b><span>{f.label}</span></div>)}
-        </div>
-      </div>
-      <div>
-        <p class="label" style="margin-bottom: 0.5rem">Experience</p>
         <ol class="timeline">
           {experience.map((e) => (
             <li><span class="yr">{e.yr}</span><span><strong>{e.role}</strong><br /><span class="mut" style="font-size: 0.9375rem">{e.org}</span></span><span class="kind">{e.kind}</span></li>
@@ -214,14 +237,14 @@ const jsonld = [
   <section class="motto" aria-label="How I work">
     <div class="wrap" style="display: grid; gap: 1.25rem">
       <p class="label">How I work</p>
-      <p class="big">Fix the cause, <em>not the symptom.</em></p>
+      <p class="big"><span class="ln">Fix the cause,</span> <em class="ln">not the symptom.</em></p>
     </div>
   </section>
 
   <section class="wrap" style="padding: 5.5rem 0 2.5rem">
     <p class="label" style="margin-bottom: 1.25rem">Starting prices, USD</p>
     <div class="price-strip">
-      {strip.map((p) => <div><b>{p.price}<small>{p.unit}</small></b><span>{p.label}</span></div>)}
+      {strip.map((p) => <div><b>{p.price}<small>{p.unit}</small></b><span>{p.label}</span><a class="btn btn-small btn-ghost" href={p.href}>{p.cta}</a></div>)}
     </div>
     <p class="mut" style="margin-top: 1rem; font-size: 0.9375rem">Every job gets a written quote before work starts.</p>
   </section>

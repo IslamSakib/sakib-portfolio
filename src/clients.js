@@ -5,7 +5,7 @@ const logos = import.meta.glob('./assets/clients/*.png', { eager: true });
 // Logos that are a symbol without the name, so the name is printed beside them.
 const iconOnly = ['wrkbase', 'tatka'];
 
-export const clients = [
+const names = [
   'Tabby',
   'TubeOnAI',
   'Moneybag',
@@ -31,7 +31,11 @@ export const clients = [
   'My Legacy Wall',
   'IGAC',
   'Siam Burning',
-].flatMap((name) => {
+];
+// Every client site Sakib listed as built or fixed, with or without a usable logo.
+export const clientCount = names.length;
+
+export const clients = names.flatMap((name) => {
   const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   const logo = logos[`./assets/clients/${slug}.png`]?.default;
   return logo ? [{ name, logo, showName: iconOnly.includes(slug) }] : [];
