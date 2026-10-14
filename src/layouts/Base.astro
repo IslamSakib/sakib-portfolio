@@ -74,14 +74,21 @@ const menu = [{ slug: 'wordpress-maintenance', name: 'Maintenance and fixes', sh
           <a href="/blog/">Blog</a>
           <a class="btn btn-small" href="/contact/">Get a free site check</a>
           <details class="mnav">
-            <summary>Menu</summary>
+            <summary aria-label="Menu"><span class="mnav-open">Menu</span><span class="mnav-close">Close</span><i aria-hidden="true"></i></summary>
             <div class="mnav-panel">
-              {menu.map((sv) => <a href={`/${sv.slug}/`}>{sv.name}</a>)}
-              <a href="/white-label-wordpress-development/">For agencies</a>
-              <a href="/#work">Work</a>
-              <a href="/#about">About</a>
-              <a href="/blog/">Blog</a>
-              <a href="/contact/">Contact</a>
+              <div class="mnav-main">
+                {[['For agencies', '/white-label-wordpress-development/'], ['Work', '/#work'], ['About', '/#about'], ['Blog', '/blog/'], ['Contact', '/contact/']].map(([label, href], i) => (
+                  <a href={href} style={`--i:${i}`}>{label}</a>
+                ))}
+              </div>
+              <p class="mnav-label" style="--i:5">Services</p>
+              <div class="mnav-svc">
+                {menu.map((sv, i) => <a href={`/${sv.slug}/`} style={`--i:${i + 6}`}><span>{String(i + 1).padStart(2, '0')}</span>{sv.name}</a>)}
+              </div>
+              <div class="mnav-foot" style="--i:10">
+                <a class="btn" href="/contact/">Get a free site check</a>
+                <p><a href={`mailto:${site.email}`}>{site.email}</a><a href={site.whatsapp} target="_blank" rel="noopener">WhatsApp +880 1950 025990</a></p>
+              </div>
             </div>
           </details>
         </nav>
@@ -175,6 +182,31 @@ const menu = [{ slug: 'wordpress-maintenance', name: 'Maintenance and fixes', sh
         addEventListener('pointerdown', (e) => {
           tick(e.target.closest && e.target.closest('a, button, summary') ? 880 : 420);
         }, { passive: true });
+        // Hover sound for buttons: a soft rising swish that lasts as long as the button's fill rising (0.4 s).
+        // Only on screens with a real pointer, and only once the visitor has interacted (browsers keep sound off before that).
+        if (matchMedia('(hover: hover)').matches) {
+          let air = null;
+          const swish = () => {
+            if (!(navigator.userActivation ? navigator.userActivation.hasBeenActive : audio) || !ctx()) return;
+            if (!air) {
+              air = audio.createBuffer(1, Math.floor(audio.sampleRate * 0.5), audio.sampleRate);
+              const d = air.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+            }
+            const t = audio.currentTime, n = audio.createBufferSource(), f = audio.createBiquadFilter(), g = audio.createGain();
+            n.buffer = air; f.type = 'bandpass'; f.Q.value = 1.4;
+            f.frequency.setValueAtTime(500, t); f.frequency.exponentialRampToValueAtTime(2600, t + 0.38);
+            g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.03, t + 0.12); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.4);
+            n.connect(f).connect(g).connect(audio.destination); n.start(t); n.stop(t + 0.42);
+            const o = audio.createOscillator(), h = audio.createGain();
+            o.type = 'sine'; o.frequency.setValueAtTime(660, t); o.frequency.exponentialRampToValueAtTime(990, t + 0.35);
+            h.gain.setValueAtTime(0.0001, t); h.gain.exponentialRampToValueAtTime(0.012, t + 0.1); h.gain.exponentialRampToValueAtTime(0.0001, t + 0.38);
+            o.connect(h).connect(audio.destination); o.start(t); o.stop(t + 0.4);
+          };
+          addEventListener('pointerover', (e) => {
+            const b = e.target.closest && e.target.closest('.btn');
+            if (b && !(e.relatedTarget && b.contains(e.relatedTarget))) swish();
+          }, { passive: true });
+        }
         // Silence when the tab is in the background.
         document.addEventListener('visibilitychange', () => { if (audio) document.hidden ? audio.suspend() : audio.resume(); });
 

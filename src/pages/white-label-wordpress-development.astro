@@ -74,8 +74,8 @@ const jsonld = [
     <div class="p-grid">
       <div class="p-copy">
         <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>For agencies</span></nav>
-        <h1><span class="eyebrow">White label WordPress development</span>Your design. Built under your name.</h1>
-        <p class="lead">For design and marketing agencies. One senior developer, on your deadline.</p>
+        <h1><span class="eyebrow">White label WordPress development</span><span class="ln">Your design.</span> <span class="ln">Built under your name.</span></h1>
+        <p class="lead"><span class="ln">For design and marketing agencies.</span> <span class="ln">One senior developer, on your deadline.</span></p>
         <div class="btn-row">
           <a class="btn" href="/contact/?type=agency">Start a small paid trial</a>
           <a class="btn btn-ghost" href="#how">See the process</a>
@@ -121,7 +121,7 @@ const jsonld = [
 
   <section id="how" class="on-surface sec-pad">
     <div class="wrap" style="display: grid; gap: 2.75rem">
-      <h2 style="max-width: 16ch">Four steps, no surprises</h2>
+      <h2>Four steps, no surprises</h2>
       <ol class="pipeline">
         {steps.map((s, i) => <li><span class="node">{String(i + 1).padStart(2, '0')}</span><strong>{s.t}</strong><span>{s.d}</span></li>)}
       </ol>
