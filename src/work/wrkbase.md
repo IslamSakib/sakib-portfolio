@@ -8,6 +8,8 @@ seoTitle: "SaaS Development Case Study: Wrkbase and Its AI Agent"
 description: "SaaS development from the first screen to the AI agent: Wrkbase is my own team management platform, designed, built and sold from a site I built."
 summary: My own product. I designed and built the software, the AI agent and the website it is sold from.
 result: Custom software and website
+chip: "SaaS I built"
+relevant: "Relevant if your product has outgrown WordPress."
 role: Founder and developer
 period: 2026 to present
 stack: [Custom development, SaaS, AI agent]

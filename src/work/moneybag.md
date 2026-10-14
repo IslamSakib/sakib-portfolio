@@ -8,6 +8,8 @@ seoTitle: "Custom WordPress Plugin for a Payment Gateway | Moneybag"
 description: "I built a custom WordPress plugin for Moneybag, a licensed payment gateway in Bangladesh, plus OTP sign-in, merchant onboarding and its website."
 summary: The website and custom plugin for a licensed payment gateway, built for security and speed.
 result: Merchant onboarding time down 60%
+chip: "payment gateway plugin"
+relevant: "Relevant if you need custom checkout or payment work."
 role: WordPress and plugin developer
 period: 2025
 stack: [WordPress, WooCommerce, Custom plugin, OTP authentication, CRM integration]

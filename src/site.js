@@ -9,5 +9,5 @@ export const site = {
   whatsapp: 'https://wa.me/8801950025990',
   github: 'https://github.com/IslamSakib',
   facebook: 'https://www.facebook.com/sakib0115/',
-  email: '', // shown in the contact section once set
+  email: 'islamsakib.official@gmail.com',
 };

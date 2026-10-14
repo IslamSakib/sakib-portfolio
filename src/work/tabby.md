@@ -8,6 +8,8 @@ seoTitle: "Figma to WordPress Build for Tabby, an AI Bookkeeper"
 description: "A Figma to WordPress build for Tabby: custom plugins, a tax calculator, subscriptions and a 2.0 relaunch that kept its search visibility."
 summary: Front end, back end, custom plugins and payments, then the full rebuild for the 2.0 release with its SEO kept in place.
 result: Core Web Vitals above 90 at launch
+chip: "Figma to WordPress · CWV 90+"
+relevant: "Relevant if your designs are in Figma, or you are planning a relaunch."
 role: Full-stack WordPress developer, freelance
 period: 2025 to present
 stack: [WordPress, Custom plugins, WooCommerce subscriptions, Mixpanel, Crisp]

@@ -28,7 +28,7 @@ if (!is_string($originHost) || !in_array(strtolower($originHost), ALLOWED_HOSTS,
     finish(403, ['ok' => false, 'error' => 'origin']);
 }
 
-$raw = file_get_contents('php://input', false, null, 0, 8192);
+$raw = file_get_contents('php://input', false, null, 0, 16384);
 $data = json_decode($raw ?: '', true);
 if (!is_array($data)) {
     finish(400, ['ok' => false, 'error' => 'body']);
@@ -39,12 +39,17 @@ if (!empty($data['company']) || (int) ($data['elapsed'] ?? 0) < 4000) {
     finish(200, ['ok' => true]);
 }
 
-$isAudit = ($data['type'] ?? '') === 'audit';
-$fields = $isAudit
-    ? ['site' => 'Site', 'worry' => 'Main worry', 'contact' => 'Reply to']
-    : ['need' => 'Needs', 'site' => 'Site', 'goal' => 'Goal', 'timeline' => 'Timeline', 'budget' => 'Budget', 'name' => 'Name', 'contact' => 'Reply to'];
-$heading = $isAudit ? 'Free Audit request' : 'New project lead';
-$source = $isAudit ? 'From the audit console on' : 'From the chat on';
+// Three senders: the chat, the old audit console, and the contact page (type "business" or "agency").
+// Fields listed in $optional may be empty; every other field is required.
+$type = is_string($data['type'] ?? null) ? $data['type'] : 'chat';
+$forms = [
+    'audit' => [['site' => 'Site', 'worry' => 'Main worry', 'contact' => 'Reply to'], [], 'Free Audit request', 'From the audit console on'],
+    'business' => [['name' => 'Name', 'contact' => 'Email', 'need' => 'Needs', 'site' => 'Site', 'timeline' => 'Timeline', 'budget' => 'Budget', 'message' => 'Message'], ['site', 'need', 'timeline', 'budget'], 'New business inquiry', 'From the contact page on'],
+    'agency' => [['name' => 'Name', 'contact' => 'Email', 'agency' => 'Agency', 'work' => 'Work', 'timeline' => 'Timeline', 'budget' => 'Budget', 'message' => 'Message'], ['agency', 'work', 'timeline', 'budget'], 'New agency inquiry', 'From the contact page on'],
+    'chat' => [['need' => 'Needs', 'site' => 'Site', 'goal' => 'Goal', 'timeline' => 'Timeline', 'budget' => 'Budget', 'name' => 'Name', 'contact' => 'Reply to'], [], 'New project lead', 'From the chat on'],
+];
+[$fields, $optional, $heading, $source] = $forms[$type] ?? $forms['chat'];
+$isAudit = $type === 'audit';
 $lead = [];
 foreach ($fields as $key => $label) {
     $value = $data[$key] ?? '';
@@ -52,11 +57,15 @@ foreach ($fields as $key => $label) {
         finish(400, ['ok' => false, 'error' => 'field']);
     }
     $value = trim(preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/u', '', $value) ?? '');
-    $value = mb_substr($value, 0, 600);
-    if ($value === '') {
+    $value = mb_substr($value, 0, $key === 'message' ? 2000 : 600);
+    if ($value === '' && !in_array($key, $optional, true)) {
         finish(400, ['ok' => false, 'error' => 'missing ' . $key]);
     }
     $lead[$key] = $value;
+}
+// The contact page asks for an email address only.
+if (in_array($type, ['business', 'agency'], true) && !filter_var($lead['contact'], FILTER_VALIDATE_EMAIL)) {
+    finish(400, ['ok' => false, 'error' => 'contact']);
 }
 
 // The reply address must be an email address or a phone number, whatever the page's own checks let through.
@@ -78,6 +87,9 @@ $page = is_string($data['page'] ?? null) ? mb_substr($data['page'], 0, 120) : '/
 $rows = '';
 $text = '';
 foreach ($fields as $key => $label) {
+    if ($lead[$key] === '') {
+        continue;
+    }
     $safe = nl2br(htmlspecialchars($lead[$key], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'));
     $rows .= '<tr><td style="padding:12px 16px;border-bottom:1px solid #e6e4dd;color:#6b6963;font-size:13px;width:110px;vertical-align:top">' . $label
         . '</td><td style="padding:12px 16px;border-bottom:1px solid #e6e4dd;color:#191817;font-size:15px">' . $safe . '</td></tr>';
@@ -107,7 +119,7 @@ $body = '--' . $boundary . "\r\nContent-Type: text/plain; charset=utf-8\r\n\r\n"
     . '--' . $boundary . "--\r\n";
 
 // The subject is one of two fixed strings, so no visitor text reaches a mail header.
-$subject = $isAudit ? 'Free Audit request' : 'New project lead from the portfolio chat';
+$subject = ['audit' => 'Free Audit request', 'business' => 'New business inquiry from the portfolio', 'agency' => 'New agency inquiry from the portfolio'][$type] ?? 'New project lead from the portfolio chat';
 
 // This host refuses PHP mail(), so the message is handed to the mailbox's own SMTP server.
 // The password lives in lead-config.php beside this file. That file is created on the server only: it is not in the

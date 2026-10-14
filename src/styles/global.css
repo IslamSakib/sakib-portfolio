@@ -1,21 +1,25 @@
-/* Dark only, by request. Ink navy and cream with one blue accent. Neutrals are blue-greys with no green in them.
-   --accent is for text and lines on the dark ground; --accent-fill is the deeper blue behind white text (buttons). Everything is flat: no glows and no gradients anywhere.
-   Shape rule: small radii everywhere, no pills. Structure comes from hairlines and spacing, not from boxes.
+/* Dark only, by request. Violet-tinted black and ivory with one amethyst accent. Everything is flat: no glows and no gradients.
+   --accent is for text and lines on the dark ground; --accent-fill is the deeper violet behind white text (chat, small fills).
+   Buttons are ivory on black (--btn), so the accent stays rare. Small radii, no pills. Structure comes from hairlines and spacing.
    Type: Bricolage Grotesque for headings, Hanken Grotesk for text, Geist Mono for figures and code. */
 :root {
-  --bg: #0c121b;
-  --bg-deep: #080d14;
-  --surface: #131b27;
-  --surface-2: #1b2534;
-  --line: #2a3445;
-  --text: #f2efe6;
-  --muted: #9aa6b8;
-  --accent: #4f83ff;
-  --accent-hi: #7aa2ff;
-  --accent-fill: #1b55ff;
-  --accent-fill-hi: #3a6dff;
+  --bg: #0b0a0f;
+  --bg-deep: #08070b;
+  --surface: #14121a;
+  --surface-2: #1b1823;
+  --line: #26222f;
+  --line-2: #363042;
+  --text: #efeaf6;
+  --muted: #9a93a8;
+  --accent: #a78bfa;
+  --accent-hi: #c4b5fd;
+  --accent-fill: #7048e8;
+  --accent-fill-hi: #8460f0;
   --accent-ink: #ffffff;
-  --accent-rgb: 79 131 255;
+  --accent-rgb: 167 139 250;
+  --btn: #efeaf6;
+  --btn-hi: #ffffff;
+  --btn-ink: #0b0a0f;
   --radius: 6px;
   --wrap: 1240px;
   --sans: 'Hanken Grotesk Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -68,12 +72,12 @@ button { font: inherit; color: inherit; }
   display: inline-flex; align-items: center; justify-content: center;
   padding: 0.85rem 1.4rem; border-radius: 6px;
   border: 1px solid transparent;
-  background: var(--accent-fill); color: var(--accent-ink); font-weight: 600; text-decoration: none; white-space: nowrap;
+  background: var(--btn); color: var(--btn-ink); font-weight: 600; text-decoration: none; white-space: nowrap;
   transition: color 0.25s ease, border-color 0.25s ease, transform 0.12s ease;
 }
-.btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--accent-fill-hi); transform: translateY(101%); transition: transform 0.4s var(--ease); }
+.btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--btn-hi); transform: translateY(101%); transition: transform 0.4s var(--ease); }
 .btn::after { content: "→"; display: inline-block; width: 0; margin-left: 0; opacity: 0; overflow: hidden; transform: translateX(-6px); transition: width 0.3s var(--ease), margin-left 0.3s var(--ease), opacity 0.25s ease, transform 0.3s var(--ease); }
-.btn:hover { color: var(--accent-ink); }
+.btn:hover { color: var(--btn-ink); }
 .btn:hover::before { transform: none; }
 .btn:hover::after { width: 1em; margin-left: 0.5em; opacity: 1; transform: none; }
 .btn:active { transform: translateY(1px); }
@@ -382,7 +386,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .has-menu > a { display: inline-flex; align-items: center; gap: 0.35rem; }
 .has-menu > a svg { transition: rotate 0.25s ease; }
 .has-menu:hover > a svg, .has-menu:focus-within > a svg { rotate: 180deg; }
-.menu { position: absolute; top: 100%; left: 50%; translate: -50% 8px; width: 340px; padding: 0.5rem; display: grid; gap: 0.15rem; border: 1px solid var(--line); border-radius: 18px; background: #1c1b1a; box-shadow: 0 30px 60px -20px rgb(0 0 0 / 0.8); opacity: 0; visibility: hidden; transition: opacity 0.2s ease, translate 0.25s var(--ease), visibility 0.2s; }
+.menu { position: absolute; top: 100%; left: 50%; translate: -50% 8px; width: 340px; padding: 0.5rem; display: grid; gap: 0.15rem; border: 1px solid var(--line); border-radius: 18px; background: var(--surface-2); box-shadow: 0 30px 60px -20px rgb(0 0 0 / 0.8); opacity: 0; visibility: hidden; transition: opacity 0.2s ease, translate 0.25s var(--ease), visibility 0.2s; }
 .menu::before { content: ""; position: absolute; left: 0; right: 0; top: -22px; height: 22px; }
 .has-menu:hover .menu, .has-menu:focus-within .menu { opacity: 1; visibility: visible; translate: -50% 18px; }
 .site-header nav .menu a { display: grid; grid-template-columns: 1.75rem 1fr; gap: 0.5rem; align-items: baseline; padding: 0.7rem 0.8rem; border-radius: 12px; color: var(--text); }

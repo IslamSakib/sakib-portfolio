@@ -1,0 +1,169 @@
+---
+// For design and marketing agencies: Sakib as a solo white-label WordPress developer. He works alone, so the copy never says "we".
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Connect from '../components/Connect.astro';
+import { site } from '../site.js';
+import { work } from '../work.js';
+import { prices, usd } from '../prices.js';
+
+const focus = 'white label WordPress development';
+const title = 'White Label WordPress Development for Agencies | Sakib Islam';
+const description =
+  'White label WordPress development for design and marketing agencies: Figma to WordPress builds, fixes and care under your brand, from one senior developer.';
+const url = new URL(Astro.url.pathname, Astro.site);
+const shot = (slug) => work.find((w) => w.slug === slug).shot;
+
+const trust = [
+  { t: 'NDA on request', d: 'M5 11h14v10H5zM8 11V7a4 4 0 018 0v4' },
+  { t: 'Never contacts your client', d: 'M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c1-4 4-6 8-6s7 2 8 6M3 3l18 18' },
+  { t: 'Overlaps US and UK hours', d: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7v5l3 2' },
+  { t: 'Reply within 24 hours', d: 'M4 5h16v11H8l-4 4z' },
+  { t: 'Works in your tools', d: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z' },
+];
+const caps = [
+  { t: 'Figma to WordPress', d: 'A custom theme, or Elementor when your client edits layouts.', p: 'M3 3h18v18H3zM3 9h18M9 21V9' },
+  { t: 'Overflow on deadlines', d: 'Hourly, or a block of hours each month.', p: 'M3 12h4l3-8 4 16 3-8h4' },
+  { t: 'Custom plugins', d: 'WooCommerce, payments and CRM connections.', p: 'M14 4l6 6-10 10H4v-6z' },
+  { t: 'Speed before handover', d: 'Tested on mobile before you see it.', p: 'M12 3a9 9 0 109 9M12 12l6-6' },
+  { t: 'Fixes on client sites', d: 'Conflicts, downtime and failed updates.', p: 'M3 12a9 9 0 1018 0 9 9 0 00-18 0M9 9l6 6M15 9l-6 6' },
+  { t: 'Care you can resell', d: 'Monthly maintenance under your brand.', p: 'M3 5h18v16H3zM3 10h18M8 3v4M16 3v4' },
+];
+const steps = [
+  { t: 'Brief', d: 'Figma, page list and date. A quote and date back first.' },
+  { t: 'Build', d: 'On a staging site, with updates in your channel.' },
+  { t: 'Review', d: 'One feedback list and the agreed rounds.' },
+  { t: 'Handoff', d: 'Notes on the theme, plugins and editing.' },
+];
+const faq = [
+  { q: 'Will you ever contact our client?', a: 'No. I work through you only, and nothing I hand over carries my name unless you want it to.' },
+  { q: 'Do you sign an NDA?', a: 'Yes. Send yours before you share client files, or ask and I will send a short one.' },
+  { q: 'Which builders do you work in?', a: 'A custom theme when speed and control matter, and Elementor when your client needs to change layouts without a developer. WooCommerce for stores.' },
+  { q: 'Who looks after the site after launch?', a: 'Your choice. Hand it to your team with the handoff notes, or resell a monthly care plan that I run quietly under your brand.' },
+  { q: 'Can we try you on something small first?', a: 'Yes, and it is the best way to start. Send one paid task, such as a page build or a fix on a client site, and judge the work before committing to more.' },
+];
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'White label WordPress development',
+    serviceType: focus,
+    description,
+    url,
+    audience: { '@type': 'BusinessAudience', audienceType: 'Design and marketing agencies' },
+    provider: { '@type': 'Person', name: site.name, url: Astro.site },
+    offers: [
+      { '@type': 'Offer', name: 'Per site', priceSpecification: { '@type': 'PriceSpecification', minPrice: prices.agencySite, priceCurrency: 'USD' } },
+      { '@type': 'Offer', name: 'Hourly', priceSpecification: { '@type': 'UnitPriceSpecification', price: prices.agencyHour, priceCurrency: 'USD', unitText: 'hour' } },
+    ],
+  },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: Astro.site },
+      { '@type': 'ListItem', position: 2, name: 'For agencies', item: url },
+    ],
+  },
+];
+---
+<Base title={title} description={description} jsonld={jsonld} focus={focus}>
+  <section class="p-hero wrap">
+    <div class="p-grid">
+      <div class="p-copy">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>For agencies</span></nav>
+        <h1><span class="eyebrow">White label WordPress development</span>Your design. Built under your name.</h1>
+        <p class="lead">For design and marketing agencies. One senior developer, on your deadline.</p>
+        <div class="btn-row">
+          <a class="btn" href="/contact/?type=agency">Start a small paid trial</a>
+          <a class="btn btn-ghost" href="#how">See the process</a>
+        </div>
+      </div>
+      <div class="flow" aria-label="Your Figma design becomes a staging site, then the live site under your brand">
+        <figure>
+          <div class="wire" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <figcaption>Your Figma</figcaption>
+        </figure>
+        <svg class="arrow-r" viewBox="0 0 36 16" width="36" height="16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h30M26 3l6 5-6 5" /></svg>
+        <figure>
+          <div class="browser stg" aria-hidden="true"><div class="browser-bar"><i></i><i></i></div><div><em>staging</em><i style="width: 70%"></i><i style="width: 50%"></i><b><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5" /></svg></b></div></div>
+          <figcaption>My staging site</figcaption>
+        </figure>
+        <svg class="arrow-r" viewBox="0 0 36 16" width="36" height="16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h30M26 3l6 5-6 5" /></svg>
+        <figure>
+          <div class="browser"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>yourclient.com</span></div><Picture src={shot('tabby')} formats={['avif', 'webp']} widths={[360, 540]} sizes="(max-width: 900px) 90vw, 260px" alt="A site built from a Figma design: Tabby" loading="eager" /></div>
+          <figcaption>Live, under your brand</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <ul class="trust">
+      {trust.map((x) => <li><svg class="icon" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d={x.d} /></svg>{x.t}</li>)}
+    </ul>
+  </section>
+
+  <section class="wrap sec-pad">
+    <div class="row-head"><h2>What I take off your plate</h2></div>
+    <div class="cap-grid">
+      {caps.map((c) => (
+        <div class="tile">
+          <svg class="icon" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d={c.p} /></svg>
+          <h3>{c.t}</h3>
+          <p class="mut" style="font-size: 0.9375rem">{c.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="how" class="on-surface sec-pad">
+    <div class="wrap" style="display: grid; gap: 2.75rem">
+      <h2 style="max-width: 16ch">Four steps, no surprises</h2>
+      <ol class="pipeline">
+        {steps.map((s, i) => <li><span class="node">{String(i + 1).padStart(2, '0')}</span><strong>{s.t}</strong><span>{s.d}</span></li>)}
+      </ol>
+      <p class="mut">You work with me directly. No account managers, no hand-offs between people.</p>
+    </div>
+  </section>
+
+  <section class="wrap sec-pad">
+    <div class="row-head"><h2>Three ways to work</h2></div>
+    <div class="models">
+      <div><p class="label">Per site</p><b>{usd(prices.agencySite)}</b><span class="mut">From. Up to five templates.</span></div>
+      <div><p class="label">Hourly</p><b>{usd(prices.agencyHour)}<small>/h</small></b><span class="mut">Fixes and overflow.</span></div>
+      <div><p class="label">Monthly block</p><b>Quoted</b><span class="mut">Hours reserved for you.</span></div>
+    </div>
+    <p class="mut" style="margin-top: 1.4rem">Start with one small paid task. See how I work before committing.</p>
+  </section>
+
+  <section class="sec-line sec-pad">
+    <div class="wrap two-col">
+      <figure class="quote-side" style="margin: 0">
+        <span class="ini" aria-hidden="true">SN</span>
+        <blockquote>&ldquo;highly responsive, communicative, and consistently delivers work on time&rdquo;</blockquote>
+        <figcaption class="mut">Shamsi Nur, Musemind · design agency I built for</figcaption>
+      </figure>
+      <div style="display: grid; gap: 0.9rem">
+        <div class="shots-2">
+          <a class="browser" href="/work/tabby/"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i></div><Picture src={shot('tabby')} formats={['avif', 'webp']} widths={[360, 600]} sizes="(max-width: 900px) 45vw, 300px" alt="Tabby, built from Figma" loading="lazy" /></a>
+          <a class="browser" href="/work/tubeonai/"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i></div><Picture src={shot('tubeonai')} formats={['avif', 'webp']} widths={[360, 600]} sizes="(max-width: 900px) 45vw, 300px" alt="TubeOnAI, built from Figma" loading="lazy" /></a>
+        </div>
+        <p class="mono mut" style="font-size: 0.75rem">Built from Figma: Tabby and TubeOnAI. White-label work stays private.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec-pad" style="padding-top: 2rem">
+    <div class="two-col" style="align-items: start">
+      <h2>Agency questions</h2>
+      <div class="qa">
+        {faq.map((f, i) => <details open={i === 0}><summary>{f.q}</summary><p>{f.a}</p></details>)}
+      </div>
+    </div>
+  </section>
+
+  <Connect heading="Have a design waiting to be built? Send it, or a small first task." />
+</Base>

@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../site.js';
+
+const focus = 'Contact Sakib Islam';
+const title = 'Contact Sakib Islam | WordPress Developer';
+const description = 'Contact Sakib Islam about a WordPress site to fix, maintain or build, or white-label work for your agency. Reply within 24 hours.';
+
+const jsonld = [{ '@context': 'https://schema.org', '@type': 'ContactPage', name: title, url: new URL('/contact/', Astro.site), about: { '@type': 'Person', name: site.name, email: site.email, telephone: site.phone } }];
+
+const needs = ['My site is slow', 'Something is broken', 'Monthly maintenance', 'A new build or relaunch', 'Something else'];
+const agencyWork = ['Build from our design', 'Overflow on a deadline', 'Fixes on a client site', 'Care for our clients’ sites', 'Something else'];
+const timelines = ['As soon as possible', 'Within a month', 'In 1 to 3 months', 'Just exploring'];
+const budgets = ['Not sure yet', 'Under $500', '$500 to $2,000', '$2,000 to $5,000', 'Over $5,000'];
+---
+<Base title={title} description={description} jsonld={jsonld} focus={focus}>
+  <section class="wrap sec-pad">
+    <div class="contact-grid">
+      <div class="contact-side">
+        <h1 style="font-size: clamp(2.4rem, 4.4vw, 3.75rem); max-width: 14ch"><span class="eyebrow">Contact Sakib Islam</span>Tell me what is going wrong, or what you need built.</h1>
+        <p class="lead">I reply within 24 hours with what I would check or build first. No call needed unless you want one.</p>
+        <ul>
+          <li>Email: <a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li>WhatsApp: <a href={site.whatsapp} target="_blank" rel="noopener">+880 1950 025990</a></li>
+          <li>LinkedIn: <a href={site.linkedin} target="_blank" rel="noopener">in/sakibislamofficial</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="form-done" role="status" tabindex="-1" hidden data-done>
+          <p class="label">Sent</p>
+          <h2 style="font-size: 2rem">Thanks. Your message reached me.</h2>
+          <p class="mut">I reply within 24 hours. My working day overlaps US and UK mornings.</p>
+        </div>
+
+        <form class="cform" novalidate data-contact data-whatsapp={site.whatsapp} data-email={site.email}>
+          <fieldset style="border: 0; padding: 0; margin: 0; display: grid; gap: 0.6rem">
+            <legend class="lab" style="font-size: 0.9375rem; font-weight: 500; margin-bottom: 0.6rem">I am writing as</legend>
+            <div class="seg">
+              <label><input type="radio" name="type" value="business" checked /><span>A business</span></label>
+              <label><input type="radio" name="type" value="agency" /><span>An agency</span></label>
+            </div>
+          </fieldset>
+
+          <p class="form-alert" role="alert" hidden data-alert></p>
+
+          <div class="pair">
+            <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" maxlength="60" required /><span class="err" hidden></span></div>
+            <div class="field"><label for="f-email">Work email</label><input id="f-email" name="contact" type="email" autocomplete="email" maxlength="120" required /><span class="err" hidden></span></div>
+          </div>
+
+          <div class="pair" data-for="business">
+            <div class="field"><label for="f-site">Website address <span class="opt">(optional)</span></label><input id="f-site" name="site" type="url" inputmode="url" placeholder="https://" maxlength="200" /></div>
+            <div class="field"><label for="f-need">What do you need?</label><select id="f-need" name="need">{needs.map((n) => <option>{n}</option>)}</select></div>
+          </div>
+
+          <div class="pair" data-for="agency" hidden>
+            <div class="field"><label for="f-agency">Agency name</label><input id="f-agency" name="agency" autocomplete="organization" maxlength="100" /></div>
+            <div class="field"><label for="f-work">Type of work</label><select id="f-work" name="work">{agencyWork.map((n) => <option>{n}</option>)}</select></div>
+          </div>
+
+          <div class="pair">
+            <div class="field"><label for="f-when">When do you need it?</label><select id="f-when" name="timeline">{timelines.map((n) => <option>{n}</option>)}</select></div>
+            <div class="field"><label for="f-budget">Budget <span class="opt">(optional)</span></label><select id="f-budget" name="budget">{budgets.map((n) => <option>{n}</option>)}</select></div>
+          </div>
+
+          <div class="field">
+            <label for="f-msg" data-msg-label>What is going on with the site?</label>
+            <textarea id="f-msg" name="message" rows="5" maxlength="2000" required></textarea>
+            <span class="err" hidden></span>
+          </div>
+
+          <div class="trap" aria-hidden="true"><label for="f-company">Leave this empty</label><input id="f-company" name="company" tabindex="-1" autocomplete="off" /></div>
+
+          <div class="form-foot">
+            <button class="btn" type="submit">Send message</button>
+            <span>Only name, email and message are required.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import '../scripts/contact.js';
+</script>

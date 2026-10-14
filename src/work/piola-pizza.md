@@ -8,6 +8,8 @@ seoTitle: "Restaurant Website With Online Ordering | Piola Pizza"
 description: "A restaurant website for Piola Pizza in Esbjerg, Denmark: WooCommerce ordering, a menu the owner can change, and a checkout built for phones."
 summary: A WooCommerce ordering site with a dynamic menu, combo deals and a checkout built for phones.
 result: Mobile-first ordering
+chip: "WooCommerce ordering"
+relevant: "Relevant if you sell or take orders online."
 role: WordPress and WooCommerce developer
 period: 2023
 stack: [WordPress, WooCommerce, Local SEO]

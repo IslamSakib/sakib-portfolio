@@ -1,0 +1,21 @@
+---
+// The closing band on every page: a large "Connect", one line, the email and phone, and the two contact paths.
+import { site } from '../site.js';
+
+const { heading = 'Send me the site. I will tell you what to fix first.' } = Astro.props;
+---
+<section id="contact" class="connect" aria-labelledby="connect-h">
+  <div class="wrap">
+    <p class="huge" aria-hidden="true">Connect</p>
+    <h2 id="connect-h">{heading}</h2>
+    <p class="reach">
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <a href={site.whatsapp} target="_blank" rel="noopener">+880 1950 025990</a>
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/contact/">I run a business</a>
+      <a class="btn btn-ghost" href="/contact/?type=agency">I run an agency</a>
+    </div>
+    <p class="mono mut">Reply within 24 hours · Hours overlap US and UK</p>
+  </div>
+</section>

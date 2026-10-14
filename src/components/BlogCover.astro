@@ -1,0 +1,30 @@
+---
+// Post covers are drawn from the post's own subject, never stock images. `kind` comes from the post's frontmatter.
+const { kind = 'month' } = Astro.props;
+---
+<div class="cover" aria-hidden="true">
+  {kind === 'month' && (
+    <div class="weeks">
+      <div><small>Wk 1</small>Updates</div>
+      <div><small>Wk 2</small>Backups</div>
+      <div><small>Wk 3</small>Security</div>
+      <div class="last"><small>Wk 4</small>Report</div>
+    </div>
+  )}
+  {kind === 'cache' && (
+    <div style="display: grid; gap: 0.5rem; justify-items: start">
+      <div style="display: flex; gap: 0.5rem"><span class="pill x">cache plugin</span><span class="pill x">cache plugin</span></div>
+      <span class="pill ok">one caching layer ✓</span>
+    </div>
+  )}
+  {kind === 'flow' && (
+    <div class="to-wp" style="width: 70%">
+      <div class="wire"><i></i><i></i><i></i><i></i></div>
+      <svg class="arrow-r" viewBox="0 0 40 16" width="40" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h34M30 3l6 5-6 5" /></svg>
+      <div class="wire" style="border-style: solid; border-color: var(--accent)"><i></i><i></i><i></i><i></i></div>
+    </div>
+  )}
+  {kind === 'ring' && (
+    <svg class="ring" width="120" height="120" viewBox="0 0 140 140"><circle cx="70" cy="70" r="58" fill="none" stroke="var(--line)" stroke-width="12" /><circle cx="70" cy="70" r="58" fill="none" stroke="currentColor" stroke-width="12" stroke-dasharray="328 364" stroke-linecap="round" transform="rotate(-90 70 70)" /><text x="70" y="79" text-anchor="middle" font-size="24">LCP</text></svg>
+  )}
+</div>

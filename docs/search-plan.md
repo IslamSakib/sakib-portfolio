@@ -1,5 +1,7 @@
 # Search plan and site structure
 
+> Superseded on 14 Oct 2026 by docs/research/ (ICP, Semrush keyword data and the page map). Kept for history.
+
 Written 10 Oct 2026. Covers keyword research, the SEO, AEO and GEO plans, and the page structure.
 
 ## 1. Keyword research

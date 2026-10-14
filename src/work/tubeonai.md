@@ -8,6 +8,8 @@ seoTitle: "WordPress Site Keeps Going Down? How I Fixed TubeOnAI"
 description: "When a WordPress site keeps going down, look at its speed plugins first. TubeOnAI went from a 5 second load to 1.5 once the cause was removed."
 summary: A WordPress site that kept going down, traced to leftover cache plugin files and fixed at the root.
 result: Load time from 5 s to 1.5 s after the fix
+chip: "5 s → 1.5 s"
+relevant: "Relevant if your site is slow or keeps going down."
 role: WordPress developer, part-time
 period: 2024 to 2025
 stack: [WordPress, Elementor, Caching, Technical SEO]

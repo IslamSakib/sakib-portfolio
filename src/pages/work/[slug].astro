@@ -1,7 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
-import Cta from '../../components/Cta.astro';
+import Connect from '../../components/Connect.astro';
 import { site } from '../../site.js';
 import { work } from '../../work.js';
 import { reviews } from '../../reviews.js';
@@ -60,6 +60,7 @@ const jsonld = [
       </nav>
       <h1>{w.title.replace(/ (\S+)$/, ' $1')}</h1>
       <p class="lead">{w.summary}</p>
+      {w.relevant && <p class="label">{w.relevant}</p>}
       <div class="hero-actions">
         <a class="btn" href={w.clientUrl} target="_blank" rel="noopener">Visit {host} ↗</a>
       </div>
@@ -143,5 +144,5 @@ const jsonld = [
       <a class="btn btn-ghost" href="/#work">All work</a>
     </div>
   </article>
-  <Cta heading={`Want a result like ${w.client}?`} />
+  <Connect heading={`Want a result like ${w.client}?`} />
 </Base>

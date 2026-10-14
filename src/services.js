@@ -1,4 +1,4 @@
-// The four services. Each one is a page (src/pages/[service].astro) and a row on the home page.
+// The three services. Each one is a page (src/pages/[service].astro) and a row on the home page.
 // `h1Lines` is the same headline split where it should break on a wide screen.
 // `focus` is the page's focus keyword: it must appear in `title`, `description` and `h1` (scripts/seo-check.mjs checks this).
 // Every claim here comes from the case studies in src/work or from what Sakib has confirmed.
@@ -98,6 +98,7 @@ export const services = [
       { name: 'Marketing sites that load instantly', text: 'Static, hand-built sites with no page builder. This site and the current Moneybag website are built this way.' },
       { name: 'Free tools and calculators', text: 'Small tools that bring search traffic and show what the product does. Wrkbase has overtime, PTO, time card and cost calculators.' },
       { name: 'Help centers and documentation', text: 'The pages that answer questions before a customer has to ask.' },
+      { name: 'AI agents and automation', text: 'Language models connected to your product, and agents that act only after a person approves, as built into Wrkbase.' },
     ],
     proof: ['wrkbase', 'moneybag'],
     faq: [
@@ -105,40 +106,6 @@ export const services = [
       { q: 'Can you build a SaaS product from an idea?', a: 'Yes. I built Wrkbase from an idea to a working platform: sign-in first, then tasks with automatic time tracking, then attendance, leave, payroll and an AI agent. I start with the one thing users must be able to do and build outward from there.' },
       { q: 'Do you build the marketing website as well?', a: 'Yes. I built the Wrkbase website alongside the product: feature pages, pricing, comparison pages, free tools, a blog and a help center. One person building both keeps the product and the site saying the same thing.' },
       { q: 'How fast will a custom-built site be?', a: 'A static, hand-built site ships very little code, so it loads almost instantly. This site is built that way, and you can test it yourself with Google PageSpeed Insights.' },
-    ],
-  },
-  {
-    slug: 'ai-development',
-    name: 'AI agents and automation',
-    short: 'AI that does real work inside your product, with your approval.',
-    focus: 'AI agent development',
-    title: 'AI Agent Development & AI Automation | Sakib Islam',
-    description:
-      'AI agent development for web products: agents that act with your approval, LLM API integration, WordPress AI chatbots and workflow automation.',
-    h1: 'AI agent development for products that act.',
-    h1Lines: ['AI agent development', 'for products that act.'],
-    lead: 'AI built into your product or site so it does real work: agents that take actions, chatbots that answer from your content, and automations that remove the repeat tasks.',
-    row: 'AI agents that take real actions, LLM APIs wired into your product, chatbots for WordPress and automations that remove repeat work.',
-    chips: ['AI agents', 'LLM API integration', 'WordPress chatbots', 'Workflow automation'],
-    problemTitle: 'A chat box bolted on is not an AI product',
-    before: ['A chat window bolted on', 'No limits on what it can do', 'No record of what it did'],
-    after: ['An agent that shows each step', 'It waits for approval before acting', 'Every action in an audit log'],
-    problem:
-      'Adding a chat window is easy. Making AI do something useful and safe inside a real product is the hard part: it needs the right data, clear limits and a record of what it did. I built this into Wrkbase. Its agent plans a piece of admin work, shows each step, waits for approval, then carries it out, and every action is logged. When the agent kept reporting itself unavailable, the API and the model were fine. I traced it to the trigger and a render delay, and fixed it there.',
-    includes: [
-      { name: 'AI agents inside your product', text: 'Agents that plan a task, show the steps, wait for a yes and then act, with a full log.' },
-      { name: 'LLM API integration', text: 'Models such as OpenAI and Claude connected to your site or product for summaries, drafting, search and support.' },
-      { name: 'AI chatbots for WordPress', text: 'A chatbot on your WordPress or WooCommerce site that answers from your own pages and products.' },
-      { name: 'Workflow automation', text: 'Repeat work handed to automations with AI steps, using tools such as n8n.' },
-      { name: 'Guardrails', text: 'Approval steps, permissions and audit logs, so the AI cannot do what a person in that role could not.' },
-      { name: 'Debugging AI features', text: 'When an AI feature fails in production, finding out whether it is the model, the API, the trigger or the interface.' },
-    ],
-    proof: ['wrkbase'],
-    faq: [
-      { q: 'What is an AI agent?', a: 'An AI agent is software that uses a language model to carry out a task, not only to answer a question. It reads the situation, plans steps and takes actions through the tools it is allowed to use. In Wrkbase the agent does admin work after the user approves each plan.' },
-      { q: 'Can you add AI to an existing WordPress site?', a: 'Yes. The usual starting points are a chatbot that answers from your own content, AI-written drafts or summaries inside the admin, and automations that move form or order data without anyone copying it by hand.' },
-      { q: 'Is it safe to let an AI agent take actions?', a: 'It is when the limits are built in. The agent should only have the permissions its user has, show what it plans to do, wait for approval on anything that matters and log every action. That is how the Wrkbase agent works.' },
-      { q: 'Which AI models do you work with?', a: 'I integrate language models through their APIs, including OpenAI and Claude. The right one depends on the task, the cost per request and how fast the answer has to arrive, so I choose per feature rather than per project.' },
     ],
   },
 ];

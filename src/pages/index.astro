@@ -1,80 +1,48 @@
 ---
 import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import Cta from '../components/Cta.astro';
-import Audit from '../components/Audit.astro';
-import { services } from '../services.js';
+import Connect from '../components/Connect.astro';
+import BlogCover from '../components/BlogCover.astro';
 import photo from '../assets/sakib-islam-cut.png';
 import appShot from '../assets/work/extra/wrkbase-1.jpg';
 import { site } from '../site.js';
+import { services } from '../services.js';
 import { work } from '../work.js';
-import { clients } from '../clients.js';
-import WorkReel from '../components/WorkReel.astro';
-import Process from '../components/Process.astro';
-import Reviews from '../components/Reviews.astro';
-import Faq from '../components/Faq.astro';
+import { reviews, initials, allReviewsUrl } from '../reviews.js';
+import { posts } from '../blog.js';
+import { prices, usd } from '../prices.js';
 
 // Focus keyword for this page. It must appear in the title, the description and the H1 (scripts/seo-check.mjs).
 const focus = 'WordPress developer';
-const title = 'WordPress Developer for Startups & SaaS | Sakib Islam';
+const title = 'WordPress Developer for Businesses & Agencies | Sakib Islam';
 const description =
-  'Sakib Islam is a WordPress developer for startups and SaaS teams: custom builds, speed fixes, custom web products and AI agents. See the work and results.';
+  'Sakib Islam is a senior WordPress developer: speed fixes, repairs and care plans for businesses, and white-label WordPress builds for agencies.';
 
-const pad = (n) => String(n).padStart(2, '0');
-// A service as a command name: "Speed and rescue" becomes "speed-and-rescue".
-const cmd = (sv) => sv.name.toLowerCase().replace(/\s+/g, '-');
+const shot = (slug) => work.find((w) => w.slug === slug);
+const tabby = shot('tabby');
+// Selected work: the first is shown large. Wrkbase is shown by its app screen, the rest by their home pages.
+const mosaic = ['tabby', 'tubeonai', 'open-alliance-learning', 'wrkbase', 'pixmge'].map(shot).map((w) => ({ ...w, img: w.slug === 'wrkbase' ? appShot : w.shot }));
 
-// The headline is split into words so each one can animate in. The word in `hot` takes the accent colour.
-// Three fixed lines on desktop; on phones the words wrap naturally.
-const headline = ['WordPress developer', 'building fast sites for', 'SaaS and AI startups.'].map((line) => line.split(' '));
-const hot = ['fast'];
-
-// Trust numbers. Each one can be checked: the client list is the strip above, the recommendations are on LinkedIn,
-// the countries are where those clients are, and the saved signups figure is from the TubeOnAI case study.
-const proof = [
-  { num: 25, dec: 0, prefix: '', suffix: '+', label: 'client websites built or fixed', viz: 'dots', n: 25 },
-  { num: 12, dec: 0, prefix: '', suffix: '', label: 'LinkedIn recommendations from founders, managers and teammates', viz: 'dots', n: 12 },
-  { num: 4, dec: 0, prefix: '', suffix: '', label: 'countries served', viz: 'tags', tags: ['US', 'UK', 'Denmark', 'Bangladesh'] },
-  { num: 6, dec: 0, prefix: '$', suffix: 'K', label: 'in signups saved for TubeOnAI by ending its downtime (estimate)', viz: 'bars' },
+// Each line is checkable: case studies are on this site, recommendations are on LinkedIn, Wrkbase is live.
+const facts = [
+  { n: String(work.length), label: 'case studies, live links' },
+  { n: String(reviews.length), label: 'recommendations quoted' },
+  { n: '1', label: 'SaaS product of my own' },
 ];
-
-const faq = [
-  {
-    q: 'Can you fix a WordPress site that keeps going down?',
-    a: "Yes. I start by finding the cause, not by adding another plugin. On TubeOnAI the downtime came from leftover cache plugin files clashing with the host's own speed plugin. I removed them, kept one caching layer, and load time went from 5 seconds to 1.5.",
-  },
-  {
-    q: 'What does a WordPress developer like you take on?',
-    a: 'All of it, front end and back end. That covers custom themes, custom features, plugin development, WooCommerce and payments, integrations with other tools, security and speed. A build from a Figma design is one kind of project, not the only one.',
-  },
-  {
-    q: 'Do you only work with WordPress?',
-    a: 'No. I also build custom web products. Wrkbase, a team management platform with an AI agent, is my own product: I designed it, built the software and built its website without WordPress.',
-  },
-  {
-    q: 'What does a WordPress speed fix involve?',
-    a: 'I measure the site with PageSpeed Insights, then work through what the report shows: caching set up once and properly, unused CSS and JavaScript removed, images resized and served in modern formats, and heavy page-builder layouts rebuilt. You get the before and after numbers.',
-  },
-  {
-    q: 'How do you measure the result?',
-    a: 'With Google PageSpeed Insights and Core Web Vitals, on mobile, before and after the work. You see the same numbers I do, and you can run the test yourself at any time.',
-  },
-  {
-    q: 'Do you offer ongoing maintenance?',
-    a: "Yes. I still maintain and update Tabby's website after building it, and I can do the same for a site I have built or fixed for you.",
-  },
-  {
-    q: 'Can you add AI to my product or website?',
-    a: 'Yes. I build AI agents that take actions inside a product, connect language model APIs to sites and apps, add chatbots to WordPress, and automate repeat work. The agent inside Wrkbase, my own platform, is the worked example.',
-  },
-  {
-    q: 'How much does a project cost?',
-    a: 'It depends on the scope, so I look first. Send me the site or the brief, I tell you what I would check or build and in what order, and you get a written quote before any work starts.',
-  },
-  {
-    q: 'Do you work with companies outside Bangladesh?',
-    a: 'Yes. I work remotely from Dhaka. Tabby is a US product, and I have built for clients in Denmark and the UK.',
-  },
+const experience = [
+  { yr: '2026 →', role: 'IT Executive', org: 'Open Academy London, online education', kind: 'Full-time' },
+  { yr: '2026 →', role: 'Founder', org: 'Wrkbase, team management SaaS', kind: 'Own product' },
+  { yr: '2025 →', role: 'WordPress developer', org: 'Tabby, AI bookkeeping (US)', kind: 'Freelance' },
+  { yr: '2025', role: 'Payment gateway plugin', org: 'Moneybag, fintech', kind: 'Project' },
+  { yr: '2024', role: 'WordPress developer', org: 'TubeOnAI, AI summaries', kind: 'Part-time' },
+  { yr: '2023', role: 'WordPress developer', org: 'Oxford International School, Dhaka', kind: 'Full-time' },
+];
+const strip = [
+  { price: usd(prices.care), unit: '/mo', label: 'Care plan' },
+  { price: usd(prices.fix), unit: '', label: 'Broken site fix' },
+  { price: usd(prices.speed), unit: '', label: 'Speed fix' },
+  { price: usd(prices.build), unit: '', label: 'Custom build' },
+  { price: usd(prices.agencyHour), unit: '/h', label: 'Agency white-label' },
 ];
 
 const jsonld = [
@@ -82,188 +50,240 @@ const jsonld = [
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: site.name,
-    jobTitle: site.role,
+    jobTitle: 'Senior WordPress developer',
+    email: site.email,
     address: { '@type': 'PostalAddress', addressLocality: 'Dhaka', addressCountry: 'BD' },
     url: Astro.site,
-    image: { '@type': 'ImageObject', url: new URL(photo.src, Astro.site), width: photo.width, height: photo.height, caption: 'Sakib Islam, WordPress developer and founder of Wrkbase' },
+    image: { '@type': 'ImageObject', url: new URL(photo.src, Astro.site), width: photo.width, height: photo.height, caption: 'Sakib Islam, WordPress developer' },
     telephone: site.phone,
     sameAs: [site.linkedin, site.wrkbase, site.github, site.facebook].filter(Boolean),
-    knowsAbout: ['WordPress development', 'WordPress plugin development', 'WordPress speed optimization', 'Core Web Vitals', 'WooCommerce', 'SaaS development', 'AI agents', 'LLM integration'],
-    makesOffer: services.map((sv) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: sv.name, url: new URL(`/${sv.slug}/`, Astro.site) } })),
+    knowsAbout: ['WordPress development', 'WordPress maintenance', 'WordPress speed optimization', 'Core Web Vitals', 'WooCommerce', 'White-label WordPress development', 'SaaS development'],
+    makesOffer: [
+      { slug: 'wordpress-maintenance', name: 'WordPress maintenance' },
+      ...services.map((sv) => ({ slug: sv.slug, name: sv.name })),
+      { slug: 'white-label-wordpress-development', name: 'White-label WordPress development' },
+    ].map((sv) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: sv.name, url: new URL(`/${sv.slug}/`, Astro.site) } })),
   },
   { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: Astro.site },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faq.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: { '@type': 'Answer', text: f.a },
-    })),
-  },
 ];
 ---
 <Base title={title} description={description} jsonld={jsonld} focus={focus}>
-  <section class="hero">
-    <canvas class="dots" aria-hidden="true"></canvas>
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <h1>
-          {headline.map((line, l) => (
-            <span class="hl">
-              {line.map((word, i) => (
-                <Fragment>
-                  <span class="w" style={`--i:${headline.slice(0, l).flat().length + i}`}>{hot.includes(word) ? <em>{word}</em> : word}</span>{' '}
-                </Fragment>
-              ))}
-            </span>
-          ))}
-        </h1>
-        <p class="lead">
-          I build and fix WordPress sites, custom web products and AI agents for SaaS and AI startups. One developer who finds the real cause, ships on schedule and shows you the numbers.
-        </p>
-        <div class="hero-actions">
-          <button class="btn" type="button" data-chat-open>Start a project</button>
-          <a class="btn btn-ghost" href="#audit">Get a free audit</a>
+  <section class="h-hero wrap">
+    <div class="h-grid">
+      <div class="h-copy">
+        <h1><span class="eyebrow">Sakib Islam · Senior WordPress developer</span>Fast WordPress sites that keep working.</h1>
+        <p class="lead">For businesses with a site to fix, and agencies with designs to build.</p>
+        <div class="btn-row">
+          <a class="btn" href="/contact/">Get a free site check</a>
+          <a class="btn btn-ghost" href="/white-label-wordpress-development/">For agencies</a>
+        </div>
+        <p class="mono mut" style="font-size: 0.8125rem">Dhaka, remote · Overlaps US and UK hours</p>
+      </div>
+      <div class="h-stage">
+        <div class="h-panel">
+          <Picture src={photo} formats={['avif', 'webp']} widths={[480, 800]} sizes="(max-width: 900px) 80vw, 480px" alt="Sakib Islam, WordPress developer" loading="eager" fetchpriority="high" />
+        </div>
+        <p class="h-stat"><small>TubeOnAI load time</small><b>5 s → <em>1.5 s</em></b></p>
+        <div class="browser h-shot">
+          <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>usetabby.com</span></div>
+          <Picture src={tabby.shot} formats={['avif', 'webp']} widths={[480, 720]} sizes="(max-width: 900px) 45vw, 290px" alt="The Tabby website, built by Sakib Islam" loading="eager" />
         </div>
       </div>
-      <div class="hero-photo">
-        <figure class="portrait" data-tilt>
-          <Picture src={photo} formats={['avif', 'webp']} widths={[460, 800]} sizes="(max-width: 860px) 92vw, 460px" width={460} height={460} alt="Sakib Islam, WordPress developer and founder of Wrkbase" loading="eager" fetchpriority="high" />
-          <span class="badge">Founder, Wrkbase</span>
-          <figcaption><b>Dhaka, Bangladesh</b><span data-clock>GMT+6</span></figcaption>
+    </div>
+  </section>
+
+  <section class="names" aria-label="Clients">
+    <div class="wrap">{work.map((w) => <span>{w.client}</span>)}</div>
+  </section>
+
+  <section class="wrap" style="padding: 5rem 0 1.25rem">
+    <div class="paths">
+      <a class="tile" href="/wordpress-maintenance/">
+        <div class="tile-top"><p class="label">I run a business</p><span aria-hidden="true">→</span></div>
+        <h2>Slow, broken or nobody looking after it?</h2>
+        <figure class="bars" aria-label="TubeOnAI load time fell from 5 seconds to 1.5 seconds">
+          <div><span class="mut">Before</span><i></i><b>5.0 s</b></div>
+          <div class="after"><span class="mut">After</span><span><i></i></span><b>1.5 s</b></div>
+          <figcaption>TubeOnAI load time, at the time of the fix</figcaption>
         </figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="clients" aria-label="Clients">
-    <div class="wrap"><p>Built for</p></div>
-    <div class="marquee">
-      <div class="track">
-        {[0, 1].map((copy) =>
-          clients.map((c) => (
-            <span class="chip" aria-hidden={copy === 1 ? 'true' : undefined}>
-              <img src={c.logo.src} width={c.logo.width} height={c.logo.height} alt={c.showName ? '' : c.name} loading="lazy" decoding="async" />
-              {c.showName && <b class="wm">{c.name}</b>}
-            </span>
-          )),
-        )}
-      </div>
-    </div>
-  </section>
-
-  <section class="proof-wrap" aria-label="Results">
-    <dl class="wrap proof" data-reveal>
-      {proof.map((p) => (
-        <div>
-          <dt class="num">{p.prefix}<span data-count={p.num} data-dec={p.dec}>{p.num.toFixed(p.dec)}</span>{p.suffix}</dt>
-          <dd>{p.label}</dd>
-          <dd class="viz" aria-hidden="true">
-            {p.viz === 'dots' && Array.from({ length: p.n }, (_, k) => <i style={`--k:${k}`}></i>)}
-            {p.viz === 'tags' && p.tags.map((t) => <span>{t}</span>)}
-            {p.viz === 'bars' && <Fragment><b class="down"></b><b class="up"></b></Fragment>}
-          </dd>
+      </a>
+      <a class="tile" href="/white-label-wordpress-development/">
+        <div class="tile-top"><p class="label">I run an agency</p><span aria-hidden="true">→</span></div>
+        <h2>Your design, built in WordPress under your name.</h2>
+        <div class="to-wp" aria-hidden="true">
+          <div class="wire"><i></i><i></i><i></i><i></i><span>Your Figma</span></div>
+          <svg class="arrow-r" viewBox="0 0 40 16" width="40" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h34M30 3l6 5-6 5" /></svg>
+          <div class="browser"><div class="browser-bar"><i></i><i></i></div><Picture src={tabby.shot} formats={['avif', 'webp']} widths={[360]} sizes="200px" alt="" loading="lazy" /></div>
         </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="services" class="wrap" style="padding: 1.25rem 0 5rem">
+    <h2 class="sr-only">Services</h2>
+    <div class="bento">
+      <a class="tile span-7" href="/wordpress-speed-optimization/">
+        <p class="label">Speed</p>
+        <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap">
+          <svg class="ring" width="140" height="140" viewBox="0 0 140 140" role="img" aria-label="Core Web Vitals above 90"><circle cx="70" cy="70" r="58" fill="none" stroke="var(--line)" stroke-width="12" /><circle cx="70" cy="70" r="58" fill="none" stroke="currentColor" stroke-width="12" stroke-dasharray="328 364" stroke-linecap="round" transform="rotate(-90 70 70)" /><text x="70" y="80" text-anchor="middle" font-size="30">90+</text></svg>
+          <div style="display: grid; gap: 0.5rem">
+            <h3>Speed fixed at the cause.</h3>
+            <p class="mono mut" style="font-size: 0.8125rem">Tabby: Core Web Vitals above 90 at launch</p>
+          </div>
+        </div>
+      </a>
+      <a class="tile span-5" href="/wordpress-maintenance/#fix">
+        <p class="label">Fixes</p>
+        <div style="display: grid; gap: 0.5rem; justify-items: start" aria-hidden="true">
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap"><span class="pill x">cache plugin</span><span class="pill x">cache plugin</span><span class="pill x">leftover files</span></div>
+          <span class="pill ok">one caching layer ✓</span>
+        </div>
+        <h3>Sites that keep breaking, fixed once.</h3>
+      </a>
+      <a class="tile span-5" href="/wordpress-maintenance/">
+        <p class="label">Care plans · from {usd(prices.care)}/mo</p>
+        <div class="weeks" aria-hidden="true">
+          <div><small>Wk 1</small>Updates</div><div><small>Wk 2</small>Backups</div><div><small>Wk 3</small>Security</div><div class="last"><small>Wk 4</small>Report</div>
+        </div>
+        <h3>One developer who knows your site.</h3>
+      </a>
+      <a class="tile tile-photo span-7" href="/wordpress-development/">
+        <Picture src={shot('moneybag').shot} formats={['avif', 'webp']} widths={[640, 960]} sizes="(max-width: 900px) 100vw, 700px" alt="" loading="lazy" />
+        <div class="tile-cap">
+          <p class="label">Builds</p>
+          <h3 style="max-width: 18ch">Custom WordPress and WooCommerce, down to the payment gateway.</h3>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="work" class="wrap" style="padding: 2.5rem 0 5.5rem">
+    <div class="row-head">
+      <h2>Selected work</h2>
+      <a href="/work/tabby/">Start with Tabby →</a>
+    </div>
+    <div class="mosaic">
+      {mosaic.map((w, i) => (
+        <a href={`/work/${w.slug}/`}>
+          <div class="browser">
+            <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i>{i === 0 && <span>{new URL(w.clientUrl).hostname.replace('www.', '')}</span>}</div>
+            <Picture src={w.img} formats={['avif', 'webp']} widths={i === 0 ? [640, 960, 1280] : [480, 720]} sizes={i === 0 ? '(max-width: 900px) 100vw, 840px' : '(max-width: 900px) 100vw, 420px'} alt={`${w.client} website`} loading="lazy" />
+          </div>
+          <span class="tag">{w.client} · <b>{w.chip}</b></span>
+        </a>
       ))}
-    </dl>
-  </section>
-
-  <section id="work" class="sec tint-a">
-    <div class="wrap">
-      <WorkReel items={work} title="Selected work" lead="Real client sites. Pick one to see what I built, the result and the live link." />
     </div>
   </section>
 
-  <section id="wrkbase" class="sec band band-grid">
-    <div class="wrap showcase">
-      <div class="showcase-copy">
-        <div data-reveal>
-          <h2>Wrkbase, software I designed and built</h2>
-        </div>
-        <div data-reveal style="--d:0.1s">
-          <p class="lead">
-            A team management platform, custom-built from the database to the dashboard, with an AI agent that does the admin after you approve it.
-          </p>
-          <ul>
-            <li>Tasks, time tracking, attendance, leave and payroll</li>
-            <li>An AI agent that shows every step before it acts</li>
-            <li>Role-based access and a full audit log</li>
-          </ul>
-          <p class="card-links">
-            <a href="/work/wrkbase/">Case study</a>
-            <a href={site.wrkbase} target="_blank" rel="noopener">mywrkbase.com ↗</a>
-          </p>
+  <section id="about" class="sec-line sec-pad">
+    <div class="wrap about">
+      <div class="about-copy">
+        <p class="label">About</p>
+        <h2>I find what is actually wrong, then fix it once.</h2>
+        <p class="mut">WordPress developer in Dhaka, working alone and remotely for companies in the US and UK. I also built and run my own SaaS product, Wrkbase.</p>
+        <div class="about-facts">
+          {facts.map((f) => <div><b>{f.n}</b><span>{f.label}</span></div>)}
         </div>
       </div>
-      <div class="stage">
-        <div class="frame">
-          <Picture
-            src={appShot}
-            formats={['avif', 'webp']}
-            widths={[640, 960, 1568]}
-            sizes="(max-width: 1200px) 100vw, 1160px"
-            alt="The Wrkbase dashboard showing tasks, attendance, performance and payroll for a company"
-            loading="lazy"
-          />
-        </div>
+      <div>
+        <p class="label" style="margin-bottom: 0.5rem">Experience</p>
+        <ol class="timeline">
+          {experience.map((e) => (
+            <li><span class="yr">{e.yr}</span><span><strong>{e.role}</strong><br /><span class="mut" style="font-size: 0.9375rem">{e.org}</span></span><span class="kind">{e.kind}</span></li>
+          ))}
+        </ol>
       </div>
     </div>
   </section>
 
-  <section id="services" class="sec">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>What I can do for you</h2>
+  <section class="on-surface sec-pad">
+    <div class="wrap" style="display: grid; gap: 3rem">
+      <div class="row-head" style="margin: 0">
+        <div style="display: grid; gap: 0.9rem"><p class="label">For agencies · white-label</p><h2>From your Figma to launch, under your name.</h2></div>
+        <a class="btn" href="/white-label-wordpress-development/">How it works</a>
       </div>
-      <div class="console term" data-reel data-interval="6500" data-reveal>
-        <div class="console-bar"><i></i><i></i><i></i><span>services</span><b>{services.length} available</b></div>
-        <div class="term-body">
-          <div class="term-side">
-            <p class="line you">$ sakib --services</p>
-            <div class="term-list" role="tablist" aria-label="Services" aria-orientation="vertical">
-              {services.map((sv, i) => (
-                <button type="button" role="tab" id={`svc-tab-${i}`} aria-controls={`svc-panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
-                  <span class="idx">{pad(i + 1)}</span>
-                  <span class="cmd">{cmd(sv)}</span>
-                </button>
-              ))}
-            </div>
-            <p class="line sys hint">Pick a service to see what is included.</p>
+      <ol class="pipeline">
+        <li><span class="node"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18M9 21V9" /></svg></span><strong>You send the design</strong><span>Quote and date first</span></li>
+        <li><span class="node"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5" /></svg></span><strong>I build on staging</strong><span>Updates in your Slack</span></li>
+        <li><span class="node"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></svg></span><strong>You review</strong><span>Phone, desktop, speed</span></li>
+        <li><span class="node"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" /></svg></span><strong>You launch it</strong><span>Handoff notes included</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="motto" aria-label="How I work">
+    <div class="wrap" style="display: grid; gap: 1.25rem">
+      <p class="label">How I work</p>
+      <p class="big">Fix the cause, <em>not the symptom.</em></p>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding: 5.5rem 0 2.5rem">
+    <p class="label" style="margin-bottom: 1.25rem">Starting prices, USD</p>
+    <div class="price-strip">
+      {strip.map((p) => <div><b>{p.price}<small>{p.unit}</small></b><span>{p.label}</span></div>)}
+    </div>
+    <p class="mut" style="margin-top: 1rem; font-size: 0.9375rem">Every job gets a written quote before work starts.</p>
+  </section>
+
+  <section class="wrap rv" style="padding: 4.5rem 0 3rem" aria-label="Recommendations" data-rv>
+    <div class="rv-head">
+      <p class="label">What they said · <span data-rv-pos>01</span> / {String(reviews.length).padStart(2, '0')}</p>
+      <div class="rv-nav">
+        <button type="button" aria-label="Previous recommendation" data-rv-prev><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg></button>
+        <button type="button" aria-label="Next recommendation" data-rv-next><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg></button>
+      </div>
+    </div>
+    <div aria-live="polite">
+      {reviews.map((r, i) => (
+        <figure class:list={['rv-item', { on: i === 0 }]}>
+          <span class="rv-ini" aria-hidden="true">{initials(r.name)}</span>
+          <div>
+            <blockquote>&ldquo;{r.text}&rdquo;</blockquote>
+            <figcaption><strong>{r.name}</strong><br /><span>{r.role}</span></figcaption>
           </div>
-          <div class="term-out" data-reel-stage>
-            {services.map((sv, i) => (
-              <div class:list={['term-panel', { on: i === 0 }]} role="tabpanel" id={`svc-panel-${i}`} aria-labelledby={`svc-tab-${i}`}>
-                <p class="line you" style="--i:0">$ sakib open {cmd(sv)}</p>
-                <h3 class="line" style="--i:1"><a href={`/${sv.slug}/`}>{sv.name}</a></h3>
-                <p class="line sys" style="--i:2">{sv.short}</p>
-                {sv.includes.map((item, k) => <p class="line ok" style={`--i:${k + 3}`}>{item.name}</p>)}
-                <p class="line plan" style={`--i:${sv.includes.length + 3}`}>
-                  proof:{' '}
-                  {sv.proof.map((slug, k) => (
-                    <Fragment>{k > 0 && ', '}<a href={`/work/${slug}/`}>{work.find((w) => w.slug === slug).client}</a></Fragment>
-                  ))}
-                </p>
-                <p class="line plan" style={`--i:${sv.includes.length + 4}`}><a href={`/${sv.slug}/`}>open the full page</a></p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+        </figure>
+      ))}
     </div>
+    <p class="mut" style="font-size: 0.9375rem">Quoted word for word from <a href={allReviewsUrl} target="_blank" rel="noopener">my LinkedIn recommendations</a>.</p>
   </section>
 
-  <Audit />
+  {posts.length > 0 && (
+    <section class="sec-line sec-pad">
+      <div class="wrap">
+        <div class="row-head">
+          <h2>From the blog</h2>
+          <a href="/blog/">All posts →</a>
+        </div>
+        <div class="post-grid">
+          {posts.slice(0, 3).map((p) => (
+            <a class="post-card" href={`/blog/${p.slug}/`}>
+              <BlogCover kind={p.cover} />
+              <small>{p.topic}</small>
+              <h3>{p.title}</h3>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
-  <Process />
-
-  <Reviews />
-
-  <Faq items={faq} />
-
-  <Cta />
+  <Connect />
 </Base>
 
 <script>
-  import '../scripts/reel.js';
+  // Recommendations: one at a time with previous and next. Without script all of them show in a column.
+  const box = document.querySelector('[data-rv]');
+  if (box) {
+    const items = [...box.querySelectorAll('.rv-item')], pos = box.querySelector('[data-rv-pos]');
+    let i = 0;
+    const show = (n) => {
+      i = (n + items.length) % items.length;
+      items.forEach((el, k) => el.classList.toggle('on', k === i));
+      pos.textContent = String(i + 1).padStart(2, '0');
+    };
+    box.querySelector('[data-rv-prev]').addEventListener('click', () => show(i - 1));
+    box.querySelector('[data-rv-next]').addEventListener('click', () => show(i + 1));
+    box.classList.add('ready');
+  }
 </script>

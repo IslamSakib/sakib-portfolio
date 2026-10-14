@@ -1,0 +1,182 @@
+---
+// For businesses: monthly care plans, and single fixes for a site that is broken today.
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Connect from '../components/Connect.astro';
+import { site } from '../site.js';
+import { work } from '../work.js';
+import { prices, usd } from '../prices.js';
+
+const focus = 'WordPress maintenance services';
+const title = 'WordPress Maintenance Services from $149/mo | Sakib Islam';
+const description =
+  'WordPress maintenance services from $149/month: tested updates, daily off-site backups, security monitoring and a monthly report, by one senior developer.';
+const url = new URL(Astro.url.pathname, Astro.site);
+const tabby = work.find((w) => w.slug === 'tabby').shot;
+
+const weeks = [
+  { t: 'Updates', d: 'Tested first', p: 'M21 12a9 9 0 11-3-6.7M21 4v5h-5' },
+  { t: 'Backups', d: 'Daily, off server', p: 'M4 5c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3' },
+  { t: 'Security', d: 'Monitored daily', p: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z' },
+  { t: 'Report', d: 'Plain English', p: 'M6 3h9l4 4v14H6zM9 12h7M9 16h5' },
+];
+// [label, Care, Care + development]
+const rows = [
+  ['Updates, tested first', true, true],
+  ['Daily off-site backups', true, true],
+  ['Uptime and security monitoring', true, true],
+  ['Monthly report', true, true],
+  ['Changes and fixes', '1 h', '3 h'],
+  ['Monthly mobile speed check', false, true],
+  ['Urgent reply within 24 h', true, true],
+];
+const faq = [
+  { q: 'What do WordPress maintenance services include?', a: 'Updates to WordPress, the theme and plugins, tested before they go live; daily backups kept off the server; uptime and security monitoring; and time for small changes. You also get a monthly report written for a non-technical reader.' },
+  { q: 'What happens if the site goes down at night?', a: 'Monitoring tells me when it happens, and urgent problems get a reply within 24 hours. I work from Dhaka, so a US or UK night is my working day.' },
+  { q: 'Can you take over a site another developer built?', a: 'Yes. I start by reading what is there: the theme, the plugins, the errors and what changed recently. You get a short list of what is wrong and what I would fix first before the plan starts.' },
+  { q: 'Can I cancel?', a: 'Yes, any month. You keep every login and own everything; I work through my own user account, which you can remove.' },
+];
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'WordPress maintenance',
+    serviceType: focus,
+    description,
+    url,
+    provider: { '@type': 'Person', name: site.name, url: Astro.site },
+    offers: [
+      { '@type': 'Offer', name: 'Care', priceSpecification: { '@type': 'UnitPriceSpecification', price: prices.care, priceCurrency: 'USD', unitText: 'month' } },
+      { '@type': 'Offer', name: 'Care + development', priceSpecification: { '@type': 'UnitPriceSpecification', price: prices.carePlus, priceCurrency: 'USD', unitText: 'month' } },
+      { '@type': 'Offer', name: 'Single fix', priceSpecification: { '@type': 'PriceSpecification', minPrice: prices.fix, priceCurrency: 'USD' } },
+    ],
+  },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: Astro.site },
+      { '@type': 'ListItem', position: 2, name: 'WordPress maintenance', item: url },
+    ],
+  },
+];
+---
+<Base title={title} description={description} jsonld={jsonld} focus={focus}>
+  <section class="p-hero wrap">
+    <div class="p-grid">
+      <div class="p-copy">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Maintenance</span></nav>
+        <h1><span class="eyebrow">WordPress maintenance services</span>Your site, looked after every month.</h1>
+        <p class="lead">One senior developer who knows your site. Not a ticket queue.</p>
+        <div class="btn-row">
+          <a class="btn" href="/contact/?need=maintenance">Start a care plan</a>
+          <a class="btn btn-ghost" href="#fix">Fix one problem first</a>
+        </div>
+      </div>
+      <ol class="month" aria-label="A month on a care plan">
+        {weeks.map((w, i) => (
+          <li class:list={[{ last: i === 3 }]}>
+            <small>Week {i + 1}</small>
+            <svg class="icon" width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d={w.p} /></svg>
+            <strong>{w.t}</strong>
+            <span>{w.d}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="on-surface sec-pad">
+    <div class="wrap two-col">
+      <div style="display: grid; gap: 1.1rem; justify-items: start">
+        <p class="label">Why sites fall apart</p>
+        <h2 style="max-width: 15ch">Fine until nobody owns them.</h2>
+        <p class="mut" style="max-width: 40ch">TubeOnAI kept going down. Old cache plugins were fighting the host's own. I removed them and kept one layer.</p>
+        <a href="/work/tubeonai/">Read the case study →</a>
+      </div>
+      <figure class="result-card" aria-label="TubeOnAI: load time fell from 5 seconds to 1.5 seconds and server load fell 60 percent">
+        <div class="bars">
+          <div><span class="mut">Before</span><i></i><b>5.0 s</b></div>
+          <div class="after"><span class="mut">After</span><span><i></i></span><b>1.5 s</b></div>
+        </div>
+        <div class="result-nums">
+          <div><b>−60%</b><span>server load</span></div>
+          <div><b>Stopped</b><span>the repeated downtime</span></div>
+        </div>
+        <figcaption class="mono mut" style="font-size: 0.75rem">TubeOnAI, at the time of the work</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="wrap sec-pad" style="padding-bottom: 3rem">
+    <div class="row-head"><h2>Two plans. Cancel any month.</h2></div>
+    <div class="scroll-x">
+      <table class="plans">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 46%"><span class="sr-only">What is included</span></th>
+            <th scope="col"><span class="nm">Care</span><span class="price">{usd(prices.care)}<small>/mo</small></span></th>
+            <th scope="col" class="hi"><span class="nm">Care + development</span><span class="price">{usd(prices.carePlus)}<small>/mo</small></span></th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([label, a, b]) => (
+            <tr>
+              <th scope="row">{label}</th>
+              {[a, b].map((v, k) => (
+                <td class:list={[{ hi: k === 1, yes: v === true }, 'mono']}>
+                  {v === true ? <><span aria-hidden="true">✓</span><span class="sr-only">Included</span></> : v === false ? <><span class="mut" aria-hidden="true">–</span><span class="sr-only">Not included</span></> : v}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="mut" style="margin-top: 1.1rem; font-size: 0.9375rem">Stores and high-traffic sites are quoted separately. You keep every login.</p>
+  </section>
+
+  <section id="fix" class="wrap" style="padding-bottom: 5rem">
+    <div class="fix-panel">
+      <div>
+        <p class="label">Not ready for a plan?</p>
+        <h2 style="font-size: clamp(1.75rem, 3vw, 2.5rem)">Fix one problem first. From {usd(prices.fix)}.</h2>
+        <p class="mut">White screen, broken form, plugin conflict. The cause written down.</p>
+      </div>
+      <a class="btn" href="/contact/?need=broken">Describe the problem</a>
+    </div>
+  </section>
+
+  <section class="sec-line sec-pad">
+    <div class="wrap two-col">
+      <figure class="quote-side" style="margin: 0">
+        <span class="ini" aria-hidden="true">AA</span>
+        <blockquote>&ldquo;continuous maintenance and updates on Tabby's website. He is very responsive&rdquo;</blockquote>
+        <figcaption class="mut">Ahad Ali, CPA, Founder of Tabby</figcaption>
+      </figure>
+      <a class="browser" href="/work/tabby/"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>usetabby.com</span></div><Picture src={tabby} formats={['avif', 'webp']} widths={[480, 720, 1040]} sizes="(max-width: 900px) 100vw, 600px" alt="The Tabby website, built and maintained by Sakib Islam since 2025" loading="lazy" /></a>
+    </div>
+  </section>
+
+  <section class="wrap sec-pad" style="padding-top: 1rem">
+    <div class="row-head"><h2>To get started</h2></div>
+    <ol class="start-steps">
+      <li><span class="n">01</span><strong>An admin login for me</strong><span>In my own name.</span></li>
+      <li><span class="n">02</span><strong>Hosting access</strong><span>Or the host's name.</span></li>
+      <li><span class="n">03</span><strong>What bothers you today</strong><span>I check those first.</span></li>
+    </ol>
+  </section>
+
+  <section class="wrap sec-pad" style="padding-top: 1rem">
+    <div class="two-col" style="align-items: start">
+      <h2>About maintenance</h2>
+      <div class="qa">
+        {faq.map((f, i) => <details open={i === 0}><summary>{f.q}</summary><p>{f.a}</p></details>)}
+      </div>
+    </div>
+  </section>
+
+  <Connect heading="Send the site. Get a free check, whether or not you take a plan." />
+</Base>

@@ -1,5 +1,7 @@
 # Keyword research and on-page spec
 
+> Superseded on 14 Oct 2026 by docs/research/ (ICP, Semrush keyword data and the page map). Kept for history.
+
 Researched 11 Oct 2026 with free tools only: Google Trends (worldwide, past 12 months) and Google autocomplete.
 Trends numbers are relative interest on a 0 to 100 scale inside each comparison. They are not monthly search volumes, and numbers from different comparisons cannot be compared with each other.
 

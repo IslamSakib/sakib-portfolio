@@ -8,6 +8,8 @@ seoTitle: "WordPress LMS With Role Dashboards | Open Alliance Learning"
 description: "A WordPress LMS for Open Alliance Learning on LearnDash and WooCommerce, with separate dashboards for learners, teachers and quality assessors."
 summary: A website and learning platform with separate dashboards for learners, teachers and quality assessors.
 result: Three role dashboards
+chip: "WordPress LMS"
+relevant: "Relevant if you run courses or memberships on WordPress."
 role: Full-stack WordPress developer
 period: 2026
 stack: [WordPress, LearnDash, WooCommerce, Custom dashboards]

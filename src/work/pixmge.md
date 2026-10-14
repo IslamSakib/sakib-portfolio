@@ -8,6 +8,8 @@ seoTitle: "Agency Website for a Visual Content Company | Pixmge"
 description: "An agency website for Pixmge, an image editing and animation company, with service pages, pricing, a portfolio and a short quote request flow."
 summary: An agency site with clear service pages, a visual portfolio and a simple quote request flow.
 result: Quote requests from day one
+chip: "agency site"
+relevant: "Relevant if you need a service site that brings in quote requests."
 role: WordPress developer
 period: 2023
 stack: [WordPress, Custom theme, Web performance]
