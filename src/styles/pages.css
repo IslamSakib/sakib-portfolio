@@ -359,13 +359,15 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .mnav[open] summary i::after { top: 4px; transform: rotate(-45deg); }
 .mnav .mnav-close, .mnav[open] .mnav-open { display: none; }
 .mnav[open] .mnav-close { display: inline; }
-.mnav-panel { position: fixed; inset: 0; z-index: 1; display: flex; flex-direction: column; gap: 1.5rem; padding: 6.5rem 1.5rem 2rem; overflow-y: auto; background: var(--bg); border-top: 1px solid var(--line); animation: sheet-in 0.45s var(--ease) both; }
+.mnav-panel { position: fixed; inset: 0; z-index: 1; display: flex; flex-direction: column; gap: 1.75rem; padding: 6.5rem max(1.75rem, env(safe-area-inset-right)) 2rem max(1.75rem, env(safe-area-inset-left)); overflow-y: auto; background: var(--bg); border-top: 1px solid var(--line); animation: sheet-in 0.45s var(--ease) both; }
 .mnav-panel > *, .mnav-main a, .mnav-svc a { animation: item-in 0.5s var(--ease) both; animation-delay: calc(0.08s + var(--i, 0) * 0.04s); }
-.site-header nav .mnav-main a { display: block; padding: 0.15rem 0; font-family: var(--display); font-weight: 700; font-size: clamp(2.2rem, 10vw, 3.2rem); letter-spacing: -0.035em; line-height: 1.15; color: var(--text); }
+.mnav-main { border-top: 1px solid var(--line); }
+.site-header nav .mnav-main a { display: flex; justify-content: space-between; align-items: center; padding: 0.85rem 0; border-bottom: 1px solid var(--line); font-family: var(--display); font-weight: 600; font-size: clamp(1.75rem, 7.5vw, 2.4rem); letter-spacing: -0.03em; line-height: 1.1; color: var(--text); }
+.site-header nav .mnav-main a::after { content: '→'; font-family: var(--sans); font-weight: 400; font-size: 1.1rem; color: var(--accent); }
 .site-header nav .mnav-main a:active { color: var(--accent); }
-.mnav-label { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); border-top: 1px solid var(--line); padding-top: 1.25rem; }
+.mnav-label { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); padding-top: 0.25rem; }
 .mnav-svc { display: grid; gap: 0.15rem; margin-top: -0.75rem; }
-.site-header nav .mnav-svc a { display: flex; gap: 0.9rem; align-items: baseline; padding: 0.55rem 0; font-size: 1.0625rem; color: var(--text); border-bottom: 1px solid var(--surface-2); }
+.site-header nav .mnav-svc a { display: flex; gap: 0.9rem; align-items: baseline; padding: 0.7rem 0; font-size: 1.0625rem; color: var(--text); border-bottom: 1px solid var(--surface-2); }
 .mnav-svc span { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); }
 .mnav-foot { margin-top: auto; display: grid; gap: 1rem; }
 .site-header nav .mnav-foot .btn { display: flex; width: 100%; min-height: 52px; color: var(--btn-ink); }
