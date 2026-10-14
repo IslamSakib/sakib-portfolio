@@ -29,7 +29,7 @@
 .h-copy .eyebrow { margin-bottom: 0.9rem; }
 .h-meta { display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; font-size: 0.8125rem; margin-top: 0.25rem; }
 .h-meta span { white-space: nowrap; }
-.h-copy .lead .ln { display: block; }
+
 .h-copy h1 { font-size: clamp(2.5rem, 4.6vw, 4.4rem); max-width: none; }
 .h-copy .lead { max-width: none; font-size: 1.1875rem; }
 .h-collage { position: relative; width: 100%; max-width: 600px; aspect-ratio: 1 / 0.82; justify-self: end; }
@@ -50,7 +50,7 @@
 .trust-nums div { display: grid; gap: 0.35rem; align-content: start; padding-right: 1.25rem; }
 .trust-nums div + div { border-left: 1px solid var(--line); padding-left: 1.25rem; }
 .trust-nums dt { font-family: var(--display); font-weight: 700; font-size: clamp(2.4rem, 4.2vw, 3.6rem); letter-spacing: -0.04em; line-height: 1; }
-.trust-nums dd { margin: 0; color: var(--muted); font-size: 0.9375rem; max-width: 28ch; text-wrap: balance; }
+.trust-nums dd { margin: 0; color: var(--muted); font-size: 0.9375rem; max-width: none; text-wrap: pretty; }
 .logo-row { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: center; }
 .logo-row ul { display: flex; flex-wrap: wrap; gap: 1.25rem 3rem; align-items: center; }
 .logo-row li { display: flex; align-items: center; gap: 0.5rem; }
@@ -117,7 +117,7 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .about-copy { display: grid; gap: 1.4rem; }
 .about-copy h2 { max-width: none; }
 .about-copy .timeline { margin-top: 1rem; }
-.about-copy p { max-width: 56ch; }
+.about-copy p { max-width: none; }
 .about-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
 .about-facts div { display: grid; gap: 0.2rem; padding: 1.25rem 1rem 0 0; }
 .about-facts b { font-family: var(--mono); font-weight: 400; font-size: 2.125rem; letter-spacing: -0.03em; }
@@ -159,7 +159,7 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .rv-nav button:hover { border-color: var(--accent); }
 .rv-item { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2.5rem; align-items: start; padding-bottom: 2.5rem; }
 .rv-ini { display: grid; place-items: center; width: 88px; height: 88px; border-radius: 50%; border: 1px solid var(--accent); color: var(--accent); font-family: var(--mono); font-size: 1.5rem; }
-.rv-item blockquote { margin: 0 0 1.25rem; font-family: var(--display); font-weight: 500; font-size: clamp(1.6rem, 3vw, 2.6rem); line-height: 1.2; letter-spacing: -0.02em; max-width: 40ch; text-wrap: balance; }
+.rv-item blockquote { margin: 0 0 1.25rem; font-family: var(--display); font-weight: 500; font-size: clamp(1.6rem, 3vw, 2.6rem); line-height: 1.2; letter-spacing: -0.02em; max-width: none; text-wrap: pretty; }
 .rv-item figcaption span { color: var(--muted); }
 .rv.ready .rv-item:not(.on) { display: none; }
 .rv:not(.ready) .rv-nav { display: none; }
@@ -193,7 +193,7 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .p-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 3.5rem; align-items: center; }
 .p-copy { display: grid; gap: 1.4rem; justify-items: start; }
 .p-copy h1 { font-size: clamp(2.5rem, 4.4vw, 4.2rem); max-width: none; }
-.p-copy h1 .ln, .p-copy .lead .ln, .contact-side h1 .ln { display: block; }
+.p-copy h1 .ln, .contact-side h1 .ln { display: block; }
 .p-copy .lead { max-width: none; }
 
 /* Agency page */
@@ -221,7 +221,7 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .models b { font-family: var(--mono); font-weight: 400; font-size: 2.5rem; letter-spacing: -0.04em; }
 .models small { font-size: 1.125rem; color: var(--muted); }
 .quote-side { display: grid; gap: 1.1rem; }
-.quote-side blockquote { margin: 0; font-family: var(--display); font-weight: 500; font-size: clamp(1.6rem, 2.8vw, 2.4rem); line-height: 1.2; max-width: 32ch; text-wrap: balance; }
+.quote-side blockquote { margin: 0; font-family: var(--display); font-weight: 500; font-size: clamp(1.6rem, 2.8vw, 2.4rem); line-height: 1.2; max-width: none; text-wrap: pretty; }
 .ini { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--accent); color: var(--bg); font-family: var(--mono); }
 .two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3.5rem; align-items: center; }
 .shots-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
@@ -231,7 +231,7 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .qa summary::-webkit-details-marker { display: none; }
 .qa summary::after { content: '+'; color: var(--accent); font-family: var(--mono); }
 .qa details[open] summary::after { content: '−'; }
-.qa details p { margin-top: 0.7rem; color: var(--muted); max-width: 60ch; }
+.qa details p { margin-top: 0.7rem; color: var(--muted); max-width: none; }
 
 /* Maintenance page */
 .month { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; }
@@ -290,7 +290,7 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 
 /* Blog post */
 .post-head { padding: 2.5rem 0 2rem; display: grid; gap: 1.4rem; justify-items: start; }
-.post-head h1 { font-size: clamp(2.4rem, 4.8vw, 4.1rem); max-width: 26ch; }
+.post-head h1 { font-size: clamp(2.4rem, 4.8vw, 4.1rem); max-width: none; }
 .byline { display: flex; gap: 0.9rem; align-items: center; font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); }
 .byline img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; background: var(--line); }
 .post-cover { padding-bottom: 3rem; }
@@ -390,8 +390,7 @@ html:has(.mnav[open]) .chat, html:has(.mnav[open]) .to-top { display: none; }
 /* Phones: the hero headline and description keep their two phrases whole, one per line, sized to fit the screen. */
 @media (max-width: 699px) {
   .h-copy h1 { font-size: 8.3vw; }
-  .h-copy h1 .ln, .h-copy .lead .ln { display: block; white-space: nowrap; }
-  .h-copy .lead { font-size: 4.1vw; }
+  .h-copy h1 .ln { display: block; white-space: nowrap; }
 }
 
 /* Touch screens have no hover: a tap fakes one and it sticks after the finger lifts. Every hover effect is undone here,
@@ -420,3 +419,17 @@ html:has(.mnav[open]) .chat, html:has(.mnav[open]) .to-top { display: none; }
   .toc a:hover { color: var(--muted); border-color: var(--line); }
   .site-header nav .mnav-panel a:hover { background: none; }
 }
+
+/* Text under a headline that is set on fixed phrase lines takes exactly the headline's width and wraps naturally, so
+   there is no empty block beside a short description. The column is as wide as its widest unbreakable line: the headline. */
+.h-copy { grid-template-columns: min-content; }
+.h-copy > * { min-width: 0; }
+@media (min-width: 700px) {
+  .p-copy, .contact-side { grid-template-columns: min-content; }
+  .p-copy > *, .contact-side > * { min-width: 0; }
+}
+@media (min-width: 861px) {
+  .svc-copy { grid-template-columns: min-content; }
+  .svc-copy > * { min-width: 0; }
+}
+.h-copy .lead, .p-copy .lead, .contact-side .lead, .svc-copy .lead { text-wrap: pretty; }

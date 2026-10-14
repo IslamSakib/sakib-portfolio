@@ -47,20 +47,20 @@ a { color: inherit; text-underline-offset: 3px; }
 a:hover { color: var(--accent-hi); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 h1, h2, h3, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
-h1, h2, h3 { font-family: var(--display); line-height: 1.08; letter-spacing: -0.03em; font-weight: 700; text-wrap: balance; padding-bottom: 0.08em; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.08; letter-spacing: -0.03em; font-weight: 700; text-wrap: pretty; padding-bottom: 0.08em; }
 h1 { font-size: clamp(2.5rem, 6vw, 4.75rem); }
 h2 { font-size: clamp(2rem, 4.2vw, 3.25rem); }
 h3 { font-size: 1.375rem; letter-spacing: -0.02em; }
 ul, ol { padding: 0; list-style: none; }
 /* No single word left alone on a last line: body text avoids short last lines, and short intro lines are evened out. */
 p, li, dd, dt, summary, blockquote, figcaption { text-wrap: pretty; }
-.review-note, .small, .outcome span, .proof dd, .picks p, summary { text-wrap: balance; }
+.review-note, .small, .outcome span, .proof dd, .picks p, summary { text-wrap: pretty; }
 .lead.wide { text-wrap: pretty; }
 button { font: inherit; color: inherit; }
 
 .wrap { width: min(100% - 2.5rem, var(--wrap)); margin-inline: auto; }
 .muted { color: var(--muted); }
-.lead { font-size: 1.1875rem; color: var(--muted); max-width: 60ch; }
+.lead { font-size: 1.1875rem; color: var(--muted); max-width: none; }
 .label { font-family: var(--mono); font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); }
 .num { font-family: var(--mono); font-variant-numeric: tabular-nums; letter-spacing: -0.04em; }
 .skip { position: absolute; left: -999px; }
@@ -141,7 +141,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .proof { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
 .proof > div { display: grid; grid-template-rows: auto auto 1fr; gap: 0.6rem; min-width: 0; padding: 1.6rem 1.5rem 1.4rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
 .proof dt { font-family: var(--display); font-size: clamp(2.6rem, 4.6vw, 3.75rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1; color: var(--accent); }
-.proof dd { color: var(--muted); max-width: 26ch; }
+.proof dd { color: var(--muted); }
 .proof .viz { display: flex; flex-wrap: wrap; gap: 5px; align-self: end; align-items: end; max-width: none; margin-top: 0.9rem; min-height: 28px; }
 .proof .viz i { width: 9px; height: 9px; border-radius: 2px; background: var(--accent-fill); animation: pop-in 0.4s var(--ease) both; animation-delay: calc(var(--k) * 35ms + 0.3s); }
 .proof .viz span { padding: 0.15rem 0.55rem; border: 1px solid var(--line); border-radius: 4px; font-family: var(--mono); font-size: 0.75rem; color: var(--text); }
@@ -165,7 +165,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .project-copy h3 a { text-decoration: none; }
 .outcome { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; margin-top: 0.4rem; }
 .outcome b { font-size: clamp(2rem, 3.6vw, 3rem); font-weight: 500; line-height: 1; color: var(--accent); }
-.outcome span { color: var(--muted); font-size: 0.9375rem; max-width: 26ch; }
+.outcome span { color: var(--muted); font-size: 0.9375rem; }
 .project-copy .result { color: var(--accent); font-family: var(--mono); font-size: 0.9375rem; letter-spacing: -0.01em; }
 .project-shot { position: relative; display: grid; grid-template-rows: auto 1fr; aspect-ratio: 16 / 10.4; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #fff; transform: rotateY(-11deg) rotateX(4deg); box-shadow: 30px 40px 80px -30px rgb(0 0 0 / 0.75); }
 .project:nth-child(even) .project-shot { transform: rotateY(11deg) rotateX(4deg); box-shadow: -30px 40px 80px -30px rgb(0 0 0 / 0.75); }
@@ -294,14 +294,14 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .faq details[open] summary::after { transform: rotate(0deg); }
 .faq details::details-content { block-size: 0; overflow: clip; transition: block-size 0.45s var(--ease), content-visibility 0.45s allow-discrete; }
 .faq details[open]::details-content { block-size: auto; }
-.faq details p { color: var(--muted); padding: 0 0 1.5rem; max-width: 62ch; }
+.faq details p { color: var(--muted); padding: 0 0 1.5rem; max-width: none; }
 
 /* Contact: a full-width closing band with the dot field behind it */
 .cta { padding: 8rem 0 9rem; }
 .cta-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 4.5rem; align-items: center; }
 .cta-grid > * { min-width: 0; }
 .cta-copy { display: grid; gap: 1.75rem; justify-items: start; }
-.cta-copy h2 { font-size: clamp(2.5rem, 6vw, 5rem); max-width: 13ch; }
+.cta-copy h2 { font-size: clamp(2.5rem, 6vw, 5rem); }
 .picks { display: grid; gap: 0.9rem; }
 .picks p { font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
 .picks ul { display: flex; flex-wrap: wrap; gap: 0.6rem; }
@@ -341,8 +341,8 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 /* Service pages */
 .page-head { padding: 5rem 0 6rem; }
 .page-head .wrap { display: grid; gap: 1.5rem; justify-items: start; }
-.page-head h1 { max-width: 24ch; font-size: clamp(2.5rem, 5.6vw, 4.5rem); }
-.page-head .lead { max-width: 56ch; }
+.page-head h1 { max-width: none; font-size: clamp(2.5rem, 5.6vw, 4.5rem); }
+.page-head .lead { max-width: none; }
 /* Service pages: copy on the left, an animated picture of the service on the right */
 .svc-hero { position: relative; isolation: isolate; }
 .svc-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 4rem; align-items: center; }
@@ -398,7 +398,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 
 .split { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
 .split > div { display: grid; gap: 1rem; }
-.lead.wide { max-width: 62ch; color: #d3d0c6; }
+.lead.wide { max-width: none; color: #d3d0c6; }
 .service-list h3 a { text-decoration: none; }
 .service-list h3 a:hover { color: var(--accent-hi); }
 
@@ -479,7 +479,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .crumbs { font-size: 0.9375rem; color: var(--muted); display: flex; gap: 0.5rem; }
 .crumbs a { text-decoration: none; }
 .case-head { padding-top: 4.5rem; display: grid; gap: 1.5rem; }
-.case-head h1 { max-width: 24ch; font-size: clamp(2.25rem, 5vw, 4rem); }
+.case-head h1 { max-width: none; font-size: clamp(2.25rem, 5vw, 4rem); }
 .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1.5rem 0; margin-top: 1rem; }
 .facts dt { font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
 .facts dd { font-weight: 600; margin-top: 0.3rem; }
