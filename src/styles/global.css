@@ -175,7 +175,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .chrome i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
 .chrome span { margin-left: 0.6rem; }
 .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.tags li { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 0.2rem 0.7rem; }
+.tags li { max-width: 100%; overflow-wrap: anywhere; font-family: var(--mono); font-size: 0.75rem; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 0.2rem 0.7rem; }
 .card-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem; font-size: 0.9375rem; font-weight: 600; margin-top: 0.5rem; }
 .card-links a { color: var(--text); text-decoration-color: var(--line); }
 .card-links a:hover { color: var(--accent-hi); text-decoration-color: var(--accent); }
@@ -495,7 +495,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .prose ul { display: grid; gap: 0.55rem; }
 .prose li { padding-left: 1.5rem; position: relative; }
 .prose li::before { content: ''; position: absolute; left: 0; top: 0.75em; width: 0.7rem; height: 2px; background: var(--accent-fill); }
-.case-aside { position: sticky; top: 110px; display: grid; gap: 1.5rem; }
+.case-aside { position: sticky; top: 110px; display: grid; gap: 1.5rem; min-width: 0; }
 .metric { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.75rem; }
 .metric strong { display: block; font-size: 3rem; line-height: 1; color: var(--accent); font-weight: 500; }
 .metric span { color: var(--muted); display: block; margin-top: 0.8rem; }
