@@ -4,15 +4,22 @@ seoTitle: "How to Choose a White Label WordPress Partner"
 description: "How to choose a white label WordPress partner: what to check before the first project, the questions to ask, and the warning signs agencies miss."
 focus: white label WordPress partner
 date: "2026-10-15"
+art: partner
 topic: For agencies
 service: white-label-wordpress-development
-imageAlt: "Agency team smiling around a laptop, beside the title How to choose a white label WordPress partner for your agency"
+imageAlt: "An agency brand card and a client website built under that brand, labelled white label, your name on it"
 stats:
   - { value: "39.7%", label: "of all websites run WordPress", source: "W3Techs, 15 Oct 2026", url: "https://w3techs.com/technologies/details/cm-wordpress" }
   - { value: "58.5%", label: "of websites with a known CMS use WordPress", source: "W3Techs, 15 Oct 2026", url: "https://w3techs.com/technologies/details/cm-wordpress" }
   - { value: "480", label: "US searches a month for \"white label wordpress support\"", source: "Semrush Keyword Overview, US, Oct 2026" }
 sources:
   - { name: "W3Techs, 15 Oct 2026", url: "https://w3techs.com/technologies/details/cm-wordpress" }
+faq:
+  - { q: "What is a white label WordPress partner?", a: "A developer or company that builds or maintains WordPress sites for your agency's clients under your brand. Your client deals only with you; the partner works in the background and never contacts them." }
+  - { q: "How much does white label WordPress development cost?", a: "It depends on the model: per site, hourly or a monthly block of hours. My white-label work starts at $1,200 per site or $35 an hour. Always ask how rush jobs, unused hours and changes after sign-off are charged." }
+  - { q: "How do I protect my client relationship when outsourcing?", a: "Agree on an NDA, no direct contact with your client, no partner branding anywhere in the site or emails, work inside your own tools, and handover notes your team can use." }
+  - { q: "Should I use a freelancer or an agency for white label WordPress?", a: "A freelancer suits a steady flow of builds and fixes and gives you one consistent senior developer. A white-label agency suits large volumes or projects that need several specialists at once." }
+  - { q: "How do I test a white label partner?", a: "Start with one small paid task, such as a single page build or a fix on a client site. Judge the code, the communication and whether the deadline was met before committing to larger projects." }
 ---
 
 Agency owners who outsource WordPress builds tend to say the same thing: the code was rarely the problem. The problems were missed dates, slow replies, sites that broke tracking or loaded slowly, and the occasional partner who contacted the client directly. Choosing a white label WordPress partner is mostly about avoiding those. With WordPress running [39.7% of all websites](https://w3techs.com/technologies/details/cm-wordpress), most agencies sell it. Here is what to check.
@@ -49,6 +56,39 @@ A white label WordPress partner builds, fixes or maintains sites that you delive
 - Prices that seem too good to include testing and quality checks
 - Vague answers about who does the work
 - No written scope or delivery date before work starts
+
+## Freelancer or white-label agency
+
+White-label partners come in two shapes. A white-label agency has a team, a project manager and set processes; useful when you need many developers at once or round-the-clock cover. A freelance white-label developer is one senior person you talk to directly; usually faster to brief, cheaper, and more consistent, because the same person does every job.
+
+For most design and marketing agencies sending a steady flow of WordPress builds and fixes, a freelancer you trust covers the work. Larger agencies sometimes use both: a freelancer for builds that need care and an agency for volume.
+
+## Pricing models you will be offered
+
+- **Per project:** a fixed price per site or per template. Predictable, good for builds from a finished design.
+- **Hourly:** for fixes, changes and work on existing client sites where the scope is unclear.
+- **Monthly block of hours:** reserved capacity each month at a lower rate. Good once you know your volume.
+- **Resold care plans:** the partner maintains your clients' sites and you bill the client under your brand, keeping the margin.
+
+Ask how unused hours, rush jobs and changes after sign-off are charged. Those three are where budgets drift.
+
+## How to protect the client relationship
+
+The point of white label is that your client sees only you. Make that explicit:
+
+- An NDA before you share client files
+- No contact with your client, in any channel, unless you ask for it
+- Nothing in the code, comments, admin users or emails that carries the partner's name
+- Work done in your tools: your Slack, your project board, your staging environment if you have one
+- Handover notes written so your team can support the site afterwards
+
+A good partner offers all of this before you ask.
+
+## Measuring whether the partnership works
+
+After the first few projects, look at three things: how many rounds of review each build needed, whether deadlines were met without chasing, and how often your client found a bug after launch. A partner who gets better on all three over time is worth keeping. One who needs the same feedback repeated is costing you more than their rate suggests.
+
+If you also want to resell maintenance, read [how white label WordPress maintenance works](/blog/white-label-wordpress-maintenance/), and for the build side, [how to outsource WordPress development without losing control](/blog/outsource-wordpress-development/).
 
 ## Start small
 

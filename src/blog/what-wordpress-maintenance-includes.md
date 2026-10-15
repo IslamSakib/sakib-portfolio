@@ -4,8 +4,8 @@ seoTitle: "What WordPress Maintenance Includes, Month by Month"
 description: "WordPress maintenance is four jobs on a schedule: tested updates, off-site backups, security monitoring and a report. What each prevents and what to ask."
 focus: WordPress maintenance
 date: "2026-10-14"
-imageAlt: "Man thinking at his desk, beside the title What WordPress maintenance actually includes, month by month"
-photoFocus: 100%
+imageAlt: "A month of WordPress care in four weeks: updates tested, backups checked, security scan and report sent"
+art: weeks
 topic: Fixes and maintenance
 service: wordpress-maintenance
 stats:
@@ -14,6 +14,12 @@ stats:
   - { value: "5 hours", label: "median time to mass exploitation for heavily exploited flaws", source: "Patchstack, State of WordPress Security in 2026", url: "https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" }
 sources:
   - { name: "Patchstack, State of WordPress Security in 2026", url: "https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" }
+faq:
+  - { q: "What does WordPress maintenance include?", a: "Tested updates to WordPress core, the theme and plugins; daily backups stored away from the server; uptime and security monitoring; a monthly report; and in good plans, a set number of hours for small changes and a regular speed check." }
+  - { q: "How often should WordPress be updated?", a: "Check for updates at least weekly and apply security updates as soon as they are released. Other updates can be tested and applied in a regular monthly or fortnightly cycle." }
+  - { q: "Does WordPress maintenance include hacked site cleanup?", a: "It depends on the plan. Many plans monitor for malware but charge separately to remove it. Ask before you sign up, and check whether recovery from a backup is included." }
+  - { q: "Does maintenance include content changes?", a: "Some plans do and some do not. Look for a stated number of hours for small changes each month rather than promises of unlimited tasks." }
+  - { q: "What is the difference between hosting and maintenance?", a: "Hosting keeps the server running. Maintenance looks after the WordPress site on it: updates, backups you control, monitoring, testing and fixes. Some hosts include basic automatic updates, but rarely testing or a person who knows your site." }
 ---
 
 WordPress maintenance is four jobs done on a schedule: updates, backups, security monitoring and a report. Each one prevents a specific way a WordPress site breaks. Here is what each job is, what it protects you from, and what to ask anyone who offers to do it for you.
@@ -45,6 +51,31 @@ Every month you should get a short report in plain language: what was updated, w
 ## What maintenance does not fix
 
 Maintenance keeps a healthy site healthy. It does not repair a site that is already slow or unstable. On TubeOnAI, files left behind by old cache plugins kept clashing with the host's own speed plugin, and the site kept going down. That needed a one-off fix at the cause first: [the TubeOnAI case study](/work/tubeonai/) shows what that involved. Regular checks after that are what stop it coming back.
+
+## Small changes and content updates
+
+The most useful part of a good plan is often not the updates. It is having someone who already knows your site make small changes quickly: a new staff page, an updated price list, a banner for a holiday closing, a form field. Plans differ a lot here. Some include none, some say "unlimited small tasks", and some give a clear number of hours. A stated number of hours is the honest version; "unlimited" usually has limits you discover later.
+
+## Speed checks over time
+
+Sites get slower slowly. A new plugin here, a large image there, a chat widget someone added. A monthly mobile speed check on the home page and the main landing pages catches this drift before it shows up in rankings or sales. It also gives you a record: if a change made the site slower, you know when it happened.
+
+## Plugin housekeeping
+
+Over a year most sites collect plugins nobody remembers installing. Part of maintenance is reviewing the list: removing plugins that are no longer used, replacing abandoned ones that no longer get security updates, and making sure premium licences are still active. Fewer plugins means fewer updates, fewer conflicts and fewer ways in for attackers.
+
+## A sample monthly report
+
+A report does not need to be long. It should answer what was done, what was found and what needs a decision. For example:
+
+- Updated WordPress core and 9 plugins on staging, tested the contact form and checkout, then updated the live site
+- Backups ran daily and were stored off-site; a test restore was successful
+- Uptime: no outages recorded this month
+- Security: one plugin had a reported vulnerability; it was updated the same day
+- Speed: home page on mobile unchanged since last month
+- Recommendation: the slider plugin has not been updated by its developer in over a year; replace it next month
+
+That last line is the point: a report that flags decisions before they become emergencies. For a do-it-yourself version of this list, use the [WordPress maintenance checklist](/blog/wordpress-maintenance-checklist/). For pricing, see [WordPress maintenance cost](/blog/wordpress-maintenance-cost/).
 
 ## What to ask a maintenance provider
 

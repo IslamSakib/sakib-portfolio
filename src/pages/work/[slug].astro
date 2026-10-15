@@ -17,6 +17,9 @@ const { w, next } = Astro.props;
 const { Content } = w;
 const url = new URL(Astro.url.pathname, Astro.site);
 const host = new URL(w.clientUrl).hostname.replace('www.', '');
+// Related work: the projects that share the most of this one's stack, then the rest in site order.
+const shared = (x) => x.stack.filter((t) => w.stack.includes(t)).length;
+const related = work.filter((x) => x.slug !== w.slug).map((x, i) => ({ x, i })).sort((a, b) => shared(b.x) - shared(a.x) || a.i - b.i).slice(0, 3).map(({ x }) => x);
 // A review is shown on a case study when its role line names the client.
 const review = reviews.find((r) => r.role.includes(w.client));
 
@@ -92,6 +95,16 @@ const jsonld = [
           <span>{w.metricLabel}</span>
         </div>
         <ul class="tags">{w.stack.map((s) => <li>{s}</li>)}</ul>
+        <nav class="related" aria-label="Related work">
+          <p class="label">Related work</p>
+          {related.map((x) => (
+            <a href={`/work/${x.slug}/`}>
+              <Picture src={x.shot} formats={['avif', 'webp']} widths={[240, 400]} sizes="120px" alt="" loading="lazy" />
+              <span><b>{x.client}</b><small>{x.chip}</small></span>
+            </a>
+          ))}
+          <a class="related-all" href="/#work">All client work →</a>
+        </nav>
       </aside>
     </div>
 

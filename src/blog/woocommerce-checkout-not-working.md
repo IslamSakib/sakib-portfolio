@@ -4,15 +4,21 @@ seoTitle: "WooCommerce Checkout Not Working? 8 Causes to Check"
 description: "WooCommerce checkout not working? The eight causes I check first, from cached checkout pages to payment gateway errors, and how to find which one it is."
 focus: WooCommerce checkout not working
 date: "2026-10-15"
-photoFocus: 95%
+art: checkout
 topic: Builds
 service: wordpress-development
-imageAlt: "Woman holding a bank card and a phone while shopping online, beside the title WooCommerce checkout not working"
+imageAlt: "A WooCommerce checkout form with a payment failed message, beside the title WooCommerce checkout not working"
 stats:
   - { value: "3 pages", label: "WooCommerce says must never be cached: cart, checkout and my account", source: "WooCommerce, How to configure caching plugins", url: "https://developer.woocommerce.com/docs/best-practices/performance/configuring-caching-plugins" }
   - { value: "270", label: "US searches a month across \"WooCommerce checkout not working\" variations", source: "Semrush Keyword Overview, US, Oct 2026" }
 sources:
   - { name: "WooCommerce, How to configure caching plugins", url: "https://developer.woocommerce.com/docs/best-practices/performance/configuring-caching-plugins" }
+faq:
+  - { q: "Why is my WooCommerce checkout not working?", a: "The most common causes are the checkout page being cached, a speed plugin combining or delaying scripts, a plugin conflict, payment gateway settings or webhooks, an outdated theme template, or mixed http and https content. Check the WooCommerce logs first." }
+  - { q: "Why does WooCommerce checkout keep spinning?", a: "Usually a JavaScript error stops the checkout script. Open the browser console on the checkout page to see the error, then check for recently updated plugins or a speed plugin that combines or delays scripts." }
+  - { q: "Why are WooCommerce orders stuck on pending payment?", a: "The payment gateway usually confirms payment through a webhook call to your site. If a firewall, cache or wrong URL blocks that call, the order stays pending. Check the webhook log in your gateway account." }
+  - { q: "Should the WooCommerce checkout page be cached?", a: "No. Cart, checkout and my-account pages must be excluded from every cache, including the host's cache and any CDN, because they show different content for every visitor." }
+  - { q: "How do I test WooCommerce checkout safely?", a: "Use your payment gateway's test mode on a staging copy of the store and place test orders with the gateway's test cards. Test the full path from cart to order email, logged out, as a customer would." }
 ---
 
 A WooCommerce checkout that is not working is the most expensive bug a store can have, because every minute it is broken is lost orders. The good news is that the cause is usually one of a short list. These are the eight I check first, in this order.
@@ -48,6 +54,42 @@ The checkout must load entirely over HTTPS. Images or scripts loading over plain
 ## 8. Sessions and cookies
 
 If the cart empties at checkout, look at cookie and session settings, especially after a domain change or when a security plugin blocks cookies.
+
+## Symptoms and where they usually point
+
+Match what you see to the likely cause before changing anything:
+
+| What happens | Most likely cause |
+|---|---|
+| Spinner keeps turning after "Place order" | A JavaScript error, often from a plugin or a speed plugin combining scripts |
+| "Session expired" or the cart empties | Checkout or cart pages being cached, or a cookie problem |
+| Order created but marked failed | Payment gateway settings, API keys or webhook not reaching the site |
+| Payment taken but order stuck on pending | The gateway's webhook or return call is blocked or failing |
+| Checkout works for you but not for customers | You are logged in and bypassing the cache; visitors are not |
+| Only one payment method fails | That gateway plugin or its account settings |
+| Problems started after an update | A plugin, the theme's WooCommerce templates or WooCommerce itself |
+
+The "works for me but not for them" case is the most common trap. Always test in a private browser window while logged out, the way a customer sees the store.
+
+## Testing checkout without losing real money
+
+Every major gateway has a test or sandbox mode with test card numbers. Use it on a staging copy of the store so you can place as many orders as you need. If you must test on the live store, use a small real payment and refund it, and turn off any automatic stock, shipping or email workflows first so a test order does not trigger real fulfilment.
+
+Test the full path, not just the payment: add to cart, change quantity, apply a coupon, choose shipping, pay, and check that the order email arrives and the order appears correctly in WooCommerce.
+
+## Webhooks: the hidden half of payments
+
+Many gateways confirm payment by calling your site back afterwards (a webhook). If that call fails, the customer has paid but the order stays pending or failed. Common reasons: a security plugin or firewall blocking the gateway's servers, a caching layer serving the webhook URL, the site moved to a new address without updating the webhook, or an expired SSL certificate. Your gateway account dashboard usually lists webhook attempts and their errors, which is often the fastest way to the answer.
+
+## Prevent it next time
+
+Checkout failures are expensive because they are silent: nobody emails to say they could not pay, they just leave. Three habits help:
+
+1. **Exclude cart, checkout and account pages from every cache layer**, including the host's and any CDN.
+2. **Test a full order after every update** to WooCommerce, the theme or a payment plugin.
+3. **Watch for a sudden drop in orders.** A store that normally takes orders every day and suddenly takes none is telling you something.
+
+For stores that also feel slow, [why WooCommerce gets slow](/blog/woocommerce-slow/) covers the speed side. I built Moneybag's payment gateway plugin for WooCommerce, so this is work I know from the inside. See the [Moneybag case study](/work/moneybag/).
 
 ## Fix it on a copy, not on the live store
 

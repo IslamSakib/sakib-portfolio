@@ -4,7 +4,8 @@ seoTitle: "Two WordPress Cache Plugins: Why It Makes Sites Slower"
 description: "Running two WordPress cache plugins, or one plus your host's, makes a site slower and less stable. Why it happens, how to check, and how to fix it."
 focus: WordPress cache plugins
 date: "2026-10-13"
-imageAlt: "Developer at a monitor full of code, beside the title Why two WordPress cache plugins make a site slower, not faster"
+imageAlt: "Two cache plugins crossed out and one caching layer set up once, beside the title Why two WordPress cache plugins make a site slower"
+art: cache
 topic: Speed
 service: wordpress-speed-optimization
 stats:
@@ -14,6 +15,12 @@ sources:
   - { name: "WooCommerce, How to configure caching plugins", url: "https://developer.woocommerce.com/docs/best-practices/performance/configuring-caching-plugins" }
   - { name: "HTTP Archive Web Almanac 2024", url: "https://almanac.httparchive.org/en/2024/cms" }
   - { name: "Google, About PageSpeed Insights", url: "https://developers.google.com/speed/docs/insights/v5/about" }
+faq:
+  - { q: "Can I use two cache plugins on WordPress?", a: "Not two page cache plugins. They store and serve the same pages in different ways, undo each other's work and can serve stale or broken pages. One page cache plus an object cache and a CDN is fine." }
+  - { q: "Does my host already cache my WordPress site?", a: "Many managed WordPress hosts run server-level page caching. Check your host's control panel or documentation, or look at the response headers of your pages for cache-related entries. If it does, turn off page caching in plugins." }
+  - { q: "Which WordPress cache plugin is best?", a: "The best one is the one that matches your host, configured properly and running alone. If the host caches at the server level, use that. If not, pick one well-supported cache plugin and do not add a second." }
+  - { q: "Why do my WordPress changes not show up?", a: "You are probably seeing a cached copy. Clear every cache layer: the plugin, the host's cache and any CDN. If you regularly need to clear several, you have overlapping caches to consolidate." }
+  - { q: "Do deactivated cache plugins still affect my site?", a: "They can. Some leave files such as advanced-cache.php and settings in wp-config.php that keep running after the plugin is deactivated. Remove those leftovers when you remove the plugin." }
 ---
 
 When a WordPress site is slow, the usual first move is to install a cache plugin. When that does not seem to help enough, people install a second one. That second plugin, or a plugin running on top of your host's own caching, usually makes the site slower and less stable. Here is why, and how to check your own site.
@@ -45,6 +52,31 @@ Switching a cache plugin off does not always remove it. Some leave files and ser
 2. Ask your host whether they cache pages for you, and whether they install a plugin to do it.
 3. Look in the `wp-content` folder for `advanced-cache.php` and cache folders belonging to plugins you no longer use.
 4. Test the site on Google PageSpeed Insights, on mobile, before you change anything, so you can tell whether the fix worked.
+
+## Page cache, object cache and browser cache
+
+Part of the confusion is that "cache" means several different things, and only some of them overlap:
+
+- **Page cache** saves the finished HTML of a page so the server does not rebuild it for every visitor. This is what most cache plugins and many hosts do. You only want one.
+- **Object cache** (for example Redis or Memcached) keeps database results in memory so WordPress itself runs faster, including for logged-in users and stores. It works alongside a page cache, not instead of it.
+- **Browser cache** tells visitors' browsers to keep images, CSS and scripts so the next page loads faster. Set by headers, often by the same plugin or the host.
+- **CDN cache** keeps copies of files, and sometimes whole pages, on servers near the visitor.
+
+Running a page cache plus an object cache plus a CDN is normal and fine. Running two page caches, or two plugins both minifying the same CSS, is where problems start.
+
+## Signs your caches are fighting
+
+- Changes you make do not appear until you clear two or three different caches
+- Logged-out visitors see old prices, old menus or someone else's cart
+- The layout breaks randomly, then fixes itself after a cache clear
+- The site is fast on one visit and slow on the next with no clear pattern
+- Errors in the debug log mention two cache plugins or the host's cache module
+
+## Choosing the one to keep
+
+If your host runs its own page cache at the server level, that is usually the one to keep: it runs before WordPress even loads, so it is fastest. Turn off page caching in any plugin and use plugins only for what the host does not do, such as image optimisation. If your host does not cache, keep one well-supported cache plugin and configure it properly. Whichever you keep, exclude cart, checkout and account pages, and remove the leftovers of the others.
+
+This exact conflict took TubeOnAI's site down repeatedly; removing it was a big part of cutting load time from 5 seconds to 1.5. The [TubeOnAI case study](/work/tubeonai/) covers the details, and [why is my WordPress site so slow](/blog/why-is-my-wordpress-site-so-slow/) covers the other common causes.
 
 ## The fix
 

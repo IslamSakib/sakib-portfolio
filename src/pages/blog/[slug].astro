@@ -41,6 +41,7 @@ const jsonld = [
     mainEntityOfPage: url,
     keywords: p.focus,
   },
+  ...(p.faq ? [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: p.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }] : []),
   {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -83,9 +84,21 @@ const jsonld = [
     <nav class="toc" aria-label="On this page">
       <p class="label">On this page</p>
       {p.headings.map((h) => <a href={`#${h.slug}`}>{h.text}</a>)}
+      {p.faq && <a href="#questions">Common questions</a>}
     </nav>
     <article class="article">
       <Content />
+      {p.faq && (
+        <section class="post-faq" aria-labelledby="questions">
+          <h2 id="questions">Common questions</h2>
+          {p.faq.map((f) => (
+            <details>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </section>
+      )}
       {p.sources && (
         <aside class="sources" aria-label="Sources">
           <h2>Sources</h2>

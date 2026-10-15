@@ -581,3 +581,14 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 h1, h2, h3, blockquote, .ss-t, .g-q { text-wrap: balance; }
 p, li, dd, figcaption { text-wrap: pretty; }
 .agency-copy h2 .ln { display: block; }
+
+/* Case study sidebar: related projects under the stack tags */
+.related { display: grid; gap: 0.6rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.related .label { margin-bottom: 0.3rem; }
+.related > a:not(.related-all) { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 0.9rem; align-items: center; padding: 0.55rem; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--text); text-decoration: none; transition: border-color 0.25s ease, translate 0.5s var(--ease); }
+.related > a:not(.related-all):hover { border-color: var(--accent); translate: 0 -2px; }
+.related img { display: block; width: 112px; height: auto; border-radius: 7px; }
+.related b { display: block; font-size: 1rem; }
+.related small { display: block; margin-top: 0.15rem; font-family: var(--mono); font-size: 0.75rem; color: var(--accent); }
+.related-all { margin-top: 0.3rem; font-size: 0.9375rem; }
+@media (hover: none) { .related > a:hover { translate: none; } }

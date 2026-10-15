@@ -602,3 +602,13 @@ html:has(.mnav[open]) .chat, html:has(.mnav[open]) .to-top { display: none; }
 @media (max-width: 560px) { .g-opts { grid-template-columns: minmax(0, 1fr); } .g-summary div { grid-template-columns: minmax(0, 1fr); gap: 0.2rem; } }
 @media (hover: none) { .g-opt:hover > span { translate: none; border-color: var(--line); } }
 @media (prefers-reduced-motion: reduce) { .g-log li, .is-guided .g-step.on { animation: none; } }
+
+/* Blog post FAQ: plain disclosure rows, open one at a time by the reader */
+.post-faq { margin-top: 3rem; border-top: 1px solid var(--line); }
+.post-faq h2 { margin: 2.5rem 0 1rem; }
+.post-faq details { border-bottom: 1px solid var(--line); }
+.post-faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 1rem; padding: 1.1rem 0; font-weight: 600; font-size: 1.0625rem; }
+.post-faq summary::-webkit-details-marker { display: none; }
+.post-faq summary::after { content: "+"; font-family: var(--mono); color: var(--accent); font-size: 1.25rem; line-height: 1; }
+.post-faq details[open] summary::after { content: "–"; }
+.post-faq details p { padding: 0 0 1.25rem; color: var(--muted); }
