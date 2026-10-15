@@ -264,26 +264,41 @@ const svc = [
     <p class="mut" style="margin-top: 1rem; font-size: 0.9375rem">Every job gets a written quote before work starts.</p>
   </section>
 
-  <section class="wrap rv" style="padding: var(--sec) 0" aria-label="Recommendations" data-rv>
-    <div class="rv-head">
-      <p class="label">What they said · <span data-rv-pos>01</span> / {String(reviews.length).padStart(2, '0')}</p>
-      <div class="rv-nav">
-        <button type="button" aria-label="Previous recommendation" data-rv-prev><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg></button>
-        <button type="button" aria-label="Next recommendation" data-rv-next><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg></button>
+  <section class="rv-band sec-pad" aria-label="Recommendations" data-rv>
+    <div class="wrap rv-grid">
+      <div class="rv-side">
+        <p class="label">What clients say</p>
+        <h2>Words from the people I have built for.</h2>
+        <div class="rv-people" role="tablist" aria-label="Choose a recommendation">
+          {reviews.map((r, i) => (
+            <button type="button" role="tab" class:list={['rv-person', { on: i === 0 }]} aria-selected={i === 0 ? 'true' : 'false'} data-rv-to={i}>
+              <span class="rv-ini" aria-hidden="true">{initials(r.name)}</span>
+              <span class="rv-who"><b>{r.name}</b><small>{r.role}</small></span>
+              <i class="rv-bar" aria-hidden="true"></i>
+            </button>
+          ))}
+        </div>
+        <p class="mut rv-src">Quoted word for word from <a href={allReviewsUrl} target="_blank" rel="noopener">my LinkedIn recommendations</a>.</p>
+      </div>
+      <div class="rv-card" aria-live="polite">
+        <span class="rv-mark" aria-hidden="true">&ldquo;</span>
+        <div class="rv-stack">
+          {reviews.map((r, i) => (
+            <figure class:list={['rv-item', { on: i === 0 }]}>
+              <blockquote>{r.text}</blockquote>
+              <figcaption><span class="rv-ini" aria-hidden="true">{initials(r.name)}</span><span><strong>{r.name}</strong><span>{r.role} · {r.date}</span></span></figcaption>
+            </figure>
+          ))}
+        </div>
+        <div class="rv-foot">
+          <span class="mono mut"><span data-rv-pos>01</span> / {String(reviews.length).padStart(2, '0')}</span>
+          <div class="rv-nav">
+            <button type="button" aria-label="Previous recommendation" data-rv-prev><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg></button>
+            <button type="button" aria-label="Next recommendation" data-rv-next><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg></button>
+          </div>
+        </div>
       </div>
     </div>
-    <div aria-live="polite">
-      {reviews.map((r, i) => (
-        <figure class:list={['rv-item', { on: i === 0 }]}>
-          <span class="rv-ini" aria-hidden="true">{initials(r.name)}</span>
-          <div>
-            <blockquote>&ldquo;{r.text}&rdquo;</blockquote>
-            <figcaption><strong>{r.name}</strong><br /><span>{r.role}</span></figcaption>
-          </div>
-        </figure>
-      ))}
-    </div>
-    <p class="mut" style="font-size: 0.9375rem">Quoted word for word from <a href={allReviewsUrl} target="_blank" rel="noopener">my LinkedIn recommendations</a>.</p>
   </section>
 
   {posts.length > 0 && (
@@ -310,18 +325,37 @@ const svc = [
 </Base>
 
 <script>
-  // Recommendations: one at a time with previous and next. Without script all of them show in a column.
+  // Recommendations: one at a time, chosen from the list or with previous and next. It moves on by itself every
+  // 8 seconds (the bar under the current name fills), pauses while the pointer or focus is inside, and never
+  // auto-advances for visitors who prefer reduced motion. Without script every quote shows.
   const box = document.querySelector('[data-rv]');
   if (box) {
-    const items = [...box.querySelectorAll('.rv-item')], pos = box.querySelector('[data-rv-pos]');
-    let i = 0;
+    const items = [...box.querySelectorAll('.rv-item')], people = [...box.querySelectorAll('.rv-person')], pos = box.querySelector('[data-rv-pos]');
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let i = 0, timer = 0, paused = false, visible = false;
+    const restart = () => {
+      clearTimeout(timer);
+      box.classList.remove('auto'); void box.offsetWidth;
+      if (still || paused || !visible) return;
+      box.classList.add('auto');
+      timer = setTimeout(() => show(i + 1), 8000);
+    };
     const show = (n) => {
       i = (n + items.length) % items.length;
       items.forEach((el, k) => el.classList.toggle('on', k === i));
+      people.forEach((el, k) => { el.classList.toggle('on', k === i); el.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
       pos.textContent = String(i + 1).padStart(2, '0');
+      restart();
     };
     box.querySelector('[data-rv-prev]').addEventListener('click', () => show(i - 1));
     box.querySelector('[data-rv-next]').addEventListener('click', () => show(i + 1));
+    people.forEach((btn, k) => btn.addEventListener('click', () => show(k)));
+    const pause = (v) => { paused = v; restart(); };
+    box.addEventListener('pointerenter', () => pause(true));
+    box.addEventListener('pointerleave', () => pause(false));
+    box.addEventListener('focusin', () => pause(true));
+    box.addEventListener('focusout', () => pause(false));
     box.classList.add('ready');
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; restart(); }).observe(box);
   }
 </script>

@@ -244,7 +244,7 @@ const menu = [
         const tag = (sel, cls) => document.querySelectorAll(sel).forEach((el) => { if (!el.closest(skip) && below(el)) el.classList.add(cls); });
         document.querySelectorAll('main h2:not(.sr-only)').forEach((h) => { if (!h.children.length && !h.closest(skip) && below(h)) { split(h); h.classList.add('rvl-h'); } });
         tag('main picture:not(:has(img.tile-img)):not(.ss-frame picture)', 'rvl-img');
-        tag('[data-reveal], main .tile, main .ss-list > li, main .post-card, main .kit > li, main .steps > li, main .agency-copy > :not(h2), main .agency-side > *, main .mosaic > a, main .lead, main .section-head > p, main .row-head > a, main .faq details, main .plans, main .timeline > li, main .trust li, main .cap-grid > *, main .rv-item, main .about-copy > :not(h2), main .proof > div', 'rvl');
+        tag('[data-reveal], main .tile, main .ss-list > li, main .post-card, main .kit > li, main .steps > li, main .agency-copy > :not(h2), main .agency-side > *, main .mosaic > a, main .lead, main .section-head > p, main .row-head > a, main .faq details, main .plans, main .timeline > li, main .trust li, main .cap-grid > *, main .rv-person, main .rv-card, main .about-copy > :not(h2), main .proof > div', 'rvl');
         // Siblings that reveal together get a stagger, unless the markup already sets one.
         document.querySelectorAll('.rvl, .rvl-img').forEach((el) => {
           if (el.style.getPropertyValue('--d')) return;
