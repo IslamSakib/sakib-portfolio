@@ -8,9 +8,16 @@ art: tiers
 topic: Fixes and maintenance
 service: wordpress-maintenance
 imageAlt: "Dark violet cover with three price tiers rising from left to right, the middle tier outlined in purple, for WordPress maintenance cost"
+stats:
+  - { value: "$75 to $300", label: "a month for typical freelancer WordPress maintenance", source: "Sitewired, WordPress maintenance cost (updated Oct 2026)", url: "https://www.sitewired.com/wordpress/how-much-does-wordpress-maintenance-cost" }
+  - { value: "$200 to $1,000+", label: "a month for agency maintenance plans", source: "Sitewired, WordPress maintenance cost (updated Oct 2026)", url: "https://www.sitewired.com/wordpress/how-much-does-wordpress-maintenance-cost" }
+  - { value: "11,334", label: "new WordPress vulnerabilities found in 2025", source: "Patchstack, State of WordPress Security in 2026", url: "https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" }
+sources:
+  - { name: "Sitewired, WordPress maintenance cost (updated Oct 2026)", url: "https://www.sitewired.com/wordpress/how-much-does-wordpress-maintenance-cost" }
+  - { name: "Patchstack, State of WordPress Security in 2026", url: "https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" }
 ---
 
-WordPress maintenance cost depends less on WordPress and more on who does the work and how much your site can break. Published price guides for 2026 put freelance care plans at roughly $75 to $300 a month and agency plans at about $200 to over $1,000 a month (Sitewired's 2026 pricing guide; Codeable data cited by BSS Commerce puts typical small-business plans at $100 to $300). Here is what moves a site up or down that range.
+WordPress maintenance cost depends less on WordPress and more on who does the work and how much your site can break. Published price guides for 2026 put freelance care plans at roughly $75 to $300 a month and agency plans at about $200 to over $1,000 a month ([Sitewired's pricing guide](https://www.sitewired.com/wordpress/how-much-does-wordpress-maintenance-cost), updated October 2026; Codeable data cited by BSS Commerce puts typical small-business plans at $100 to $300). Here is what moves a site up or down that range.
 
 ## What drives the price
 

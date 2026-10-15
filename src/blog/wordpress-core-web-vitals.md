@@ -8,9 +8,17 @@ art: rings
 topic: Speed
 service: wordpress-speed-optimization
 imageAlt: "Dark violet cover with three purple progress rings labelled LCP, INP and CLS for WordPress Core Web Vitals"
+stats:
+  - { value: "2.5 s", label: "or less is a good Largest Contentful Paint", source: "web.dev, Web Vitals", url: "https://web.dev/articles/vitals" }
+  - { value: "200 ms", label: "or less is a good Interaction to Next Paint", source: "web.dev, Web Vitals", url: "https://web.dev/articles/vitals" }
+  - { value: "40%", label: "of WordPress sites passed Core Web Vitals on mobile in 2024", source: "HTTP Archive Web Almanac 2024", url: "https://almanac.httparchive.org/en/2024/cms" }
+sources:
+  - { name: "web.dev, Web Vitals", url: "https://web.dev/articles/vitals" }
+  - { name: "Google, About PageSpeed Insights", url: "https://developers.google.com/speed/docs/insights/v5/about" }
+  - { name: "HTTP Archive Web Almanac 2024", url: "https://almanac.httparchive.org/en/2024/cms" }
 ---
 
-Core Web Vitals are three measurements Google uses to judge how a page feels to real visitors. On WordPress sites they mostly come down to images, scripts and layout. Here is what each one measures, the target to aim for, and the WordPress fixes that actually move it.
+[Core Web Vitals](https://web.dev/articles/vitals) are three measurements Google uses to judge how a page feels to real visitors. On WordPress sites they mostly come down to images, scripts and layout. Here is what each one measures, the target to aim for, and the WordPress fixes that actually move it.
 
 ## The three measurements
 
@@ -22,7 +30,7 @@ A page passes when at least 75% of real visits meet all three.
 
 ## Read the right numbers
 
-Google PageSpeed Insights shows two sets of numbers. The top box is real visitor data from Chrome users over the last 28 days, and this is what Google uses. The lab score below it is a simulated test on a slow phone. A site can have a poor lab score and still pass on real visitors, and the other way round. Fix what the real data says first.
+Google PageSpeed Insights shows two sets of numbers. The top box is real visitor data from Chrome users over the previous 28 days ([Google explains the difference](https://developers.google.com/speed/docs/insights/v5/about)), and this is what Google uses. The lab score below it is a simulated test on a slow phone. A site can have a poor lab score and still pass on real visitors, and the other way round. Fix what the real data says first.
 
 New or small sites may have no real visitor data yet. Then the lab test is your best guide.
 

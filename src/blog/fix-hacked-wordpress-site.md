@@ -8,6 +8,13 @@ art: shield
 topic: Fixes and maintenance
 service: wordpress-maintenance
 imageAlt: "Dark violet cover with a shield outline and a purple check mark over a website frame, for cleaning a hacked WordPress site"
+stats:
+  - { value: "11,334", label: "new WordPress vulnerabilities found in 2025, 42% more than in 2024", source: "Patchstack, State of WordPress Security in 2026", url: "https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" }
+  - { value: "91%", label: "of them were in plugins, 9% in themes", source: "Patchstack, State of WordPress Security in 2026", url: "https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" }
+  - { value: "5 hours", label: "median time to mass exploitation for heavily exploited flaws", source: "Patchstack, State of WordPress Security in 2026", url: "https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" }
+sources:
+  - { name: "Patchstack, State of WordPress Security in 2026", url: "https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" }
+  - { name: "Google Search Help, hacked site warnings", url: "https://support.google.com/websearch/answer/190597" }
 ---
 
 Finding out your site has been hacked is stressful, and the urge is to start deleting things. Slow down for ten minutes. To fix a hacked WordPress site properly you have to remove every way back in, not only the visible damage, or it will be hacked again within days.
@@ -43,11 +50,11 @@ Delete any administrator you did not create, and check that the remaining users 
 
 ## Step 6: Close the door they came in through
 
-Most hacks come through an outdated plugin or theme, a pirated ("nulled") premium plugin, or a reused password. Remove plugins you do not use, update everything, and replace any premium plugin that was not bought from its developer.
+Most hacks come through an outdated plugin or theme (Patchstack found [91% of new WordPress vulnerabilities in 2025](https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/) were in plugins), a pirated ("nulled") premium plugin, or a reused password. Remove plugins you do not use, update everything, and replace any premium plugin that was not bought from its developer.
 
 ## Step 7: Tell Google it is clean
 
-If Google flagged the site, request a review in Search Console under Security issues once you are sure it is clean. The warning is removed after a successful review.
+If Google flagged the site, request a review in Search Console under Security issues once you are sure it is clean, as [Google's help page](https://support.google.com/websearch/answer/190597) describes. The warning is removed after a successful review.
 
 ## Keeping it clean
 

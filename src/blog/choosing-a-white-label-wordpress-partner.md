@@ -8,9 +8,15 @@ art: partner
 topic: For agencies
 service: white-label-wordpress-development
 imageAlt: "Dark violet cover with two overlapping frames, one dashed design frame and one finished website, joined by a purple line, for a white label WordPress partner"
+stats:
+  - { value: "39.7%", label: "of all websites run WordPress", source: "W3Techs, 15 Oct 2026", url: "https://w3techs.com/technologies/details/cm-wordpress" }
+  - { value: "58.5%", label: "of websites with a known CMS use WordPress", source: "W3Techs, 15 Oct 2026", url: "https://w3techs.com/technologies/details/cm-wordpress" }
+  - { value: "480", label: "US searches a month for \"white label wordpress support\"", source: "Semrush Keyword Overview, US, Oct 2026" }
+sources:
+  - { name: "W3Techs, 15 Oct 2026", url: "https://w3techs.com/technologies/details/cm-wordpress" }
 ---
 
-Agency owners who outsource WordPress builds tend to say the same thing: the code was rarely the problem. The problems were missed dates, slow replies, sites that broke tracking or loaded slowly, and the occasional partner who contacted the client directly. Choosing a white label WordPress partner is mostly about avoiding those. Here is what to check.
+Agency owners who outsource WordPress builds tend to say the same thing: the code was rarely the problem. The problems were missed dates, slow replies, sites that broke tracking or loaded slowly, and the occasional partner who contacted the client directly. Choosing a white label WordPress partner is mostly about avoiding those. With WordPress running [39.7% of all websites](https://w3techs.com/technologies/details/cm-wordpress), most agencies sell it. Here is what to check.
 
 ## What white label actually means
 

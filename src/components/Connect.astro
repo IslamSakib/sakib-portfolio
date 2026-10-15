@@ -1,21 +1,35 @@
 ---
-// The closing band on every page: a large "Connect", one line, the email and phone, and the two contact paths.
+// The closing band on every page: a large "Connect" and one line on the left; on the right a card with the ways to reach
+// Sakib and the two contact paths.
 import { site } from '../site.js';
 
 const { heading = 'Send me the site. I will tell you what to fix first.' } = Astro.props;
+const ways = [
+  { label: 'Email', value: site.email, href: `mailto:${site.email}` },
+  { label: 'WhatsApp', value: '+880 1950 025990', href: site.whatsapp, ext: true },
+  { label: 'LinkedIn', value: 'in/sakibislamofficial', href: site.linkedin, ext: true },
+];
 ---
 <section id="contact" class="connect" aria-labelledby="connect-h">
-  <div class="wrap">
-    <p class="huge" aria-hidden="true">Connect</p>
-    <h2 id="connect-h">{heading}</h2>
-    <p class="reach">
-      <a href={`mailto:${site.email}`}>{site.email}</a>
-      <a href={site.whatsapp} target="_blank" rel="noopener">+880 1950 025990</a>
-    </p>
-    <div class="btn-row">
-      <a class="btn" href="/contact/">I run a business</a>
-      <a class="btn btn-ghost" href="/contact/?type=agency">I run an agency</a>
+  <div class="wrap connect-grid">
+    <div class="connect-copy">
+      <p class="huge" aria-hidden="true">Connect</p>
+      <h2 id="connect-h">{heading}</h2>
+      <p class="mono mut">Reply within 24 hours · Hours overlap US and UK</p>
     </div>
-    <p class="mono mut">Reply within 24 hours · Hours overlap US and UK</p>
+    <div class="connect-card">
+      <ul class="connect-ways">
+        {ways.map((w) => (
+          <li>
+            <span class="mono mut">{w.label}</span>
+            <a href={w.href} target={w.ext ? '_blank' : undefined} rel={w.ext ? 'noopener' : undefined}>{w.value}<span aria-hidden="true">↗</span></a>
+          </li>
+        ))}
+      </ul>
+      <div class="btn-row">
+        <a class="btn" href="/contact/">I run a business</a>
+        <a class="btn btn-ghost" href="/contact/?type=agency">I run an agency</a>
+      </div>
+    </div>
   </div>
 </section>

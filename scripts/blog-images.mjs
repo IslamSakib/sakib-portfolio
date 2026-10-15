@@ -1,7 +1,7 @@
 // Blog cover images in the site's style: violet-black ground, a fine ivory frame, the topic in amethyst, the title in
 // Bricolage Grotesque and a line drawing of the subject. Rendered with headless Chrome so the real fonts are used.
-//   src/assets/blog/<slug>.png   1600x900 cover (Astro makes AVIF/WebP sizes from it)
-//   public/og-blog-<slug>.jpg     1200x630 share image
+//   src/assets/blog/<slug>.png   1600x900 in-page image, drawing only (Astro makes AVIF/WebP sizes from it)
+//   public/og-blog-<slug>.jpg     1200x630 share image with the title
 // Run `npm run blog-images` after adding a post. A post picks its drawing with `art:` in its frontmatter.
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from 'node:fs';
 import { join, resolve } from 'node:path';
@@ -55,6 +55,18 @@ h1 { margin: ${h * 0.05}px 0 0; font: 700 ${w * (post.title.length > 58 ? 0.036 
 <div class="copy"><div class="lbl">${esc(post.topic)}</div><h1>${esc(post.title)}</h1><div class="foot"><b>Sakib Islam</b> &nbsp;·&nbsp; sakib.mywrkbase.com/blog</div></div>
 <div class="art">${art[post.art] || art.bars}</div></body></html>`;
 
+// On the site the title is already printed beside or under the image, so the in-page image is the drawing alone:
+// centred on a quiet panel with the topic in small type. Share images keep the title.
+const plain = (w, h, post) => `<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face { font-family: 'Geist Mono Variable'; src: url('${font('geist-mono', 'geist-mono-latin-wght-normal.woff2')}'); font-weight: 100 900; }
+html, body { margin: 0; width: ${w}px; height: ${h}px; background: ${C.panel}; overflow: hidden; }
+.lbl { position: absolute; left: ${w * 0.05}px; top: ${h * 0.08}px; font: 500 ${w * 0.014}px 'Geist Mono Variable'; letter-spacing: .12em; text-transform: uppercase; color: ${C.ac}; }
+.lbl::before { content: ''; display: inline-block; width: ${w * 0.028}px; height: 1px; background: ${C.ac}; vertical-align: middle; margin-right: ${w * 0.012}px; }
+.dots { position: absolute; inset: 0; background-image: radial-gradient(${C.line} 1px, transparent 1.4px); background-size: ${w * 0.03}px ${w * 0.03}px; opacity: .55; }
+.art { position: absolute; left: 50%; top: 54%; transform: translate(-50%, -50%); width: ${h * 0.66}px; height: ${h * 0.66}px; }
+.art svg { width: 100%; height: 100%; }
+</style></head><body><div class="dots"></div><div class="lbl">${esc(post.topic)}</div><div class="art">${art[post.art] || art.bars}</div></body></html>`;
+
 const render = (html, w, h, out) => {
   const file = join(tmpdir(), `blog-img-${process.pid}.html`);
   writeFileSync(file, html);
@@ -72,7 +84,7 @@ for (const f of readdirSync('src/blog').filter((f) => f.endsWith('.md'))) {
   const get = (k) => ((md.match(new RegExp(`^${k}: (.*)$`, 'm')) || [])[1] || '').replace(/^"|"$/g, '');
   const post = { title: get('title'), topic: get('topic'), art: get('art') };
   const tmp = join(tmpdir(), `${slug}-raw.png`);
-  render(page(1600, 900, post), 1600, 900, tmp);
+  render(plain(1600, 900, post), 1600, 900, tmp);
   await sharp(tmp).png({ compressionLevel: 9 }).toFile(`src/assets/blog/${slug}.png`);
   render(page(1200, 630, post), 1200, 630, tmp);
   await sharp(tmp).jpeg({ quality: 86 }).toFile(`public/og-blog-${slug}.jpg`);

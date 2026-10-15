@@ -15,7 +15,9 @@ export function getStaticPaths() {
 const { p } = Astro.props;
 const { Content } = p;
 const url = new URL(Astro.url.pathname, Astro.site);
-const more = posts.filter((x) => x.slug !== p.slug).slice(0, 3);
+// Keep reading: posts on the same topic first, then posts pointing to the same service, then the newest.
+const score = (x) => (x.topic === p.topic ? 2 : 0) + (x.service === p.service ? 1 : 0);
+const more = posts.filter((x) => x.slug !== p.slug).sort((a, b) => score(b) - score(a)).slice(0, 3);
 // The side card points to the service the post is about.
 const cards = {
   'wordpress-maintenance': { label: 'Care plans', price: `${usd(prices.care)}`, unit: '/mo', text: 'Everything in this post, done for you every month.', href: '/wordpress-maintenance/', cta: 'See the plans' },
@@ -61,6 +63,21 @@ const jsonld = [
 
   <div class="wrap post-cover"><PostImage post={p} sizes="(max-width: 1280px) 100vw, 1240px" eager /></div>
 
+  {p.stats && (
+    <section class="wrap post-stats" aria-label="By the numbers">
+      <p class="label">By the numbers</p>
+      <dl>
+        {p.stats.map((st) => (
+          <div>
+            <dt>{st.value}</dt>
+            <dd>{st.label}</dd>
+            <dd class="src">{st.url ? <a href={st.url} target="_blank" rel="noopener">{st.source} ↗</a> : st.source}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )}
+
   <div class="wrap post-layout">
     <nav class="toc" aria-label="On this page">
       <p class="label">On this page</p>
@@ -68,6 +85,14 @@ const jsonld = [
     </nav>
     <article class="article">
       <Content />
+      {p.sources && (
+        <aside class="sources" aria-label="Sources">
+          <h2>Sources</h2>
+          <ol>
+            {p.sources.map((src) => <li><a href={src.url} target="_blank" rel="noopener">{src.name}</a></li>)}
+          </ol>
+        </aside>
+      )}
       <div class="author">
         <Image src={photo} width={112} height={112} alt="" />
         <p>Written by {site.name}, a WordPress developer who builds and looks after sites for businesses and agencies. <a href="/#about">About my work</a></p>

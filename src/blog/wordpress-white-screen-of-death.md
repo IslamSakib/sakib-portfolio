@@ -8,17 +8,25 @@ art: blank
 topic: Fixes and maintenance
 service: wordpress-maintenance
 imageAlt: "Dark violet cover showing an empty white browser window with a purple warning line, the WordPress white screen of death"
+stats:
+  - { value: "5.2", label: "the WordPress version that added fatal error recovery mode", source: "WordPress.org, Fatal Error Recovery Mode in 5.2", url: "https://make.wordpress.org/core/2019/04/16/fatal-error-recovery-mode-in-5-2/" }
+  - { value: "39.7%", label: "of all websites run WordPress", source: "W3Techs, 15 Oct 2026", url: "https://w3techs.com/technologies/details/cm-wordpress" }
+  - { value: "390", label: "US searches a month for \"WordPress white screen of death\"", source: "Semrush Keyword Overview, US, Oct 2026" }
+sources:
+  - { name: "WordPress.org, Debugging in WordPress", url: "https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/" }
+  - { name: "WordPress.org, Fatal Error Recovery Mode in 5.2", url: "https://make.wordpress.org/core/2019/04/16/fatal-error-recovery-mode-in-5-2/" }
+  - { name: "W3Techs, 15 Oct 2026", url: "https://w3techs.com/technologies/details/cm-wordpress" }
 ---
 
 The WordPress white screen of death is a blank page where your site should be. No error, no design, nothing. It looks dramatic, but the cause is usually simple: PHP hit an error it could not recover from and stopped before it printed anything. Here is how to find that error and fix it without making things worse.
 
 ## First: check your email
 
-Since WordPress 5.2, when a plugin or theme causes a fatal error, WordPress emails the site's admin address a link to recovery mode. Check the inbox (and spam folder) of the admin email. The link lets you log in with the broken plugin paused, so you can deactivate it from the dashboard.
+Since WordPress 5.2 ([fatal error recovery mode](https://make.wordpress.org/core/2019/04/16/fatal-error-recovery-mode-in-5-2/)), when a plugin or theme causes a fatal error, WordPress emails the site's admin address a link to recovery mode. Check the inbox (and spam folder) of the admin email. The link lets you log in with the broken plugin paused, so you can deactivate it from the dashboard.
 
 ## Step 1: Turn on the error log
 
-You need to see the error. Open `wp-config.php` in your host's file manager or over SFTP and set:
+You need to see the error ([WordPress.org explains the debug settings](https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/)). Open `wp-config.php` in your host's file manager or over SFTP and set:
 
 ```php
 define( 'WP_DEBUG', true );

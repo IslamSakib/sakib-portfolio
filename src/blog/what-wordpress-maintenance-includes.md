@@ -8,6 +8,12 @@ imageAlt: "Dark violet cover with four week tiles for updates, backups, security
 art: weeks
 topic: Fixes and maintenance
 service: wordpress-maintenance
+stats:
+  - { value: "11,334", label: "new WordPress vulnerabilities found in 2025", source: "Patchstack, State of WordPress Security in 2026", url: "https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" }
+  - { value: "91%", label: "of them were in plugins", source: "Patchstack, State of WordPress Security in 2026", url: "https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" }
+  - { value: "5 hours", label: "median time to mass exploitation for heavily exploited flaws", source: "Patchstack, State of WordPress Security in 2026", url: "https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" }
+sources:
+  - { name: "Patchstack, State of WordPress Security in 2026", url: "https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" }
 ---
 
 WordPress maintenance is four jobs done on a schedule: updates, backups, security monitoring and a report. Each one prevents a specific way a WordPress site breaks. Here is what each job is, what it protects you from, and what to ask anyone who offers to do it for you.

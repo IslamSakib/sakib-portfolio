@@ -8,6 +8,11 @@ art: checkout
 topic: Builds
 service: wordpress-development
 imageAlt: "Dark violet cover with a checkout form outline and a purple pay button, for fixing a WooCommerce checkout that is not working"
+stats:
+  - { value: "3 pages", label: "WooCommerce says must never be cached: cart, checkout and my account", source: "WooCommerce, How to configure caching plugins", url: "https://developer.woocommerce.com/docs/best-practices/performance/configuring-caching-plugins" }
+  - { value: "270", label: "US searches a month across \"WooCommerce checkout not working\" variations", source: "Semrush Keyword Overview, US, Oct 2026" }
+sources:
+  - { name: "WooCommerce, How to configure caching plugins", url: "https://developer.woocommerce.com/docs/best-practices/performance/configuring-caching-plugins" }
 ---
 
 A WooCommerce checkout that is not working is the most expensive bug a store can have, because every minute it is broken is lost orders. The good news is that the cause is usually one of a short list. These are the eight I check first, in this order.
@@ -18,7 +23,7 @@ Go to WooCommerce, then Status, then Logs. Payment gateways and WooCommerce itse
 
 ## 2. The checkout page is being cached
 
-Cart, checkout and my-account pages must never be cached, because they are different for every customer. If a cache plugin, your host or Cloudflare caches them, customers see someone else's cart or a checkout that will not submit. Exclude those pages in every caching layer.
+Cart, checkout and my-account pages must never be cached, because they are different for every customer. If a cache plugin, your host or Cloudflare caches them, customers see someone else's cart or a checkout that will not submit. Exclude those pages in every caching layer; [WooCommerce's own caching guide](https://developer.woocommerce.com/docs/best-practices/performance/configuring-caching-plugins) says the same.
 
 ## 3. Scripts combined or delayed by a speed plugin
 

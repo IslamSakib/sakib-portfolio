@@ -8,6 +8,12 @@ art: move
 topic: Builds
 service: wordpress-development
 imageAlt: "Dark violet cover with an old and a new website layout joined by purple arrows, showing pages carried across in a redesign"
+stats:
+  - { value: "1 year", label: "the minimum Google recommends keeping redirects after a move", source: "Google Search Central, Site moves and migrations", url: "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes" }
+  - { value: "301 / 308", label: "the permanent redirect types Google recommends", source: "Google Search Central, Site moves and migrations", url: "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes" }
+  - { value: "1,900", label: "US searches a month for \"website redesign seo\"", source: "Semrush Keyword Overview, US, Oct 2026" }
+sources:
+  - { name: "Google Search Central, Site moves and migrations", url: "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes" }
 ---
 
 A redesign is when many sites lose the search traffic they spent years building. Not because the new design is worse, but because the pages Google knew quietly changed address, lost their titles or disappeared. You can redesign a website without losing SEO if you treat the move as carefully as the design. This is the checklist I follow, including on Tabby's 2.0 relaunch.
@@ -18,7 +24,7 @@ Before anything changes, export the pages that get search clicks from Google Sea
 
 ## 2. Keep the addresses, or redirect every one
 
-The safest redesign keeps every URL the same. If addresses must change, map each old address to its closest new page and add a permanent (301) redirect for each. Never send everything to the home page: Google treats that much like the page was deleted.
+The safest redesign keeps every URL the same. If addresses must change, map each old address to its closest new page and add a permanent (301) redirect for each. [Google's site move guide](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes) recommends 301 or 308 redirects, kept for at least a year. Never send everything to the home page: Google treats that much like the page was deleted.
 
 ## 3. Carry over what ranks
 

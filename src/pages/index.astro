@@ -25,15 +25,15 @@ const tabby = shot('tabby');
 const mosaic = ['tabby', 'tubeonai', 'open-alliance-learning', 'wrkbase', 'pixmge'].map(shot).map((w) => ({ ...w, img: w.slug === 'wrkbase' ? appShot : w.shot }));
 
 // Trust numbers. Each can be checked: the client list is in src/clients.js (Sakib's own list of sites built or fixed),
-// full-time WordPress work starts at Oxford International School in Feb 2023, the recommendations are on LinkedIn,
-// and the two results are from the Tabby and TubeOnAI case studies.
+// full-time WordPress work starts at Oxford International School in Feb 2023, and the two results are from the
+// TubeOnAI and Tabby case studies.
 // The logo row shows only the best-known clients; the full list stays in src/clients.js.
 const featured = ['Tabby', 'TubeOnAI', 'Moneybag', 'Wrkbase', 'Pixmge', 'Oxford International School'];
 const logos = featured.map((n) => clients.find((c) => c.name === n)).filter(Boolean);
 const trust = [
   { n: `${clientCount}+`, label: 'client websites built or fixed' },
   { n: '3+', label: 'years building WordPress full-time' },
-  { n: String(reviews.length), label: 'LinkedIn recommendations from founders and managers' },
+  { n: '70%', label: 'faster page loads for TubeOnAI, 5 s down to 1.5 s' },
   { n: '90+', label: 'Core Web Vitals at launch for Tabby' },
 ];
 const experience = [

@@ -8,6 +8,13 @@ imageAlt: "Dark violet cover with two crossed-out cache plugin labels above one 
 art: cache
 topic: Speed
 service: wordpress-speed-optimization
+stats:
+  - { value: "3 pages", label: "a store must never cache: cart, checkout and my account", source: "WooCommerce, How to configure caching plugins", url: "https://developer.woocommerce.com/docs/best-practices/performance/configuring-caching-plugins" }
+  - { value: "40%", label: "of WordPress sites passed Core Web Vitals on mobile in 2024", source: "HTTP Archive Web Almanac 2024", url: "https://almanac.httparchive.org/en/2024/cms" }
+sources:
+  - { name: "WooCommerce, How to configure caching plugins", url: "https://developer.woocommerce.com/docs/best-practices/performance/configuring-caching-plugins" }
+  - { name: "HTTP Archive Web Almanac 2024", url: "https://almanac.httparchive.org/en/2024/cms" }
+  - { name: "Google, About PageSpeed Insights", url: "https://developers.google.com/speed/docs/insights/v5/about" }
 ---
 
 When a WordPress site is slow, the usual first move is to install a cache plugin. When that does not seem to help enough, people install a second one. That second plugin, or a plugin running on top of your host's own caching, usually makes the site slower and less stable. Here is why, and how to check your own site.

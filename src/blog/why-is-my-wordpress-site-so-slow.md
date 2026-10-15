@@ -8,13 +8,21 @@ art: bars
 topic: Speed
 service: wordpress-speed-optimization
 imageAlt: "Dark violet cover with a long grey bar and a short purple bar comparing a slow and a fast WordPress page load"
+stats:
+  - { value: "40%", label: "of WordPress sites passed Core Web Vitals on mobile in 2024, up from 28% in 2023", source: "HTTP Archive Web Almanac 2024", url: "https://almanac.httparchive.org/en/2024/cms" }
+  - { value: "28 days", label: "of real-visitor data behind the field results in PageSpeed Insights", source: "Google, About PageSpeed Insights", url: "https://developers.google.com/speed/docs/insights/v5/about" }
+  - { value: "590", label: "US searches a month for \"why is my WordPress site so slow\"", source: "Semrush Keyword Overview, US, Oct 2026" }
+sources:
+  - { name: "Google, About PageSpeed Insights", url: "https://developers.google.com/speed/docs/insights/v5/about" }
+  - { name: "HTTP Archive Web Almanac 2024", url: "https://almanac.httparchive.org/en/2024/cms" }
+  - { name: "web.dev, Web Vitals", url: "https://web.dev/articles/vitals" }
 ---
 
 If you are asking why your WordPress site is so slow, the answer is almost never one thing. It is usually two or three small problems stacked on top of each other. These are the seven I find most often when I open a slow site, roughly in the order I check them.
 
 ## Measure before you change anything
 
-Run the page through Google PageSpeed Insights on mobile. Look first at the box at the top that shows real visitor data (Core Web Vitals from the Chrome User Experience Report). That tells you whether real people find the site slow. The lab score underneath is useful for finding causes, but it is a simulation on a slow phone, so a low lab score alone is not proof of a problem.
+Run the page through [Google PageSpeed Insights](https://pagespeed.web.dev/) on mobile. Look first at the box at the top that shows real visitor data ([Core Web Vitals](https://web.dev/articles/vitals) from the Chrome User Experience Report, covering the previous 28 days). That tells you whether real people find the site slow. The lab score underneath is useful for finding causes, but it is a simulation on a slow phone, so a low lab score alone is not proof of a problem.
 
 Write the numbers down. Without a before, you cannot prove an after.
 

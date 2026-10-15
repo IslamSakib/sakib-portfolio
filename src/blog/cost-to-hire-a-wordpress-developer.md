@@ -8,27 +8,29 @@ art: price
 topic: Builds
 service: wordpress-development
 imageAlt: "Dark violet cover with a row of rising purple price bars and a dollar mark, for the cost to hire a WordPress developer"
+stats:
+  - { value: "$80 to $120", label: "an hour on Codeable, a vetted WordPress platform", source: "Codeable help centre", url: "https://help.codeable.io/en/articles/368550-can-codeable-help-with-my-project" }
+  - { value: "$95 to $160", label: "an hour for senior freelance WordPress developers worldwide", source: "goLance, freelance WordPress developer rate guide 2026", url: "https://golance.com/hiring/best-freelance-wordpress-developers-hourly-rate" }
+  - { value: "$90 to $250+", label: "an hour for agencies", source: "Qualimero, WooCommerce developer cost", url: "https://qualimero.com/en/blog/woocommerce-developer" }
+sources:
+  - { name: "Codeable help centre", url: "https://help.codeable.io/en/articles/368550-can-codeable-help-with-my-project" }
+  - { name: "goLance, freelance WordPress developer rate guide 2026", url: "https://golance.com/hiring/best-freelance-wordpress-developers-hourly-rate" }
+  - { name: "Qualimero, WooCommerce developer cost", url: "https://qualimero.com/en/blog/woocommerce-developer" }
 ---
 
 The cost to hire a WordPress developer ranges from under $20 to over $200 an hour. The spread is real, and price alone tells you little. What you are really buying is how often the work has to be redone. Here is what the market charges in 2026 and how to tell which end of it you need.
 
 ## Hourly rates in 2026
 
-Published 2026 rate guides (mostly from marketplaces and agencies, so treat them as ranges rather than facts) put WordPress and WooCommerce developers at roughly:
+These ranges come from pages I checked on 15 October 2026. Marketplaces and agencies publish most rate guides, so treat them as ranges, not facts.
 
-- **Marketplace freelancers (Upwork, Fiverr):** about $20 an hour for entry level to $125 for senior
-- **Vetted freelance platforms (Codeable and similar):** about $80 to $120 an hour for mid to senior work
-- **Agencies:** about $100 to $200 an hour, sometimes more
-- **By region (senior developers):** roughly $80 to $150 in the US, $60 to $120 in the UK, $25 to $60 in Eastern Europe and $15 to $45 in South Asia
+- **Freelancers by experience (worldwide):** about $25 to $50 an hour for junior developers, $50 to $95 for mid-level and $95 to $160 for senior ([goLance's 2026 rate guide](https://golance.com/hiring/best-freelance-wordpress-developers-hourly-rate))
+- **Vetted WordPress platform:** $80 to $120 an hour on Codeable, priced by scope, complexity and urgency ([Codeable's help centre](https://help.codeable.io/en/articles/368550-can-codeable-help-with-my-project))
+- **Agencies:** roughly $90 to $250 an hour and more for specialist agencies ([Qualimero](https://qualimero.com/en/blog/woocommerce-developer))
 
-Sources: Qualimero's WooCommerce developer cost guide, Guru TechnoLabs' 2026 rate guide and KrishaWeb's white-label pricing guide.
+## What a project usually costs
 
-## Typical project prices
-
-- **A small marketing site from an existing design:** a few thousand dollars from a freelancer, more from an agency
-- **A store with custom features:** commonly $5,000 to $15,000 from a freelancer, more from an agency (Qualimero)
-- **A custom plugin:** often $1,000 to $8,000 depending on what it does (Qualimero)
-- **A single fix:** anything from a small fixed fee to a few hours of time
+Project prices depend on the number of unique templates and custom features (forms, calculators, payments, integrations), not on the page count. A small marketing site built from a finished design sits at the low end; a store with custom checkout logic or a custom plugin costs several times more. Ask for a quote that lists templates and features separately, so you can see what drives the price.
 
 ## Why the cheapest quote is often the most expensive
 

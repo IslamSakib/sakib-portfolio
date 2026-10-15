@@ -8,6 +8,12 @@ art: figma
 topic: For agencies
 service: white-label-wordpress-development
 imageAlt: "Dark violet cover with a dashed design frame turning into a finished website frame through a purple arrow, for Figma to WordPress"
+stats:
+  - { value: "590", label: "US searches a month for \"Figma to WordPress\"", source: "Semrush Keyword Overview, US, Oct 2026" }
+  - { value: "39.7%", label: "of all websites run WordPress", source: "W3Techs, 15 Oct 2026", url: "https://w3techs.com/technologies/details/cm-wordpress" }
+  - { value: "58.5%", label: "of websites with a known CMS use WordPress", source: "W3Techs, 15 Oct 2026", url: "https://w3techs.com/technologies/details/cm-wordpress" }
+sources:
+  - { name: "W3Techs, 15 Oct 2026", url: "https://w3techs.com/technologies/details/cm-wordpress" }
 ---
 
 Plugins that convert Figma to WordPress automatically are getting better, but for a real client site most teams still build by hand, because the result has to be fast, editable and match the design at every screen size. The quality of a Figma to WordPress build is decided before the developer writes a line: in how the file is prepared and what is agreed up front. Here is how to hand off designs that build cleanly.
