@@ -97,6 +97,10 @@ Not every plugin is a problem, but some types are frequent offenders:
 
 Search Console groups pages with similar problems, so one fix to a shared template often fixes hundreds of URLs at once.
 
+## Core Web Vitals on WooCommerce stores
+
+Stores have a harder time with Core Web Vitals because their most important pages cannot be fully cached: the cart and checkout change for every visitor. Product pages carry large galleries, and many stores run several marketing scripts. Focus on the product and category templates first, since those receive most search traffic: size gallery images properly, load reviews and related products after the main content, and remove scripts that only some pages need. Then measure the cart and checkout separately, since those pages are about INP: the time between a tap on "Add to cart" or "Place order" and a visible response.
+
 ## What this looks like in practice
 
 Tabby launched with Core Web Vitals above 90, and TubeOnAI's load time went from 5 seconds to 1.5 once its caching conflict was removed. The fixes were not exotic: the right image sizes, one caching layer and lighter templates. The [TubeOnAI case study](/work/tubeonai/) walks through it.

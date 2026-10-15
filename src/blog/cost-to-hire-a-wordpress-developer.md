@@ -84,6 +84,22 @@ A good quote answers all of these without being asked.
 
 Whoever you hire, you should end with full ownership: administrator access to WordPress, the hosting account in your name, the domain registered to you, licences for any premium plugins in your name, and the files and database. If a developer insists on keeping any of these, you are renting your own website.
 
+## Costs after the build
+
+The build price is not the whole cost of a WordPress site. Budget for:
+
+- **Hosting:** from a few dollars a month for a small brochure site to much more for a busy store. Cheap hosting is often the reason a site is slow later.
+- **Domain and email:** a yearly domain fee, and email hosting if you do not already have it.
+- **Premium plugin and theme licences:** many renew yearly. A page builder, a forms plugin and a backup tool can add up.
+- **Maintenance:** updates, backups and monitoring, either your own time or a monthly plan. See [WordPress maintenance cost](/blog/wordpress-maintenance-cost/) for typical prices.
+- **Changes:** new pages, features and content edits as the business grows.
+
+Ask any developer for a rough yearly running cost along with the build quote. A cheaper build on expensive or fragile foundations can cost more within a year than a better build would have.
+
+## Where to find a good WordPress developer
+
+Referrals from people whose sites you like are the most reliable route. After that, look at developers who show live client sites with named results, publish their prices, and write clearly about the problems they solve. Open marketplaces give you the widest choice and the widest range of quality, so check work before price. Whoever you shortlist, a small paid first task tells you more than any portfolio.
+
 ## What I charge
 
 I publish my starting prices so you can judge before you get in touch: builds from $2,500, speed fixes from $450, single fixes from $150, care plans from $149 a month, and $35 an hour for agency white-label work. Every job gets a written quote first. See [custom WordPress development](/wordpress-development/) for what a build includes.

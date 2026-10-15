@@ -90,6 +90,20 @@ After the first few projects, look at three things: how many rounds of review ea
 
 If you also want to resell maintenance, read [how white label WordPress maintenance works](/blog/white-label-wordpress-maintenance/), and for the build side, [how to outsource WordPress development without losing control](/blog/outsource-wordpress-development/).
 
+## What the first brief should contain
+
+A partner can only be as good as the brief. For the first project, send:
+
+- The Figma file (or the design in whatever tool you use), with mobile frames
+- The page list and which template each page uses
+- How your client will edit the site afterwards: blocks, a page builder or fixed templates
+- Integrations: forms, CRM, newsletter, analytics, booking or payments
+- The deadline, and any dates in between, such as a client review
+- Where the site will be hosted and who owns the hosting account
+- Your quality bar: browsers, devices and speed targets you check before handing a site to a client
+
+A partner who reads this and comes back with questions before quoting is a good sign. One who quotes instantly on a vague brief has usually priced in the guesswork, and the guesses show up at review.
+
 ## Start small
 
 The safest way to choose a partner is one small paid job, such as a single page build or a fix on a client site. You learn how they communicate, how they handle feedback and how clean the result is, before trusting them with a launch.

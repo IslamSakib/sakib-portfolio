@@ -78,6 +78,14 @@ If your host runs its own page cache at the server level, that is usually the on
 
 This exact conflict took TubeOnAI's site down repeatedly; removing it was a big part of cutting load time from 5 seconds to 1.5. The [TubeOnAI case study](/work/tubeonai/) covers the details, and [why is my WordPress site so slow](/blog/why-is-my-wordpress-site-so-slow/) covers the other common causes.
 
+## Testing after you remove a cache
+
+After removing the extra cache layer, check that the one you kept is working. Open a page in a private window, then reload it: the second load should be noticeably faster. Many cache plugins and hosts also add a response header saying whether the page came from the cache; your browser's developer tools show it under the network tab. Then test the parts that must never be cached: add something to a cart, log in, submit a form. Finally, run PageSpeed Insights on mobile and compare the server response time with your notes from before the change.
+
+## When a second layer is fine
+
+Some combinations look like doubling up but are not. A page cache on the server and a CDN in front of it is normal: the CDN serves visitors from nearby, and the server cache handles what reaches it. An image optimisation plugin next to a cache is fine because they do different jobs. The test is simple: if two tools change the same thing, the same pages or the same CSS and JavaScript files, keep one.
+
 ## The fix
 
 Keep one caching layer, set it up properly, and remove every leftover from the others. Then look at why the pages were heavy in the first place: oversized images, page builder layouts and unused scripts. Caching hides those problems; it does not remove them.

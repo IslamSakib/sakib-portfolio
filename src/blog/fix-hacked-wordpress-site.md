@@ -91,6 +91,12 @@ Most "security plugins" add a long list of settings. The few things that make th
 
 If you want to catch problems early, read [how to check if your WordPress site is hacked](/blog/how-to-check-if-wordpress-site-is-hacked/): most of the warning signs show up days before visitors notice.
 
+## What to tell your customers
+
+If customer data may have been exposed, for example on a store or a site with user accounts, take advice on whether you must notify customers or a regulator; rules differ by country. Even when you do not have to, a short honest note builds more trust than silence: what happened, what you did, and whether anyone needs to change a password.
+
+If the site only showed spam or redirected visitors, a notice is rarely needed, but check your email: hacked sites are often used to send spam, which can get your domain's email blocked. Ask your host or email provider whether your domain was put on a block list, and request removal once the site is clean.
+
 ## Keeping it clean
 
 Hacked sites are almost always unmaintained sites. Tested updates, off-site backups and monitoring for changed files catch problems in hours instead of weeks. That is the core of a [WordPress maintenance plan](/wordpress-maintenance/). If your site is hacked right now, send me the address and I will tell you what I see before you spend anything.

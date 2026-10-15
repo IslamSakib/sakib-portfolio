@@ -77,6 +77,16 @@ A report does not need to be long. It should answer what was done, what was foun
 
 That last line is the point: a report that flags decisions before they become emergencies. For a do-it-yourself version of this list, use the [WordPress maintenance checklist](/blog/wordpress-maintenance-checklist/). For pricing, see [WordPress maintenance cost](/blog/wordpress-maintenance-cost/).
 
+## What maintenance cannot do
+
+A maintenance plan keeps a site healthy. It does not turn a poorly built site into a good one. If the theme is heavy, the hosting is underpowered, or the site was built with dozens of plugins doing the work of a few, maintenance will keep it running but will not make it fast or easy to change. In that case the better spend is usually a one-off clean-up or a rebuild of the worst templates, followed by a plan to keep it that way.
+
+Maintenance also cannot fix content. If the site does not explain what you do, who it is for and how to get in touch, updates and backups will not bring more enquiries.
+
+## How long maintenance takes each month
+
+For a typical small business site, the routine work of checking, backing up, testing and applying updates, and writing a short report takes one to three hours a month. Stores and sites with many plugins take longer because every update needs more testing. Changes and fixes come on top. That is why plans with a stated number of hours are easier to compare than plans that promise everything.
+
 ## What to ask a maintenance provider
 
 - Are updates tested on a copy of the site before they go live?

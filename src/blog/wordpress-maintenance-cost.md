@@ -90,6 +90,10 @@ Read the plan for what is not included. Common extras:
 
 Pay-as-you-go suits sites that rarely change and can tolerate some risk: you call someone when something breaks. A monthly plan suits sites that earn money, change often, or run plugins that update weekly. The real difference is prevention. Pay-as-you-go fixes problems after they cost you; a plan catches most of them before.
 
+## How to compare two quotes
+
+Put the plans side by side and compare like for like: are updates tested before going live, how often are backups taken and where are they stored, how many hours of changes are included, what is the reply time for an urgent problem, and is hack clean-up included or extra. Then divide the price by what you actually get. A $100 plan with no testing and no hours of work can be worse value than a $200 plan that includes both.
+
 ## Questions to ask any provider
 
 Are updates tested first? Where are backups kept? How fast do you reply when the site is down? What is charged on top? Do I keep ownership of everything? A provider who answers all five clearly is usually worth the price, whatever it is.

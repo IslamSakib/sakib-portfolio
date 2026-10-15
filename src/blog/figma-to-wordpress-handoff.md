@@ -84,6 +84,22 @@ Before the build starts, the developer should have:
 
 Missing any of these is the main reason builds stall halfway. For the agency side of the relationship, see [how to choose a white label WordPress partner](/blog/choosing-a-white-label-wordpress-partner/).
 
+## Common handoff mistakes
+
+These cause most of the back-and-forth on Figma to WordPress projects:
+
+1. **Spacing that is almost consistent.** 23 pixels here, 24 there. The developer either copies every variation, making the theme harder to maintain, or standardises them and the review flags it as "not matching the design".
+2. **Text set as images.** Headings exported as pictures cannot be edited, translated or read by search engines.
+3. **Fonts without web licences.** A desktop font licence usually does not cover use on a website.
+4. **Animations described in a sentence.** "Make it feel smooth" is not a spec. A short screen recording or a prototype link saves a review round.
+5. **Last-minute design changes after the build starts.** Small ones are fine. New templates are new scope and should move the date.
+
+Agree before the build starts which of these count as changes and which count as fixes. It keeps the relationship good on both sides.
+
+## How the review should run
+
+Collect feedback in one list per round, from one person on your side, with a screenshot and the page address for each item. Separate "this does not match the design" from "we have changed our mind": the first is a fix, the second is a change. Two rounds of review cover most builds when the design was complete before the build started. Test on real phones as well as browser resizing, since tap targets and font sizes feel different in the hand.
+
 ## What this looks like on a real project
 
 Tabby and TubeOnAI both started as Figma files. Tabby needed far more than pages: a tax calculator, subscriptions, a help centre and analytics, built to launch on a tight deadline, and it launched with Core Web Vitals above 90. [The Tabby case study](/work/tabby/) shows how.

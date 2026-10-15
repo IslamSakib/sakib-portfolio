@@ -91,6 +91,10 @@ Checkout failures are expensive because they are silent: nobody emails to say th
 
 For stores that also feel slow, [why WooCommerce gets slow](/blog/woocommerce-slow/) covers the speed side. I built Moneybag's payment gateway plugin for WooCommerce, so this is work I know from the inside. See the [Moneybag case study](/work/moneybag/).
 
+## Collecting what support will ask for
+
+If you contact your payment gateway or a developer, send these with the first message and you will save a day of back-and-forth: the WooCommerce system status report (WooCommerce, then Status, then Get system report), the relevant lines from the WooCommerce logs, the time and order number of a failed attempt, the browser console error if there was one, and a list of what changed recently: updates, new plugins, theme edits or hosting changes.
+
 ## Fix it on a copy, not on the live store
 
 Every test above can disturb real customers. Make a staging copy, find the cause there, then apply only that fix to the live store.
