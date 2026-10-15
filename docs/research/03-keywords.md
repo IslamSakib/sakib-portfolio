@@ -129,3 +129,20 @@ Informational questions the two ICPs ask, one post each. Service pages keep the 
 | /blog/figma-to-wordpress-handoff/ | Figma to WordPress | 590 | 45 | Agency | agency page, Tabby |
 
 Also seen, for later posts: "white label wordpress support" 480 (KD 1, commercial, belongs on the agency page), "wordpress plugin conflicts" 40 (KD 16), "how to tell if your wordpress site has been hacked" 50 (KD 13).
+
+### 7b. New posts (15 Oct 2026, later)
+
+Semrush free lookups were used up for the day, so these were picked from Google autocomplete (US) and the "also seen" list above. Volume marked n/a has no measured figure yet; check in Semrush before the next content round.
+
+| Post | Focus keyword | US vol. | KD | Source | ICP | Links to |
+|---|---|---:|---:|---|---|---|
+| /blog/how-to-check-if-wordpress-site-is-hacked/ | check if your WordPress site is hacked | 50 | 13 | Semrush (earlier batch) | Direct | hacked fix post, maintenance page |
+| /blog/wordpress-plugin-conflict/ | WordPress plugin conflict | 40 | 16 | Semrush (earlier batch) | Direct | maintenance page |
+| /blog/wordpress-update-broke-site/ | WordPress update broke (site) | n/a | n/a | Autocomplete | Direct | maintenance page |
+| /blog/wordpress-maintenance-checklist/ | WordPress maintenance checklist | n/a | n/a | Autocomplete | Direct | maintenance page, cost post |
+| /blog/woocommerce-slow/ | WooCommerce slow | n/a | n/a | Autocomplete (7 variants) | Direct (stores) | speed page, Moneybag |
+| /blog/wordpress-backup-and-restore/ | WordPress backup and restore | n/a | n/a | Autocomplete | Direct | maintenance page |
+| /blog/outsource-wordpress-development/ | outsource WordPress development | n/a | n/a | Autocomplete | Agency | agency page |
+| /blog/white-label-wordpress-maintenance/ | white label WordPress maintenance | n/a | n/a | Autocomplete ("white label wordpress maintenance services") | Agency | agency page |
+
+All 20 posts now have 1,500+ words, a five-question FAQ with FAQPage schema, and an original cover (scripts/blog-images.mjs, no stock).
