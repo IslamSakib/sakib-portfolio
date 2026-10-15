@@ -4,10 +4,9 @@ seoTitle: "WordPress Maintenance Cost in 2026: What to Pay"
 description: "WordPress maintenance cost in 2026 ranges from about $75 to over $1,000 a month. What drives the price, what each tier includes, and what to avoid."
 focus: WordPress maintenance cost
 date: "2026-10-15"
-art: tiers
 topic: Fixes and maintenance
 service: wordpress-maintenance
-imageAlt: "Dark violet cover with three price tiers rising from left to right, the middle tier outlined in purple, for WordPress maintenance cost"
+imageAlt: "Man sitting at a laptop in a living room, beside the title WordPress maintenance cost in 2026"
 stats:
   - { value: "$75 to $300", label: "a month for typical freelancer WordPress maintenance", source: "Sitewired, WordPress maintenance cost (updated Oct 2026)", url: "https://www.sitewired.com/wordpress/how-much-does-wordpress-maintenance-cost" }
   - { value: "$200 to $1,000+", label: "a month for agency maintenance plans", source: "Sitewired, WordPress maintenance cost (updated Oct 2026)", url: "https://www.sitewired.com/wordpress/how-much-does-wordpress-maintenance-cost" }

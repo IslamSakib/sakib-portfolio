@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Connect from '../../components/Connect.astro';
 import PostImage from '../../components/PostImage.astro';
+import PostActions from '../../components/PostActions.astro';
 import { posts, longDate } from '../../blog.js';
 import { site } from '../../site.js';
 import { prices, usd } from '../../prices.js';
@@ -59,6 +60,7 @@ const jsonld = [
       <Image src={photo} width={88} height={88} alt="" />
       <span>{site.name} · WordPress developer<br /><time datetime={p.date}>{longDate(p.date)}</time> · {p.minutes} min read</span>
     </div>
+    <PostActions url={url.href} title={p.title} />
   </header>
 
   <div class="wrap post-cover"><PostImage post={p} sizes="(max-width: 1280px) 100vw, 1240px" eager /></div>

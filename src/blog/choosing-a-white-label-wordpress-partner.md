@@ -4,10 +4,9 @@ seoTitle: "How to Choose a White Label WordPress Partner"
 description: "How to choose a white label WordPress partner: what to check before the first project, the questions to ask, and the warning signs agencies miss."
 focus: white label WordPress partner
 date: "2026-10-15"
-art: partner
 topic: For agencies
 service: white-label-wordpress-development
-imageAlt: "Dark violet cover with two overlapping frames, one dashed design frame and one finished website, joined by a purple line, for a white label WordPress partner"
+imageAlt: "Agency team smiling around a laptop, beside the title How to choose a white label WordPress partner for your agency"
 stats:
   - { value: "39.7%", label: "of all websites run WordPress", source: "W3Techs, 15 Oct 2026", url: "https://w3techs.com/technologies/details/cm-wordpress" }
   - { value: "58.5%", label: "of websites with a known CMS use WordPress", source: "W3Techs, 15 Oct 2026", url: "https://w3techs.com/technologies/details/cm-wordpress" }

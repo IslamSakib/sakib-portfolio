@@ -4,10 +4,9 @@ seoTitle: "Figma to WordPress: How to Hand Off Designs Cleanly"
 description: "Figma to WordPress, done well: how to prepare the Figma file, decide the editing approach and plan the build so the live site matches the design."
 focus: Figma to WordPress
 date: "2026-10-15"
-art: figma
 topic: For agencies
 service: white-label-wordpress-development
-imageAlt: "Dark violet cover with a dashed design frame turning into a finished website frame through a purple arrow, for Figma to WordPress"
+imageAlt: "Designer sketching page layouts by hand, beside the title Figma to WordPress: how to hand off designs that build cleanly"
 stats:
   - { value: "590", label: "US searches a month for \"Figma to WordPress\"", source: "Semrush Keyword Overview, US, Oct 2026" }
   - { value: "39.7%", label: "of all websites run WordPress", source: "W3Techs, 15 Oct 2026", url: "https://w3techs.com/technologies/details/cm-wordpress" }

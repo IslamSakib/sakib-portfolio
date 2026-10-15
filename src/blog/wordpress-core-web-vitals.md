@@ -4,10 +4,9 @@ seoTitle: "WordPress Core Web Vitals: How to Pass LCP, INP, CLS"
 description: "WordPress Core Web Vitals explained: what LCP, INP and CLS measure, how to read your real-visitor data, and the WordPress fixes that move each one."
 focus: WordPress Core Web Vitals
 date: "2026-10-15"
-art: rings
 topic: Speed
 service: wordpress-speed-optimization
-imageAlt: "Dark violet cover with three purple progress rings labelled LCP, INP and CLS for WordPress Core Web Vitals"
+imageAlt: "Woman smiling at her phone in a cafe, beside the title WordPress Core Web Vitals: how to pass LCP, INP and CLS"
 stats:
   - { value: "2.5 s", label: "or less is a good Largest Contentful Paint", source: "web.dev, Web Vitals", url: "https://web.dev/articles/vitals" }
   - { value: "200 ms", label: "or less is a good Interaction to Next Paint", source: "web.dev, Web Vitals", url: "https://web.dev/articles/vitals" }

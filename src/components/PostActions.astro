@@ -1,0 +1,61 @@
+---
+// "Summarize with" (opens an AI assistant with a prompt about this post) and "Share" links for a blog post.
+import openai from '../icons/openai.svg?raw';
+import claude from '../icons/claude.svg?raw';
+import gemini from '../icons/googlegemini.svg?raw';
+import grok from '../icons/grok.svg?raw';
+import perplexity from '../icons/perplexity.svg?raw';
+import x from '../icons/x.svg?raw';
+import facebook from '../icons/facebook.svg?raw';
+import linkedin from '../icons/linkedin.svg?raw';
+
+const { url, title } = Astro.props;
+const u = encodeURIComponent(url);
+const q = encodeURIComponent(`Summarize the key points of this article by Sakib Islam, a WordPress developer: ${url}`);
+const ai = [
+  { name: 'ChatGPT', href: `https://chatgpt.com/?q=${q}`, svg: openai },
+  { name: 'Claude', href: `https://claude.ai/new?q=${q}`, svg: claude },
+  // Gemini has no prompt-in-URL link, so this opens Google AI Mode, which runs on Gemini.
+  { name: 'Google AI Mode', href: `https://www.google.com/search?udm=50&q=${q}`, svg: gemini },
+  { name: 'Grok', href: `https://grok.com/?q=${q}`, svg: grok },
+  { name: 'Perplexity', href: `https://www.perplexity.ai/search/new?q=${q}`, svg: perplexity },
+];
+const share = [
+  { name: 'X', href: `https://x.com/intent/post?url=${u}&text=${encodeURIComponent(title)}`, svg: x },
+  { name: 'Facebook', href: `https://www.facebook.com/sharer/sharer.php?u=${u}`, svg: facebook },
+  { name: 'LinkedIn', href: `https://www.linkedin.com/sharing/share-offsite/?url=${u}`, svg: linkedin },
+];
+---
+<div class="post-actions">
+  <div>
+    <p class="label">Summarize with</p>
+    <div class="icons">
+      {ai.map((a) => <a href={a.href} target="_blank" rel="noopener" aria-label={`Summarize with ${a.name}`} title={a.name} set:html={a.svg} />)}
+    </div>
+  </div>
+  <div>
+    <p class="label">Share</p>
+    <div class="icons">
+      <button type="button" class="copy-link" data-url={url} aria-label="Copy link" title="Copy link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+      </button>
+      {share.map((a) => <a href={a.href} target="_blank" rel="noopener" aria-label={`Share on ${a.name}`} title={a.name} set:html={a.svg} />)}
+      <span class="copied" role="status"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.copy-link').forEach((b) =>
+    b.addEventListener('click', async () => {
+      const note = b.parentElement!.querySelector('.copied')!;
+      try {
+        await navigator.clipboard.writeText(b.dataset.url!);
+        note.textContent = 'Link copied';
+      } catch {
+        note.textContent = 'Copy failed';
+      }
+      setTimeout(() => (note.textContent = ''), 2000);
+    })
+  );
+</script>

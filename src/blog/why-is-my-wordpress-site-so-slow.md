@@ -4,10 +4,10 @@ seoTitle: "Why Is My WordPress Site So Slow? 7 Causes and Fixes"
 description: "Why is my WordPress site so slow? The seven causes I find most often, how to check each one in minutes, and what fixes them at the root."
 focus: why is my WordPress site so slow
 date: "2026-10-15"
-art: bars
+photoFocus: 75%
 topic: Speed
 service: wordpress-speed-optimization
-imageAlt: "Dark violet cover with a long grey bar and a short purple bar comparing a slow and a fast WordPress page load"
+imageAlt: "Man waiting at his laptop with his chin on his hand, beside the title Why is my WordPress site so slow"
 stats:
   - { value: "40%", label: "of WordPress sites passed Core Web Vitals on mobile in 2024, up from 28% in 2023", source: "HTTP Archive Web Almanac 2024", url: "https://almanac.httparchive.org/en/2024/cms" }
   - { value: "28 days", label: "of real-visitor data behind the field results in PageSpeed Insights", source: "Google, About PageSpeed Insights", url: "https://developers.google.com/speed/docs/insights/v5/about" }

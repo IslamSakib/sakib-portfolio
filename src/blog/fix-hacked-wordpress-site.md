@@ -4,10 +4,9 @@ seoTitle: "How to Fix a Hacked WordPress Site: Step by Step"
 description: "How to fix a hacked WordPress site: the signs it has been hacked, the clean-up steps in the right order, and how to stop it happening again."
 focus: fix a hacked WordPress site
 date: "2026-10-15"
-art: shield
 topic: Fixes and maintenance
 service: wordpress-maintenance
-imageAlt: "Dark violet cover with a shield outline and a purple check mark over a website frame, for cleaning a hacked WordPress site"
+imageAlt: "Worried man with his hand over his mouth in a dark room, beside the title How to fix a hacked WordPress site"
 stats:
   - { value: "11,334", label: "new WordPress vulnerabilities found in 2025, 42% more than in 2024", source: "Patchstack, State of WordPress Security in 2026", url: "https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" }
   - { value: "91%", label: "of them were in plugins, 9% in themes", source: "Patchstack, State of WordPress Security in 2026", url: "https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" }

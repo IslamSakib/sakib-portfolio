@@ -302,6 +302,14 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .post-head { padding: clamp(2.5rem, 5vw, 4rem) 0 2.5rem; display: grid; gap: 1.4rem; justify-items: start; }
 .post-head h1 { font-size: clamp(2.4rem, 4.8vw, 4.1rem); max-width: none; }
 .byline { display: flex; gap: 0.9rem; align-items: center; font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); }
+.post-actions { display: flex; flex-wrap: wrap; gap: 1.25rem 3rem; margin-top: 1.75rem; }
+.post-actions .label { margin: 0 0 0.6rem; }
+.post-actions .icons { display: flex; align-items: center; gap: 0.35rem; }
+.post-actions a, .post-actions button { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--line); background: none; color: var(--muted); cursor: pointer; transition: color .2s, border-color .2s; }
+.post-actions a:hover, .post-actions button:hover { color: var(--text); border-color: var(--accent); }
+.post-actions svg { width: 18px; height: 18px; fill: currentColor; }
+.post-actions button svg { fill: none; }
+.post-actions .copied { font-family: var(--mono); font-size: 0.8125rem; color: var(--accent); margin-left: 0.5rem; }
 .byline img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; background: var(--line); }
 .post-cover { padding-bottom: 3rem; }
 .post-cover .cover { aspect-ratio: 21 / 9; }

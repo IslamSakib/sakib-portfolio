@@ -4,10 +4,9 @@ seoTitle: "How to Redesign a Website Without Losing SEO"
 description: "How to redesign a website without losing SEO: keep the addresses or redirect them, carry over what ranks, and check Search Console after launch."
 focus: redesign a website without losing SEO
 date: "2026-10-15"
-art: move
 topic: Builds
 service: wordpress-development
-imageAlt: "Dark violet cover with an old and a new website layout joined by purple arrows, showing pages carried across in a redesign"
+imageAlt: "Man working at a desk with two monitors, beside the title How to redesign a website without losing SEO"
 stats:
   - { value: "1 year", label: "the minimum Google recommends keeping redirects after a move", source: "Google Search Central, Site moves and migrations", url: "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes" }
   - { value: "301 / 308", label: "the permanent redirect types Google recommends", source: "Google Search Central, Site moves and migrations", url: "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes" }

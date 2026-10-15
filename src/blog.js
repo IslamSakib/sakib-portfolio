@@ -1,9 +1,9 @@
 // Loads every blog post in src/blog/*.md, newest first. A post's file name is its address: src/blog/x.md is /blog/x/.
-// Frontmatter: title, seoTitle, description, focus (the SEO gate keyword), date (YYYY-MM-DD), topic, art (the drawing used by
+// Frontmatter: title, seoTitle, description, focus (the SEO gate keyword), date (YYYY-MM-DD), topic, photoFocus (optional cover crop, see
 // scripts/blog-images.mjs), imageAlt, and optionally updated and service (the slug of the page its side card points to).
-// Covers: `npm run blog-images` writes src/assets/blog/<slug>.png and public/og-blog-<slug>.jpg.
+// Covers: `npm run blog-images` writes src/assets/blog/<slug>.jpg and public/og-blog-<slug>.jpg.
 const files = import.meta.glob('./blog/*.md', { eager: true });
-const images = import.meta.glob('./assets/blog/*.png', { eager: true });
+const images = import.meta.glob('./assets/blog/*.jpg', { eager: true });
 
 export const topics = ['Speed', 'Fixes and maintenance', 'For agencies', 'Builds'];
 
@@ -14,7 +14,7 @@ export const posts = Object.entries(files)
     return {
       slug,
       ...mod.frontmatter,
-      image: images[`./assets/blog/${slug}.png`]?.default,
+      image: images[`./assets/blog/${slug}.jpg`]?.default,
       og: `/og-blog-${slug}.jpg`,
       Content: mod.Content,
       headings: mod.getHeadings().filter((h) => h.depth === 2),

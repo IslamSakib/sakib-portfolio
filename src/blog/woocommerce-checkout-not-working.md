@@ -4,10 +4,10 @@ seoTitle: "WooCommerce Checkout Not Working? 8 Causes to Check"
 description: "WooCommerce checkout not working? The eight causes I check first, from cached checkout pages to payment gateway errors, and how to find which one it is."
 focus: WooCommerce checkout not working
 date: "2026-10-15"
-art: checkout
+photoFocus: 95%
 topic: Builds
 service: wordpress-development
-imageAlt: "Dark violet cover with a checkout form outline and a purple pay button, for fixing a WooCommerce checkout that is not working"
+imageAlt: "Woman holding a bank card and a phone while shopping online, beside the title WooCommerce checkout not working"
 stats:
   - { value: "3 pages", label: "WooCommerce says must never be cached: cart, checkout and my account", source: "WooCommerce, How to configure caching plugins", url: "https://developer.woocommerce.com/docs/best-practices/performance/configuring-caching-plugins" }
   - { value: "270", label: "US searches a month across \"WooCommerce checkout not working\" variations", source: "Semrush Keyword Overview, US, Oct 2026" }

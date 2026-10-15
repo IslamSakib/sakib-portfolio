@@ -4,10 +4,9 @@ seoTitle: "WordPress White Screen of Death: How to Fix It"
 description: "The WordPress white screen of death usually means a PHP error from a plugin, theme or failed update. How to find the cause and fix it safely, step by step."
 focus: WordPress white screen of death
 date: "2026-10-15"
-art: blank
 topic: Fixes and maintenance
 service: wordpress-maintenance
-imageAlt: "Dark violet cover showing an empty white browser window with a purple warning line, the WordPress white screen of death"
+imageAlt: "Woman holding her head in front of a laptop, beside the title WordPress white screen of death: how to fix it"
 stats:
   - { value: "5.2", label: "the WordPress version that added fatal error recovery mode", source: "WordPress.org, Fatal Error Recovery Mode in 5.2", url: "https://make.wordpress.org/core/2019/04/16/fatal-error-recovery-mode-in-5-2/" }
   - { value: "39.7%", label: "of all websites run WordPress", source: "W3Techs, 15 Oct 2026", url: "https://w3techs.com/technologies/details/cm-wordpress" }

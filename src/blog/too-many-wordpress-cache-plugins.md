@@ -4,8 +4,7 @@ seoTitle: "Two WordPress Cache Plugins: Why It Makes Sites Slower"
 description: "Running two WordPress cache plugins, or one plus your host's, makes a site slower and less stable. Why it happens, how to check, and how to fix it."
 focus: WordPress cache plugins
 date: "2026-10-13"
-imageAlt: "Dark violet cover with two crossed-out cache plugin labels above one purple label reading one cache"
-art: cache
+imageAlt: "Developer at a monitor full of code, beside the title Why two WordPress cache plugins make a site slower, not faster"
 topic: Speed
 service: wordpress-speed-optimization
 stats:
