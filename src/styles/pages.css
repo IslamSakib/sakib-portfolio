@@ -21,7 +21,7 @@
 .browser { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
 .browser-bar { display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-bottom: 1px solid var(--line); }
 .browser-bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--line-2); }
-.browser-bar span { font-family: var(--mono); font-size: 0.6875rem; color: var(--muted); margin-left: 8px; }
+.browser-bar span { font-family: var(--mono); font-size: 0.6875rem; color: var(--muted); margin-left: 8px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .browser img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
 
 /* Home hero: copy on the left; on the right the portrait stands on a panel, one site overlaps its corner */
@@ -207,6 +207,12 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .p-copy .lead { max-width: none; }
 
 /* Agency page */
+.p-photo { display: grid; }
+.p-photo > picture img, .p-photo > img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 11; object-fit: cover; border-radius: 14px; border: 1px solid var(--line); }
+/* The diagram sits on a dark card overlapping the photo's lower edge. */
+.p-photo > .flow, .p-photo > .month { position: relative; margin: -6rem 1.25rem 0; padding: 1rem; background: rgb(11 10 15 / 0.9); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 30px 60px rgb(0 0 0 / 0.5); }
+.p-photo .flow .wire, .p-photo .flow .stg, .p-photo .flow .browser img { aspect-ratio: 1 / 1; }
+img.tile-img { display: block; width: calc(100% + 3.5rem); max-width: none; margin: -1.75rem -1.75rem 0; height: 210px; object-fit: cover; border-bottom: 1px solid var(--line); border-radius: 10px 10px 0 0; }
 .flow { display: grid; grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) 36px minmax(0, 1.2fr); align-items: center; gap: 0.6rem; }
 .flow figure { margin: 0; display: grid; gap: 0.5rem; }
 .flow figcaption { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }

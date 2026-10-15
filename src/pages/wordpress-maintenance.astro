@@ -6,6 +6,7 @@ import Connect from '../components/Connect.astro';
 import { site } from '../site.js';
 import { work } from '../work.js';
 import { prices, usd } from '../prices.js';
+import heroPhoto from '../assets/photos/business-owner-at-laptop.jpg';
 
 const focus = 'WordPress maintenance services';
 const title = 'WordPress Maintenance Services from $149/mo | Sakib Islam';
@@ -75,6 +76,8 @@ const jsonld = [
           <a class="btn btn-ghost" href="#fix">Fix one problem first</a>
         </div>
       </div>
+      <div class="p-photo">
+      <Picture src={heroPhoto} formats={['avif', 'webp']} widths={[640, 960, 1280]} sizes="(max-width: 900px) 100vw, 660px" alt="A business owner working on her laptop at home" loading="eager" fetchpriority="high" />
       <ol class="month" aria-label="A month on a care plan">
         {weeks.map((w, i) => (
           <li class:list={[{ last: i === 3 }]}>
@@ -85,6 +88,7 @@ const jsonld = [
           </li>
         ))}
       </ol>
+      </div>
     </div>
   </section>
 

@@ -5,6 +5,8 @@ import Connect from '../components/Connect.astro';
 import PostImage from '../components/PostImage.astro';
 import photo from '../assets/sakib-islam-cut.png';
 import appShot from '../assets/work/extra/wrkbase-1.jpg';
+import shopPhoto from '../assets/photos/shop-owner-with-tablet.jpg';
+import agencyPhoto from '../assets/photos/agency-team-at-laptop.jpg';
 import { site } from '../site.js';
 import { services } from '../services.js';
 import { work } from '../work.js';
@@ -122,6 +124,7 @@ const jsonld = [
   <section class="wrap" style="padding: var(--sec) 0 1.25rem">
     <div class="paths">
       <a class="tile" href="/wordpress-maintenance/">
+        <Picture class="tile-img" src={shopPhoto} formats={['avif', 'webp']} widths={[640, 960]} sizes="(max-width: 900px) 100vw, 640px" alt="A shop owner holding a tablet in her clothing store" loading="lazy" />
         <div class="tile-top"><p class="label">I run a business</p><span aria-hidden="true">→</span></div>
         <h2>Slow, broken or nobody looking after it?</h2>
         <figure class="bars" aria-label="TubeOnAI load time fell from 5 seconds to 1.5 seconds">
@@ -131,6 +134,7 @@ const jsonld = [
         </figure>
       </a>
       <a class="tile" href="/white-label-wordpress-development/">
+        <Picture class="tile-img" src={agencyPhoto} formats={['avif', 'webp']} widths={[640, 960]} sizes="(max-width: 900px) 100vw, 640px" alt="Two people from an agency reviewing work on a laptop" loading="lazy" />
         <div class="tile-top"><p class="label">I run an agency</p><span aria-hidden="true">→</span></div>
         <h2>Your design, built in WordPress under your name.</h2>
         <div class="to-wp" aria-hidden="true">

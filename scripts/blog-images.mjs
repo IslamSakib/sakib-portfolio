@@ -3,7 +3,8 @@
 //   scripts/photos/<slug>.jpg     source photo (Unsplash, free licence; credits in scripts/photos/CREDITS.md)
 //   src/assets/blog/<slug>.jpg    1600x900 in-page image (Astro makes AVIF/WebP sizes from it)
 //   public/og-blog-<slug>.jpg     1200x630 share image
-// Run `npm run blog-images` after adding a post. `photoFocus: 30%` in frontmatter moves the photo crop left/right.
+// Run `npm run blog-images` after adding a post. `photoFocus: 30%` in frontmatter moves the photo crop left/right;
+// `photo: sakib` uses Sakib's cut-out portrait on a dark ground instead of a stock photo.
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -26,7 +27,7 @@ const page = (w, h, post) => {
 @font-face { font-family: 'Bricolage Grotesque Variable'; src: url('${font('bricolage-grotesque', 'bricolage-grotesque-latin-wght-normal.woff2')}'); font-weight: 200 800; }
 @font-face { font-family: 'Geist Mono Variable'; src: url('${font('geist-mono', 'geist-mono-latin-wght-normal.woff2')}'); font-weight: 100 900; }
 html, body { margin: 0; width: ${w}px; height: ${h}px; background: #0b0a0f; overflow: hidden; }
-.photo { position: absolute; left: 0; top: 0; width: ${photoW}px; height: 100%; background: url('${post.photo}') ${post.focus} 50% / cover; }
+.photo { position: absolute; left: 0; top: 0; width: ${photoW}px; height: 100%; background: ${post.portrait ? `url('${post.photo}') 45% 100% / auto 94% no-repeat, radial-gradient(circle at 45% 55%, #3b2f5c, #14121a 65%)` : `url('${post.photo}') ${post.focus} 50% / cover`}; }
 .photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11,10,15,.15), rgba(11,10,15,0) 40%); }
 .disc { position: absolute; left: ${cx - r}px; top: ${h / 2 - r}px; width: ${r * 2}px; height: ${r * 2}px; border-radius: 50%; background: #a78bfa; overflow: hidden;
   box-shadow: 0 0 0 ${14 * u}px rgba(167,139,250,.28); }
@@ -58,9 +59,10 @@ for (const f of readdirSync('src/blog').filter((f) => f.endsWith('.md'))) {
   if (only.length && !only.includes(slug)) continue;
   const md = readFileSync(join('src/blog', f), 'utf8');
   const get = (k) => ((md.match(new RegExp(`^${k}: (.*)$`, 'm')) || [])[1] || '').replace(/^"|"$/g, '');
-  const src = resolve('scripts/photos', `${slug}.jpg`);
+  const portrait = get('photo') === 'sakib';
+  const src = portrait ? resolve('src/assets/sakib-islam-cut.png') : resolve('scripts/photos', `${slug}.jpg`);
   if (!existsSync(src)) throw new Error(`missing photo: scripts/photos/${slug}.jpg`);
-  const post = { title: get('title'), topic: get('topic'), focus: get('photoFocus') || '50%', photo: pathToFileURL(src).href };
+  const post = { title: get('title'), topic: get('topic'), focus: get('photoFocus') || '50%', photo: pathToFileURL(src).href, portrait };
   const tmp = join(tmpdir(), `${slug}-raw.png`);
   render(page(1600, 900, post), 1600, 900, tmp);
   await sharp(tmp).jpeg({ quality: 88, mozjpeg: true }).toFile(`src/assets/blog/${slug}.jpg`);

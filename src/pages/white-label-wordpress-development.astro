@@ -6,6 +6,7 @@ import Connect from '../components/Connect.astro';
 import { site } from '../site.js';
 import { work } from '../work.js';
 import { prices, usd } from '../prices.js';
+import heroPhoto from '../assets/photos/agency-team-planning.jpg';
 
 const focus = 'white label WordPress development';
 const title = 'White Label WordPress Development for Agencies | Sakib Islam';
@@ -81,6 +82,8 @@ const jsonld = [
           <a class="btn btn-ghost" href="#how">See the process</a>
         </div>
       </div>
+      <div class="p-photo">
+      <Picture src={heroPhoto} formats={['avif', 'webp']} widths={[640, 960, 1280]} sizes="(max-width: 900px) 100vw, 660px" alt="An agency team planning a website with sticky notes on a glass wall" loading="eager" fetchpriority="high" />
       <div class="flow" aria-label="Your Figma design becomes a staging site, then the live site under your brand">
         <figure>
           <div class="wire" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -96,6 +99,7 @@ const jsonld = [
           <div class="browser"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>yourclient.com</span></div><Picture src={shot('tabby')} formats={['avif', 'webp']} widths={[360, 540]} sizes="(max-width: 900px) 90vw, 260px" alt="A site built from a Figma design: Tabby" loading="eager" /></div>
           <figcaption>Live, under your brand</figcaption>
         </figure>
+      </div>
       </div>
     </div>
   </section>

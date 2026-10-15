@@ -10,7 +10,6 @@ Photos from Unsplash under the Unsplash License (free for commercial use, no att
 - wordpress-core-web-vitals.jpg: https://unsplash.com/photos/eL4xIEuHzzk
 - cost-to-hire-a-wordpress-developer.jpg: https://unsplash.com/photos/IY4uQgwwun0
 - woocommerce-checkout-not-working.jpg: https://unsplash.com/photos/1JnN9QhmTGU
-- choosing-a-white-label-wordpress-partner.jpg: https://unsplash.com/photos/Of_m3hMsoAA
 - figma-to-wordpress-handoff.jpg: https://unsplash.com/photos/kSBWIerVYJs
 - what-wordpress-maintenance-includes.jpg: https://unsplash.com/photos/wqtDizNUOrM
 - too-many-wordpress-cache-plugins.jpg: https://unsplash.com/photos/Xn3D8DIzH7Q
