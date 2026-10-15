@@ -21,7 +21,7 @@
 .browser { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
 .browser-bar { display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-bottom: 1px solid var(--line); }
 .browser-bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--line-2); }
-.browser-bar span { font-family: var(--mono); font-size: 0.6875rem; color: var(--muted); margin-left: 8px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.browser-bar span { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); margin-left: 8px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .browser img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
 
 /* Home hero: copy on the left; on the right the portrait stands on a panel, one site overlaps its corner */
@@ -40,7 +40,7 @@
 .h-stat { position: absolute; left: 6%; top: 10%; display: grid; gap: 0.2rem; padding: 0.85rem 1rem; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 18px 36px rgb(0 0 0 / 0.5); }
 .h-stat b { font-family: var(--mono); font-weight: 400; font-size: 1.375rem; letter-spacing: -0.03em; }
 .h-stat em { font-style: normal; color: var(--accent); }
-.h-stat small { font-family: var(--mono); font-size: 0.6875rem; color: var(--muted); }
+.h-stat small { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
 /* The portrait, now in the About section: a cut-out standing on a panel */
 .h-panel { position: relative; border-radius: 18px; overflow: hidden; background: var(--surface-2); border: 1px solid var(--line); }
 .h-panel img { display: block; width: 100%; height: auto; }
@@ -92,7 +92,7 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .pill.ok { border-color: var(--accent); color: var(--accent); }
 .weeks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; }
 .weeks > div { display: grid; gap: 0.35rem; align-content: start; padding: 0.65rem; border: 1px solid var(--line); border-radius: 6px; font-size: 0.8125rem; }
-.weeks small { font-family: var(--mono); font-size: 0.6875rem; color: var(--muted); }
+.weeks small { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
 .weeks .last { border-color: var(--accent); }
 .weeks .last small { color: var(--accent); }
 
@@ -192,6 +192,7 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 
 /* Agency page */
 .p-photo { display: grid; }
+.p-photo > picture { display: block; overflow: hidden; border-radius: 14px; }
 .p-photo > picture img, .p-photo > img { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--line); }
 /* The diagram sits on a dark card under the photo (the photo is never covered or cropped). */
 .p-photo > .flow, .p-photo > .month { position: relative; margin: 1rem 0 0; padding: 1rem; background: rgb(11 10 15 / 0.9); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 30px 60px rgb(0 0 0 / 0.5); }
@@ -345,7 +346,7 @@ img.tile-img { display: block; width: calc(100% + 3.5rem); max-width: none; heig
   .trust-nums { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.75rem; }
   .trust-nums div + div { border-left: 0; padding-left: 0; }
   .logo-row { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
-  .eyebrow { font-size: 0.6875rem; letter-spacing: 0.05em; }
+  .eyebrow { font-size: 0.75rem; letter-spacing: 0.05em; }
   .mosaic > a, .mosaic > a:nth-child(-n+2) { grid-column: 1 / -1; grid-row: auto; }
   .mosaic > a:nth-child(2) img { height: auto; aspect-ratio: 16 / 10; }
   .mosaic > a:nth-child(2) .browser { display: block; }
