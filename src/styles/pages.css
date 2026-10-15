@@ -376,6 +376,7 @@ img.tile-img { display: block; width: calc(100% + 3.5rem); max-width: none; heig
 .mnav[open] summary i::after { top: 4px; transform: rotate(-45deg); }
 .mnav .mnav-close, .mnav[open] .mnav-open { display: none; }
 .mnav[open] .mnav-close { display: inline; }
+.mnav:not([open]) .mnav-panel { display: none; }
 .mnav-panel { position: fixed; inset: 0; z-index: 1; display: flex; flex-direction: column; gap: 1.75rem; padding: 6.5rem max(1.75rem, env(safe-area-inset-right)) 2rem max(1.75rem, env(safe-area-inset-left)); overflow-y: auto; background: var(--bg); border-top: 1px solid var(--line); animation: sheet-in 0.45s var(--ease) both; }
 .mnav-panel > *, .mnav-main a, .mnav-svc a { animation: item-in 0.5s var(--ease) both; animation-delay: calc(0.08s + var(--i, 0) * 0.04s); }
 .mnav-main { border-top: 1px solid var(--line); }
