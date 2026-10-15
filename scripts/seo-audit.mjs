@@ -47,7 +47,7 @@ for (const [page, html] of pages) {
   }
   for (const [tag] of html.matchAll(/<img\b[^>]*>/g)) if (!/\swidth=/.test(tag) || !/\sheight=/.test(tag)) bad(page, `image without width and height: ${(tag.match(/src="([^"]{0,60})/) || [])[1]}`);
 
-  const words = html.replace(/<(script|style|svg)[\s\S]*?<\/\1>/g, ' ').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+  const words = html.replace(/<(script|style|svg)[\s\S]*?<\/\1>/g, ' ').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').split(/\s+/).filter(Boolean).length;
   // Listing and contact pages are short by design; content pages are not.
   if (words < 300 && !['/blog/', '/contact/'].includes(page)) bad(page, `only ${words} words`);
   notes.push(`${page.padEnd(34)} ${String(words).padStart(5)} words  ${types.join(', ')}`);

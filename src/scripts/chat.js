@@ -17,16 +17,31 @@ if (root) {
     {
       key: 'need',
       ask: () => 'Hi, I am Sakib\'s assistant. I will ask a few quick questions and send your answers straight to him. What do you need help with?',
-      chips: ['Build a new site', 'Speed up a slow site', 'Fix a broken site', 'A custom web product', 'AI agent or automation', 'Something else'],
+      chips: ['My site is slow', 'Something is broken', 'Monthly maintenance', 'A new build or relaunch', 'White-label work for my agency', 'Something else'],
     },
     {
       key: 'site',
-      ask: () => (/new site|product/i.test(lead.need) ? 'Good. Is there an existing site or a reference I should look at? Paste the address, or say "no site yet".' : 'Got it. What is the site address? If there is no site yet, just say so.'),
+      ask: () => (/agency|white/i.test(lead.need)
+        ? 'Good. Is there a design or a client site I should look at? Paste a link, or say "no site yet".'
+        : /build|relaunch/i.test(lead.need)
+          ? 'Good. Is there an existing site or a reference I should look at? Paste the address, or say "no site yet".'
+          : 'Got it. What is the site address? If there is no site yet, just say so.'),
       chips: ['No site yet'],
     },
     { key: 'goal', ask: () => 'What is the main result you want from this? One or two sentences is plenty.' },
     { key: 'timeline', ask: () => 'When do you need it done?', chips: ['As soon as possible', 'Within a month', '1 to 3 months', 'No fixed date'] },
-    { key: 'budget', ask: () => 'Do you have a budget range in mind? It helps Sakib suggest the right scope.', chips: ['Under $500', '$500 to $2,000', '$2,000 to $5,000', 'Above $5,000', 'Not sure yet'] },
+    {
+      key: 'budget',
+      // The starting prices from src/prices.js, so the visitor knows the ballpark before answering.
+      ask: () => (/maintenance/i.test(lead.need)
+        ? 'Care plans start at $149 a month, or $299 with development time included. Do you have a budget in mind?'
+        : /agency|white/i.test(lead.need)
+          ? 'White-label work is $35 an hour, or from $1,200 per site from a Figma design. Do you have a budget in mind for this one?'
+          : /slow|broken/i.test(lead.need)
+            ? 'Single fixes start at $150 and speed fixes at $450. Do you have a budget range in mind?'
+            : 'Builds start at $2,500. Do you have a budget range in mind? It helps Sakib suggest the right scope.'),
+      chips: ['Under $500', '$500 to $2,000', '$2,000 to $5,000', 'Above $5,000', 'Not sure yet'],
+    },
     { key: 'name', ask: () => 'Almost done. What is your name?' },
     {
       key: 'contact',

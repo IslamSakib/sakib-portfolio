@@ -8,10 +8,12 @@
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 [data-topic-item][hidden] { display: none; }
 .mono { font-family: var(--mono); }
-.sec-pad { padding: 4.5rem 0; }
+/* One section rhythm for the whole site: about 64px on phones, up to 112px on large screens. */
+:root { --sec: clamp(4rem, 7.5vw, 7rem); }
+.sec-pad { padding: var(--sec) 0; }
 .sec-line { border-top: 1px solid var(--line); }
 .on-surface { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.row-head { display: flex; justify-content: space-between; align-items: end; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.row-head { display: flex; justify-content: space-between; align-items: end; gap: 1.5rem; flex-wrap: wrap; margin-bottom: clamp(2rem, 3.5vw, 3rem); }
 .row-head h2 { max-width: none; }
 .btn-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
@@ -23,7 +25,7 @@
 .browser img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
 
 /* Home hero: copy on the left; on the right the portrait stands on a panel, one site overlaps its corner */
-.h-hero { padding: 2.5rem 0 3.5rem; }
+.h-hero { padding: clamp(2.5rem, 5vw, 4.5rem) 0 var(--sec); }
 .h-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; }
 .h-copy { display: grid; gap: 1.25rem; justify-items: start; }
 .h-copy .eyebrow { margin-bottom: 0.9rem; }
@@ -45,12 +47,12 @@
 .about-photo { margin: 0; display: grid; gap: 0.75rem; position: sticky; top: 110px; }
 .about-photo figcaption { font-size: 0.75rem; }
 /* Trust band under the hero: four checkable numbers and the real client logos */
-.trust-band { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-deep); padding: 3rem 0 2.5rem; }
+.trust-band { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-deep); padding: calc(var(--sec) * 0.7) 0; }
 .trust-nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 0 2.5rem; }
 .trust-nums div { display: grid; gap: 0.35rem; align-content: start; padding-right: 1.25rem; }
 .trust-nums div + div { border-left: 1px solid var(--line); padding-left: 1.25rem; }
 .trust-nums dt { font-family: var(--display); font-weight: 700; font-size: clamp(2.4rem, 4.2vw, 3.6rem); letter-spacing: -0.04em; line-height: 1; }
-.trust-nums dd { margin: 0; color: var(--muted); font-size: 0.9375rem; max-width: none; text-wrap: pretty; }
+.trust-nums dd { margin: 0; color: var(--muted); font-size: 0.9375rem; max-width: none; text-wrap: wrap; }
 .logo-row { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: center; }
 .logo-row ul { display: flex; flex-wrap: wrap; gap: 1.25rem 3rem; align-items: center; }
 .logo-row li { display: flex; align-items: center; gap: 0.5rem; }
@@ -138,7 +140,7 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .on-surface .pipeline .node { background: var(--surface); }
 
 /* Motto */
-.motto { padding: 5rem 0; border-bottom: 1px solid var(--line); }
+.motto { padding: calc(var(--sec) * 1.15) 0; border-bottom: 1px solid var(--line); }
 .motto p.big { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em; line-height: 1; font-size: clamp(2.1rem, 7.4vw, 7.5rem); }
 .motto p.big .ln { display: block; white-space: nowrap; }
 .motto em { font-style: normal; color: var(--accent); }
@@ -159,7 +161,7 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .rv-nav button:hover { border-color: var(--accent); }
 .rv-item { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2.5rem; align-items: start; padding-bottom: 2.5rem; }
 .rv-ini { display: grid; place-items: center; width: 88px; height: 88px; border-radius: 50%; border: 1px solid var(--accent); color: var(--accent); font-family: var(--mono); font-size: 1.5rem; }
-.rv-item blockquote { margin: 0 0 1.25rem; font-family: var(--display); font-weight: 500; font-size: clamp(1.6rem, 3vw, 2.6rem); line-height: 1.2; letter-spacing: -0.02em; max-width: none; text-wrap: pretty; }
+.rv-item blockquote { margin: 0 0 1.25rem; font-family: var(--display); font-weight: 500; font-size: clamp(1.6rem, 3vw, 2.6rem); line-height: 1.2; letter-spacing: -0.02em; max-width: none; text-wrap: wrap; }
 .rv-item figcaption span { color: var(--muted); }
 .rv.ready .rv-item:not(.on) { display: none; }
 .rv:not(.ready) .rv-nav { display: none; }
@@ -180,7 +182,7 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .chips button[aria-pressed='true'] { background: var(--text); color: var(--bg); border-color: var(--text); }
 
 /* Closing "Connect" band */
-.connect { padding: 5rem 0; border-top: 1px solid var(--line); }
+.connect { padding: var(--sec) 0; border-top: 1px solid var(--line); }
 .connect .wrap { display: grid; gap: 1.75rem; justify-items: start; }
 .connect .huge { font-family: var(--display); font-weight: 700; font-size: clamp(4rem, 12vw, 11rem); line-height: 0.9; letter-spacing: -0.045em; }
 .connect h2 { font-size: clamp(1.6rem, 3vw, 2.5rem); max-width: none; }
@@ -189,7 +191,7 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .connect .reach a:hover { color: var(--accent); }
 
 /* Page hero shared by the agency and maintenance pages */
-.p-hero { padding: 2.5rem 0 3rem; }
+.p-hero { padding: clamp(2.5rem, 5vw, 4.5rem) 0 var(--sec); }
 .p-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 3.5rem; align-items: center; }
 .p-copy { display: grid; gap: 1.4rem; justify-items: start; }
 .p-copy h1 { font-size: clamp(2.5rem, 4.4vw, 4.2rem); max-width: none; }
@@ -221,7 +223,7 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .models b { font-family: var(--mono); font-weight: 400; font-size: 2.5rem; letter-spacing: -0.04em; }
 .models small { font-size: 1.125rem; color: var(--muted); }
 .quote-side { display: grid; gap: 1.1rem; }
-.quote-side blockquote { margin: 0; font-family: var(--display); font-weight: 500; font-size: clamp(1.6rem, 2.8vw, 2.4rem); line-height: 1.2; max-width: none; text-wrap: pretty; }
+.quote-side blockquote { margin: 0; font-family: var(--display); font-weight: 500; font-size: clamp(1.6rem, 2.8vw, 2.4rem); line-height: 1.2; max-width: none; text-wrap: wrap; }
 .ini { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--accent); color: var(--bg); font-family: var(--mono); }
 .two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3.5rem; align-items: center; }
 .shots-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
@@ -289,7 +291,7 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 /* Blog post */
-.post-head { padding: 2.5rem 0 2rem; display: grid; gap: 1.4rem; justify-items: start; }
+.post-head { padding: clamp(2.5rem, 5vw, 4rem) 0 2.5rem; display: grid; gap: 1.4rem; justify-items: start; }
 .post-head h1 { font-size: clamp(2.4rem, 4.8vw, 4.1rem); max-width: none; }
 .byline { display: flex; gap: 0.9rem; align-items: center; font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); }
 .byline img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; background: var(--line); }
@@ -422,9 +424,9 @@ html:has(.mnav[open]) .chat, html:has(.mnav[open]) .to-top { display: none; }
 
 /* Text under a headline that is set on fixed phrase lines takes exactly the headline's width and wraps naturally, so
    there is no empty block beside a short description. The column is as wide as its widest unbreakable line: the headline. */
-.h-copy { grid-template-columns: min-content; }
 .h-copy > * { min-width: 0; }
-@media (min-width: 700px) {
+@media (min-width: 901px) { .h-copy { grid-template-columns: min-content; } }
+@media (min-width: 901px) {
   .p-copy, .contact-side { grid-template-columns: min-content; }
   .p-copy > *, .contact-side > * { min-width: 0; }
 }
@@ -432,4 +434,10 @@ html:has(.mnav[open]) .chat, html:has(.mnav[open]) .to-top { display: none; }
   .svc-copy { grid-template-columns: min-content; }
   .svc-copy > * { min-width: 0; }
 }
-.h-copy .lead, .p-copy .lead, .contact-side .lead, .svc-copy .lead { text-wrap: pretty; }
+.h-copy .lead, .p-copy .lead, .contact-side .lead, .svc-copy .lead { text-wrap: wrap; }
+
+/* Tablets: the hero stacks into one column, so the phrase-line headlines grow to fill it. */
+@media (min-width: 700px) and (max-width: 900px) {
+  .h-copy h1 { font-size: 7vw; }
+  .p-copy h1 { font-size: 6.2vw; }
+}

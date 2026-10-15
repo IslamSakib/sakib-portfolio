@@ -119,7 +119,7 @@ const jsonld = [
     </div>
   </section>
 
-  <section class="wrap" style="padding: 5rem 0 1.25rem">
+  <section class="wrap" style="padding: var(--sec) 0 1.25rem">
     <div class="paths">
       <a class="tile" href="/wordpress-maintenance/">
         <div class="tile-top"><p class="label">I run a business</p><span aria-hidden="true">→</span></div>
@@ -142,7 +142,7 @@ const jsonld = [
     </div>
   </section>
 
-  <section id="services" class="wrap" style="padding: 1.25rem 0 5rem">
+  <section id="services" class="wrap" style="padding: 0 0 var(--sec)">
     <h2 class="sr-only">Services</h2>
     <div class="bento">
       <a class="tile span-7" href="/wordpress-speed-optimization/">
@@ -180,7 +180,7 @@ const jsonld = [
     </div>
   </section>
 
-  <section id="work" class="wrap" style="padding: 2.5rem 0 5.5rem">
+  <section id="work" class="wrap" style="padding: 0 0 var(--sec)">
     <div class="row-head">
       <h2>Selected work</h2>
       <a href="/work/tabby/">Start with Tabby →</a>
@@ -241,7 +241,7 @@ const jsonld = [
     </div>
   </section>
 
-  <section class="wrap" style="padding: 5.5rem 0 2.5rem">
+  <section class="wrap" style="padding: var(--sec) 0 0">
     <p class="label" style="margin-bottom: 1.25rem">Starting prices, USD</p>
     <div class="price-strip">
       {strip.map((p) => <div><b>{p.price}<small>{p.unit}</small></b><span>{p.label}</span><a class="btn btn-small btn-ghost" href={p.href}>{p.cta}</a></div>)}
@@ -249,7 +249,7 @@ const jsonld = [
     <p class="mut" style="margin-top: 1rem; font-size: 0.9375rem">Every job gets a written quote before work starts.</p>
   </section>
 
-  <section class="wrap rv" style="padding: 4.5rem 0 3rem" aria-label="Recommendations" data-rv>
+  <section class="wrap rv" style="padding: var(--sec) 0" aria-label="Recommendations" data-rv>
     <div class="rv-head">
       <p class="label">What they said · <span data-rv-pos>01</span> / {String(reviews.length).padStart(2, '0')}</p>
       <div class="rv-nav">

@@ -47,15 +47,15 @@ a { color: inherit; text-underline-offset: 3px; }
 a:hover { color: var(--accent-hi); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 h1, h2, h3, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
-h1, h2, h3 { font-family: var(--display); line-height: 1.08; letter-spacing: -0.03em; font-weight: 700; text-wrap: pretty; padding-bottom: 0.08em; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.08; letter-spacing: -0.03em; font-weight: 700; text-wrap: wrap; padding-bottom: 0.08em; }
 h1 { font-size: clamp(2.5rem, 6vw, 4.75rem); }
 h2 { font-size: clamp(2rem, 4.2vw, 3.25rem); }
 h3 { font-size: 1.375rem; letter-spacing: -0.02em; }
 ul, ol { padding: 0; list-style: none; }
 /* No single word left alone on a last line: body text avoids short last lines, and short intro lines are evened out. */
-p, li, dd, dt, summary, blockquote, figcaption { text-wrap: pretty; }
-.review-note, .small, .outcome span, .proof dd, .picks p, summary { text-wrap: pretty; }
-.lead.wide { text-wrap: pretty; }
+p, li, dd, dt, summary, blockquote, figcaption { text-wrap: wrap; }
+.review-note, .small, .outcome span, .proof dd, .picks p, summary { text-wrap: wrap; }
+.lead.wide { text-wrap: wrap; }
 button { font: inherit; color: inherit; }
 
 .wrap { width: min(100% - 2.5rem, var(--wrap)); margin-inline: auto; }
@@ -261,7 +261,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 /* Recommendations: one row of cards drifting sideways */
 .rcard { width: 440px; flex: none; display: grid; gap: 1.5rem; align-content: space-between; padding: 1.75rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
 .rcard .rq { margin-bottom: 0.9rem; fill: var(--accent); }
-.rcard p { font-size: 1.0625rem; line-height: 1.55; color: var(--text); text-wrap: pretty; }
+.rcard p { font-size: 1.0625rem; line-height: 1.55; color: var(--text); text-wrap: wrap; }
 .rcard footer { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-top: 1.1rem; border-top: 1px solid var(--line); }
 .rcard .who { display: grid; gap: 0.1rem; min-width: 0; }
 .rcard .who b { font-size: 1rem; }
@@ -280,7 +280,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .faq-panel { grid-area: 1 / 1; display: grid; gap: 1.25rem; align-content: start; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity 0.3s ease, transform 0.4s var(--ease), visibility 0.3s; }
 .faq-panel.on { opacity: 1; visibility: visible; transform: none; }
 .faq-panel h3 { font-size: clamp(1.5rem, 2.3vw, 2rem); }
-.faq-panel p { font-size: 1.1875rem; line-height: 1.6; color: var(--muted); text-wrap: pretty; }
+.faq-panel p { font-size: 1.1875rem; line-height: 1.6; color: var(--muted); text-wrap: wrap; }
 
 .faq-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start; }
 .faq-side { position: sticky; top: 110px; display: grid; gap: 1.25rem; justify-items: start; }
@@ -378,7 +378,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .kit h3 { font-size: 1.3125rem; }
 .kit h3 a { text-decoration: none; }
 .kit h3 a::after { content: ""; position: absolute; inset: 0; }
-.kit p { text-wrap: pretty; }
+.kit p { text-wrap: wrap; }
 .reel-list:has(button:only-child) { display: none; }
 
 /* Header: the list of services that opens under "Services" */
