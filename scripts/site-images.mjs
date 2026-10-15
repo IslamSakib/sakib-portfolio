@@ -49,6 +49,25 @@ const gauge = (pct, label) => {
 };
 const bars = (rows) => rows.map(([name, v, w, col]) => `<div style="display:grid;grid-template-columns:110px 1fr 90px;gap:16px;align-items:center;margin-top:16px"><span class="mono mut" style="font-size:17px">${name}</span><span style="height:14px;border-radius:7px;background:#2a2633;overflow:hidden"><i style="display:block;height:100%;width:${w}%;background:${col};border-radius:7px"></i></span><b class="mono" style="font-size:20px;font-weight:500;text-align:right;color:${col}">${v}</b></div>`).join('');
 
+// A Figma-style editor: layers on the left, the real design on the canvas with one frame selected and measured.
+const figma = (img, file, style, sel = 'Hero') => `<div class="win" style="${style};background:#1e1c24">
+  <div class="bar" style="justify-content:space-between"><span style="margin:0;background:none;padding:0;color:#efeaf6;font-family:H;font-weight:600;font-size:16px">${file}</span><span style="margin:0;padding:4px 12px;border-radius:6px;background:#a78bfa;color:#0b0a0f;font-family:H;font-weight:700;font-size:14px">Share</span></div>
+  <div style="display:grid;grid-template-columns:150px 1fr;">
+    <div style="padding:16px 14px;border-right:1px solid #2a2633;font:400 14px/2.1 M;color:#8f879f">
+      <p style="color:#efeaf6">▾ Home</p><p>&nbsp; Nav</p><p style="color:#0b0a0f;background:#a78bfa;border-radius:5px;padding-left:8px;margin-left:6px">${sel}</p><p>&nbsp; Features</p><p>&nbsp; Pricing</p><p>&nbsp; Footer</p>
+    </div>
+    <div style="position:relative;padding:26px 24px;background:#16141c;overflow:hidden">
+      <p style="font:400 13px M;color:#8f879f;margin-bottom:8px">Desktop · 1440</p>
+      <div style="position:relative;border-radius:4px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.5)"><img src="${shot(img)}" style="display:block;width:100%">
+        <div style="position:absolute;left:8%;right:8%;top:14%;height:46%;border:2px solid #a78bfa;background:rgba(167,139,250,.08)">
+          ${['left:-6px;top:-6px', 'right:-6px;top:-6px', 'left:-6px;bottom:-6px', 'right:-6px;bottom:-6px'].map((p) => `<i style="position:absolute;${p};width:10px;height:10px;background:#fff;border:2px solid #a78bfa"></i>`).join('')}
+          <span style="position:absolute;left:50%;bottom:-34px;transform:translateX(-50%);padding:3px 10px;border-radius:5px;background:#a78bfa;color:#0b0a0f;font:600 14px M">1240 × 560</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`;
+
 const scenes = {
   // Speed: TubeOnAI in a browser, a Core Web Vitals gauge and the measured before/after.
   speed: `
@@ -73,65 +92,51 @@ const scenes = {
     </div>`,
 
   // WordPress builds: Figma-style frames turning into the live Tabby site, with a paid checkout.
+  // WordPress builds: the design in Figma becomes the live Tabby site, with a paid checkout.
   build: `
-    <div class="win" style="left:90px;top:190px;width:520px;height:640px;padding:26px;background:#121019">
-      <p class="mono mut" style="font-size:15px">Design · Home</p>
-      <div style="margin-top:18px;height:46px;border-radius:8px;border:2px dashed #3a3446"></div>
-      <div style="margin-top:18px;height:190px;border-radius:12px;border:2px dashed #a78bfa;display:grid;place-items:center"><span class="mono" style="color:#a78bfa;font-size:16px">Hero · 1440 × 720</span></div>
-      <div style="margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px">${'<div style="height:150px;border-radius:10px;border:2px dashed #3a3446"></div>'.repeat(3)}</div>
-      <div style="margin-top:18px;height:70px;border-radius:10px;border:2px dashed #3a3446"></div>
-    </div>
-    <svg class="abs" style="left:600px;top:470px" width="120" height="40" viewBox="0 0 120 40"><path d="M4 20h104M94 8l14 12-14 12" fill="none" stroke="#a78bfa" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    ${browser('usetabby.com', 'tabby.png', 'left:720px;top:130px;width:800px')}
-    <div class="card glow" style="left:1060px;top:640px;width:430px">
+    ${figma('tabby.png', 'Tabby · Website', 'left:70px;top:230px;width:780px')}
+    <svg class="abs" style="left:858px;top:450px" width="100" height="40" viewBox="0 0 100 40"><path d="M4 20h84M76 8l14 12-14 12" fill="none" stroke="#a78bfa" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    ${browser('usetabby.com', 'tabby.png', 'left:970px;top:190px;width:570px')}
+    <div class="card glow" style="left:1000px;top:620px;width:510px;padding:30px 34px">
       <p class="lab">WooCommerce checkout</p>
-      <div class="row" style="justify-content:space-between;margin-top:18px"><span style="font-size:20px">Card payment</span><b class="mono" style="font-size:18px;font-weight:500;color:#9a93a8">Secure</b></div>
-      <div style="margin-top:20px;padding:16px;border-radius:12px;background:#a78bfa;color:#0b0a0f;text-align:center;font:700 21px 'H'">Paid ✓</div>
-    </div>`,
+      <div class="row" style="justify-content:space-between;margin-top:20px"><span style="font-size:22px">Card payment</span><span class="mono mut" style="font-size:18px">Secure</span></div>
+      <div style="margin-top:22px;padding:18px;border-radius:12px;background:#a78bfa;color:#0b0a0f;text-align:center;font:700 23px 'H'">Paid ✓</div>
+    </div>
+    <span class="pill abs" style="left:90px;top:900px;font-size:20px">Figma → WordPress → checkout</span>`,
 
-  // Custom development: Wrkbase, Sakib's own SaaS, with the parts a product needs.
-  custom: `
-    <div class="win" style="left:80px;top:150px;width:1150px;transform:perspective(2600px) rotateY(8deg) rotateX(2deg)"><div class="bar"><i></i><i></i><i></i><span>app.wrkbase.com</span></div><img src="${pathToFileURL(resolve('src/assets/work/extra/wrkbase-1.jpg')).href}"></div>
-    ${[['Sign-in and accounts', 'Roles and permissions', 140], ['Dashboard', 'Live team data', 390], ['API', 'Connected to your tools', 640]].map(([a, b, y]) => `<div class="card" style="left:1180px;top:${y}px;width:340px;padding:22px 26px"><p style="font:600 22px 'H'">${a}</p><p class="mut" style="font-size:17px;margin-top:4px">${b}</p></div>`).join('')}
-    <span class="pill abs" style="left:130px;top:920px">Wrkbase · built from scratch</span>`,
-
-  // White label: the agency's design becomes the client's live site under the agency's brand.
+  // White label: the agency's Figma file becomes the client's live site under the agency's brand.
   agency: `
-    <div class="win" style="left:90px;top:200px;width:560px;height:620px;padding:26px;background:#121019">
-      <p class="mono mut" style="font-size:15px">Your Figma file</p>
-      <div style="margin-top:20px;height:50px;border-radius:8px;border:2px dashed #3a3446"></div>
-      <div style="margin-top:18px;height:210px;border-radius:12px;border:2px dashed #3a3446"></div>
-      <div style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px">${'<div style="height:140px;border-radius:10px;border:2px dashed #3a3446"></div>'.repeat(2)}</div>
+    ${figma('tubeonai.png', 'Your agency · Client site', 'left:70px;top:230px;width:780px')}
+    <svg class="abs" style="left:858px;top:450px" width="100" height="40" viewBox="0 0 100 40"><path d="M4 20h84M76 8l14 12-14 12" fill="none" stroke="#a78bfa" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    ${browser('yourclient.com', 'tubeonai.png', 'left:970px;top:190px;width:570px')}
+    <div class="card glow" style="left:970px;top:620px;width:570px;padding:28px 32px">
+      <p class="lab">White-label handover</p>
+      ${['Built on a private staging site', 'Reviewed by you on phone and desktop', 'Launched under your brand'].map((a) => `<div class="row" style="margin-top:18px"><span class="ok">✓</span><span style="font:600 21px 'H'">${a}</span></div>`).join('')}
     </div>
-    ${browser('yourclient.com', 'tubeonai.png', 'left:720px;top:140px;width:800px')}
-    <div class="card glow" style="left:760px;top:690px;width:720px;padding:26px 32px">
-      <div class="row" style="justify-content:space-between">
-        ${[['Built on staging', '✓'], ['Reviewed by you', '✓'], ['Launched under your brand', '✓']].map(([a]) => `<div class="row" style="gap:10px"><span class="ok">✓</span><span style="font:600 18px 'H'">${a}</span></div>`).join('')}
-      </div>
-    </div>
-    <span class="pill abs" style="left:150px;top:880px">Your name on it · never mine</span>`,
+    <span class="pill abs" style="left:90px;top:900px;font-size:20px">Your name on it · never mine</span>`,
 
-  // Fixes: the error found in the log, the cause written down, the site back up.
+  // Fixes: the site down, the cause found in the log, then fixed.
   fixes: `
-    <div class="win" style="left:90px;top:140px;width:880px;padding:0">
+    ${browser('tubeonai.com', 'tubeonai.png', 'left:900px;top:130px;width:640px;opacity:.95')}
+    <span class="abs pill" style="left:930px;top:510px;font-size:20px;border-color:rgba(95,211,141,.6)"><b style="color:#5fd38d;font-weight:500">●</b> 200 OK · back up</span>
+    <div class="win" style="left:60px;top:150px;width:900px">
       <div class="bar"><i></i><i></i><i></i><span>error_log</span></div>
-      <div class="mono" style="padding:30px 34px;font-size:19px;line-height:2">
-        <p class="mut">[14:02:11] PHP Notice: Undefined index in functions.php</p>
+      <div class="mono" style="padding:30px 34px;font-size:22px;line-height:2.05">
+        <p class="mut">[14:02:11] PHP Notice: Undefined index</p>
         <p class="mut">[14:02:11] WP Cron: scheduled event ran</p>
-        <p style="color:#ff8f7a;background:rgba(224,98,74,.12);margin:0 -34px;padding:0 34px;border-left:4px solid #e0624a">[14:02:12] PHP Fatal error: Cannot redeclare cache_flush()</p>
-        <p class="mut">[14:02:12] Two cache plugins active on the same site</p>
-        <p class="mut">[14:02:13] Response: 500 Internal Server Error</p>
+        <p style="color:#ff8f7a;background:rgba(224,98,74,.14);margin:0 -34px;padding:0 34px;border-left:5px solid #e0624a">[14:02:12] Fatal error: Cannot redeclare cache_flush()</p>
+        <p class="mut">[14:02:12] Two cache plugins active</p>
+        <p style="color:#ff8f7a">[14:02:13] 500 Internal Server Error</p>
       </div>
     </div>
-    <div class="card glow" style="left:820px;top:520px;width:690px;padding:34px 38px">
+    <div class="card glow" style="left:560px;top:620px;width:900px;padding:38px 44px">
       <p class="lab">Fixed at the cause</p>
-      <p style="font:700 40px/1.1 'B';letter-spacing:-.03em;margin-top:16px">One caching layer, set up once.</p>
-      <div class="row" style="margin-top:22px"><span class="ok">✓</span><span style="font-size:20px">Duplicate cache plugin removed</span></div>
-      <div class="row" style="margin-top:14px"><span class="ok">✓</span><span style="font-size:20px">Cause written down for next time</span></div>
-      <div class="row" style="margin-top:14px"><span class="ok">✓</span><span style="font-size:20px">Site back up: 200 OK</span></div>
+      <p style="font:700 50px/1.1 'B';letter-spacing:-.03em;margin-top:16px">One caching layer, set up once.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;margin-top:26px">
+        ${['Duplicate cache plugin removed', 'Leftover cache files cleared', 'Cause written down for next time', 'Tested on staging first'].map((a) => `<div class="row"><span class="ok">✓</span><span style="font-size:21px">${a}</span></div>`).join('')}
+      </div>
     </div>`,
 
-  // How I work, step 1: reading the errors and what changed.
   'step-find': `
     <div class="win" style="left:150px;top:170px;width:1300px"><div class="bar"><i></i><i></i><i></i><span>What changed this week</span></div>
       <div class="mono" style="padding:40px 46px;font-size:26px;line-height:2.1">
