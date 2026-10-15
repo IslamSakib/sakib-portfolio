@@ -121,7 +121,7 @@ const svc = [
         <ul>
           {logos.map((c) => (
             <li>
-              <img src={c.logo.src} width={c.logo.width} height={c.logo.height} alt={c.name} loading="lazy" decoding="async" />
+              <Picture src={c.logo} formats={['avif', 'webp']} widths={[Math.round(c.logo.width * 60 / c.logo.height), Math.round(c.logo.width * 90 / c.logo.height)]} sizes={`${Math.round(c.logo.width * 30 / c.logo.height)}px`} alt={c.name} loading="lazy" decoding="async" />
               {c.showName && <span aria-hidden="true">{c.name}</span>}
             </li>
           ))}

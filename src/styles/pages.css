@@ -524,7 +524,7 @@ html:has(.mnav[open]) .chat, html:has(.mnav[open]) .to-top { display: none; }
   .ss-go { opacity: 1; transform: none; }
   .ss-item::before { display: none; }
   .ss-m { display: grid; gap: 0.7rem; padding: 0 0 1.5rem 4rem; }
-  .ss-m img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); }
+  .ss-m img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; border-radius: 12px; border: 1px solid var(--line); }
 }
 @media (max-width: 560px) { .ss-m { padding-left: 0; } }
 
