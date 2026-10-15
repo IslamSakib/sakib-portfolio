@@ -384,19 +384,43 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .reel-list:has(button:only-child) { display: none; }
 
 /* Header: the list of services that opens under "Services" */
-.has-menu { position: relative; }
+.site-header .bar { position: relative; }
+.has-menu { position: static; }
 .has-menu > a { display: inline-flex; align-items: center; gap: 0.35rem; }
-.has-menu > a svg { transition: rotate 0.25s ease; }
+.has-menu > a svg { transition: rotate 0.35s var(--ease); }
 .has-menu:hover > a svg, .has-menu:focus-within > a svg { rotate: 180deg; }
-.menu { position: absolute; top: 100%; left: 50%; translate: -50% 8px; width: 340px; padding: 0.5rem; display: grid; gap: 0.15rem; border: 1px solid var(--line); border-radius: 18px; background: var(--surface-2); box-shadow: 0 30px 60px -20px rgb(0 0 0 / 0.8); opacity: 0; visibility: hidden; transition: opacity 0.2s ease, translate 0.25s var(--ease), visibility 0.2s; }
-.menu::before { content: ""; position: absolute; left: 0; right: 0; top: -22px; height: 22px; }
-.has-menu:hover .menu, .has-menu:focus-within .menu { opacity: 1; visibility: visible; translate: -50% 18px; }
-.site-header nav .menu a { display: grid; grid-template-columns: 1.75rem 1fr; gap: 0.5rem; align-items: baseline; padding: 0.7rem 0.8rem; border-radius: 12px; color: var(--text); }
-.site-header nav .menu a:hover { background: rgb(var(--accent-rgb) / 0.12); }
-.menu .idx { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); }
-.menu b { display: block; font-weight: 600; }
-.menu small { display: block; margin-top: 0.15rem; font-size: 0.8125rem; line-height: 1.35; color: var(--muted); }
-.site-header nav .menu a.menu-foot { display: block; margin-top: 0.25rem; padding-top: 0.8rem; border-top: 1px solid var(--line); border-radius: 0 0 12px 12px; font-size: 0.8125rem; color: var(--accent-hi); }
+
+/* Mega menu: a full-width panel under the header bar. Businesses on the left as a 2x2 grid of services with icon,
+   outcome and starting price; agencies in the middle with their guides; a feature card with the free check. */
+.menu.mega { position: absolute; top: 100%; left: 0; right: 0; z-index: 50; display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr) minmax(0, 0.95fr); gap: 1rem; padding: 1rem; border: 1px solid var(--line); border-radius: 24px; background: rgb(22 20 29 / 0.97); backdrop-filter: blur(18px); box-shadow: 0 50px 100px -40px rgb(0 0 0 / 0.95), 0 0 0 1px rgb(var(--accent-rgb) / 0.08); opacity: 0; visibility: hidden; translate: 0 6px; transition: opacity 0.35s var(--ease), translate 0.45s var(--ease), visibility 0.35s; }
+.menu.mega::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; }
+.has-menu:hover .menu.mega, .has-menu:focus-within .menu.mega { opacity: 1; visibility: visible; translate: 0 12px; }
+.mega-col { display: grid; gap: 0.6rem; align-content: start; padding: 0.6rem; }
+.mega-agency { border-left: 1px solid var(--line); padding-left: 1.2rem; }
+.mega-label, .mega-sub { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.mega-sub { margin-top: 0.6rem; color: var(--muted); }
+.mega-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.35rem; }
+.site-header nav .mega-item { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 0.8rem; align-items: start; padding: 0.85rem; border: 1px solid transparent; border-radius: 16px; color: var(--text); transition: background-color 0.3s ease, border-color 0.3s ease; }
+.site-header nav .mega-item:hover { background: rgb(var(--accent-rgb) / 0.09); border-color: rgb(var(--accent-rgb) / 0.25); }
+.mega-ic { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: rgb(var(--accent-rgb) / 0.12); color: var(--accent); transition: background-color 0.3s ease, color 0.3s ease; }
+.mega-ic svg { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.mega-item:hover .mega-ic { background: var(--accent-fill); color: var(--accent-ink); }
+.mega-text b { display: block; font-weight: 600; font-size: 0.9375rem; line-height: 1.3; }
+.mega-text small { display: block; margin-top: 0.25rem; font-size: 0.8125rem; line-height: 1.4; color: var(--muted); }
+.mega-text em { display: inline-block; margin-top: 0.5rem; font-style: normal; font-family: var(--mono); font-size: 0.75rem; color: var(--accent); }
+.mega-links { display: grid; gap: 0.1rem; }
+.site-header nav .mega-links a { display: flex; justify-content: space-between; gap: 0.75rem; padding: 0.55rem 0.85rem; border-radius: 10px; font-size: 0.875rem; color: var(--text); transition: background-color 0.3s ease, color 0.3s ease; }
+.site-header nav .mega-links a span { color: var(--accent); transition: translate 0.35s var(--ease); }
+.site-header nav .mega-links a:hover { background: rgb(255 255 255 / 0.04); }
+.site-header nav .mega-links a:hover span { translate: 4px 0; }
+.site-header nav .mega-feature { position: relative; display: grid; align-content: end; overflow: hidden; min-height: 100%; border: 1px solid var(--line); border-radius: 18px; background: var(--bg); color: var(--text); isolation: isolate; }
+.mega-feature img { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; object-position: left top; opacity: 0.55; transition: opacity 0.5s ease, transform 1.2s var(--ease); }
+.mega-feature::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(11 10 15 / 0.1), rgb(11 10 15 / 0.95) 62%); }
+.mega-feature:hover img { opacity: 0.75; transform: scale(1.04); }
+.mega-feature-text { display: grid; gap: 0.4rem; padding: 1.1rem; }
+.mega-feature-text b { font-family: var(--display); font-size: 1.125rem; letter-spacing: -0.02em; }
+.mega-feature-text small { font-size: 0.8125rem; line-height: 1.45; color: var(--muted); }
+.mega-cta { margin-top: 0.4rem; display: inline-flex; gap: 0.4rem; justify-self: start; padding: 0.55rem 0.9rem; border-radius: 999px; background: var(--btn); color: var(--btn-ink); font-size: 0.8125rem; font-weight: 600; }
 
 .split { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
 .split > div { display: grid; gap: 1rem; }

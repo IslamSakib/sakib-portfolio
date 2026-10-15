@@ -10,18 +10,28 @@ import '../styles/pages.css';
 import { site } from '../site.js';
 import { prices, usd } from '../prices.js';
 import { socials } from '../socials.js';
+import { Image } from 'astro:assets';
+import megaVisual from '../assets/visuals/speed.jpg';
 
 const { title, description, jsonld = [], ogImage = '/og.png', ogAlt = `${site.name}, ${site.role}`, focus } = Astro.props;
 // Share images are cached for a long time by LinkedIn and others: raise `v` whenever scripts/og.mjs output changes.
 const ogUrl = `${new URL(ogImage, Astro.site)}?v=2`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-// The services menu names the job in the visitor's words, not the page's search keyword.
+// The services menu names the job in the visitor's words, not the page's search keyword. `ic` is an icon path drawn in
+// a 24-unit box; `price` is the starting price shown on the card.
 const menu = [
-  { slug: 'wordpress-speed-optimization', name: 'Fix a slow or broken site', short: 'Found at the cause, measured before and after.' },
-  { slug: 'wordpress-maintenance', name: 'Look after my site monthly', short: `Care plans from ${usd(prices.care)} a month: updates, backups, monitoring.` },
-  { slug: 'wordpress-development', name: 'Build a new WordPress site', short: 'Theme, plugins, WooCommerce and payments.' },
-  { slug: 'custom-web-development', name: 'Build a custom web app', short: 'Dashboards and SaaS products, when WordPress is the wrong tool.' },
-  { slug: 'white-label-wordpress-development', name: 'White-label work for agencies', short: 'Your design built in WordPress, under your name.' },
+  { slug: 'wordpress-speed-optimization', name: 'Fix a slow or broken site', short: 'Found at the cause, measured before and after.', price: `from ${usd(prices.speed)}`, ic: 'M13 2L4 14h7l-1 8 9-12h-7z' },
+  { slug: 'wordpress-maintenance', name: 'Look after my site monthly', short: 'Tested updates, off-site backups, monitoring.', price: `${usd(prices.care)}/mo`, ic: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4' },
+  { slug: 'wordpress-development', name: 'Build a new WordPress site', short: 'Theme, plugins, WooCommerce and payments.', price: `from ${usd(prices.build)}`, ic: 'M3 4h18v12H3zM8 20h8M12 16v4' },
+  { slug: 'custom-web-development', name: 'Build a custom web app', short: 'Dashboards and SaaS, when WordPress is the wrong tool.', price: 'Quoted', ic: 'M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16' },
+  { slug: 'white-label-wordpress-development', name: 'White-label work for agencies', short: 'Your design built in WordPress, under your name.', price: `${usd(prices.agencyHour)}/h`, ic: 'M4 7h16v12H4zM9 7V5h6v2' },
+];
+const businessMenu = menu.slice(0, 4);
+const agencyMenu = menu[4];
+const agencyGuides = [
+  { href: '/blog/choosing-a-white-label-wordpress-partner/', t: 'Choosing a white label partner' },
+  { href: '/blog/outsource-wordpress-development/', t: 'Outsourcing WordPress builds' },
+  { href: '/blog/white-label-wordpress-maintenance/', t: 'Reselling care plans' },
 ];
 ---
 <!doctype html>
@@ -68,14 +78,33 @@ const menu = [
         <nav aria-label="Main">
           <div class="has-menu">
             <a href="/#services" aria-haspopup="true">Services <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
-            <div class="menu">
-              {menu.map((sv, i) => (
-                <a href={`/${sv.slug}/`}>
-                  <span class="idx">{String(i + 1).padStart(2, '0')}</span>
-                  <span><b>{sv.name}</b><small>{sv.short}</small></span>
+            <div class="menu mega">
+              <div class="mega-col mega-biz">
+                <p class="mega-label">For businesses</p>
+                <div class="mega-grid">
+                  {businessMenu.map((sv) => (
+                    <a class="mega-item" href={`/${sv.slug}/`}>
+                      <span class="mega-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d={sv.ic} /></svg></span>
+                      <span class="mega-text"><b>{sv.name}</b><small>{sv.short}</small><em>{sv.price}</em></span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+              <div class="mega-col mega-agency">
+                <p class="mega-label">For agencies</p>
+                <a class="mega-item" href={`/${agencyMenu.slug}/`}>
+                  <span class="mega-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d={agencyMenu.ic} /></svg></span>
+                  <span class="mega-text"><b>{agencyMenu.name}</b><small>{agencyMenu.short}</small><em>{agencyMenu.price} · from {usd(prices.agencySite)} a site</em></span>
                 </a>
-              ))}
-              <a class="menu-foot" href="/contact/">Not sure which one? Get a free site check</a>
+                <p class="mega-sub">Guides for agencies</p>
+                <ul class="mega-links">
+                  {agencyGuides.map((g) => <li><a href={g.href}>{g.t} <span aria-hidden="true">→</span></a></li>)}
+                </ul>
+              </div>
+              <a class="mega-feature" href="/contact/">
+                <Image src={megaVisual} widths={[320, 480]} sizes="280px" alt="" loading="lazy" />
+                <span class="mega-feature-text"><b>Not sure where to start?</b><small>Send your site for a free check. I reply within 24 hours with what I would fix first.</small><span class="mega-cta">Get a free site check <span aria-hidden="true">→</span></span></span>
+              </a>
             </div>
           </div>
           <a href="/white-label-wordpress-development/">For agencies</a>
