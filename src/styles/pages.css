@@ -65,25 +65,8 @@
 a.tile:hover { border-color: var(--accent); color: var(--text); }
 .tile h2, .tile h3 { font-size: clamp(1.5rem, 2.2vw, 2rem); max-width: none; }
 .tile-top { display: flex; justify-content: space-between; align-items: baseline; }
-.paths { display: flex; gap: 1.25rem; align-items: flex-start; }
-.paths > :nth-child(1) { flex: var(--a1) 1 0; min-width: 0; }
-.paths > :nth-child(2) { flex: var(--a2) 1 0; min-width: 0; }
 /* Path cards: the photo at its own proportions (columns are sized by each photo's ratio, so both cards are the same
    height and nothing is cropped), graded toward the site's violet-black, with the copy over a dark fade at the bottom. */
-.path { position: relative; display: block; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; color: var(--text); text-decoration: none; background: var(--bg-deep); isolation: isolate; }
-.path img { display: block; width: 100%; height: auto; filter: saturate(0.85) brightness(0.92); transition: transform 1.4s var(--ease), filter 0.8s ease; }
-.path::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgb(11 10 15 / 0) 30%, rgb(11 10 15 / 0.65) 60%, rgb(11 10 15 / 0.96) 100%), linear-gradient(135deg, rgb(var(--accent-rgb) / 0.18), transparent 55%); pointer-events: none; }
-.path-cap { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; display: grid; gap: 0.6rem; padding: clamp(1.25rem, 2.6vw, 2.25rem); }
-.path-cap h2 { font-size: clamp(1.5rem, 2.4vw, 2.25rem); max-width: 22ch; }
-.path-cap .label span { display: inline-block; margin-left: 0.4rem; transition: transform 0.5s var(--ease); }
-.path:hover { border-color: var(--accent); }
-.path:hover img { transform: scale(1.03); filter: saturate(1) brightness(1); }
-.path:hover .label span { transform: translateX(6px); }
-.span-7 { grid-column: span 7; }
-.span-5 { grid-column: span 5; }
-.tile-photo { padding: 0; overflow: hidden; justify-content: end; }
-.tile-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0.5; }
-.tile-photo .tile-cap { position: relative; display: grid; gap: 0.5rem; padding: 1.75rem; background: rgb(11 10 15 / 0.9); border-top: 1px solid var(--line); }
 
 /* Small drawings made from real facts */
 .bars { margin: 0; display: grid; gap: 0.6rem; }
@@ -363,8 +346,6 @@ img.tile-img { display: block; width: calc(100% + 3.5rem); max-width: none; heig
   .post-actions-m { display: block; }
 }
 @media (max-width: 900px) {
-  .paths { flex-direction: column; }
-  .paths > * { flex: none !important; width: 100%; }
   .h-grid, .about, .rv-item, .post-grid, .post-feature, .p-grid, .two-col, .cap-grid, .models, .contact-grid, .start-steps { grid-template-columns: minmax(0, 1fr); }
   .h-collage { justify-self: stretch; max-width: 520px; }
   .about-photo { position: static; max-width: 360px; }
@@ -372,8 +353,6 @@ img.tile-img { display: block; width: calc(100% + 3.5rem); max-width: none; heig
   .trust-nums div + div { border-left: 0; padding-left: 0; }
   .logo-row { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
   .eyebrow { font-size: 0.6875rem; letter-spacing: 0.05em; }
-  .span-7, .span-5 { grid-column: 1 / -1; }
-  .bento > * { min-height: 0; }
   .mosaic > a, .mosaic > a:nth-child(-n+2) { grid-column: 1 / -1; grid-row: auto; }
   .mosaic > a:nth-child(2) img { height: auto; aspect-ratio: 16 / 10; }
   .mosaic > a:nth-child(2) .browser { display: block; }
@@ -452,8 +431,7 @@ html:has(.mnav[open]) .chat, html:has(.mnav[open]) .to-top { display: none; }
   .rv-nav button:hover { border-color: var(--line-2); }
   .kit > li:hover { border-color: var(--line); }
   .service-list > li:hover { background: none; }
-  .service-list > li:hover > *, a.tile:hover, a.tile:hover img.tile-img, .path:hover img { transform: none; translate: none; }
-  .path:hover { border-color: var(--line); }
+  .service-list > li:hover > *, a.tile:hover, a.tile:hover img.tile-img { transform: none; translate: none; }
   .service-list > li:hover::after { transform: scaleX(0); }
   .picks a:hover { border-color: var(--line); background: transparent; }
   .foot-links a:hover { transform: none; }
@@ -503,38 +481,43 @@ html:has(.mnav[open]) .chat, html:has(.mnav[open]) .to-top { display: none; }
 .sources { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
 .article .sources h2 { font-size: 1.25rem; margin-top: 0; }
 .sources ol { list-style: decimal; padding-left: 1.4rem; display: grid; gap: 0.4rem; font-size: 0.9375rem; color: var(--muted); }
-.article a[target="_blank"]::after { content: ' 97'; font-size: 0.8em; }
+.article a[target="_blank"]:not(.post-actions a)::after { content: "\00a0\2197"; font-size: 0.8em; }
 @media (max-width: 700px) { .post-stats dl > div + div { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); } }
 
-/* Phones: the path card copy sits under its photo so the photo stays fully visible */
-@media (max-width: 640px) {
-  .path-cap { position: relative; }
-  .path::after { background: linear-gradient(135deg, rgb(var(--accent-rgb) / 0.14), transparent 55%); }
-}
 
 /* Agency band: violet glow on the surface, copy left, the four steps as connected cards right */
-.agency-band { position: relative; overflow: hidden; background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); isolation: isolate; }
-.agency-band::before { content: ""; position: absolute; z-index: -1; width: 70vw; height: 70vw; max-width: 900px; max-height: 900px; right: -15%; top: 50%; translate: 0 -50%; border-radius: 50%; background: radial-gradient(circle, rgb(var(--accent-rgb) / 0.22), transparent 62%); }
-.agency-band::after { content: ""; position: absolute; z-index: -1; inset: 0; background-image: linear-gradient(rgb(255 255 255 / 0.025) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.025) 1px, transparent 1px); background-size: 48px 48px; mask-image: linear-gradient(90deg, transparent, #000 60%); }
+
+/* Service bento: each row is a flex line where every tile grows by its photo's ratio, so the photos in a row are the
+   same height and nothing is cropped or left empty. */
+
+/* Services: an editorial list, one service per row. Number, copy and proof on the left, the photo on the right at its
+   own proportions. A different shape from the work grid below it. */
+.svc-rows { border-top: 1px solid var(--line); }
+.svc-rows > li { border-bottom: 1px solid var(--line); }
+.svc-rows a { display: grid; grid-template-columns: 4rem minmax(0, 1fr) minmax(0, 0.8fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: center; padding: clamp(1.75rem, 3.5vw, 2.75rem) 0; color: var(--text); text-decoration: none; }
+.sr-idx { align-self: start; padding-top: 0.35rem; font-family: var(--mono); font-size: 0.875rem; color: var(--accent); }
+.sr-copy { display: grid; gap: 0.8rem; justify-items: start; }
+.sr-copy h3 { font-size: clamp(1.625rem, 2.8vw, 2.4rem); transition: color 0.3s ease; }
+.sr-copy .mut { max-width: 46ch; }
+img.sr-img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); filter: saturate(0.85) brightness(0.9); transition: filter 0.6s ease, transform 1.2s var(--ease); }
+.svc-rows a:hover h3 { color: var(--accent); }
+.svc-rows a:hover img.sr-img { filter: none; transform: scale(1.02); }
+@media (max-width: 900px) { .svc-rows a { grid-template-columns: minmax(0, 1fr); gap: 1.1rem; } .sr-idx { padding: 0; } img.sr-img { order: -1; } }
+
+/* Agency band: plain and specific. Copy left; a real agency's words and the terms as plain facts right. */
+.agency-band { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .agency-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(3rem, 6vw, 6rem); align-items: center; }
 .agency-copy { display: grid; gap: 1.25rem; justify-items: start; }
 .agency-copy h2 { font-size: clamp(2rem, 4vw, 3.25rem); }
 .agency-copy > p.mut { max-width: 46ch; }
-.flow-steps { position: relative; display: grid; gap: 0.85rem; }
-.flow-steps::before { content: ""; position: absolute; left: 47px; top: 2rem; bottom: 2rem; width: 1px; background: linear-gradient(var(--accent), rgb(var(--accent-rgb) / 0.1)); }
-.flow-steps li { position: relative; display: grid; grid-template-columns: 2rem 44px minmax(0, 1fr); gap: 1rem; align-items: center; padding: 1.1rem 1.25rem; border: 1px solid var(--line); border-radius: 14px; background: rgb(11 10 15 / 0.65); backdrop-filter: blur(8px); transition: border-color 0.3s ease, translate 0.6s var(--ease); }
-.flow-steps li:hover { border-color: rgb(var(--accent-rgb) / 0.6); translate: 6px 0; }
-.fs-num { font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); }
-.fs-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--accent); background: var(--bg); color: var(--accent); }
-.fs-icon svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.flow-steps strong { display: block; font-size: 1.0625rem; margin-bottom: 0.2rem; }
-.flow-steps p { font-size: 0.9375rem; }
+.agency-side { display: grid; gap: 2rem; }
+.agency-quote { margin: 0; display: grid; gap: 1rem; padding-left: 1.5rem; border-left: 2px solid var(--accent); }
+.agency-quote blockquote { margin: 0; font-family: var(--display); font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.2; letter-spacing: -0.02em; }
+.agency-quote figcaption { font-size: 0.9375rem; color: var(--muted); }
+.agency-quote figcaption b { color: var(--text); font-weight: 600; }
+.agency-terms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.agency-terms div { display: grid; gap: 0.25rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+.agency-terms div:nth-child(odd) { padding-right: 1rem; }
+.agency-terms dt { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+.agency-terms dd { margin: 0; font-size: 1.0625rem; }
 @media (max-width: 900px) { .agency-grid { grid-template-columns: minmax(0, 1fr); } }
-@media (hover: none) { .flow-steps li:hover { translate: none; border-color: var(--line); } }
-
-/* Service bento: each row is a flex line where every tile grows by its photo's ratio, so the photos in a row are the
-   same height and nothing is cropped or left empty. */
-.bento { display: grid; gap: 1.25rem; }
-.bento-row { display: flex; gap: 1.25rem; align-items: stretch; }
-.bento-row > .tile { flex: var(--a, 1) 1 0; min-width: 0; }
-@media (max-width: 900px) { .bento-row { flex-direction: column; } .bento-row > .tile { flex: none; } }

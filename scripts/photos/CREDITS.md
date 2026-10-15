@@ -30,5 +30,3 @@ Photos from Unsplash under the Unsplash License (free for commercial use, no att
 - two-people-reviewing-laptop.jpg: https://unsplash.com/photos/g1Kr4Ozfoac
 - agency-team-planning.jpg: https://unsplash.com/photos/Imk2h0pyOvo
 - business-owner-at-laptop.jpg: https://unsplash.com/photos/OfuwkI80iPY
-- restaurant-owner-with-menu.jpg: https://unsplash.com/photos/UaoPrOYIRfc
-- developer-at-window-laptop.jpg: https://unsplash.com/photos/E5llEM1xtWA

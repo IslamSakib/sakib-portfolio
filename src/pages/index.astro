@@ -6,8 +6,6 @@ import PostImage from '../components/PostImage.astro';
 import PriceCards from '../components/PriceCards.astro';
 import photo from '../assets/sakib-islam.jpg';
 import appShot from '../assets/work/extra/wrkbase-1.jpg';
-import shopPhoto from '../assets/photos/restaurant-owner-with-menu.jpg';
-import agencyPhoto from '../assets/photos/developer-at-window-laptop.jpg';
 import speedPhoto from '../assets/photos/mobile-app-in-hand.jpg';
 import fixPhoto from '../assets/photos/code-on-laptop.jpg';
 import carePhoto from '../assets/photos/dashboard-on-laptop.jpg';
@@ -125,59 +123,35 @@ const jsonld = [
     </div>
   </section>
 
-  <section class="wrap" style="padding: var(--sec) 0 1.25rem">
-    <div class="paths" style={`--a1:${shopPhoto.width / shopPhoto.height}; --a2:${agencyPhoto.width / agencyPhoto.height}`}>
-      <a class="path" href="/wordpress-maintenance/">
-        <Picture src={shopPhoto} formats={['avif', 'webp']} widths={[640, 960, 1280]} sizes="(max-width: 900px) 100vw, 720px" alt="A restaurant owner holding a menu in her dimly lit dining room" loading="lazy" />
-        <div class="path-cap">
-          <p class="label">I run a business <span aria-hidden="true">→</span></p>
-          <h2>Slow, broken or nobody looking after it?</h2>
-          <p class="tile-note">TubeOnAI load time: 5.0 s → 1.5 s</p>
-        </div>
-      </a>
-      <a class="path" href="/white-label-wordpress-development/">
-        <Picture src={agencyPhoto} formats={['avif', 'webp']} widths={[640, 960, 1280]} sizes="(max-width: 900px) 100vw, 600px" alt="A developer working on a laptop by a café window at dusk" loading="lazy" />
-        <div class="path-cap">
-          <p class="label">I run an agency <span aria-hidden="true">→</span></p>
-          <h2>Your design, built in WordPress under your name.</h2>
-          <p class="tile-note">Tabby and TubeOnAI: built from Figma</p>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <section id="services" class="wrap" style="padding: 0 0 var(--sec)">
-    <h2 class="sr-only">Services</h2>
-    <div class="bento">
-      <div class="bento-row">
-      <a class="tile span-7" href="/wordpress-speed-optimization/" style={`--a:${speedPhoto.width / speedPhoto.height}`}>
-        <Picture class="tile-img" src={speedPhoto} formats={['avif', 'webp']} widths={[640, 960]} loading="lazy" sizes="(max-width: 900px) 100vw, 700px" alt="A phone showing a fast mobile app screen" />
-        <p class="label">Speed</p>
-        <h3>Speed fixed at the cause.</h3>
-        <p class="tile-note">Tabby: Core Web Vitals above 90 at launch</p>
-      </a>
-      <a class="tile span-5" href="/wordpress-maintenance/#fix" style={`--a:${fixPhoto.width / fixPhoto.height}`}>
-        <Picture class="tile-img" src={fixPhoto} formats={['avif', 'webp']} widths={[640, 960]} loading="lazy" sizes="(max-width: 900px) 100vw, 500px" alt="Code open on a laptop on a desk" />
-        <p class="label">Fixes</p>
-        <h3>Sites that keep breaking, fixed once.</h3>
-        <p class="tile-note">Two cache plugins out, one caching layer in</p>
-      </a>
+  <section id="services" class="wrap sec-pad">
+    <div class="row-head">
+      <div style="display: grid; gap: 0.9rem">
+        <p class="label">What I do</p>
+        <h2>Four ways I help a WordPress site.</h2>
       </div>
-      <div class="bento-row">
-      <a class="tile span-5" href="/wordpress-maintenance/" style={`--a:${carePhoto.width / carePhoto.height}`}>
-        <Picture class="tile-img" src={carePhoto} formats={['avif', 'webp']} widths={[640, 960]} loading="lazy" sizes="(max-width: 900px) 100vw, 500px" alt="A website dashboard with charts on a laptop" />
-        <p class="label">Care plans · from {usd(prices.care)}/mo</p>
-        <h3>One developer who knows your site.</h3>
-        <p class="tile-note">Updates, backups, security, and a report every month</p>
-      </a>
-      <a class="tile span-7" href="/wordpress-development/" style={`--a:${buildPhoto.width / buildPhoto.height}`}>
-        <Picture class="tile-img" src={buildPhoto} formats={['avif', 'webp']} widths={[640, 960]} loading="lazy" sizes="(max-width: 900px) 100vw, 700px" alt="Someone shopping on an online store on a laptop" />
-        <p class="label">Builds</p>
-        <h3>Custom WordPress and WooCommerce, down to the payment gateway.</h3>
-        <p class="tile-note">Moneybag: a custom payment plugin for WooCommerce</p>
-      </a>
-      </div>
+      <a href="/white-label-wordpress-development/">Agency? See white-label →</a>
     </div>
+    <ol class="svc-rows">
+      {[
+        { img: speedPhoto, alt: 'A phone showing a fast mobile app screen', label: 'Speed', t: 'Speed fixed at the cause.', d: 'Slow pages traced to the real cause, then measured before and after on mobile.', proof: 'Tabby: Core Web Vitals above 90 at launch', href: '/wordpress-speed-optimization/', price: `from ${usd(prices.speed)}` },
+        { img: fixPhoto, alt: 'Code open on a laptop on a desk', label: 'Fixes', t: 'Sites that keep breaking, fixed once.', d: 'White screens, broken forms and plugin conflicts, with the cause written down.', proof: 'Two cache plugins out, one caching layer in', href: '/wordpress-maintenance/#fix', price: `from ${usd(prices.fix)}` },
+        { img: carePhoto, alt: 'A website dashboard with charts on a laptop', label: 'Care plans', t: 'One developer who knows your site.', d: 'Tested updates, daily off-site backups, monitoring and a plain-English report.', proof: 'Updates, backups, security, and a report every month', href: '/wordpress-maintenance/', price: `${usd(prices.care)}/mo` },
+        { img: buildPhoto, alt: 'Someone shopping on an online store on a laptop', label: 'Builds', t: 'Custom WordPress and WooCommerce.', d: 'The theme, the plugins, the payments and the integrations, down to the gateway.', proof: 'Moneybag: a custom payment plugin for WooCommerce', href: '/wordpress-development/', price: `from ${usd(prices.build)}` },
+      ].map((r, i) => (
+        <li>
+          <a href={r.href}>
+            <span class="sr-idx">0{i + 1}</span>
+            <div class="sr-copy">
+              <p class="label">{r.label} · {r.price}</p>
+              <h3>{r.t}</h3>
+              <p class="mut">{r.d}</p>
+              <p class="tile-note">{r.proof}</p>
+            </div>
+            <Picture class="sr-img" src={r.img} formats={['avif', 'webp']} widths={[480, 720, 960]} sizes="(max-width: 900px) 100vw, 440px" loading="lazy" alt={r.alt} />
+          </a>
+        </li>
+      ))}
+    </ol>
   </section>
 
   <section id="work" class="wrap" style="padding: 0 0 var(--sec)">
@@ -223,28 +197,25 @@ const jsonld = [
     <div class="wrap agency-grid">
       <div class="agency-copy">
         <p class="label">For agencies · white-label</p>
-        <h2>From your Figma to launch, under your name.</h2>
-        <p class="mut">You keep the client and the credit. I build the site on staging, you review it, and it launches with your name on it. Nothing I hand over carries mine.</p>
+        <h2>Your design. Built under your name.</h2>
+        <p class="mut">You keep the client and the credit. I build your Figma file in WordPress on a staging site, you review it, and it launches under your brand. Nothing I hand over carries my name.</p>
         <div class="hero-actions">
           <a class="btn" href="/white-label-wordpress-development/">How it works</a>
           <a class="btn btn-ghost" href="/contact/?type=agency">Send a design</a>
         </div>
-        <p class="mono mut" style="font-size: 0.8125rem">From {usd(prices.agencySite)} per site or {usd(prices.agencyHour)}/h · NDA on request</p>
       </div>
-      <ol class="flow-steps">
-        {[
-          { t: 'You send the design', d: 'Figma, page list and date. A quote and a date come back first.', p: 'M3 3h18v18H3zM3 9h18M9 21V9' },
-          { t: 'I build on staging', d: 'A private staging site, with progress updates in your Slack.', p: 'M8 7l-5 5 5 5M16 7l5 5-5 5' },
-          { t: 'You review', d: 'Checked on phone and desktop, with mobile speed tested before you see it.', p: 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 100 6 3 3 0 000-6z' },
-          { t: 'You launch it', d: 'Under your brand, with handoff notes for your team.', p: 'M5 12l5 5L20 7' },
-        ].map((st, i) => (
-          <li>
-            <span class="fs-num">0{i + 1}</span>
-            <span class="fs-icon"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d={st.p} /></svg></span>
-            <div><strong>{st.t}</strong><p class="mut">{st.d}</p></div>
-          </li>
-        ))}
-      </ol>
+      <div class="agency-side">
+        <figure class="agency-quote">
+          <blockquote>&ldquo;highly responsive, communicative, and consistently delivers work on time&rdquo;</blockquote>
+          <figcaption><b>Shamsi Nur</b> · Musemind, a design agency I built for</figcaption>
+        </figure>
+        <dl class="agency-terms">
+          <div><dt>Per site</dt><dd>from {usd(prices.agencySite)}</dd></div>
+          <div><dt>Hourly</dt><dd>{usd(prices.agencyHour)}/h</dd></div>
+          <div><dt>NDA</dt><dd>on request</dd></div>
+          <div><dt>Your client</dt><dd>never contacted</dd></div>
+        </dl>
+      </div>
     </div>
   </section>
 
