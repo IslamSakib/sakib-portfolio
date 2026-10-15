@@ -36,4 +36,5 @@ const steps = [
   /* Each photo keeps its own proportions (nothing is cropped) */
   .pa { margin-bottom: 0.9rem; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
   .pa :global(img) { display: block; width: 100%; height: auto; transition: transform 1.2s var(--ease); }
+  li:hover .pa :global(img) { transform: scale(1.04); }
 </style>

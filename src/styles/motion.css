@@ -8,7 +8,7 @@
 .brand:hover .word i { transform: translateX(4px); }
 
 /* Page transitions: the project screenshot morphs into the case study image */
-@view-transition { navigation: none; }
+@view-transition { navigation: auto; }
 ::view-transition-group(*) { animation-duration: 0.8s; animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.6s; animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
 
@@ -30,14 +30,7 @@ a, button, summary, label, [role="tab"], a *, button *, summary * { cursor: poin
 
 .hero { position: relative; isolation: isolate; }
 
-/* Hero headline: each word rises out of a blur, one after another */
-@keyframes word { from { opacity: 0; transform: translateY(0.3em); filter: blur(10px); } }
-.w { display: inline-block; animation: word 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: calc(var(--i) * 55ms); }
-@keyframes rise { from { opacity: 0; transform: translateY(16px); } }
-.hero-copy > :not(h1), .hero-photo { animation: rise-in 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
-.hero-copy > .lead { animation-delay: 0.5s; }
-.hero-copy > .hero-actions { animation-delay: 0.6s; }
-.hero-photo { animation-delay: 0.35s; }
+.w { display: inline-block; }
 
 /* Portrait: a slow push-in on hover */
 .portrait img { transform-origin: 50% 100%; transition: transform 2s cubic-bezier(0.2, 0.8, 0.2, 1); }
@@ -62,33 +55,10 @@ a, button, summary, label, [role="tab"], a *, button *, summary * { cursor: poin
 .rrow .track { gap: 1.25rem; align-items: stretch; animation-name: slide-rev; animation-duration: 80s; }
 @keyframes slide-rev { to { transform: translateX(calc(-50% - 0.625rem)); } }
 
-/* Motion system: slow, soft and quiet. One curve (--silk), long durations, short travel, and a focus-pull (blur to
-   sharp) instead of big movements. Only opacity, transform, translate and filter animate, so nothing changes size
-   and nothing around it shifts. The script tags elements below the fold (.rvl, .rvl-img, .sw) and adds .in when they
-   enter the view; siblings get a stagger through --d. Without the script nothing is hidden. */
+/* No entrance animations (Sakib, 15 Oct 2026): content is never hidden, faded or slid in on load or scroll.
+   Motion lives in hover states, the work reel, the testimonial slider, the hero dot fields, the logo strip and the
+   footer wordmark. */
 :root { --silk: cubic-bezier(0.2, 0.8, 0.2, 1); --silk-in: cubic-bezier(0.4, 0, 0.2, 1); }
-
-.js .rvl { opacity: 0; transform: translateY(18px); filter: blur(8px); transition: opacity 1.4s var(--silk), transform 1.6s var(--silk), filter 1.2s var(--silk); transition-delay: var(--d, 0s); }
-.js .rvl.in { opacity: 1; transform: none; filter: none; }
-/* Images surface out of a soft blur while settling from a slight zoom */
-.js .rvl-img { display: block; overflow: hidden; }
-.js .rvl-img img { opacity: 0; transform: scale(1.06); filter: blur(12px); transition: opacity 1.6s var(--silk), transform 2.4s var(--silk), filter 1.6s var(--silk); transition-delay: var(--d, 0s); }
-.js .rvl-img.in img { opacity: 1; transform: none; filter: none; }
-/* Section headings: each word rises gently into focus, one after another */
-.sw { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.12em; margin-bottom: -0.12em; }
-.sw > span { display: inline-block; opacity: 0; transform: translateY(60%); filter: blur(6px); transition: opacity 1.2s var(--silk), transform 1.4s var(--silk), filter 1.2s var(--silk); transition-delay: calc(var(--i) * 45ms); }
-.in .sw > span, .sw.in > span { opacity: 1; transform: none; filter: none; }
-
-/* Page heroes: copy comes into focus line by line, then the picture surfaces */
-@keyframes rise-in { from { opacity: 0; transform: translateY(14px); filter: blur(8px); } }
-@keyframes surface { from { opacity: 0; transform: scale(1.06); filter: blur(14px); } }
-.p-copy > *, .svc-copy > * { animation: rise-in 1.4s var(--silk) both; }
-.p-copy > :nth-child(2), .svc-copy > :nth-child(2) { animation-delay: 0.1s; }
-.p-copy > :nth-child(3), .svc-copy > :nth-child(3) { animation-delay: 0.2s; }
-.p-copy > :nth-child(4), .svc-copy > :nth-child(4) { animation-delay: 0.3s; }
-.p-copy > :nth-child(n+5), .svc-copy > :nth-child(n+5) { animation-delay: 0.4s; }
-.p-photo > picture img, .svc-grid > .art img { animation: surface 2.2s var(--silk) 0.3s both; }
-.p-photo > .month { animation: rise-in 1.4s var(--silk) 0.7s both; }
 
 /* Hover: no jumping. Borders warm slowly, images push in a touch, shadows deepen. */
 a.tile, .post-card, .kit > li, .steps > li, .mosaic > a, .pc, .ss-item, .rv-person { transition: border-color 0.8s var(--silk), box-shadow 1s var(--silk), background-color 0.8s var(--silk), color 0.6s var(--silk); }
@@ -126,9 +96,6 @@ a.tile:hover img.tile-img, .post-card:hover .cover img, .mosaic > a:hover img, .
   @keyframes grow { to { transform: scaleX(1); } }
   .progress { animation: grow linear both; animation-timeline: scroll(root); }
 
-  /* The process line draws itself */
-  @keyframes draw { to { transform: none; } }
-  .steps::after { animation: draw linear both; animation-timeline: view(); animation-range: entry 60% cover 55%; }
 
   /* Parallax: hero visuals drift slowly against the scroll. Uses translate, so it never fights the entrance. */
   @keyframes drift { from { translate: 0 0; } to { translate: 0 -48px; } }
@@ -145,13 +112,3 @@ a.tile:hover img.tile-img, .post-card:hover .cover img, .mosaic > a:hover img, .
   .progress { display: none; }
   .js .rvl, .js .rvl-img img, .sw > span, .reel-panel .project-shot { filter: none !important; }
 }
-
-/* No motion, by Sakib's decision (15 Oct 2026): nothing animates or transitions anywhere on the site. Everything
-   renders in its final state; hover and selection states still change, instantly. Rules above that set start states
-   only apply when the motion script adds .js, which it no longer does. */
-*, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-.steps::after { transform: none; }
-.progress { display: none; }
-.marquee { overflow-x: auto; scrollbar-width: none; }
-a.tile:hover img.tile-img, .post-card:hover .cover img, .mosaic > a:hover img, .art:hover img, .related > a:hover img, .portrait:hover img, .project-card:hover .project-shot img, .pc:hover, .flow-steps li:hover { transform: none; translate: none; }
-.project-card:hover .ghost { transform: none; }

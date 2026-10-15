@@ -86,6 +86,7 @@ const svc = [
 ---
 <Base title={title} description={description} jsonld={jsonld} focus={focus}>
   <section class="h-hero wrap hero-bg">
+    <canvas class="dots dots-bleed" aria-hidden="true"></canvas>
     <div class="h-grid">
       <div class="h-copy">
         <h1><span class="eyebrow">Senior WordPress developer</span><span class="ln">Fast WordPress sites</span> <span class="ln">that keep working.</span></h1>
@@ -330,7 +331,7 @@ const svc = [
   const box = document.querySelector('[data-rv]');
   if (box) {
     const items = [...box.querySelectorAll('.rv-item')], people = [...box.querySelectorAll('.rv-person')], pos = box.querySelector('[data-rv-pos]');
-    const still = true; // the site has no motion: quotes change only when the visitor picks one
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
     let i = 0, timer = 0, paused = false, visible = false;
     const restart = () => {
       clearTimeout(timer);

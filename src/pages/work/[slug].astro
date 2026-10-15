@@ -58,6 +58,7 @@ const jsonld = [
 <Base title={w.seoTitle} description={w.description} jsonld={jsonld} focus={w.focus} ogImage={`/og-${w.slug}.jpg`} ogAlt={`${w.client} case study by Sakib Islam: ${w.result}, beside a screenshot of the ${w.client} website.`}>
   <article class="wrap">
     <header class="case-head hero-bg">
+      <canvas class="dots dots-bleed" aria-hidden="true"></canvas>
       <nav class="crumbs" aria-label="Breadcrumb">
         <a href="/">Home</a><span>/</span><a href="/#work">Work</a><span>/</span><span>{w.client}</span>
       </nav>
