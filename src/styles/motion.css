@@ -93,7 +93,7 @@ a, button, summary, label, [role="tab"], a *, button *, summary * { cursor: poin
 
 /* Cards lift on hover (translate is separate from transform, so it never fights the reveal) */
 a.tile, .post-card, .kit > li, .steps > li, .mosaic > a { transition: translate 0.6s var(--ease), border-color 0.25s ease, box-shadow 0.6s var(--ease); }
-a.tile:hover, .post-card:hover, .kit > li:hover, .mosaic > a:hover { translate: 0 -6px; box-shadow: 0 40px 70px -40px rgb(0 0 0 / 0.9), 0 0 0 1px rgb(var(--accent-rgb) / 0.15); }
+a.tile:hover, .kit > li:hover, .mosaic > a:hover { translate: 0 -6px; box-shadow: 0 40px 70px -40px rgb(0 0 0 / 0.9), 0 0 0 1px rgb(var(--accent-rgb) / 0.15); }
 a.tile:hover img.tile-img, .post-card:hover .cover img { transform: scale(1.03); }
 .post-card .cover img { transition: transform 1.2s var(--ease); }
 /* Buttons lean toward the pointer (set by the script through translate) */

@@ -151,7 +151,10 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .post-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem 1.5rem; }
 .post-card { display: grid; gap: 0.8rem; align-content: start; color: var(--text); text-decoration: none; }
 .post-card h3 { font-size: 1.5rem; }
-.post-card:hover h3 { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
+.post-card h3 { transition: color 0.3s ease; }
+.post-card:hover h3 { color: var(--accent); }
+.post-card .cover { transition: box-shadow 0.6s var(--ease); }
+.post-card:hover .cover { box-shadow: 0 30px 60px -30px rgb(var(--accent-rgb) / 0.45); }
 .post-card small { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
 .cover img { display: block; width: 100%; height: auto; }
 .cover { overflow: hidden; display: grid; place-items: center; aspect-ratio: 16 / 9; border-radius: 12px; background: #0b0a0f; }
@@ -415,7 +418,8 @@ html:has(.mnav[open]) .chat, html:has(.mnav[open]) .to-top { display: none; }
   .btn-ghost:hover { color: var(--text); border-color: var(--line); }
   a.tile:hover { border-color: var(--line); }
   .mosaic > a:hover .browser { border-color: var(--line); }
-  .post-card:hover h3 { text-decoration: none; }
+  .post-card:hover h3 { color: inherit; }
+  .post-card:hover .cover { box-shadow: none; }
   .logo-row li:hover img { opacity: 0.75; filter: grayscale(1) brightness(1.4); }
   .kit > li:hover { border-color: var(--line); }
   .service-list > li:hover { background: none; }
