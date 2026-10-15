@@ -592,3 +592,9 @@ p, li, dd, figcaption { text-wrap: pretty; }
 .related small { display: block; margin-top: 0.15rem; font-family: var(--mono); font-size: 0.75rem; color: var(--accent); }
 .related-all { margin-top: 0.3rem; font-size: 0.9375rem; }
 @media (hover: none) { .related > a:hover { translate: none; } }
+
+/* Hero backgrounds: the same animated dot field as the service pages, stretched to the full window width even when
+   the hero itself sits inside the centred content column. Absolutely placed, so it never affects layout. */
+.hero-bg { position: relative; isolation: isolate; }
+.dots-bleed { left: 50%; width: 100vw; transform: translateX(-50%); }
+.case-head.hero-bg .dots-bleed, .post-head.hero-bg .dots-bleed { top: -4rem; height: calc(100% + 4rem); }
