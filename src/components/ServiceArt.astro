@@ -1,6 +1,6 @@
 ---
 // The picture for each service: its hero image, and the card image under "Other things I do".
-// Photos keep their own proportions (nothing is cropped). Decorative, so the alt text is empty; the page text carries the facts.
+// Photos keep their own proportions (nothing is cropped). Each image shows real client work, so each has its own alt text.
 import { Picture } from 'astro:assets';
 import development from '../assets/visuals/build.jpg';
 import speed from '../assets/visuals/speed.jpg';
@@ -8,9 +8,14 @@ import custom from '../assets/visuals/custom.jpg';
 
 const { slug, eager = false } = Astro.props;
 const img = { 'wordpress-development': development, 'wordpress-speed-optimization': speed, 'custom-web-development': custom }[slug] || development;
+const alt = {
+  'wordpress-development': 'A Figma design of the Tabby website built in WordPress, with a paid WooCommerce checkout',
+  'wordpress-speed-optimization': 'The TubeOnAI website with Core Web Vitals above 90 and load time cut from 5.0 to 1.5 seconds',
+  'custom-web-development': 'The Wrkbase dashboard, a SaaS product built from scratch, with sign-in, dashboard and API',
+}[slug] || '';
 ---
 <figure class="art">
-  <Picture src={img} formats={['avif', 'webp']} widths={[480, 800, 1200]} sizes="(max-width: 900px) 100vw, 620px" alt="" loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} />
+  <Picture src={img} formats={['avif', 'webp']} widths={[480, 800, 1200]} sizes="(max-width: 900px) 100vw, 620px" alt={alt} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} />
 </figure>
 
 <style>

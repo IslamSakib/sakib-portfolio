@@ -57,7 +57,7 @@ const jsonld = [
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/blog/">Blog</a><span>/</span><span>{p.topic}</span></nav>
     <h1>{p.title}</h1>
     <div class="byline">
-      <Image src={photo} width={88} height={88} alt="" />
+      <Image src={photo} width={88} height={88} alt="Sakib Islam" />
       <span>{site.name} · WordPress developer<br /><time datetime={p.date}>{longDate(p.date)}</time> · {p.minutes} min read</span>
     </div>
   </header>
@@ -96,7 +96,7 @@ const jsonld = [
       )}
       <div class="post-actions-m"><PostActions url={url.href} title={p.title} /></div>
       <div class="author">
-        <Image src={photo} width={112} height={112} alt="" />
+        <Image src={photo} width={112} height={112} alt="Sakib Islam, WordPress developer" />
         <p>Written by {site.name}, a WordPress developer who builds and looks after sites for businesses and agencies. <a href="/#about">About my work</a></p>
       </div>
     </article>
