@@ -8,7 +8,8 @@
     "preview": "astro preview",
     "seo": "node scripts/seo-check.mjs",
     "og": "node scripts/og.mjs",
-    "blog-images": "node scripts/blog-images.mjs"
+    "blog-images": "node scripts/blog-images.mjs",
+    "site-images": "node scripts/site-images.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

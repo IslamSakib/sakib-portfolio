@@ -7,7 +7,7 @@ import PriceCards from '../components/PriceCards.astro';
 import { site } from '../site.js';
 import { work } from '../work.js';
 import { prices, usd } from '../prices.js';
-import heroPhoto from '../assets/photos/laptop-desk-lamp-night.jpg';
+import heroPhoto from '../assets/visuals/care.jpg';
 
 const focus = 'WordPress maintenance services';
 const title = 'WordPress Maintenance Services from $149/mo | Sakib Islam';
@@ -85,7 +85,7 @@ const jsonld = [
         </div>
       </div>
       <div class="p-photo">
-      <Picture src={heroPhoto} formats={['avif', 'webp']} widths={[640, 960, 1280]} sizes="(max-width: 900px) 100vw, 660px" alt="A laptop on a desk under a warm lamp at night" loading="eager" fetchpriority="high" />
+      <Picture src={heroPhoto} formats={['avif', 'webp']} widths={[640, 960, 1280]} sizes="(max-width: 900px) 100vw, 660px" alt="A monthly care report for the Tabby website: updates, backups, monitoring, changes and a plain-English report" loading="eager" fetchpriority="high" />
       <ol class="month" aria-label="A month on a care plan">
         {weeks.map((w, i) => (
           <li class:list={[{ last: i === 3 }]}>

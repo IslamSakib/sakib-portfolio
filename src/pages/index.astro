@@ -6,10 +6,10 @@ import PostImage from '../components/PostImage.astro';
 import PriceCards from '../components/PriceCards.astro';
 import photo from '../assets/sakib-islam.jpg';
 import appShot from '../assets/work/extra/wrkbase-1.jpg';
-import speedPhoto from '../assets/photos/phone-performance-chart-dark.jpg';
-import fixPhoto from '../assets/photos/hands-keyboard-dark.jpg';
-import carePhoto from '../assets/photos/developer-laptop-night.jpg';
-import buildPhoto from '../assets/photos/phone-shopping-dark.jpg';
+import speedPhoto from '../assets/visuals/speed.jpg';
+import fixPhoto from '../assets/visuals/fixes.jpg';
+import carePhoto from '../assets/visuals/care.jpg';
+import buildPhoto from '../assets/visuals/build.jpg';
 import { site } from '../site.js';
 import { services } from '../services.js';
 import { work } from '../work.js';
@@ -78,10 +78,10 @@ const jsonld = [
   { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: Astro.site },
 ];
 const svc = [
-        { img: speedPhoto, alt: 'A phone showing a performance chart on a dark red desk', label: 'Speed', t: 'A site that loads fast, so visitors stay.', d: 'I find what really slows your site, fix it once, and show you the before and after on mobile, so you can check the result yourself.', proof: 'Tabby: Core Web Vitals above 90 at launch', href: '/wordpress-speed-optimization/', price: `from ${usd(prices.speed)}` },
-        { img: fixPhoto, alt: 'Hands typing on a keyboard in a dark room', label: 'Fixes', t: 'Problems fixed for good, not patched.', d: 'When something breaks, I trace it to the cause and write down what I changed, so the same problem does not come back next month.', proof: 'TubeOnAI: repeated downtime stopped', href: '/wordpress-maintenance/#fix', price: `from ${usd(prices.fix)}` },
-        { img: carePhoto, alt: 'A developer working on a laptop late at night', label: 'Care plans', t: 'No more worrying about updates or hacks.', d: 'Tested updates, daily off-site backups and monitoring every month, from one developer who already knows your site. You get a plain-English report.', proof: 'Tabby: built, then still maintained by me', href: '/wordpress-maintenance/', price: `${usd(prices.care)}/mo` },
-        { img: buildPhoto, alt: 'A hand holding a phone with a shopping app in a dark room', label: 'Builds', t: 'A site that sells and is easy to run.', d: 'Your theme, store, payments and integrations built as one job: fast on phones, simple for your team to edit, and safe to update.', proof: 'Moneybag: a custom payment plugin for WooCommerce', href: '/wordpress-development/', price: `from ${usd(prices.build)}` },
+        { img: speedPhoto, alt: 'The TubeOnAI site with a Core Web Vitals score of 90+ and load time cut from 5.0 to 1.5 seconds', label: 'Speed', t: 'A site that loads fast, so visitors stay.', d: 'I find what really slows your site, fix it once, and show you the before and after on mobile, so you can check the result yourself.', proof: 'Tabby: Core Web Vitals above 90 at launch', href: '/wordpress-speed-optimization/', price: `from ${usd(prices.speed)}` },
+        { img: fixPhoto, alt: 'An error log with a fatal error, and the fix: one caching layer set up once', label: 'Fixes', t: 'Problems fixed for good, not patched.', d: 'When something breaks, I trace it to the cause and write down what I changed, so the same problem does not come back next month.', proof: 'TubeOnAI: repeated downtime stopped', href: '/wordpress-maintenance/#fix', price: `from ${usd(prices.fix)}` },
+        { img: carePhoto, alt: 'A monthly care report: updates tested, daily backups, monitoring, changes and a plain-English report', label: 'Care plans', t: 'No more worrying about updates or hacks.', d: 'Tested updates, daily off-site backups and monitoring every month, from one developer who already knows your site. You get a plain-English report.', proof: 'Tabby: built, then still maintained by me', href: '/wordpress-maintenance/', price: `${usd(prices.care)}/mo` },
+        { img: buildPhoto, alt: 'A design turned into the live Tabby website, with a paid WooCommerce checkout', label: 'Builds', t: 'A site that sells and is easy to run.', d: 'Your theme, store, payments and integrations built as one job: fast on phones, simple for your team to edit, and safe to update.', proof: 'Moneybag: a custom payment plugin for WooCommerce', href: '/wordpress-development/', price: `from ${usd(prices.build)}` },
       ];
 ---
 <Base title={title} description={description} jsonld={jsonld} focus={focus}>
