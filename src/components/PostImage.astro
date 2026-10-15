@@ -1,0 +1,11 @@
+---
+// A blog post's cover image (made by scripts/blog-images.mjs), served as AVIF/WebP at the right size, with its alt text.
+import { Picture } from 'astro:assets';
+
+const { post, sizes = '(max-width: 900px) 100vw, 400px', eager = false } = Astro.props;
+---
+{post.image && (
+  <div class="cover">
+    <Picture src={post.image} formats={['avif', 'webp']} widths={[480, 800, 1200, 1600]} sizes={sizes} alt={post.imageAlt || ''} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} />
+  </div>
+)}

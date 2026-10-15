@@ -172,8 +172,8 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .post-card h3 { font-size: 1.5rem; }
 .post-card:hover h3 { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
 .post-card small { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
-.cover { display: grid; place-items: center; aspect-ratio: 16 / 10; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
-.cover .weeks { width: 78%; }
+.cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.cover { overflow: hidden; display: grid; place-items: center; aspect-ratio: 16 / 9; border-radius: 12px; background: #0b0a0f; }
 .post-feature { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2.5rem; align-items: center; color: var(--text); text-decoration: none; }
 .post-feature p { max-width: none; }
 .post-feature h2 { font-size: clamp(1.9rem, 3.4vw, 2.9rem); }
@@ -296,11 +296,13 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 .byline { display: flex; gap: 0.9rem; align-items: center; font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); }
 .byline img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; background: var(--line); }
 .post-cover { padding-bottom: 3rem; }
-.post-cover .cover { aspect-ratio: 3 / 1; }
+.post-cover .cover { aspect-ratio: 16 / 9; max-height: 640px; }
 .post-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr) 260px; gap: 3.5rem; padding-bottom: 6rem; }
-.toc { display: grid; gap: 0.6rem; align-content: start; font-size: 0.9375rem; position: sticky; top: 110px; }
+.toc { display: grid; gap: 0.6rem; align-content: start; align-self: start; font-size: 0.9375rem; position: sticky; top: 110px; max-height: calc(100vh - 140px); overflow-y: auto; }
 .toc a { color: var(--muted); text-decoration: none; border-left: 1px solid var(--line); padding-left: 0.75rem; }
 .toc a:hover { color: var(--text); border-color: var(--accent); }
+.toc a.on { color: var(--text); border-color: var(--accent); }
+.rail { align-self: stretch; }
 .rail .side-card { position: sticky; top: 110px; display: grid; gap: 0.75rem; padding: 1.5rem; border: 1px solid var(--accent); border-radius: 12px; background: var(--surface); }
 .rail b { font-family: var(--mono); font-weight: 400; font-size: 2rem; letter-spacing: -0.03em; }
 .article { max-width: 68ch; font-size: 1.125rem; line-height: 1.7; }
@@ -316,7 +318,7 @@ a.tile:hover { border-color: var(--accent); color: var(--text); }
 
 @media (max-width: 1100px) {
   .post-cover { padding-bottom: 3rem; }
-.post-cover .cover { aspect-ratio: 3 / 1; }
+.post-cover .cover { aspect-ratio: 16 / 9; max-height: 640px; }
 .post-layout { grid-template-columns: minmax(0, 1fr); }
   .toc, .rail { display: none; }
 }

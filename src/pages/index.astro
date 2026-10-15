@@ -2,7 +2,7 @@
 import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Connect from '../components/Connect.astro';
-import BlogCover from '../components/BlogCover.astro';
+import PostImage from '../components/PostImage.astro';
 import photo from '../assets/sakib-islam-cut.png';
 import appShot from '../assets/work/extra/wrkbase-1.jpg';
 import { site } from '../site.js';
@@ -281,7 +281,7 @@ const jsonld = [
         <div class="post-grid">
           {posts.slice(0, 3).map((p) => (
             <a class="post-card" href={`/blog/${p.slug}/`}>
-              <BlogCover kind={p.cover} />
+              <PostImage post={p} />
               <small>{p.topic}</small>
               <h3>{p.title}</h3>
             </a>

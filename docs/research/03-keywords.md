@@ -110,3 +110,22 @@ Cannibalisation rules: the speed page owns "slow / speed / Core Web Vitals"; the
 wordpress developer · custom wordpress development · freelance wordpress developer · wordpress support services · white label wordpress maintenance · wordpress care plans (UK database) · wordpress maintenance services (UK and AU databases, for KD) · woocommerce payment gateway integration · fix slow wordpress site · wordpress agency partner.
 
 Pages are built on the evidence above. Batch 2 can change supporting phrases, not the page list, unless a number contradicts it.
+
+## 7. Blog clusters (15 Oct 2026, Semrush batch 2, US database)
+
+Informational questions the two ICPs ask, one post each. Service pages keep the commercial terms; posts link to them.
+
+| Post | Focus keyword | US vol. | KD | ICP | Links to |
+|---|---|---:|---:|---|---|
+| /blog/why-is-my-wordpress-site-so-slow/ | why is my WordPress site so slow | 590 | 27 | Direct | speed page, TubeOnAI |
+| /blog/wordpress-white-screen-of-death/ | WordPress white screen of death | 390 | 27 | Direct | maintenance page |
+| /blog/redesign-website-without-losing-seo/ | redesign a website without losing SEO | 260 (parent "website redesign seo" 1,900) | 1 (parent 26) | Direct | development page, Tabby |
+| /blog/wordpress-maintenance-cost/ | WordPress maintenance cost | 210 (UK 210) | 26 | Direct | maintenance page |
+| /blog/fix-hacked-wordpress-site/ | fix a hacked WordPress site | 110 | 17 | Direct | maintenance page |
+| /blog/wordpress-core-web-vitals/ | WordPress Core Web Vitals | 260 | 17 | Direct | speed page, TubeOnAI |
+| /blog/cost-to-hire-a-wordpress-developer/ | cost to hire a WordPress developer | 70 | 10 | Direct | development page |
+| /blog/woocommerce-checkout-not-working/ | WooCommerce checkout not working | 50 (270 across variations) | n/a | Direct (stores) | development page, Moneybag |
+| /blog/choosing-a-white-label-wordpress-partner/ | white label WordPress partner | 260 for "white label wordpress" | 13 | Agency | agency page |
+| /blog/figma-to-wordpress-handoff/ | Figma to WordPress | 590 | 45 | Agency | agency page, Tabby |
+
+Also seen, for later posts: "white label wordpress support" 480 (KD 1, commercial, belongs on the agency page), "wordpress plugin conflicts" 40 (KD 16), "how to tell if your wordpress site has been hacked" 50 (KD 13).

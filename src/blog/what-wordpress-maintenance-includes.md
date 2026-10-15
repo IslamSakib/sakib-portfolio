@@ -4,8 +4,9 @@ seoTitle: "What WordPress Maintenance Includes, Month by Month"
 description: "WordPress maintenance is four jobs on a schedule: tested updates, off-site backups, security monitoring and a report. What each prevents and what to ask."
 focus: WordPress maintenance
 date: "2026-10-14"
+imageAlt: "Dark violet cover with four week tiles for updates, backups, security and a report, the last outlined in purple"
+art: weeks
 topic: Fixes and maintenance
-cover: month
 service: wordpress-maintenance
 ---
 

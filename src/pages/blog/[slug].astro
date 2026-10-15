@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Connect from '../../components/Connect.astro';
-import BlogCover from '../../components/BlogCover.astro';
+import PostImage from '../../components/PostImage.astro';
 import { posts, longDate } from '../../blog.js';
 import { site } from '../../site.js';
 import { prices, usd } from '../../prices.js';
@@ -34,7 +34,7 @@ const jsonld = [
     dateModified: p.updated || p.date,
     author: { '@type': 'Person', name: site.name, url: Astro.site },
     publisher: { '@type': 'Person', name: site.name, url: Astro.site },
-    image: new URL('/og.png', Astro.site),
+    image: { '@type': 'ImageObject', url: new URL(p.og, Astro.site), width: 1200, height: 630 },
     mainEntityOfPage: url,
     keywords: p.focus,
   },
@@ -49,7 +49,7 @@ const jsonld = [
   },
 ];
 ---
-<Base title={p.seoTitle} description={p.description} jsonld={jsonld} focus={p.focus}>
+<Base title={p.seoTitle} description={p.description} jsonld={jsonld} focus={p.focus} ogImage={p.og} ogAlt={p.imageAlt}>
   <header class="wrap post-head">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/blog/">Blog</a><span>/</span><span>{p.topic}</span></nav>
     <h1>{p.title}</h1>
@@ -59,7 +59,7 @@ const jsonld = [
     </div>
   </header>
 
-  <div class="wrap post-cover"><BlogCover kind={p.cover} /></div>
+  <div class="wrap post-cover"><PostImage post={p} sizes="(max-width: 1280px) 100vw, 1240px" eager /></div>
 
   <div class="wrap post-layout">
     <nav class="toc" aria-label="On this page">
@@ -101,3 +101,21 @@ const jsonld = [
 
   <Connect />
 </Base>
+
+<script>
+  // Contents list: marks the section being read. The list itself stays in view (position: sticky in pages.css).
+  const links = [...document.querySelectorAll('.toc a')];
+  const byId = new Map(links.map((a) => [decodeURIComponent(a.hash.slice(1)), a]));
+  const heads = [...document.querySelectorAll('.article h2[id]')];
+  if (links.length && heads.length && 'IntersectionObserver' in window) {
+    const mark = (id) => links.forEach((a) => a.classList.toggle('on', a === byId.get(id)));
+    const seen = new Set();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => (e.isIntersecting ? seen.add(e.target.id) : seen.delete(e.target.id)));
+      // The highest heading in the reading zone wins; between headings the last one stays marked.
+      const first = heads.find((h) => seen.has(h.id));
+      if (first) mark(first.id);
+    }, { rootMargin: '-110px 0px -60% 0px' });
+    heads.forEach((h) => io.observe(h));
+  }
+</script>
