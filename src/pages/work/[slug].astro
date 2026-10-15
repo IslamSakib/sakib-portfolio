@@ -92,7 +92,7 @@ const jsonld = [
       <div class="prose"><Content /></div>
       <aside class="case-aside">
         <div class="metric">
-          <strong class="num">{w.metricValue}</strong>
+          <strong class:list={["num", { long: w.metricValue.length > 6 }]}>{w.metricValue}</strong>
           <span>{w.metricLabel}</span>
         </div>
         <ul class="tags">{w.stack.map((s) => <li>{s}</li>)}</ul>

@@ -498,6 +498,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .case-aside { position: sticky; top: 110px; display: grid; gap: 1.5rem; min-width: 0; }
 .metric { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.75rem; }
 .metric strong { display: block; font-size: 3rem; line-height: 1; color: var(--accent); font-weight: 500; }
+.metric strong.long { font-size: 2rem; }
 .metric span { color: var(--muted); display: block; margin-top: 0.8rem; }
 .gallery { display: grid; gap: 1.5rem; margin-top: 4rem; }
 .case-faq { margin-top: 4.5rem; display: grid; gap: 1.5rem; max-width: 860px; }
