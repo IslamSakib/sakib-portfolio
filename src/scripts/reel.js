@@ -2,7 +2,7 @@
 // hover, focus or click a tab to show its panel. Until the visitor touches it, each reel moves on by itself every few
 // seconds (data-interval, default 5000 ms), but only while it is on screen and never under reduced motion.
 // data-auto="off" (the FAQ) turns that off: it only changes when the visitor picks something.
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduce = true; // the site has no motion: projects change only when the visitor picks one
 
 document.querySelectorAll('[data-reel]').forEach((reel) => {
   const tabs = [...reel.querySelectorAll('[role=tab]')], panels = [...reel.querySelectorAll('[role=tabpanel]')];

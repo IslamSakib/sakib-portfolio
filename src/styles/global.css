@@ -246,7 +246,6 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .service-list > li::after { content: ''; position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%; background: var(--accent-fill); transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.7s var(--ease); }
 .service-list > li:hover { background: var(--surface); }
 .service-list > li > * { transition: transform 0.5s var(--ease); }
-.service-list > li:hover > * { transform: translateX(0.75rem); }
 .service-list > li:hover::after { transform: scaleX(1); }
 .service-list .idx { font-family: var(--mono); font-size: 0.875rem; color: var(--accent); padding-top: 0.6rem; }
 .service-list h3 { font-size: clamp(1.625rem, 3vw, 2.25rem); }
@@ -329,7 +328,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding: 2rem 0; border-top: 1px solid var(--line); }
 .foot-links { display: flex; gap: 0.5rem; }
 .foot-links a { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); transition: color 0.2s ease, border-color 0.2s ease, transform 0.3s var(--ease); }
-.foot-links a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-3px); }
+.foot-links a:hover { color: var(--accent); border-color: var(--accent); }
 /* The fill is the page colour and is painted over the inner half of the stroke, which hides the overlapping contours
    a variable font would otherwise show inside each letter. */
 .bigmark { display: block; width: 100%; height: auto; user-select: none; }
@@ -587,7 +586,7 @@ p, li, dd, figcaption { text-wrap: pretty; }
 .related { display: grid; gap: 0.6rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
 .related .label { margin-bottom: 0.3rem; }
 .related > a:not(.related-all) { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 0.9rem; align-items: center; padding: 0.55rem; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--text); text-decoration: none; transition: border-color 0.25s ease, translate 0.5s var(--ease); }
-.related > a:not(.related-all):hover { border-color: var(--accent); translate: 0 -2px; }
+.related > a:not(.related-all):hover { border-color: var(--accent); }
 .related img { display: block; width: 112px; height: auto; border-radius: 7px; }
 .related b { display: block; font-size: 1rem; }
 .related small { display: block; margin-top: 0.15rem; font-family: var(--mono); font-size: 0.75rem; color: var(--accent); }

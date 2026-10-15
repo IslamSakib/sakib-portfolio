@@ -103,7 +103,7 @@ if (form) {
       const target = steps[name].querySelector('input:not([type=radio]), textarea') || radio(name) || steps[name].querySelector('input');
       (target || steps[name]).focus({ preventScroll: true });
       const top = form.getBoundingClientRect().top;
-      if (top < 80 || top > innerHeight * 0.5) form.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      if (top < 80 || top > innerHeight * 0.5) form.scrollIntoView({ block: 'start' });
     }
   };
 
