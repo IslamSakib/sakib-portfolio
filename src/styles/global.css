@@ -576,3 +576,8 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
   .btn { padding: 0.8rem 1.05rem; font-size: 0.9375rem; }
   .hero-actions .btn { flex: 1 1 auto; }
 }
+
+/* Line breaks: headings and quotes split into even lines; paragraphs avoid a lone short last line. */
+h1, h2, h3, blockquote, .ss-t, .g-q { text-wrap: balance; }
+p, li, dd, figcaption { text-wrap: pretty; }
+.agency-copy h2 .ln { display: block; }
