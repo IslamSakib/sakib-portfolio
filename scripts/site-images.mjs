@@ -137,43 +137,43 @@ const scenes = {
       </div>
     </div>`,
 
+  // How I work: these four show small on cards, so they are drawn on an 800x533 canvas (rendered at 2x) with a few
+  // large elements that fill the frame.
+  // Step 1: the one line in the log that explains the problem, under a lens.
   'step-find': `
-    <div class="win" style="left:150px;top:170px;width:1300px"><div class="bar"><i></i><i></i><i></i><span>What changed this week</span></div>
-      <div class="mono" style="padding:40px 46px;font-size:26px;line-height:2.1">
-        <p class="mut">Mon  WordPress core updated to 6.x</p>
-        <p class="mut">Tue  New plugin installed: page speed booster</p>
-        <p style="color:#ff8f7a">Wed  Site starts timing out on mobile</p>
-        <p class="mut">Thu  Host enabled its own cache layer</p>
+    <div class="win" style="left:40px;top:120px;width:720px"><div class="bar" style="height:40px"><i></i><i></i><i></i><span>error_log</span></div>
+      <div class="mono" style="padding:22px 0;font-size:22px;line-height:2">
+        <p class="mut" style="padding:0 26px">Plugin updated</p>
+        <p style="padding:0 26px;color:#ff8f7a;background:rgba(224,98,74,.16);border-left:5px solid #e0624a">500 error on mobile</p>
+        <p class="mut" style="padding:0 26px">Two cache plugins</p>
       </div>
     </div>
-    <div class="abs" style="left:1050px;top:470px;width:250px;height:250px;border-radius:50%;border:8px solid #a78bfa;box-shadow:0 0 80px rgba(167,139,250,.5), inset 0 0 60px rgba(167,139,250,.2)"></div>
-    <div class="abs" style="left:1265px;top:690px;width:150px;height:22px;border-radius:11px;background:#a78bfa;transform:rotate(45deg);transform-origin:0 50%"></div>`,
+    <div class="abs" style="left:470px;top:230px;width:200px;height:200px;border-radius:50%;border:12px solid #a78bfa;background:rgba(167,139,250,.08);box-shadow:0 0 70px rgba(167,139,250,.55)"></div>
+    <div class="abs" style="left:640px;top:410px;width:130px;height:24px;border-radius:12px;background:#a78bfa;transform:rotate(45deg);transform-origin:0 50%"></div>`,
 
-  // Step 2: one clean change where the problem lives.
+  // Step 2: the change itself, as a short diff.
   'step-fix': `
-    <div class="win" style="left:150px;top:170px;width:1300px"><div class="bar"><i></i><i></i><i></i><span>The fix</span></div>
-      <div class="mono" style="padding:40px 0;font-size:26px;line-height:2.1">
-        <p style="padding:0 46px;background:rgba(224,98,74,.12);color:#ff8f7a">−  Plugin: page speed booster (second cache)</p>
-        <p style="padding:0 46px;background:rgba(224,98,74,.12);color:#ff8f7a">−  Leftover cache files in wp-content</p>
-        <p style="padding:0 46px;background:rgba(95,211,141,.12);color:#7fe0a5">+  One caching layer, configured once</p>
-        <p style="padding:0 46px" class="mut">   Tested on staging before going live</p>
+    <div class="win" style="left:40px;top:135px;width:720px"><div class="bar" style="height:40px"><i></i><i></i><i></i><span>the fix</span></div>
+      <div class="mono" style="padding:20px 0;font-size:26px;line-height:2.1">
+        <p style="padding:0 28px;background:rgba(224,98,74,.16);color:#ff8f7a">−  second cache plugin</p>
+        <p style="padding:0 28px;background:rgba(224,98,74,.16);color:#ff8f7a">−  leftover cache files</p>
+        <p style="padding:0 28px;background:rgba(95,211,141,.16);color:#7fe0a5">+  one cache, set up once</p>
       </div>
     </div>`,
 
-  // Step 3: before and after, measured.
+  // Step 3: before and after, as two big bars.
   'step-measure': `
-    <div class="card glow" style="left:200px;top:200px;width:1200px;padding:56px 64px">
-      <p class="lab" style="font-size:20px">TubeOnAI · load time</p>
-      <div style="margin-top:30px">${bars([['Before', '5.0 s', 100, '#e0624a'], ['After', '1.5 s', 30, '#5fd38d']]).replace(/font-size:17px/g, 'font-size:26px').replace(/font-size:20px/g, 'font-size:30px').replace(/height:14px/g, 'height:26px').replace(/110px 1fr 90px/g, '170px 1fr 130px')}</div>
-      <p class="mut" style="font-size:24px;margin-top:40px">Measured on mobile, before and after the fix.</p>
+    <div class="card glow" style="left:40px;top:60px;width:720px;padding:34px 38px">
+      <p class="lab" style="font-size:16px">TubeOnAI · load time</p>
+      ${[['Before', '5.0 s', 100, '#e0624a'], ['After', '1.5 s', 30, '#5fd38d']].map(([n, v, w, c]) => `<div style="margin-top:26px"><div class="row" style="justify-content:space-between"><span style="font-size:24px">${n}</span><b class="mono" style="font-size:40px;font-weight:500;color:${c}">${v}</b></div><div style="margin-top:10px;height:22px;border-radius:11px;background:#2a2633"><i style="display:block;height:100%;width:${w}%;border-radius:11px;background:${c}"></i></div></div>`).join('')}
     </div>`,
 
-  // Step 4: handover notes the client keeps.
+  // Step 4: the handover notes, as a short checklist.
   'step-hand': `
-    <div class="card glow" style="left:280px;top:150px;width:1040px;padding:56px 64px">
-      <p class="lab" style="font-size:20px">Handover notes</p>
-      <p style="font:700 54px/1.1 'B';letter-spacing:-.03em;margin-top:20px">What was done, and why.</p>
-      ${[['What was wrong', 'Two cache plugins fighting each other'], ['What I changed', 'Removed one, configured the other once'], ['What to avoid', 'Adding another speed plugin on top'], ['Logins', 'Yours. You can remove my account any time']].map(([a, b]) => `<div style="display:grid;grid-template-columns:300px 1fr;gap:24px;margin-top:24px;padding-top:24px;border-top:1px solid #2a2633"><span class="mono mut" style="font-size:22px">${a}</span><span style="font-size:26px">${b}</span></div>`).join('')}
+    <div class="card glow" style="left:40px;top:50px;width:720px;padding:32px 38px">
+      <p class="lab" style="font-size:16px">Handover notes</p>
+      <p style="font:700 40px/1.1 'B';letter-spacing:-.03em;margin-top:12px">What was done, and why.</p>
+      ${['What was wrong', 'What I changed', 'What to avoid next time'].map((t) => `<div class="row" style="margin-top:20px"><span class="ok" style="width:36px;height:36px;font-size:20px">✓</span><span style="font:600 26px 'H'">${t}</span></div>`).join('')}
     </div>`,
 };
 
@@ -182,10 +182,11 @@ mkdirSync('src/assets/visuals', { recursive: true });
 for (const [name, body] of Object.entries(scenes)) {
   if (only.length && !only.includes(name)) continue;
   const file = join(tmpdir(), `site-img-${process.pid}.html`), raw = join(tmpdir(), `site-img-${process.pid}.png`);
-  writeFileSync(file, `<!doctype html><html><head><meta charset="utf-8"><style>${css}</style></head><body><div class="scene">${body}</div></body></html>`);
-  const r = spawnSync(chrome, ['--headless=new', '--disable-gpu', '--hide-scrollbars', '--allow-file-access-from-files', `--window-size=${W},${H}`, '--force-device-scale-factor=1', '--virtual-time-budget=4000', `--screenshot=${raw}`, pathToFileURL(file).href], { stdio: 'ignore' });
+  const small = name.startsWith('step-');
+  writeFileSync(file, `<!doctype html><html><head><meta charset="utf-8"><style>${css}${small ? 'html, body { width: 800px; height: 533px; }' : ''}</style></head><body><div class="scene">${body}</div></body></html>`);
+  const r = spawnSync(chrome, ['--headless=new', '--disable-gpu', '--hide-scrollbars', '--allow-file-access-from-files', small ? '--window-size=800,533' : `--window-size=${W},${H}`, small ? '--force-device-scale-factor=2' : '--force-device-scale-factor=1', '--virtual-time-budget=4000', `--screenshot=${raw}`, pathToFileURL(file).href], { stdio: 'ignore' });
   if (r.status !== 0 || !existsSync(raw)) throw new Error('render failed: ' + name);
-  await sharp(raw).jpeg({ quality: 90, mozjpeg: true }).toFile(`src/assets/visuals/${name}.jpg`);
+  await sharp(raw).resize(W, H, { fit: 'fill' }).jpeg({ quality: 90, mozjpeg: true }).toFile(`src/assets/visuals/${name}.jpg`);
   rmSync(file, { force: true }); rmSync(raw, { force: true });
   console.log('visual', name);
 }
