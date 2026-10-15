@@ -2,3 +2,5 @@ node_modules/
 dist/
 .astro/
 sakib-site*.zip
+sakib-site-*.zip
+deploy-*.txt

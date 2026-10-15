@@ -22,6 +22,7 @@ const menu = [{ slug: 'wordpress-maintenance', name: 'Maintenance and fixes', sh
 <html lang="en" data-focus={focus}>
   <head>
     <meta charset="utf-8" />
+    <script is:inline>if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) document.documentElement.classList.add('js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="robots" content="max-image-preview:large" />
@@ -148,7 +149,7 @@ const menu = [{ slug: 'wordpress-maintenance', name: 'Maintenance and fixes', sh
       import '../scripts/chat.js';
     </script>
     <script is:inline>
-      // All motion that needs script: number tickers, typed headings, the dot fields, the tilting portrait and the Dhaka clock.
+      // All motion that needs script: number tickers, scroll reveals, the dot fields, leaning buttons and the Dhaka clock.
       // Skipped under reduced motion.
       (() => {
         const clocks = document.querySelectorAll('[data-clock]');
@@ -213,41 +214,48 @@ const menu = [{ slug: 'wordpress-maintenance', name: 'Maintenance and fixes', sh
 
         const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (reduce || !('IntersectionObserver' in window)) return;
-        document.documentElement.classList.add('js');
         const count = (el) => {
           const end = +el.dataset.count, dec = +(el.dataset.dec || 0), t0 = performance.now();
+          // Reserve the final width first, so the number never pushes anything while it counts.
+          el.style.display = 'inline-block'; el.style.minWidth = el.offsetWidth + 'px'; el.style.fontVariantNumeric = 'tabular-nums';
           const step = (t) => {
-            const k = Math.min((t - t0) / 1100, 1);
-            el.textContent = (end * (1 - Math.pow(1 - k, 3))).toFixed(dec);
+            const k = Math.min((t - t0) / 1400, 1);
+            el.textContent = (end * (1 - Math.pow(1 - k, 4))).toFixed(dec);
             if (k < 1) requestAnimationFrame(step);
           };
           requestAnimationFrame(step);
         };
-        // Section headings type themselves out once. The height is reserved first so nothing below moves,
-        // and the full text stays available to screen readers through aria-label.
-        const type = (el) => {
-          const text = el.textContent;
-          el.style.minHeight = el.offsetHeight + 'px';
-          el.setAttribute('aria-label', text);
-          el.textContent = '';
-          el.classList.add('typing');
-          let i = 0;
-          const next = () => {
-            el.textContent = text.slice(0, ++i);
-            if (i < text.length) setTimeout(next, 26);
-            else setTimeout(() => el.classList.remove('typing'), 1400);
-          };
-          next();
+        // Section headings: wrap each word so it can rise out of a mask. Only plain-text headings, so links stay intact.
+        const split = (el) => {
+          const words = el.textContent.trim().split(/\s+/);
+          el.setAttribute('aria-label', el.textContent.trim());
+          el.innerHTML = words.map((w, i) => '<span class="sw" aria-hidden="true"><span style="--i:' + i + '">' + w.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</span></span>').join(' ');
         };
+        // Tag what reveals. Only things below the fold, so nothing on screen at load blinks out and back.
+        const fold = innerHeight * 0.92;
+        const below = (el) => el.getBoundingClientRect().top > fold;
+        const skip = '.site-header, .chat, .marquee, .clients, .byline, .author, .toc, .rail, footer';
+        const tag = (sel, cls) => document.querySelectorAll(sel).forEach((el) => { if (!el.closest(skip) && below(el)) el.classList.add(cls); });
+        document.querySelectorAll('main h2:not(.sr-only)').forEach((h) => { if (!h.children.length && !h.closest(skip) && below(h)) { split(h); h.classList.add('rv-h'); } });
+        tag('main picture:not(:has(img.tile-img))', 'rv-img');
+        tag('[data-reveal], main .tile, main .post-card, main .kit > li, main .steps > li, main .mosaic > a, main .lead, main .section-head > p, main .row-head > a, main .faq details, main .plans, main .timeline > li, main .trust li, main .cap-grid > *, main .rv-item, main .about-copy > :not(h2), main .proof > div', 'rv');
+        // Siblings that reveal together get a stagger, unless the markup already sets one.
+        document.querySelectorAll('.rv, .rv-img').forEach((el) => {
+          if (el.style.getPropertyValue('--d')) return;
+          const sibs = [...el.parentElement.children].filter((c) => c.classList.contains('rv') || c.classList.contains('rv-img'));
+          const i = sibs.indexOf(el);
+          if (i > 0) el.style.setProperty('--d', Math.min(i * 0.09, 0.45) + 's');
+        });
         const io = new IntersectionObserver((entries) => entries.forEach((e) => {
           if (!e.isIntersecting) return;
           e.target.classList.add('in');
+          // A clipped image counts as invisible, so its container is watched and passes the reveal on.
+          e.target.querySelectorAll(':scope > .rv-img').forEach((img) => img.classList.add('in'));
           if (e.target.dataset.count) count(e.target);
-          if (e.target.tagName === 'H2') type(e.target);
           io.unobserve(e.target);
-        }), { threshold: 0.15 });
-        // Only section headings type themselves; headings inside articles, tiles and cards stay still.
-        document.querySelectorAll('[data-reveal], [data-count], main h2').forEach((el) => { if (!el.closest('.article, .tile, .post-feature, .connect')) io.observe(el); });
+        }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+        document.querySelectorAll('.rv, .rv-h, [data-count]').forEach((el) => io.observe(el));
+        document.querySelectorAll('.rv-img').forEach((el) => io.observe(el.parentElement));
 
         // Dot fields: each canvas draws a grid of dots with a slow wave through it. Dots near the pointer turn the
         // accent colour, grow and lean away. A field only draws while it is on screen, and fades out towards its edges.
@@ -287,6 +295,14 @@ const menu = [{ slug: 'wordpress-maintenance', name: 'Maintenance and fixes', sh
           addEventListener('pointermove', (e) => {
             fields.forEach((f) => { const r = f.cv.getBoundingClientRect(); f.mx = e.clientX - r.left; f.my = e.clientY - r.top; });
           }, { passive: true });
+          // Buttons lean a few pixels toward the pointer, then settle back.
+          document.querySelectorAll('.btn').forEach((el) => {
+            el.addEventListener('pointermove', (e) => {
+              const r = el.getBoundingClientRect();
+              el.style.translate = ((e.clientX - r.left) / r.width - 0.5) * 8 + 'px ' + ((e.clientY - r.top) / r.height - 0.5) * 6 + 'px';
+            });
+            el.addEventListener('pointerleave', () => { el.style.translate = ''; });
+          });
           document.querySelectorAll('[data-tilt]').forEach((el) => {
             el.addEventListener('pointermove', (e) => {
               const r = el.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;

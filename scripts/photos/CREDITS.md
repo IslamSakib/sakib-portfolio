@@ -13,3 +13,22 @@ Photos from Unsplash under the Unsplash License (free for commercial use, no att
 - figma-to-wordpress-handoff.jpg: https://unsplash.com/photos/kSBWIerVYJs
 - what-wordpress-maintenance-includes.jpg: https://unsplash.com/photos/wqtDizNUOrM
 - too-many-wordpress-cache-plugins.jpg: https://unsplash.com/photos/Xn3D8DIzH7Q
+- choosing-a-white-label-wordpress-partner.jpg: https://unsplash.com/photos/Of_m3hMsoAA
+
+## Site photos (src/assets/photos)
+
+- shopping-on-store-website.jpg: https://unsplash.com/photos/slLo94wES2M
+- mobile-app-in-hand.jpg: https://unsplash.com/photos/sScmok4Iq1o
+- code-on-laptop.jpg: https://unsplash.com/photos/MSN8TFhJ0is
+- dashboard-on-laptop.jpg: https://unsplash.com/photos/tR0jvlsmCuQ
+- website-design-on-laptop.jpg: https://unsplash.com/photos/zwsHjakE_iI
+- analytics-on-laptop.jpg: https://unsplash.com/photos/hpjSkU2UYSU
+- dark-dashboard-on-laptop.jpg: https://unsplash.com/photos/JKUTrJ4vK00
+- code-on-screen.jpg: https://unsplash.com/photos/f77Bh3inUpE
+- developer-laptop-desk.jpg: https://unsplash.com/photos/vpOeXr5wmR4
+- analytics-report.jpg: https://unsplash.com/photos/shr_Xn8S8QU
+- two-people-reviewing-laptop.jpg: https://unsplash.com/photos/g1Kr4Ozfoac
+- shop-owner-with-tablet.jpg: https://unsplash.com/photos/PqZNF90tfyU
+- website-designs-on-monitor.jpg: https://unsplash.com/photos/pd-Hekt6naQ
+- agency-team-planning.jpg: https://unsplash.com/photos/Imk2h0pyOvo
+- business-owner-at-laptop.jpg: https://unsplash.com/photos/OfuwkI80iPY

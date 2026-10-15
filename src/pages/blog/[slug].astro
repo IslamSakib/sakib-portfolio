@@ -7,7 +7,7 @@ import PostActions from '../../components/PostActions.astro';
 import { posts, longDate } from '../../blog.js';
 import { site } from '../../site.js';
 import { prices, usd } from '../../prices.js';
-import photo from '../../assets/sakib-islam.png';
+import photo from '../../assets/sakib-islam.jpg';
 
 export function getStaticPaths() {
   return posts.map((p) => ({ params: { slug: p.slug }, props: { p } }));
@@ -117,7 +117,8 @@ const jsonld = [
         <div class="post-grid">
           {more.map((x) => (
             <a class="post-card" href={`/blog/${x.slug}/`}>
-              <small>{x.topic}</small>
+              <PostImage post={x} />
+              <small>{x.topic} · {x.minutes} min read</small>
               <h3>{x.title}</h3>
             </a>
           ))}

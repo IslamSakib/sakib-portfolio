@@ -3,10 +3,14 @@ import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Connect from '../components/Connect.astro';
 import PostImage from '../components/PostImage.astro';
-import photo from '../assets/sakib-islam-cut.png';
+import photo from '../assets/sakib-islam.jpg';
 import appShot from '../assets/work/extra/wrkbase-1.jpg';
 import shopPhoto from '../assets/photos/shop-owner-with-tablet.jpg';
-import agencyPhoto from '../assets/photos/agency-team-at-laptop.jpg';
+import agencyPhoto from '../assets/photos/website-designs-on-monitor.jpg';
+import speedPhoto from '../assets/photos/mobile-app-in-hand.jpg';
+import fixPhoto from '../assets/photos/code-on-laptop.jpg';
+import carePhoto from '../assets/photos/dashboard-on-laptop.jpg';
+import buildPhoto from '../assets/photos/shopping-on-store-website.jpg';
 import { site } from '../site.js';
 import { services } from '../services.js';
 import { work } from '../work.js';
@@ -124,24 +128,16 @@ const jsonld = [
   <section class="wrap" style="padding: var(--sec) 0 1.25rem">
     <div class="paths">
       <a class="tile" href="/wordpress-maintenance/">
-        <Picture class="tile-img" src={shopPhoto} formats={['avif', 'webp']} widths={[640, 960]} sizes="(max-width: 900px) 100vw, 640px" alt="A shop owner holding a tablet in her clothing store" loading="lazy" />
+        <Picture class="tile-img" src={shopPhoto} formats={['avif', 'webp']} widths={[640, 960]} loading="lazy" sizes="(max-width: 900px) 100vw, 640px" alt="A shop owner holding a tablet in her clothing store" />
         <div class="tile-top"><p class="label">I run a business</p><span aria-hidden="true">→</span></div>
         <h2>Slow, broken or nobody looking after it?</h2>
-        <figure class="bars" aria-label="TubeOnAI load time fell from 5 seconds to 1.5 seconds">
-          <div><span class="mut">Before</span><i></i><b>5.0 s</b></div>
-          <div class="after"><span class="mut">After</span><span><i></i></span><b>1.5 s</b></div>
-          <figcaption>TubeOnAI load time, at the time of the fix</figcaption>
-        </figure>
+        <p class="tile-note">TubeOnAI load time: 5.0 s → 1.5 s</p>
       </a>
       <a class="tile" href="/white-label-wordpress-development/">
-        <Picture class="tile-img" src={agencyPhoto} formats={['avif', 'webp']} widths={[640, 960]} sizes="(max-width: 900px) 100vw, 640px" alt="Two people from an agency reviewing work on a laptop" loading="lazy" />
+        <Picture class="tile-img" src={agencyPhoto} formats={['avif', 'webp']} widths={[640, 960]} loading="lazy" sizes="(max-width: 900px) 100vw, 640px" alt="Website page designs open on a large monitor at a designer's desk" />
         <div class="tile-top"><p class="label">I run an agency</p><span aria-hidden="true">→</span></div>
         <h2>Your design, built in WordPress under your name.</h2>
-        <div class="to-wp" aria-hidden="true">
-          <div class="wire"><i></i><i></i><i></i><i></i><span>Your Figma</span></div>
-          <svg class="arrow-r" viewBox="0 0 40 16" width="40" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h34M30 3l6 5-6 5" /></svg>
-          <div class="browser"><div class="browser-bar"><i></i><i></i></div><Picture src={tabby.shot} formats={['avif', 'webp']} widths={[360]} sizes="200px" alt="" loading="lazy" /></div>
-        </div>
+        <p class="tile-note">Tabby and TubeOnAI: built from Figma</p>
       </a>
     </div>
   </section>
@@ -150,36 +146,28 @@ const jsonld = [
     <h2 class="sr-only">Services</h2>
     <div class="bento">
       <a class="tile span-7" href="/wordpress-speed-optimization/">
+        <Picture class="tile-img" src={speedPhoto} formats={['avif', 'webp']} widths={[640, 960]} loading="lazy" sizes="(max-width: 900px) 100vw, 700px" alt="A phone showing a fast mobile app screen" />
         <p class="label">Speed</p>
-        <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap">
-          <svg class="ring" width="140" height="140" viewBox="0 0 140 140" role="img" aria-label="Core Web Vitals above 90"><circle cx="70" cy="70" r="58" fill="none" stroke="var(--line)" stroke-width="12" /><circle cx="70" cy="70" r="58" fill="none" stroke="currentColor" stroke-width="12" stroke-dasharray="328 364" stroke-linecap="round" transform="rotate(-90 70 70)" /><text x="70" y="80" text-anchor="middle" font-size="30">90+</text></svg>
-          <div style="display: grid; gap: 0.5rem">
-            <h3>Speed fixed at the cause.</h3>
-            <p class="mono mut" style="font-size: 0.8125rem">Tabby: Core Web Vitals above 90 at launch</p>
-          </div>
-        </div>
+        <h3>Speed fixed at the cause.</h3>
+        <p class="tile-note">Tabby: Core Web Vitals above 90 at launch</p>
       </a>
       <a class="tile span-5" href="/wordpress-maintenance/#fix">
+        <Picture class="tile-img" src={fixPhoto} formats={['avif', 'webp']} widths={[640, 960]} loading="lazy" sizes="(max-width: 900px) 100vw, 500px" alt="Code open on a laptop on a desk" />
         <p class="label">Fixes</p>
-        <div style="display: grid; gap: 0.5rem; justify-items: start" aria-hidden="true">
-          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap"><span class="pill x">cache plugin</span><span class="pill x">cache plugin</span><span class="pill x">leftover files</span></div>
-          <span class="pill ok">one caching layer ✓</span>
-        </div>
         <h3>Sites that keep breaking, fixed once.</h3>
+        <p class="tile-note">Two cache plugins out, one caching layer in</p>
       </a>
       <a class="tile span-5" href="/wordpress-maintenance/">
+        <Picture class="tile-img" src={carePhoto} formats={['avif', 'webp']} widths={[640, 960]} loading="lazy" sizes="(max-width: 900px) 100vw, 500px" alt="A website dashboard with charts on a laptop" />
         <p class="label">Care plans · from {usd(prices.care)}/mo</p>
-        <div class="weeks" aria-hidden="true">
-          <div><small>Wk 1</small>Updates</div><div><small>Wk 2</small>Backups</div><div><small>Wk 3</small>Security</div><div class="last"><small>Wk 4</small>Report</div>
-        </div>
         <h3>One developer who knows your site.</h3>
+        <p class="tile-note">Updates, backups, security, and a report every month</p>
       </a>
-      <a class="tile tile-photo span-7" href="/wordpress-development/">
-        <Picture src={shot('moneybag').shot} formats={['avif', 'webp']} widths={[640, 960]} sizes="(max-width: 900px) 100vw, 700px" alt="" loading="lazy" />
-        <div class="tile-cap">
-          <p class="label">Builds</p>
-          <h3>Custom WordPress and WooCommerce, down to the payment gateway.</h3>
-        </div>
+      <a class="tile span-7" href="/wordpress-development/">
+        <Picture class="tile-img" src={buildPhoto} formats={['avif', 'webp']} widths={[640, 960]} loading="lazy" sizes="(max-width: 900px) 100vw, 700px" alt="Someone shopping on an online store on a laptop" />
+        <p class="label">Builds</p>
+        <h3>Custom WordPress and WooCommerce, down to the payment gateway.</h3>
+        <p class="tile-note">Moneybag: a custom payment plugin for WooCommerce</p>
       </a>
     </div>
   </section>
@@ -194,7 +182,7 @@ const jsonld = [
         <a href={`/work/${w.slug}/`}>
           <div class="browser">
             <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i>{i === 0 && <span>{new URL(w.clientUrl).hostname.replace('www.', '')}</span>}</div>
-            <Picture src={w.img} formats={['avif', 'webp']} widths={i === 0 ? [640, 960, 1280] : [480, 720]} sizes={i === 0 ? '(max-width: 900px) 100vw, 840px' : '(max-width: 900px) 100vw, 420px'} alt={`${w.client} website`} loading="lazy" />
+            <Picture src={w.img} formats={['avif', 'webp']} widths={i === 0 ? [640, 960, 1280, 1440] : [480, 720, 960]} sizes={i === 0 ? '(max-width: 900px) 100vw, 840px' : '(max-width: 900px) 100vw, 420px'} alt={`${w.client} website`} loading="lazy" />
           </div>
           <span class="tag">{w.client} · <b>{w.chip}</b></span>
         </a>

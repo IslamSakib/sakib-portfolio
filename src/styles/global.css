@@ -76,10 +76,8 @@ button { font: inherit; color: inherit; }
   transition: color 0.25s ease, border-color 0.25s ease, transform 0.12s ease;
 }
 .btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--btn-hi); transform: translateY(101%); transition: transform 0.4s var(--ease); }
-.btn::after { content: "→"; display: inline-block; width: 0; margin-left: 0; opacity: 0; overflow: hidden; transform: translateX(-6px); transition: width 0.3s var(--ease), margin-left 0.3s var(--ease), opacity 0.25s ease, transform 0.3s var(--ease); }
 .btn:hover { color: var(--btn-ink); }
 .btn:hover::before { transform: none; }
-.btn:hover::after { width: 1em; margin-left: 0.5em; opacity: 1; transform: none; }
 .btn:active { transform: translateY(1px); }
 .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
 .btn-ghost::before { background: var(--text); }
@@ -167,12 +165,12 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .outcome b { font-size: clamp(2rem, 3.6vw, 3rem); font-weight: 500; line-height: 1; color: var(--accent); }
 .outcome span { color: var(--muted); font-size: 0.9375rem; }
 .project-copy .result { color: var(--accent); font-family: var(--mono); font-size: 0.9375rem; letter-spacing: -0.01em; }
-.project-shot { position: relative; display: grid; grid-template-rows: auto 1fr; aspect-ratio: 16 / 10.4; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #fff; transform: rotateY(-11deg) rotateX(4deg); box-shadow: 30px 40px 80px -30px rgb(0 0 0 / 0.75); }
+.project-shot { position: relative; display: grid; grid-template-rows: auto 1fr; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #fff; transform: rotateY(-11deg) rotateX(4deg); box-shadow: 30px 40px 80px -30px rgb(0 0 0 / 0.75); }
 .project:nth-child(even) .project-shot { transform: rotateY(11deg) rotateX(4deg); box-shadow: -30px 40px 80px -30px rgb(0 0 0 / 0.75); }
 .project-copy .idx { font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); }
 .project-shot > div:last-child { min-height: 0; overflow: hidden; }
 .project-shot picture { display: block; height: 100%; }
-.project-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.project-shot img { display: block; width: 100%; height: auto; }
 .chrome { display: flex; align-items: center; gap: 0.4rem; height: 34px; padding: 0 0.9rem; background: var(--surface-2); border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
 .chrome i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
 .chrome span { margin-left: 0.6rem; }
@@ -187,19 +185,21 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .reel-left { display: grid; align-content: start; }
 .reel-left .section-head { margin-bottom: 2.25rem; }
 .reel-list { display: grid; border-top: 1px solid var(--line); }
-.reel-list button { position: relative; display: grid; grid-template-columns: 2.25rem 1fr auto; align-items: baseline; gap: 0.5rem; padding: 1.05rem 0.9rem 1.05rem 1rem; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--muted); font: inherit; text-align: left; transition: color 0.3s ease, background 0.3s ease, padding 0.4s var(--ease); }
+.reel-list button { position: relative; display: grid; grid-template-columns: 2.25rem 1fr auto; align-items: baseline; gap: 0.5rem; padding: 1.05rem 0.9rem 1.05rem 1rem; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--muted); font: inherit; text-align: left; transition: color 0.3s ease, background 0.3s ease; }
 .reel-list button::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--accent-fill); transform: scaleY(0); transform-origin: 50% 0; }
 .reel-list .idx { font-family: var(--mono); font-size: 0.75rem; }
 .reel-list .name { font-family: var(--display); font-size: 1.375rem; font-weight: 650; letter-spacing: -0.025em; }
 .reel-list .num { font-size: 0.875rem; letter-spacing: -0.02em; opacity: 0; transition: opacity 0.3s ease; }
 .reel-list button:hover { color: var(--text); }
-.reel-list button[aria-selected="true"] { color: var(--text); background: var(--surface); padding-left: 1.5rem; }
+.reel-list button[aria-selected="true"] { color: var(--text); background: var(--surface); }
+.reel-list button > * { transition: transform 0.4s var(--ease); }
+.reel-list button[aria-selected="true"] > * { transform: translateX(0.5rem); }
 .reel-list button[aria-selected="true"]::before { transform: scaleY(1); }
 .reel-list button[aria-selected="true"] .idx, .reel-list button[aria-selected="true"] .num { color: var(--accent); opacity: 1; }
 .reel-stage { display: grid; perspective: 1600px; }
 .reel-panel { grid-area: 1 / 1; display: grid; gap: 1.75rem; align-content: start; opacity: 0; visibility: hidden; pointer-events: none; }
 .reel-panel.on { opacity: 1; visibility: visible; pointer-events: auto; }
-.reel-panel .project-shot { aspect-ratio: 16 / 9.2; transform: none; box-shadow: 0 40px 80px -36px rgb(0 0 0 / 0.8); }
+.reel-panel .project-shot { transform: none; box-shadow: 0 40px 80px -36px rgb(0 0 0 / 0.8); }
 .reel-info { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2.5rem; align-items: start; }
 .reel-info > div { display: grid; gap: 0.8rem; justify-items: start; }
 .reel-info h3 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
@@ -242,9 +242,11 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 
 /* Services: big numbered rows, not cards */
 .service-list { border-top: 1px solid var(--line); }
-.service-list > li { position: relative; display: grid; grid-template-columns: 5rem 1fr 1.3fr; gap: 2rem; align-items: start; padding: 2.5rem 1rem; border-bottom: 1px solid var(--line); transition: background 0.4s ease, padding 0.5s var(--ease); }
+.service-list > li { position: relative; display: grid; grid-template-columns: 5rem 1fr 1.3fr; gap: 2rem; align-items: start; padding: 2.5rem 1rem; border-bottom: 1px solid var(--line); transition: background 0.4s ease; }
 .service-list > li::after { content: ''; position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%; background: var(--accent-fill); transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.7s var(--ease); }
-.service-list > li:hover { background: var(--surface); padding-left: 1.75rem; }
+.service-list > li:hover { background: var(--surface); }
+.service-list > li > * { transition: transform 0.5s var(--ease); }
+.service-list > li:hover > * { transform: translateX(0.75rem); }
 .service-list > li:hover::after { transform: scaleX(1); }
 .service-list .idx { font-family: var(--mono); font-size: 0.875rem; color: var(--accent); padding-top: 0.6rem; }
 .service-list h3 { font-size: clamp(1.625rem, 3vw, 2.25rem); }
@@ -521,7 +523,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
   .reel-list button { flex: none; display: flex; gap: 0.5rem; padding: 0.6rem 1rem; min-height: 44px; border: 1px solid var(--line); border-radius: 6px; scroll-snap-align: start; }
   .reel-list button::before, .reel-list .num { display: none; }
   .reel-list .name { font-size: 1rem; }
-  .reel-list button[aria-selected="true"] { padding-left: 1rem; border-color: var(--accent); background: rgb(var(--accent-rgb) / 0.12); }
+  .reel-list button[aria-selected="true"] { border-color: var(--accent); background: rgb(var(--accent-rgb) / 0.12); }
   .reel-info { grid-template-columns: 1fr; gap: 1.25rem; }
   .project { padding: 3rem 0; }
   .project-card, .project:nth-child(even) .project-card { grid-template-columns: 1fr; gap: 2rem; }
@@ -533,7 +535,8 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
   .term-out { padding: 1.25rem 1rem 1.5rem; }
   .rcard { width: 310px; padding: 1.4rem; }
   .service-list > li { grid-template-columns: 1fr; gap: 0.75rem; padding: 2rem 0; }
-  .service-list > li:hover { padding-left: 0; background: none; }
+  .service-list > li:hover { background: none; }
+  .service-list > li:hover > * { transform: none; }
   .service-list .idx { padding-top: 0; }
   .steps { grid-template-columns: 1fr; padding-top: 0; padding-left: 2.25rem; gap: 2.25rem; }
   .steps::before, .steps::after { top: 0; left: 7px; width: 2px; height: 100%; }
