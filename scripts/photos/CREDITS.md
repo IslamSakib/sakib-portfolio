@@ -17,16 +17,16 @@ Photos from Unsplash under the Unsplash License (free for commercial use, no att
 
 ## Site photos (src/assets/photos)
 
-- shopping-on-store-website.jpg: https://unsplash.com/photos/slLo94wES2M
-- mobile-app-in-hand.jpg: https://unsplash.com/photos/sScmok4Iq1o
-- code-on-laptop.jpg: https://unsplash.com/photos/MSN8TFhJ0is
-- dashboard-on-laptop.jpg: https://unsplash.com/photos/tR0jvlsmCuQ
-- website-design-on-laptop.jpg: https://unsplash.com/photos/zwsHjakE_iI
-- analytics-on-laptop.jpg: https://unsplash.com/photos/hpjSkU2UYSU
-- dark-dashboard-on-laptop.jpg: https://unsplash.com/photos/JKUTrJ4vK00
 - code-on-screen.jpg: https://unsplash.com/photos/f77Bh3inUpE
-- developer-laptop-desk.jpg: https://unsplash.com/photos/vpOeXr5wmR4
-- analytics-report.jpg: https://unsplash.com/photos/shr_Xn8S8QU
-- two-people-reviewing-laptop.jpg: https://unsplash.com/photos/g1Kr4Ozfoac
-- agency-team-planning.jpg: https://unsplash.com/photos/Imk2h0pyOvo
-- business-owner-at-laptop.jpg: https://unsplash.com/photos/OfuwkI80iPY
+- speed-dashboard-dark.jpg: https://unsplash.com/photos/LrxSl4ZxoRs
+- laptop-desk-lamp-night.jpg: https://unsplash.com/photos/PaCrOFNNBz4
+- design-studio-monitor-dark.jpg: https://unsplash.com/photos/yapBRdPWxik
+- teal-monitor-setup-dark.jpg: https://unsplash.com/photos/B93kPaspXcA
+- developer-desk-dark.jpg: https://unsplash.com/photos/TJjTEJt0iHA
+- phone-performance-chart-dark.jpg: https://unsplash.com/photos/_6KWbHyfJDE
+- hands-keyboard-dark.jpg: https://unsplash.com/photos/G5wOg4X8Ovs
+- developer-laptop-night.jpg: https://unsplash.com/photos/wafnDgZU66k
+- phone-shopping-dark.jpg: https://unsplash.com/photos/1kiXMk2KGAY
+- lit-keyboard-dark.jpg: https://unsplash.com/photos/oj7Z1ucRxcs
+- live-graph-dark.jpg: https://unsplash.com/photos/1JY77VY2VuM
+- laptop-lamp-handover-dark.jpg: https://unsplash.com/photos/P6NY5x3ivYg

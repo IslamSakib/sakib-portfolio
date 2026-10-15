@@ -1,6 +1,12 @@
 ---
+// Contact: a guided inquiry, one question at a time, like a short chat. Every step is a real form field, so without
+// script the whole form shows at once and still works. A plan or service picked elsewhere on the site arrives in the
+// URL (?plan=care, ?need=speed, ?type=agency&plan=site) and is filled in for the visitor.
 import Base from '../layouts/Base.astro';
 import { site } from '../site.js';
+import { prices, usd } from '../prices.js';
+import photo from '../assets/sakib-islam.jpg';
+import { Image } from 'astro:assets';
 
 const focus = 'Contact Sakib Islam';
 const title = 'Contact Sakib Islam | WordPress Developer';
@@ -8,73 +14,136 @@ const description = 'Contact Sakib Islam about a WordPress site to fix, maintain
 
 const jsonld = [{ '@context': 'https://schema.org', '@type': 'ContactPage', name: title, url: new URL('/contact/', Astro.site), about: { '@type': 'Person', name: site.name, email: site.email, telephone: site.phone } }];
 
-const needs = ['My site is slow', 'Something is broken', 'Monthly maintenance', 'A new build or relaunch', 'Something else'];
-const agencyWork = ['Build from our design', 'Overflow on a deadline', 'Fixes on a client site', 'Care for our clients’ sites', 'Something else'];
+// `key` matches the URL parameter that selects it; `fixed` means the price is known, so the budget question is skipped.
+const business = [
+  { key: 'speed', t: 'Make my site faster', s: `Speed fix · from ${usd(prices.speed)}`, fixed: true },
+  { key: 'broken', t: 'Fix something broken', s: `Single fix · from ${usd(prices.fix)}`, fixed: true },
+  { key: 'care', t: 'Look after my site monthly', s: `Care plan · ${usd(prices.care)}/mo`, fixed: true },
+  { key: 'care-plus', t: 'Monthly care plus changes', s: `Care + development · ${usd(prices.carePlus)}/mo`, fixed: true },
+  { key: 'build', t: 'Build or rebuild a site', s: `Custom build · from ${usd(prices.build)}` },
+  { key: 'other', t: 'Something else', s: 'Tell me in your own words' },
+];
+const agency = [
+  { key: 'site', t: 'Build a site from our design', s: `Per site · from ${usd(prices.agencySite)}` },
+  { key: 'hourly', t: 'Hourly help on a deadline', s: `Hourly · ${usd(prices.agencyHour)}/h`, fixed: true },
+  { key: 'block', t: 'A monthly block of hours', s: 'Quoted for your volume' },
+  { key: 'fixes', t: 'Fixes on a client site', s: `Hourly · ${usd(prices.agencyHour)}/h`, fixed: true },
+  { key: 'other', t: 'Something else', s: 'Tell me in your own words' },
+];
 const timelines = ['As soon as possible', 'Within a month', 'In 1 to 3 months', 'Just exploring'];
-const budgets = ['Not sure yet', 'Under $500', '$500 to $2,000', '$2,000 to $5,000', 'Over $5,000'];
+const budgets = ['Under $500', '$500 to $2,000', '$2,000 to $5,000', 'Over $5,000', 'Not sure yet'];
 ---
 <Base title={title} description={description} jsonld={jsonld} focus={focus}>
   <section class="wrap sec-pad">
     <div class="contact-grid">
       <div class="contact-side">
         <h1 style="font-size: clamp(2.2rem, 3.6vw, 3.4rem)"><span class="eyebrow">Contact Sakib Islam</span><span class="ln">Tell me what is going wrong,</span> <span class="ln">or what you need built.</span></h1>
-        <p class="lead">I reply within 24 hours with what I would check or build first. No call needed unless you want one.</p>
-        <ul>
+        <p class="lead">A few quick questions, about a minute. I reply within 24 hours with what I would check or build first.</p>
+        <ul class="contact-alt">
           <li>Email: <a href={`mailto:${site.email}`}>{site.email}</a></li>
           <li>WhatsApp: <a href={site.whatsapp} target="_blank" rel="noopener">+880 1950 025990</a></li>
           <li>LinkedIn: <a href={site.linkedin} target="_blank" rel="noopener">in/sakibislamofficial</a></li>
         </ul>
       </div>
 
-      <div>
+      <div class="guide-wrap">
         <div class="form-done" role="status" tabindex="-1" hidden data-done>
           <p class="label">Sent</p>
           <h2 style="font-size: 2rem">Thanks. Your message reached me.</h2>
           <p class="mut">I reply within 24 hours. My working day overlaps US and UK mornings.</p>
         </div>
 
-        <form class="cform" novalidate data-contact data-whatsapp={site.whatsapp} data-email={site.email}>
-          <fieldset style="border: 0; padding: 0; margin: 0; display: grid; gap: 0.6rem">
-            <legend class="lab" style="font-size: 0.9375rem; font-weight: 500; margin-bottom: 0.6rem">I am writing as</legend>
-            <div class="seg">
-              <label><input type="radio" name="type" value="business" checked /><span>A business</span></label>
-              <label><input type="radio" name="type" value="agency" /><span>An agency</span></label>
-            </div>
-          </fieldset>
+        <form class="cform guide" novalidate data-contact data-whatsapp={site.whatsapp} data-email={site.email}>
+          <div class="g-head">
+            <Image src={photo} width={88} height={88} alt="" />
+            <div><b>Sakib Islam</b><span class="g-status">Replies within 24 hours</span></div>
+            <span class="g-count" data-count-label aria-live="polite"></span>
+          </div>
+          <div class="g-bar" aria-hidden="true"><i data-bar></i></div>
+
+          <ol class="g-log" data-log aria-label="Your answers so far"></ol>
 
           <p class="form-alert" role="alert" hidden data-alert></p>
 
-          <div class="pair">
-            <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" maxlength="60" required /><span class="err" hidden></span></div>
-            <div class="field"><label for="f-email">Work email</label><input id="f-email" name="contact" type="email" autocomplete="email" maxlength="120" required /><span class="err" hidden></span></div>
-          </div>
+          <fieldset class="g-step" data-step="type">
+            <legend class="g-q">Hi, I'm Sakib. Who am I talking to?</legend>
+            <div class="g-opts two">
+              <label class="g-opt"><input type="radio" name="type" value="business" /><span><b>A business</b><small>My own website needs help</small></span></label>
+              <label class="g-opt"><input type="radio" name="type" value="agency" /><span><b>An agency</b><small>White-label work for our clients</small></span></label>
+            </div>
+          </fieldset>
 
-          <div class="pair" data-for="business">
-            <div class="field"><label for="f-site">Website address <span class="opt">(optional)</span></label><input id="f-site" name="site" type="url" inputmode="url" placeholder="https://" maxlength="200" /></div>
-            <div class="field"><label for="f-need">What do you need?</label><select id="f-need" name="need">{needs.map((n) => <option>{n}</option>)}</select></div>
-          </div>
+          <fieldset class="g-step" data-step="need" data-for="business">
+            <legend class="g-q">What can I help with?</legend>
+            <div class="g-opts">
+              {business.map((o) => (
+                <label class="g-opt"><input type="radio" name="need" value={`${o.t} (${o.s})`} data-key={o.key} data-fixed={o.fixed ? '1' : undefined} /><span><b>{o.t}</b><small>{o.s}</small></span></label>
+              ))}
+            </div>
+          </fieldset>
 
-          <div class="pair" data-for="agency" hidden>
-            <div class="field"><label for="f-agency">Agency name</label><input id="f-agency" name="agency" autocomplete="organization" maxlength="100" /></div>
-            <div class="field"><label for="f-work">Type of work</label><select id="f-work" name="work">{agencyWork.map((n) => <option>{n}</option>)}</select></div>
-          </div>
+          <fieldset class="g-step" data-step="work" data-for="agency">
+            <legend class="g-q">What kind of work is it?</legend>
+            <div class="g-opts">
+              {agency.map((o) => (
+                <label class="g-opt"><input type="radio" name="work" value={`${o.t} (${o.s})`} data-key={o.key} data-fixed={o.fixed ? '1' : undefined} /><span><b>{o.t}</b><small>{o.s}</small></span></label>
+              ))}
+            </div>
+          </fieldset>
 
-          <div class="pair">
-            <div class="field"><label for="f-when">When do you need it?</label><select id="f-when" name="timeline">{timelines.map((n) => <option>{n}</option>)}</select></div>
-            <div class="field"><label for="f-budget">Budget <span class="opt">(optional)</span></label><select id="f-budget" name="budget">{budgets.map((n) => <option>{n}</option>)}</select></div>
-          </div>
+          <fieldset class="g-step" data-step="site" data-for="business" data-optional>
+            <legend class="g-q">Which website is it? <span class="opt">(optional)</span></legend>
+            <div class="field"><label class="sr-only" for="f-site">Website address</label><input id="f-site" name="site" type="url" inputmode="url" placeholder="https://yoursite.com" maxlength="200" /></div>
+          </fieldset>
 
-          <div class="field">
-            <label for="f-msg" data-msg-label>What is going on with the site?</label>
-            <textarea id="f-msg" name="message" rows="5" maxlength="2000" required></textarea>
-            <span class="err" hidden></span>
+          <fieldset class="g-step" data-step="agency" data-for="agency" data-optional>
+            <legend class="g-q">What's the agency called? <span class="opt">(optional)</span></legend>
+            <div class="field"><label class="sr-only" for="f-agency">Agency name</label><input id="f-agency" name="agency" autocomplete="organization" maxlength="100" placeholder="Agency name" /></div>
+          </fieldset>
+
+          <fieldset class="g-step" data-step="timeline">
+            <legend class="g-q">When do you need it?</legend>
+            <div class="g-opts chips">
+              {timelines.map((t) => <label class="g-opt"><input type="radio" name="timeline" value={t} /><span><b>{t}</b></span></label>)}
+            </div>
+          </fieldset>
+
+          <fieldset class="g-step" data-step="budget" data-optional>
+            <legend class="g-q">Roughly what budget do you have in mind? <span class="opt">(optional)</span></legend>
+            <div class="g-opts chips">
+              {budgets.map((t) => <label class="g-opt"><input type="radio" name="budget" value={t} /><span><b>{t}</b></span></label>)}
+            </div>
+          </fieldset>
+
+          <fieldset class="g-step" data-step="message">
+            <legend class="g-q" data-msg-q>What is going on with the site?</legend>
+            <div class="field">
+              <label class="sr-only" for="f-msg">Your message</label>
+              <textarea id="f-msg" name="message" rows="5" maxlength="2000" required placeholder="A sentence or two is enough."></textarea>
+              <span class="err" hidden></span>
+            </div>
+          </fieldset>
+
+          <fieldset class="g-step" data-step="you">
+            <legend class="g-q">Last thing: where should I reply?</legend>
+            <div class="pair">
+              <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" maxlength="60" required /><span class="err" hidden></span></div>
+              <div class="field"><label for="f-email">Work email</label><input id="f-email" name="contact" type="email" autocomplete="email" maxlength="120" required /><span class="err" hidden></span></div>
+            </div>
+          </fieldset>
+
+          <div class="g-step g-review" data-step="review" hidden>
+            <p class="g-q">Here is what I'll receive. Look right?</p>
+            <dl class="g-summary" data-summary></dl>
           </div>
 
           <div class="trap" aria-hidden="true"><label for="f-company">Leave this empty</label><input id="f-company" name="company" tabindex="-1" autocomplete="off" /></div>
 
-          <div class="form-foot">
-            <button class="btn" type="submit">Send message</button>
-            <span>Only name, email and message are required.</span>
+          <div class="g-nav">
+            <button class="btn btn-ghost btn-small" type="button" data-back hidden>Back</button>
+            <button class="btn btn-ghost btn-small" type="button" data-skip hidden>Skip</button>
+            <button class="btn" type="button" data-next hidden>Continue</button>
+            <button class="btn" type="submit" data-send>Send message</button>
           </div>
         </form>
       </div>

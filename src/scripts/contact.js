@@ -1,41 +1,111 @@
-// Contact form: business or agency inquiry, posted as JSON to /lead.php, which emails it to Sakib.
-// Success is shown only when the server says the email was sent. If sending fails (no PHP on the dev server, or no
-// SMTP password on the host yet) the visitor gets the same message ready to send by email or WhatsApp instead.
+// Contact page guide: one question at a time, with the answers so far shown above as a short chat log. Picking an
+// option moves on by itself; typed answers move on with Continue. A plan or service picked elsewhere on the site
+// arrives in the URL and is answered for the visitor. The lead is posted as JSON to /lead.php (types "business" and
+// "agency"), and success is shown only when the server says the email went out. If sending fails, the same message
+// is offered ready to send by email or WhatsApp.
 import { gibberish, sensible } from './validate.js';
 
 const form = document.querySelector('[data-contact]');
 if (form) {
-  const done = document.querySelector('[data-done]');
-  const alertBox = form.querySelector('[data-alert]');
-  const msgLabel = form.querySelector('[data-msg-label]');
   const f = form.elements;
+  const $ = (s) => form.querySelector(s);
+  const done = document.querySelector('[data-done]');
+  const alertBox = $('[data-alert]'), log = $('[data-log]'), bar = $('[data-bar]'), countLabel = $('[data-count-label]');
+  const back = $('[data-back]'), skip = $('[data-skip]'), next = $('[data-next]'), send = $('[data-send]');
+  const steps = Object.fromEntries([...form.querySelectorAll('[data-step]')].map((el) => [el.dataset.step, el]));
   const started = Date.now();
-  const params = new URLSearchParams(location.search);
   const isEmail = (v) => /^[^\s@]+@[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,24}$/i.test(v);
+  const radio = (name) => form.querySelector(`input[name="${name}"]:checked`);
+  const type = () => radio('type')?.value;
+  const service = () => radio(type() === 'agency' ? 'work' : 'need');
 
-  // The fields that only one audience needs are shown for that audience.
-  const setType = (type) => {
-    form.querySelectorAll('[data-for]').forEach((el) => { el.hidden = el.dataset.for !== type; });
-    msgLabel.textContent = type === 'agency' ? 'Tell me about the project and the date' : 'What is going on with the site?';
+  form.classList.add('is-guided');
+
+  // Questions in order for the current audience. The budget question is dropped when the price is already known.
+  const order = () => {
+    const t = type();
+    if (!t) return ['type'];
+    const s = t === 'agency' ? ['type', 'work', 'agency'] : ['type', 'need', 'site'];
+    s.push('timeline');
+    if (!service()?.dataset.fixed) s.push('budget');
+    s.push('message', 'you', 'review');
+    return s;
   };
-  form.addEventListener('change', (e) => { if (e.target.name === 'type') setType(e.target.value); });
-  if (params.get('type') === 'agency') form.querySelector('input[value=agency]').checked = true;
-  const needs = { maintenance: 'Monthly maintenance', broken: 'Something is broken', speed: 'My site is slow', build: 'A new build or relaunch' };
-  if (needs[params.get('need')]) f.need.value = needs[params.get('need')];
-  // A plan picked on a pricing table starts the message for the visitor.
-  const plans = {
-    care: ['Monthly maintenance', 'I would like to start the Care plan ($149 a month) for my site: '],
-    'care-plus': ['Monthly maintenance', 'I would like to start the Care + development plan ($299 a month) for my site: '],
-    site: [null, 'We have a design to build in WordPress. Pages and date: '],
-    hourly: [null, 'We would like to book hourly help ($35 an hour) for: '],
-    block: [null, 'We would like a quote for a monthly block of hours, about this many hours a month: '],
+
+  // What each answered question shows in the log.
+  const answer = (step) => {
+    switch (step) {
+      case 'type': return radio('type')?.parentElement.querySelector('b').textContent;
+      case 'need': case 'work': return radio(step)?.parentElement.querySelector('b').textContent + ' · ' + radio(step)?.parentElement.querySelector('small').textContent;
+      case 'site': return f.site.value.trim() || 'Skipped';
+      case 'agency': return f.agency.value.trim() || 'Skipped';
+      case 'timeline': case 'budget': return radio(step)?.value || 'Skipped';
+      case 'message': return f.message.value.trim();
+      case 'you': return `${f.name.value.trim()} · ${f.contact.value.trim()}`;
+    }
+    return '';
   };
-  const plan = plans[params.get('plan')];
-  if (plan) {
-    if (plan[0]) f.need.value = plan[0];
-    f.message.value = plan[1];
-  }
-  setType(f.type.value);
+
+  // The message question and its starter text follow the chosen service.
+  const starters = {
+    care: 'I would like to start the Care plan for my site.',
+    'care-plus': 'I would like to start the Care + development plan for my site.',
+    speed: 'My site is slow, especially on phones. ',
+    broken: 'Something on my site is broken: ',
+    build: 'I need a site built. What it is for: ',
+    site: 'We have a design to build in WordPress. Pages and date: ',
+    hourly: 'We would like hourly help with: ',
+    block: 'We would like a monthly block of about this many hours: ',
+    fixes: 'A client site needs fixing. What is happening: ',
+  };
+  let starter = '';
+  const syncMessage = () => {
+    const key = service()?.dataset.key;
+    $('[data-msg-q]').textContent = type() === 'agency' ? 'Tell me about the project and the date.' : key === 'build' ? 'What should the new site do?' : key === 'care' || key === 'care-plus' ? 'Anything I should know about the site?' : 'What is going on with the site?';
+    const s = starters[key] || '';
+    if (!f.message.value.trim() || f.message.value === starter) f.message.value = s;
+    starter = s;
+  };
+
+  let at = 0;
+  const show = (i, focus = true) => {
+    const seq = order();
+    at = Math.max(0, Math.min(i, seq.length - 1));
+    const name = seq[at];
+    Object.entries(steps).forEach(([k, el]) => { el.hidden = k !== name; el.classList.toggle('on', k === name); });
+    if (name === 'message') syncMessage();
+    if (name === 'review') summary();
+
+    // The log: every earlier answer, each with a way back to change it.
+    log.innerHTML = '';
+    if (name !== 'review') seq.slice(0, at).forEach((k, j) => {
+      const li = document.createElement('li');
+      const q = document.createElement('span'); q.className = 'g-lq'; q.textContent = steps[k].querySelector('.g-q').firstChild.textContent.trim();
+      const a = document.createElement('span'); a.className = 'g-la'; a.textContent = answer(k);
+      const edit = document.createElement('button'); edit.type = 'button'; edit.className = 'g-edit'; edit.textContent = 'Change';
+      edit.setAttribute('aria-label', 'Change answer: ' + q.textContent);
+      edit.addEventListener('click', () => show(j));
+      li.append(q, a, edit);
+      log.append(li);
+    });
+
+    const typed = ['site', 'agency', 'message', 'you'].includes(name);
+    const optional = steps[name].hasAttribute('data-optional');
+    back.hidden = at === 0;
+    skip.hidden = !optional || (typed ? false : !!radio(name));
+    next.hidden = !(typed || (name === 'timeline' && radio('timeline')) || (name === 'budget' && radio('budget')) || (['type', 'need', 'work'].includes(name) && radio(name)));
+    send.hidden = name !== 'review';
+    countLabel.textContent = name === 'review' ? 'Ready to send' : seq.length > 1 ? `Question ${at + 1} of ${seq.length - 1}` : 'About a minute';
+    bar.style.transform = `scaleX(${seq.length > 1 ? (at + (name === 'review' ? 1 : 0)) / (seq.length - 1) : 0})`;
+    alertBox.hidden = true;
+
+    if (focus) {
+      const target = steps[name].querySelector('input:not([type=radio]), textarea') || radio(name) || steps[name].querySelector('input');
+      (target || steps[name]).focus({ preventScroll: true });
+      const top = form.getBoundingClientRect().top;
+      if (top < 80 || top > innerHeight * 0.5) form.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    }
+  };
 
   const flag = (input, message) => {
     const err = input.parentElement.querySelector('.err');
@@ -43,24 +113,69 @@ if (form) {
     if (err) { err.textContent = message; err.hidden = !message; if (message) input.setAttribute('aria-describedby', (err.id ||= input.id + '-err')); }
     return !message;
   };
-  const check = () => {
-    const name = f.name.value.trim(), email = f.contact.value.trim(), msg = f.message.value.trim();
-    const results = [
-      flag(f.name, name.length < 2 || gibberish(name) ? 'Add the name I should use.' : ''),
-      flag(f.contact, isEmail(email) ? '' : 'Enter an email like name@company.com'),
-      flag(f.message, msg.length < 10 || gibberish(msg) || !sensible(msg) ? 'Add a sentence or two so I know where to start.' : ''),
-    ];
-    return results.every(Boolean);
+  const valid = (name) => {
+    if (name === 'message') {
+      const msg = f.message.value.trim();
+      return flag(f.message, msg.length < 10 || gibberish(msg) || !sensible(msg) ? 'Add a sentence or two so I know where to start.' : '');
+    }
+    if (name === 'you') {
+      const a = flag(f.name, f.name.value.trim().length < 2 || gibberish(f.name.value.trim()) ? 'Add the name I should use.' : '');
+      const b = flag(f.contact, isEmail(f.contact.value.trim()) ? '' : 'Enter an email like name@company.com');
+      return a && b;
+    }
+    if (name === 'site' && f.site.value.trim() && !/^(https?:\/\/)?[^\s.]+\.[^\s]{2,}$/i.test(f.site.value.trim())) {
+      alertBox.textContent = 'That does not look like a web address. Fix it or skip this question.';
+      alertBox.hidden = false;
+      return false;
+    }
+    return true;
+  };
+  const forward = () => {
+    const name = order()[at];
+    if (!valid(name)) { form.querySelector('[aria-invalid=true]')?.focus(); return; }
+    show(at + 1);
   };
 
+  // Picking an option answers the question and moves on after a short beat, so the choice is seen.
+  form.addEventListener('change', (e) => {
+    const t = e.target;
+    if (t.type !== 'radio') return;
+    if (t.name === 'type') { form.querySelectorAll('input[name=need], input[name=work]').forEach((r) => { r.checked = false; }); }
+    setTimeout(() => show(at + 1), 260);
+  });
+  next.addEventListener('click', forward);
+  back.addEventListener('click', () => show(at - 1));
+  skip.addEventListener('click', () => {
+    const name = order()[at];
+    if (name === 'site') f.site.value = '';
+    if (name === 'agency') f.agency.value = '';
+    if (name === 'budget' && radio('budget')) radio('budget').checked = false;
+    show(at + 1);
+  });
+  // Enter in a one-line answer means Continue (the message box keeps Enter for new lines).
+  form.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && e.target.tagName === 'INPUT' && e.target.type !== 'radio') { e.preventDefault(); forward(); }
+  });
+
   const data = () => {
-    const type = f.type.value;
-    const d = { type, name: f.name.value.trim(), contact: f.contact.value.trim(), timeline: f.timeline.value, budget: f.budget.value, message: f.message.value.trim() };
-    if (type === 'agency') Object.assign(d, { agency: f.agency.value.trim(), work: f.work.value });
-    else Object.assign(d, { site: f.site.value.trim(), need: f.need.value });
+    const d = { type: type(), name: f.name.value.trim(), contact: f.contact.value.trim(), timeline: radio('timeline')?.value || '', budget: radio('budget')?.value || '', message: f.message.value.trim() };
+    if (d.type === 'agency') Object.assign(d, { agency: f.agency.value.trim(), work: radio('work')?.value || '' });
+    else Object.assign(d, { site: f.site.value.trim(), need: radio('need')?.value || '' });
     return d;
   };
-  const plain = (d) => Object.entries(d).filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`).join('\n');
+  const labels = { type: 'Writing as', need: 'Needs', work: 'Work', site: 'Website', agency: 'Agency', timeline: 'Timeline', budget: 'Budget', message: 'Message', name: 'Name', contact: 'Email' };
+  const summary = () => {
+    const d = data();
+    const box = $('[data-summary]');
+    box.innerHTML = '';
+    ['type', 'need', 'work', 'site', 'agency', 'timeline', 'budget', 'message', 'name', 'contact'].filter((k) => d[k]).map((k) => [k, d[k]]).forEach(([k, v]) => {
+      const row = document.createElement('div');
+      const dt = document.createElement('dt'); dt.textContent = labels[k] || k;
+      const dd = document.createElement('dd'); dd.textContent = k === 'type' ? (v === 'agency' ? 'An agency' : 'A business') : v;
+      row.append(dt, dd); box.append(row);
+    });
+  };
+  const plain = (d) => Object.entries(d).filter(([, v]) => v).map(([k, v]) => `${labels[k] || k}: ${v}`).join('\n');
 
   const fallback = (d) => {
     const text = 'Hi Sakib,\n\n' + plain(d);
@@ -79,15 +194,8 @@ if (form) {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    alertBox.hidden = true;
-    if (!check()) {
-      alertBox.textContent = 'A couple of things need fixing before this can send.';
-      alertBox.hidden = false;
-      form.querySelector('[aria-invalid=true]')?.focus();
-      return;
-    }
-    const button = form.querySelector('button[type=submit]');
-    button.disabled = true; button.textContent = 'Sending…';
+    if (order()[at] !== 'review') { forward(); return; }
+    send.disabled = true; send.textContent = 'Sending…';
     const d = data();
     try {
       const r = await fetch('/lead.php', {
@@ -103,7 +211,19 @@ if (form) {
     } catch (err) {
       fallback(d);
     } finally {
-      button.disabled = false; button.textContent = 'Send message';
+      send.disabled = false; send.textContent = 'Send message';
     }
   });
+
+  // Answers that arrive with the link: who is writing, and the plan or service they picked.
+  const params = new URLSearchParams(location.search);
+  const aliases = { maintenance: 'care' };
+  const wanted = aliases[params.get('plan') || params.get('need')] || params.get('plan') || params.get('need');
+  const t = params.get('type') === 'agency' ? 'agency' : wanted ? 'business' : null;
+  if (t) form.querySelector(`input[name=type][value=${t}]`).checked = true;
+  const pick = wanted && form.querySelector(`input[name=${t === 'agency' ? 'work' : 'need'}][data-key="${CSS.escape(wanted)}"]`);
+  if (pick) pick.checked = true;
+  // Start on the first question that still needs an answer.
+  const seq = order();
+  show(Math.max(0, seq.findIndex((k) => (k === 'type' ? !type() : k === 'need' || k === 'work' ? !service() : true))), false);
 }

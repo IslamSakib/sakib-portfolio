@@ -8,15 +8,21 @@ import '../styles/global.css';
 import '../styles/motion.css';
 import '../styles/pages.css';
 import { site } from '../site.js';
+import { prices, usd } from '../prices.js';
 import { socials } from '../socials.js';
-import { services } from '../services.js';
 
 const { title, description, jsonld = [], ogImage = '/og.png', ogAlt = `${site.name}, ${site.role}`, focus } = Astro.props;
 // Share images are cached for a long time by LinkedIn and others: raise `v` whenever scripts/og.mjs output changes.
 const ogUrl = `${new URL(ogImage, Astro.site)}?v=2`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-// Services menu: the maintenance page has its own layout, so it is listed here rather than in services.js.
-const menu = [{ slug: 'wordpress-maintenance', name: 'Maintenance and fixes', short: 'Care plans from $149 a month, or one problem fixed.' }, ...services];
+// The services menu names the job in the visitor's words, not the page's search keyword.
+const menu = [
+  { slug: 'wordpress-speed-optimization', name: 'Fix a slow or broken site', short: 'Found at the cause, measured before and after.' },
+  { slug: 'wordpress-maintenance', name: 'Look after my site monthly', short: `Care plans from ${usd(prices.care)} a month: updates, backups, monitoring.` },
+  { slug: 'wordpress-development', name: 'Build a new WordPress site', short: 'Theme, plugins, WooCommerce and payments.' },
+  { slug: 'custom-web-development', name: 'Build a custom web app', short: 'Dashboards and SaaS products, when WordPress is the wrong tool.' },
+  { slug: 'white-label-wordpress-development', name: 'White-label work for agencies', short: 'Your design built in WordPress, under your name.' },
+];
 ---
 <!doctype html>
 <html lang="en" data-focus={focus}>
@@ -71,7 +77,7 @@ const menu = [{ slug: 'wordpress-maintenance', name: 'Maintenance and fixes', sh
             </div>
           </div>
           <a href="/white-label-wordpress-development/">For agencies</a>
-          <a href="/#work">Work</a>
+          <a href="/#work">Client work</a>
           <a href="/#about">About</a>
           <a href="/blog/">Blog</a>
           <a class="btn btn-small" href="/contact/">Get a free site check</a>
@@ -79,15 +85,15 @@ const menu = [{ slug: 'wordpress-maintenance', name: 'Maintenance and fixes', sh
             <summary aria-label="Menu"><span class="mnav-open">Menu</span><span class="mnav-close">Close</span><i aria-hidden="true"></i></summary>
             <div class="mnav-panel">
               <div class="mnav-main">
-                {[['For agencies', '/white-label-wordpress-development/'], ['Work', '/#work'], ['About', '/#about'], ['Blog', '/blog/'], ['Contact', '/contact/']].map(([label, href], i) => (
+                {[['For agencies', '/white-label-wordpress-development/'], ['Client work', '/#work'], ['About', '/#about'], ['Blog', '/blog/'], ['Contact', '/contact/']].map(([label, href], i) => (
                   <a href={href} style={`--i:${i}`}>{label}</a>
                 ))}
               </div>
-              <p class="mnav-label" style="--i:5">Services</p>
+              <p class="mnav-label" style="--i:5">How I can help</p>
               <div class="mnav-svc">
                 {menu.map((sv, i) => <a href={`/${sv.slug}/`} style={`--i:${i + 6}`}><span>{String(i + 1).padStart(2, '0')}</span>{sv.name}</a>)}
               </div>
-              <div class="mnav-foot" style="--i:10">
+              <div class="mnav-foot" style="--i:11">
                 <a class="btn" href="/contact/">Get a free site check</a>
                 <p><a href={`mailto:${site.email}`}>{site.email}</a><a href={site.whatsapp} target="_blank" rel="noopener">WhatsApp +880 1950 025990</a></p>
               </div>
@@ -237,8 +243,8 @@ const menu = [{ slug: 'wordpress-maintenance', name: 'Maintenance and fixes', sh
         const skip = '.site-header, .chat, .marquee, .clients, .byline, .author, .toc, .rail, footer';
         const tag = (sel, cls) => document.querySelectorAll(sel).forEach((el) => { if (!el.closest(skip) && below(el)) el.classList.add(cls); });
         document.querySelectorAll('main h2:not(.sr-only)').forEach((h) => { if (!h.children.length && !h.closest(skip) && below(h)) { split(h); h.classList.add('rvl-h'); } });
-        tag('main picture:not(:has(img.tile-img))', 'rvl-img');
-        tag('[data-reveal], main .tile, main .svc-rows > li, main .post-card, main .kit > li, main .steps > li, main .agency-copy > :not(h2), main .agency-side > *, main .mosaic > a, main .lead, main .section-head > p, main .row-head > a, main .faq details, main .plans, main .timeline > li, main .trust li, main .cap-grid > *, main .rv-item, main .about-copy > :not(h2), main .proof > div', 'rvl');
+        tag('main picture:not(:has(img.tile-img)):not(.ss-frame picture)', 'rvl-img');
+        tag('[data-reveal], main .tile, main .ss-list > li, main .post-card, main .kit > li, main .steps > li, main .agency-copy > :not(h2), main .agency-side > *, main .mosaic > a, main .lead, main .section-head > p, main .row-head > a, main .faq details, main .plans, main .timeline > li, main .trust li, main .cap-grid > *, main .rv-item, main .about-copy > :not(h2), main .proof > div', 'rvl');
         // Siblings that reveal together get a stagger, unless the markup already sets one.
         document.querySelectorAll('.rvl, .rvl-img').forEach((el) => {
           if (el.style.getPropertyValue('--d')) return;

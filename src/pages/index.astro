@@ -6,10 +6,10 @@ import PostImage from '../components/PostImage.astro';
 import PriceCards from '../components/PriceCards.astro';
 import photo from '../assets/sakib-islam.jpg';
 import appShot from '../assets/work/extra/wrkbase-1.jpg';
-import speedPhoto from '../assets/photos/mobile-app-in-hand.jpg';
-import fixPhoto from '../assets/photos/code-on-laptop.jpg';
-import carePhoto from '../assets/photos/dashboard-on-laptop.jpg';
-import buildPhoto from '../assets/photos/shopping-on-store-website.jpg';
+import speedPhoto from '../assets/photos/phone-performance-chart-dark.jpg';
+import fixPhoto from '../assets/photos/hands-keyboard-dark.jpg';
+import carePhoto from '../assets/photos/developer-laptop-night.jpg';
+import buildPhoto from '../assets/photos/phone-shopping-dark.jpg';
 import { site } from '../site.js';
 import { services } from '../services.js';
 import { work } from '../work.js';
@@ -77,6 +77,12 @@ const jsonld = [
   },
   { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: Astro.site },
 ];
+const svc = [
+        { img: speedPhoto, alt: 'A phone showing a performance chart on a dark red desk', label: 'Speed', t: 'A site that loads fast, so visitors stay.', d: 'I find what really slows your site, fix it once, and show you the before and after on mobile, so you can check the result yourself.', proof: 'Tabby: Core Web Vitals above 90 at launch', href: '/wordpress-speed-optimization/', price: `from ${usd(prices.speed)}` },
+        { img: fixPhoto, alt: 'Hands typing on a keyboard in a dark room', label: 'Fixes', t: 'Problems fixed for good, not patched.', d: 'When something breaks, I trace it to the cause and write down what I changed, so the same problem does not come back next month.', proof: 'TubeOnAI: repeated downtime stopped', href: '/wordpress-maintenance/#fix', price: `from ${usd(prices.fix)}` },
+        { img: carePhoto, alt: 'A developer working on a laptop late at night', label: 'Care plans', t: 'No more worrying about updates or hacks.', d: 'Tested updates, daily off-site backups and monitoring every month, from one developer who already knows your site. You get a plain-English report.', proof: 'Tabby: built, then still maintained by me', href: '/wordpress-maintenance/', price: `${usd(prices.care)}/mo` },
+        { img: buildPhoto, alt: 'A hand holding a phone with a shopping app in a dark room', label: 'Builds', t: 'A site that sells and is easy to run.', d: 'Your theme, store, payments and integrations built as one job: fast on phones, simple for your team to edit, and safe to update.', proof: 'Moneybag: a custom payment plugin for WooCommerce', href: '/wordpress-development/', price: `from ${usd(prices.build)}` },
+      ];
 ---
 <Base title={title} description={description} jsonld={jsonld} focus={focus}>
   <section class="h-hero wrap">
@@ -126,33 +132,58 @@ const jsonld = [
   <section id="services" class="wrap sec-pad">
     <div class="row-head">
       <div style="display: grid; gap: 0.9rem">
-        <p class="label">What I do</p>
-        <h2>Four ways I help a WordPress site.</h2>
+        <p class="label">What I do for you</p>
+        <h2>What you get from working with me.</h2>
       </div>
       <a href="/white-label-wordpress-development/">Agency? See white-label →</a>
     </div>
-    <ol class="svc-rows">
-      {[
-        { img: speedPhoto, alt: 'A phone showing a fast mobile app screen', label: 'Speed', t: 'Speed fixed at the cause.', d: 'Slow pages traced to the real cause, then measured before and after on mobile.', proof: 'Tabby: Core Web Vitals above 90 at launch', href: '/wordpress-speed-optimization/', price: `from ${usd(prices.speed)}` },
-        { img: fixPhoto, alt: 'Code open on a laptop on a desk', label: 'Fixes', t: 'Sites that keep breaking, fixed once.', d: 'White screens, broken forms and plugin conflicts, with the cause written down.', proof: 'Two cache plugins out, one caching layer in', href: '/wordpress-maintenance/#fix', price: `from ${usd(prices.fix)}` },
-        { img: carePhoto, alt: 'A website dashboard with charts on a laptop', label: 'Care plans', t: 'One developer who knows your site.', d: 'Tested updates, daily off-site backups, monitoring and a plain-English report.', proof: 'Updates, backups, security, and a report every month', href: '/wordpress-maintenance/', price: `${usd(prices.care)}/mo` },
-        { img: buildPhoto, alt: 'Someone shopping on an online store on a laptop', label: 'Builds', t: 'Custom WordPress and WooCommerce.', d: 'The theme, the plugins, the payments and the integrations, down to the gateway.', proof: 'Moneybag: a custom payment plugin for WooCommerce', href: '/wordpress-development/', price: `from ${usd(prices.build)}` },
-      ].map((r, i) => (
-        <li>
-          <a href={r.href}>
-            <span class="sr-idx">0{i + 1}</span>
-            <div class="sr-copy">
-              <p class="label">{r.label} · {r.price}</p>
-              <h3>{r.t}</h3>
+    <div class="ss" data-ss>
+      <ol class="ss-list">
+        {svc.map((r, i) => (
+          <li>
+            <a class:list={['ss-item', { on: i === 0 }]} href={r.href} data-i={i}>
+              <span class="ss-idx">0{i + 1}</span>
+              <span class="ss-t">{r.t}<span class="sr-only"> {r.d} {r.proof}.</span></span>
+              <span class="ss-price">{r.label} · {r.price}</span>
+              <span class="ss-go" aria-hidden="true">→</span>
+            </a>
+            <div class="ss-m" aria-hidden="true">
+              <Picture src={r.img} formats={['avif', 'webp']} widths={[480, 800]} sizes="100vw" alt="" loading="lazy" />
               <p class="mut">{r.d}</p>
               <p class="tile-note">{r.proof}</p>
             </div>
-            <Picture class="sr-img" src={r.img} formats={['avif', 'webp']} widths={[480, 720, 960]} sizes="(max-width: 900px) 100vw, 440px" loading="lazy" alt={r.alt} />
-          </a>
-        </li>
-      ))}
-    </ol>
+          </li>
+        ))}
+      </ol>
+      <div class="ss-stage" aria-hidden="true">
+        <div class="ss-frame">
+          {svc.map((r, i) => <Picture class:list={['ss-img', { on: i === 0 }]} data-i={i} src={r.img} formats={['avif', 'webp']} widths={[640, 960, 1280]} sizes="(max-width: 900px) 100vw, 620px" alt={r.alt} loading="lazy" />)}
+          <span class="ss-proof">{svc.map((r, i) => <b class:list={{ on: i === 0 }} data-i={i}>{r.proof}</b>)}</span>
+        </div>
+        <div class="ss-caps">
+          {svc.map((r, i) => (
+            <div class:list={['ss-cap', { on: i === 0 }]} data-i={i}>
+              <p class="label">{r.label} · {r.price}</p>
+              <p class="ss-d">{r.d}</p>
+              <span class="ss-link">See how it works →</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   </section>
+
+  <script>
+    // Service showcase: pointing at or focusing a service shows its picture and details on the stage.
+    const ss = document.querySelector('[data-ss]');
+    if (ss) {
+      const pick = (i) => ss.querySelectorAll('[data-i]').forEach((el) => el.classList.toggle('on', el.dataset.i === i));
+      ss.querySelectorAll('.ss-item').forEach((a) => {
+        a.addEventListener('pointerenter', () => pick(a.dataset.i));
+        a.addEventListener('focus', () => pick(a.dataset.i));
+      });
+    }
+  </script>
 
   <section id="work" class="wrap" style="padding: 0 0 var(--sec)">
     <div class="row-head">

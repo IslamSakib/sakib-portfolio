@@ -2,9 +2,9 @@
 // The picture for each service: its hero image, and the card image under "Other things I do".
 // Photos keep their own proportions (nothing is cropped). Decorative, so the alt text is empty; the page text carries the facts.
 import { Picture } from 'astro:assets';
-import development from '../assets/photos/website-design-on-laptop.jpg';
-import speed from '../assets/photos/analytics-on-laptop.jpg';
-import custom from '../assets/photos/dark-dashboard-on-laptop.jpg';
+import development from '../assets/photos/design-studio-monitor-dark.jpg';
+import speed from '../assets/photos/speed-dashboard-dark.jpg';
+import custom from '../assets/photos/teal-monitor-setup-dark.jpg';
 
 const { slug, eager = false } = Astro.props;
 const img = { 'wordpress-development': development, 'wordpress-speed-optimization': speed, 'custom-web-development': custom }[slug] || development;
