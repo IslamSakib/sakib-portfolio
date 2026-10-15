@@ -599,3 +599,12 @@ p, li, dd, figcaption { text-wrap: pretty; }
 .hero-bg { position: relative; isolation: isolate; }
 .dots-bleed { left: 50%; width: 100vw; transform: translateX(-50%); }
 .case-head.hero-bg .dots-bleed, .post-head.hero-bg .dots-bleed { top: -4rem; height: calc(100% + 4rem); }
+
+/* Tap targets: standalone text links and disclosure rows get at least a 44px tall hit area on touch screens,
+   without changing how they look. */
+@media (pointer: coarse) {
+  .crumbs a, .row-head > a, .related-all, .toc a, .more-link, footer nav a { display: inline-flex; align-items: center; min-height: 44px; }
+  .site-header nav > a:not(.btn), .site-header .has-menu > a { padding-block: 10px; }
+  .reel-list button { min-height: 44px; }
+  .qa summary { padding: 0.7rem 0; min-height: 44px; align-items: center; }
+}
