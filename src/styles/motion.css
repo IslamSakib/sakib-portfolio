@@ -64,15 +64,15 @@ a, button, summary, label, [role="tab"], a *, button *, summary * { cursor: poin
 @keyframes slide-rev { to { transform: translateX(calc(-50% - 0.625rem)); } }
 
 /* Reveal system: one easing (--ease) and one rhythm for the whole site. Only opacity, transform and clip-path move,
-   so nothing changes size and nothing around it shifts. The script tags elements below the fold (.rv, .rv-img, .sw)
+   so nothing changes size and nothing around it shifts. The script tags elements below the fold (.rvl, .rvl-img, .sw)
    and adds .in when they scroll into view; siblings get a stagger through --d. Without the script nothing is hidden. */
-.js .rv { opacity: 0; transform: translateY(32px); transition: opacity 0.9s var(--ease), transform 1.2s var(--ease); transition-delay: var(--d, 0s); }
-.js .rv.in { opacity: 1; transform: none; }
+.js .rvl { opacity: 0; transform: translateY(32px); transition: opacity 0.9s var(--ease), transform 1.2s var(--ease); transition-delay: var(--d, 0s); }
+.js .rvl.in { opacity: 1; transform: none; }
 /* Images open like a curtain from the bottom while settling from a slight zoom */
-.js .rv-img { display: block; clip-path: inset(100% 0 0 0); transition: clip-path 1.3s var(--ease); transition-delay: var(--d, 0s); }
-.js .rv-img img { transform: scale(1.14); transition: transform 1.8s var(--ease); transition-delay: var(--d, 0s); }
-.js .rv-img.in { clip-path: inset(0 0 0 0); }
-.js .rv-img.in img { transform: none; }
+.js .rvl-img { display: block; clip-path: inset(100% 0 0 0); transition: clip-path 1.3s var(--ease); transition-delay: var(--d, 0s); }
+.js .rvl-img img { transform: scale(1.14); transition: transform 1.8s var(--ease); transition-delay: var(--d, 0s); }
+.js .rvl-img.in { clip-path: inset(0 0 0 0); }
+.js .rvl-img.in img { transform: none; }
 /* Section headings: each word rises out of a mask, one after another */
 .sw { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; }
 .sw > span { display: inline-block; transform: translateY(110%); transition: transform 1.1s var(--ease); transition-delay: calc(var(--i) * 60ms); }

@@ -60,7 +60,6 @@ const jsonld = [
       <Image src={photo} width={88} height={88} alt="" />
       <span>{site.name} · WordPress developer<br /><time datetime={p.date}>{longDate(p.date)}</time> · {p.minutes} min read</span>
     </div>
-    <PostActions url={url.href} title={p.title} />
   </header>
 
   <div class="wrap post-cover"><PostImage post={p} sizes="(max-width: 1280px) 100vw, 1240px" eager /></div>
@@ -95,17 +94,21 @@ const jsonld = [
           </ol>
         </aside>
       )}
+      <div class="post-actions-m"><PostActions url={url.href} title={p.title} /></div>
       <div class="author">
         <Image src={photo} width={112} height={112} alt="" />
         <p>Written by {site.name}, a WordPress developer who builds and looks after sites for businesses and agencies. <a href="/#about">About my work</a></p>
       </div>
     </article>
     <aside class="rail">
+      <div class="rail-stick">
       <div class="side-card">
         <p class="label">{card.label}</p>
         <b>{card.price}<small class="mut" style="font-size: 1rem">{card.unit}</small></b>
         <p class="mut" style="font-size: 0.9375rem">{card.text}</p>
         <a class="btn" href={card.href}>{card.cta}</a>
+      </div>
+      <PostActions url={url.href} title={p.title} />
       </div>
     </aside>
   </div>

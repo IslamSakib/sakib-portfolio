@@ -3,6 +3,7 @@
 import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Connect from '../components/Connect.astro';
+import PriceCards from '../components/PriceCards.astro';
 import { site } from '../site.js';
 import { work } from '../work.js';
 import { prices, usd } from '../prices.js';
@@ -22,14 +23,21 @@ const weeks = [
   { t: 'Report', d: 'Plain English', p: 'M6 3h9l4 4v14H6zM9 12h7M9 16h5' },
 ];
 // [label, Care, Care + development]
-const rows = [
-  ['Updates, tested first', true, true],
-  ['Daily off-site backups', true, true],
-  ['Uptime and security monitoring', true, true],
-  ['Monthly report', true, true],
-  ['Changes and fixes', '1 h', '3 h'],
-  ['Monthly mobile speed check', false, true],
-  ['Urgent reply within 24 h', true, true],
+const plans = [
+  {
+    name: 'Care', for: 'For a business site that needs to stay safe, current and online.',
+    price: usd(prices.care), unit: '/mo', billing: 'Billed monthly · cancel any month',
+    outcome: 'Your site updated, backed up and watched every month, by one developer who knows it.',
+    items: ['WordPress, theme and plugin updates, tested before they go live', 'Daily backups kept off the server', 'Uptime and security monitoring', 'Monthly report in plain English', '1 hour of changes and fixes a month', 'Urgent reply within 24 hours', { t: 'Monthly mobile speed check', ok: false }],
+    cta: 'Start Care', href: '/contact/?plan=care', note: 'You keep every login',
+  },
+  {
+    name: 'Care + development', for: 'For sites that change often and need a developer on hand.', featured: true, badge: 'More hands-on',
+    price: usd(prices.carePlus), unit: '/mo', billing: 'Billed monthly · cancel any month',
+    outcome: 'Everything in Care, plus three hours a month for changes and a monthly speed check.',
+    items: ['WordPress, theme and plugin updates, tested before they go live', 'Daily backups kept off the server', 'Uptime and security monitoring', 'Monthly report in plain English', '3 hours of changes and fixes a month', 'Urgent reply within 24 hours', 'Monthly mobile speed check'],
+    cta: 'Start Care + development', href: '/contact/?plan=care-plus', note: 'You keep every login',
+  },
 ];
 const faq = [
   { q: 'What do WordPress maintenance services include?', a: 'Updates to WordPress, the theme and plugins, tested before they go live; daily backups kept off the server; uptime and security monitoring; and time for small changes. You also get a monthly report written for a non-technical reader.' },
@@ -116,34 +124,7 @@ const jsonld = [
 
   <section class="wrap sec-pad" style="padding-bottom: calc(var(--sec) * 0.6)">
     <div class="row-head"><h2>Two plans. Cancel any month.</h2></div>
-    <div class="scroll-x">
-      <table class="plans">
-        <thead>
-          <tr>
-            <th scope="col" style="width: 46%"><span class="sr-only">What is included</span></th>
-            <th scope="col"><span class="nm">Care</span><span class="price">{usd(prices.care)}<small>/mo</small></span></th>
-            <th scope="col" class="hi"><span class="nm">Care + development</span><span class="price">{usd(prices.carePlus)}<small>/mo</small></span></th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map(([label, a, b]) => (
-            <tr>
-              <th scope="row">{label}</th>
-              {[a, b].map((v, k) => (
-                <td class:list={[{ hi: k === 1, yes: v === true }, 'mono']}>
-                  {v === true ? <><span aria-hidden="true">✓</span><span class="sr-only">Included</span></> : v === false ? <><span class="mut" aria-hidden="true">–</span><span class="sr-only">Not included</span></> : v}
-                </td>
-              ))}
-            </tr>
-          ))}
-          <tr>
-            <th scope="row"><span class="sr-only">Start</span></th>
-            <td><a class="btn btn-small" href="/contact/?plan=care">Start Care</a></td>
-            <td class="hi"><a class="btn btn-small" href="/contact/?plan=care-plus">Start Care + development</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <PriceCards plans={plans} />
     <p class="mut" style="margin-top: 1.1rem; font-size: 0.9375rem">Stores and high-traffic sites are quoted separately. You keep every login.</p>
   </section>
 

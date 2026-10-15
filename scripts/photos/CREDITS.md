@@ -28,7 +28,7 @@ Photos from Unsplash under the Unsplash License (free for commercial use, no att
 - developer-laptop-desk.jpg: https://unsplash.com/photos/vpOeXr5wmR4
 - analytics-report.jpg: https://unsplash.com/photos/shr_Xn8S8QU
 - two-people-reviewing-laptop.jpg: https://unsplash.com/photos/g1Kr4Ozfoac
-- shop-owner-with-tablet.jpg: https://unsplash.com/photos/PqZNF90tfyU
-- website-designs-on-monitor.jpg: https://unsplash.com/photos/pd-Hekt6naQ
 - agency-team-planning.jpg: https://unsplash.com/photos/Imk2h0pyOvo
 - business-owner-at-laptop.jpg: https://unsplash.com/photos/OfuwkI80iPY
+- restaurant-owner-with-menu.jpg: https://unsplash.com/photos/UaoPrOYIRfc
+- developer-at-window-laptop.jpg: https://unsplash.com/photos/E5llEM1xtWA

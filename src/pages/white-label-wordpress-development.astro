@@ -3,6 +3,7 @@
 import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Connect from '../components/Connect.astro';
+import PriceCards from '../components/PriceCards.astro';
 import { site } from '../site.js';
 import { work } from '../work.js';
 import { prices, usd } from '../prices.js';
@@ -35,6 +36,29 @@ const steps = [
   { t: 'Build', d: 'On a staging site, with updates in your channel.' },
   { t: 'Review', d: 'One feedback list and the agreed rounds.' },
   { t: 'Handoff', d: 'Notes on the theme, plugins and editing.' },
+];
+const plans = [
+  {
+    name: 'Per site', for: 'For a full site built from your Figma file.', featured: true, badge: 'Full builds',
+    price: usd(prices.agencySite), unit: ' from', billing: 'Fixed quote per site',
+    outcome: 'Your design built in WordPress and handed back under your brand.',
+    items: ['A custom theme, or Elementor when your client edits layouts', 'Up to five templates', 'A private staging site for your review', 'Tested on mobile, speed included, before you see it', 'Handoff notes for your team', 'NDA on request'],
+    cta: 'Send a design', href: '/contact/?type=agency&plan=site', note: 'Quote and date before work starts',
+  },
+  {
+    name: 'Hourly', for: 'For fixes, overflow and small tasks on client sites.',
+    price: usd(prices.agencyHour), unit: '/h', billing: 'Billed by the hour',
+    outcome: 'A senior WordPress developer when your team is full.',
+    items: ['Fixes on client sites: conflicts, downtime, failed updates', 'Page builds and changes', 'Updates in your Slack', 'Never contacts your client', 'Start with one small paid task'],
+    cta: 'Book hours', href: '/contact/?type=agency&plan=hourly', note: 'Written quote before work starts',
+  },
+  {
+    name: 'Monthly block', for: 'For agencies with steady WordPress work every month.',
+    price: 'Quoted', billing: 'Agreed hours each month',
+    outcome: 'The same developer, with hours kept free for your projects.',
+    items: ['Hours reserved for you each month', 'The same developer every time', 'Care plans you can resell under your brand', 'Overlaps US and UK hours', 'Reply within 24 hours'],
+    cta: 'Ask for a quote', href: '/contact/?type=agency&plan=block', note: 'Written quote before work starts',
+  },
 ];
 const faq = [
   { q: 'Will you ever contact our client?', a: 'No. I work through you only, and nothing I hand over carries my name unless you want it to.' },
@@ -119,11 +143,7 @@ const jsonld = [
 
   <section class="wrap sec-pad">
     <div class="row-head"><h2>Three ways to work</h2></div>
-    <div class="models">
-      <div><p class="label">Per site</p><b>{usd(prices.agencySite)}</b><span class="mut">From. Up to five templates.</span><a class="btn btn-small" href="/contact/?type=agency&amp;plan=site">Send a design</a></div>
-      <div><p class="label">Hourly</p><b>{usd(prices.agencyHour)}<small>/h</small></b><span class="mut">Fixes and overflow.</span><a class="btn btn-small btn-ghost" href="/contact/?type=agency&amp;plan=hourly">Book hours</a></div>
-      <div><p class="label">Monthly block</p><b>Quoted</b><span class="mut">Hours reserved for you.</span><a class="btn btn-small btn-ghost" href="/contact/?type=agency&amp;plan=block">Ask for a quote</a></div>
-    </div>
+    <PriceCards plans={plans} />
     <p class="mut" style="margin-top: 1.4rem">Start with one small paid task. See how I work before committing.</p>
   </section>
 

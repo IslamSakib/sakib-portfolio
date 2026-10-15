@@ -3,10 +3,11 @@ import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Connect from '../components/Connect.astro';
 import PostImage from '../components/PostImage.astro';
+import PriceCards from '../components/PriceCards.astro';
 import photo from '../assets/sakib-islam.jpg';
 import appShot from '../assets/work/extra/wrkbase-1.jpg';
-import shopPhoto from '../assets/photos/shop-owner-with-tablet.jpg';
-import agencyPhoto from '../assets/photos/website-designs-on-monitor.jpg';
+import shopPhoto from '../assets/photos/restaurant-owner-with-menu.jpg';
+import agencyPhoto from '../assets/photos/developer-at-window-laptop.jpg';
 import speedPhoto from '../assets/photos/mobile-app-in-hand.jpg';
 import fixPhoto from '../assets/photos/code-on-laptop.jpg';
 import carePhoto from '../assets/photos/dashboard-on-laptop.jpg';
@@ -50,12 +51,11 @@ const experience = [
   { yr: '2024', role: 'WordPress developer', org: 'TubeOnAI, AI summaries', kind: 'Part-time' },
   { yr: '2023', role: 'WordPress developer', org: 'Oxford International School, Dhaka', kind: 'Full-time' },
 ];
-const strip = [
-  { price: usd(prices.care), unit: '/mo', label: 'Care plan', href: '/contact/?plan=care', cta: 'Start a plan' },
-  { price: usd(prices.fix), unit: '', label: 'Broken site fix', href: '/contact/?need=broken', cta: 'Fix my site' },
-  { price: usd(prices.speed), unit: '', label: 'Speed fix', href: '/contact/?need=speed', cta: 'Speed it up' },
-  { price: usd(prices.build), unit: '', label: 'Custom build', href: '/contact/?need=build', cta: 'Start a build' },
-  { price: usd(prices.agencyHour), unit: '/h', label: 'Agency white-label', href: '/contact/?type=agency', cta: 'Start a trial' },
+const plans = [
+  { name: 'Care plan', for: 'Keep a working site safe and current.', price: usd(prices.care), unit: '/mo', billing: 'Cancel any month', items: ['Updates tested before they go live', 'Daily off-site backups', 'Urgent reply within 24 hours'], cta: 'Start a plan', href: '/contact/?plan=care', featured: true, badge: 'Ongoing' },
+  { name: 'Broken site fix', for: 'One problem, fixed at the cause.', price: usd(prices.fix), unit: ' from', billing: 'One-off', items: ['White screen, broken form or plugin conflict', 'The cause found and written down', 'One clean fix, not a patch'], cta: 'Fix my site', href: '/contact/?need=broken' },
+  { name: 'Speed fix', for: 'A slow site made fast on mobile.', price: usd(prices.speed), unit: ' from', billing: 'Per site', items: ['Caching, images and plugins fixed at the cause', 'Before and after on PageSpeed Insights', 'Numbers you can check yourself'], cta: 'Speed it up', href: '/contact/?need=speed' },
+  { name: 'Custom build', for: 'A WordPress or WooCommerce site from scratch.', price: usd(prices.build), unit: ' from', billing: 'Fixed quote', items: ['Custom theme and plugins', 'WooCommerce, payments and integrations', 'Built to load fast and survive updates'], cta: 'Start a build', href: '/contact/?need=build' },
 ];
 
 const jsonld = [
@@ -126,18 +126,22 @@ const jsonld = [
   </section>
 
   <section class="wrap" style="padding: var(--sec) 0 1.25rem">
-    <div class="paths">
-      <a class="tile" href="/wordpress-maintenance/">
-        <Picture class="tile-img" src={shopPhoto} formats={['avif', 'webp']} widths={[640, 960]} loading="lazy" sizes="(max-width: 900px) 100vw, 640px" alt="A shop owner holding a tablet in her clothing store" />
-        <div class="tile-top"><p class="label">I run a business</p><span aria-hidden="true">→</span></div>
-        <h2>Slow, broken or nobody looking after it?</h2>
-        <p class="tile-note">TubeOnAI load time: 5.0 s → 1.5 s</p>
+    <div class="paths" style={`--a1:${shopPhoto.width / shopPhoto.height}; --a2:${agencyPhoto.width / agencyPhoto.height}`}>
+      <a class="path" href="/wordpress-maintenance/">
+        <Picture src={shopPhoto} formats={['avif', 'webp']} widths={[640, 960, 1280]} sizes="(max-width: 900px) 100vw, 720px" alt="A restaurant owner holding a menu in her dimly lit dining room" loading="lazy" />
+        <div class="path-cap">
+          <p class="label">I run a business <span aria-hidden="true">→</span></p>
+          <h2>Slow, broken or nobody looking after it?</h2>
+          <p class="tile-note">TubeOnAI load time: 5.0 s → 1.5 s</p>
+        </div>
       </a>
-      <a class="tile" href="/white-label-wordpress-development/">
-        <Picture class="tile-img" src={agencyPhoto} formats={['avif', 'webp']} widths={[640, 960]} loading="lazy" sizes="(max-width: 900px) 100vw, 640px" alt="Website page designs open on a large monitor at a designer's desk" />
-        <div class="tile-top"><p class="label">I run an agency</p><span aria-hidden="true">→</span></div>
-        <h2>Your design, built in WordPress under your name.</h2>
-        <p class="tile-note">Tabby and TubeOnAI: built from Figma</p>
+      <a class="path" href="/white-label-wordpress-development/">
+        <Picture src={agencyPhoto} formats={['avif', 'webp']} widths={[640, 960, 1280]} sizes="(max-width: 900px) 100vw, 600px" alt="A developer working on a laptop by a café window at dusk" loading="lazy" />
+        <div class="path-cap">
+          <p class="label">I run an agency <span aria-hidden="true">→</span></p>
+          <h2>Your design, built in WordPress under your name.</h2>
+          <p class="tile-note">Tabby and TubeOnAI: built from Figma</p>
+        </div>
       </a>
     </div>
   </section>
@@ -145,30 +149,34 @@ const jsonld = [
   <section id="services" class="wrap" style="padding: 0 0 var(--sec)">
     <h2 class="sr-only">Services</h2>
     <div class="bento">
-      <a class="tile span-7" href="/wordpress-speed-optimization/">
+      <div class="bento-row">
+      <a class="tile span-7" href="/wordpress-speed-optimization/" style={`--a:${speedPhoto.width / speedPhoto.height}`}>
         <Picture class="tile-img" src={speedPhoto} formats={['avif', 'webp']} widths={[640, 960]} loading="lazy" sizes="(max-width: 900px) 100vw, 700px" alt="A phone showing a fast mobile app screen" />
         <p class="label">Speed</p>
         <h3>Speed fixed at the cause.</h3>
         <p class="tile-note">Tabby: Core Web Vitals above 90 at launch</p>
       </a>
-      <a class="tile span-5" href="/wordpress-maintenance/#fix">
+      <a class="tile span-5" href="/wordpress-maintenance/#fix" style={`--a:${fixPhoto.width / fixPhoto.height}`}>
         <Picture class="tile-img" src={fixPhoto} formats={['avif', 'webp']} widths={[640, 960]} loading="lazy" sizes="(max-width: 900px) 100vw, 500px" alt="Code open on a laptop on a desk" />
         <p class="label">Fixes</p>
         <h3>Sites that keep breaking, fixed once.</h3>
         <p class="tile-note">Two cache plugins out, one caching layer in</p>
       </a>
-      <a class="tile span-5" href="/wordpress-maintenance/">
+      </div>
+      <div class="bento-row">
+      <a class="tile span-5" href="/wordpress-maintenance/" style={`--a:${carePhoto.width / carePhoto.height}`}>
         <Picture class="tile-img" src={carePhoto} formats={['avif', 'webp']} widths={[640, 960]} loading="lazy" sizes="(max-width: 900px) 100vw, 500px" alt="A website dashboard with charts on a laptop" />
         <p class="label">Care plans · from {usd(prices.care)}/mo</p>
         <h3>One developer who knows your site.</h3>
         <p class="tile-note">Updates, backups, security, and a report every month</p>
       </a>
-      <a class="tile span-7" href="/wordpress-development/">
+      <a class="tile span-7" href="/wordpress-development/" style={`--a:${buildPhoto.width / buildPhoto.height}`}>
         <Picture class="tile-img" src={buildPhoto} formats={['avif', 'webp']} widths={[640, 960]} loading="lazy" sizes="(max-width: 900px) 100vw, 700px" alt="Someone shopping on an online store on a laptop" />
         <p class="label">Builds</p>
         <h3>Custom WordPress and WooCommerce, down to the payment gateway.</h3>
         <p class="tile-note">Moneybag: a custom payment plugin for WooCommerce</p>
       </a>
+      </div>
     </div>
   </section>
 
@@ -181,8 +189,8 @@ const jsonld = [
       {mosaic.map((w, i) => (
         <a href={`/work/${w.slug}/`}>
           <div class="browser">
-            <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i>{i === 0 && <span>{new URL(w.clientUrl).hostname.replace('www.', '')}</span>}</div>
-            <Picture src={w.img} formats={['avif', 'webp']} widths={i === 0 ? [640, 960, 1280, 1440] : [480, 720, 960]} sizes={i === 0 ? '(max-width: 900px) 100vw, 840px' : '(max-width: 900px) 100vw, 420px'} alt={`${w.client} website`} loading="lazy" />
+            <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i>{i < 2 && <span>{new URL(w.clientUrl).hostname.replace('www.', '')}</span>}</div>
+            <Picture src={w.img} formats={['avif', 'webp']} widths={i < 2 ? [640, 960, 1280] : [480, 720, 960]} sizes={i < 2 ? '(max-width: 900px) 100vw, 620px' : '(max-width: 900px) 100vw, 420px'} alt={`${w.client} website`} loading="lazy" />
           </div>
           <span class="tag">{w.client} · <b>{w.chip}</b></span>
         </a>
@@ -211,17 +219,31 @@ const jsonld = [
     </div>
   </section>
 
-  <section class="on-surface sec-pad">
-    <div class="wrap" style="display: grid; gap: 3rem">
-      <div class="row-head" style="margin: 0">
-        <div style="display: grid; gap: 0.9rem"><p class="label">For agencies · white-label</p><h2>From your Figma to launch, under your name.</h2></div>
-        <a class="btn" href="/white-label-wordpress-development/">How it works</a>
+  <section class="agency-band sec-pad">
+    <div class="wrap agency-grid">
+      <div class="agency-copy">
+        <p class="label">For agencies · white-label</p>
+        <h2>From your Figma to launch, under your name.</h2>
+        <p class="mut">You keep the client and the credit. I build the site on staging, you review it, and it launches with your name on it. Nothing I hand over carries mine.</p>
+        <div class="hero-actions">
+          <a class="btn" href="/white-label-wordpress-development/">How it works</a>
+          <a class="btn btn-ghost" href="/contact/?type=agency">Send a design</a>
+        </div>
+        <p class="mono mut" style="font-size: 0.8125rem">From {usd(prices.agencySite)} per site or {usd(prices.agencyHour)}/h · NDA on request</p>
       </div>
-      <ol class="pipeline">
-        <li><span class="node"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18M9 21V9" /></svg></span><strong>You send the design</strong><span>Quote and date first</span></li>
-        <li><span class="node"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5" /></svg></span><strong>I build on staging</strong><span>Updates in your Slack</span></li>
-        <li><span class="node"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></svg></span><strong>You review</strong><span>Phone, desktop, speed</span></li>
-        <li><span class="node"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" /></svg></span><strong>You launch it</strong><span>Handoff notes included</span></li>
+      <ol class="flow-steps">
+        {[
+          { t: 'You send the design', d: 'Figma, page list and date. A quote and a date come back first.', p: 'M3 3h18v18H3zM3 9h18M9 21V9' },
+          { t: 'I build on staging', d: 'A private staging site, with progress updates in your Slack.', p: 'M8 7l-5 5 5 5M16 7l5 5-5 5' },
+          { t: 'You review', d: 'Checked on phone and desktop, with mobile speed tested before you see it.', p: 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 100 6 3 3 0 000-6z' },
+          { t: 'You launch it', d: 'Under your brand, with handoff notes for your team.', p: 'M5 12l5 5L20 7' },
+        ].map((st, i) => (
+          <li>
+            <span class="fs-num">0{i + 1}</span>
+            <span class="fs-icon"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d={st.p} /></svg></span>
+            <div><strong>{st.t}</strong><p class="mut">{st.d}</p></div>
+          </li>
+        ))}
       </ol>
     </div>
   </section>
@@ -234,10 +256,8 @@ const jsonld = [
   </section>
 
   <section class="wrap" style="padding: var(--sec) 0 0">
-    <p class="label" style="margin-bottom: 1.25rem">Starting prices, USD</p>
-    <div class="price-strip">
-      {strip.map((p) => <div><b>{p.price}<small>{p.unit}</small></b><span>{p.label}</span><a class="btn btn-small btn-ghost" href={p.href}>{p.cta}</a></div>)}
-    </div>
+    <div class="row-head"><div style="display: grid; gap: 0.9rem"><p class="label">Starting prices, USD</p><h2>Clear prices, written quote first.</h2></div><a href="/white-label-wordpress-development/">Agencies: from {usd(prices.agencySite)} a site →</a></div>
+    <PriceCards plans={plans} compact />
     <p class="mut" style="margin-top: 1rem; font-size: 0.9375rem">Every job gets a written quote before work starts.</p>
   </section>
 

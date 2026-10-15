@@ -82,7 +82,7 @@ export const services = [
     description:
       'Custom web development for startups: SaaS products, dashboards and fast marketing sites built from scratch when WordPress is the wrong tool.',
     h1: 'Custom web development for real products.',
-    h1Lines: ['Custom web development', 'for real products.'],
+    h1Lines: ['Custom web', 'development for', 'real products.'],
     lead: 'Web products built from scratch: the sign-in, the data, the dashboard and the site that sells it. Wrkbase, my own SaaS platform, is the proof.',
     row: 'Web products built from scratch when WordPress is the wrong tool. Wrkbase, my own SaaS platform and its website, is the example.',
     chips: ['SaaS platforms', 'Dashboards', 'Marketing sites', 'Free tools', 'APIs'],

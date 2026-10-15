@@ -236,13 +236,13 @@ const menu = [{ slug: 'wordpress-maintenance', name: 'Maintenance and fixes', sh
         const below = (el) => el.getBoundingClientRect().top > fold;
         const skip = '.site-header, .chat, .marquee, .clients, .byline, .author, .toc, .rail, footer';
         const tag = (sel, cls) => document.querySelectorAll(sel).forEach((el) => { if (!el.closest(skip) && below(el)) el.classList.add(cls); });
-        document.querySelectorAll('main h2:not(.sr-only)').forEach((h) => { if (!h.children.length && !h.closest(skip) && below(h)) { split(h); h.classList.add('rv-h'); } });
-        tag('main picture:not(:has(img.tile-img))', 'rv-img');
-        tag('[data-reveal], main .tile, main .post-card, main .kit > li, main .steps > li, main .mosaic > a, main .lead, main .section-head > p, main .row-head > a, main .faq details, main .plans, main .timeline > li, main .trust li, main .cap-grid > *, main .rv-item, main .about-copy > :not(h2), main .proof > div', 'rv');
+        document.querySelectorAll('main h2:not(.sr-only)').forEach((h) => { if (!h.children.length && !h.closest(skip) && below(h)) { split(h); h.classList.add('rvl-h'); } });
+        tag('main picture:not(:has(img.tile-img))', 'rvl-img');
+        tag('[data-reveal], main .tile, main .path, main .post-card, main .kit > li, main .steps > li, main .flow-steps > li, main .agency-copy > :not(h2), main .mosaic > a, main .lead, main .section-head > p, main .row-head > a, main .faq details, main .plans, main .timeline > li, main .trust li, main .cap-grid > *, main .rv-item, main .about-copy > :not(h2), main .proof > div', 'rvl');
         // Siblings that reveal together get a stagger, unless the markup already sets one.
-        document.querySelectorAll('.rv, .rv-img').forEach((el) => {
+        document.querySelectorAll('.rvl, .rvl-img').forEach((el) => {
           if (el.style.getPropertyValue('--d')) return;
-          const sibs = [...el.parentElement.children].filter((c) => c.classList.contains('rv') || c.classList.contains('rv-img'));
+          const sibs = [...el.parentElement.children].filter((c) => c.classList.contains('rvl') || c.classList.contains('rvl-img'));
           const i = sibs.indexOf(el);
           if (i > 0) el.style.setProperty('--d', Math.min(i * 0.09, 0.45) + 's');
         });
@@ -250,12 +250,12 @@ const menu = [{ slug: 'wordpress-maintenance', name: 'Maintenance and fixes', sh
           if (!e.isIntersecting) return;
           e.target.classList.add('in');
           // A clipped image counts as invisible, so its container is watched and passes the reveal on.
-          e.target.querySelectorAll(':scope > .rv-img').forEach((img) => img.classList.add('in'));
+          e.target.querySelectorAll(':scope > .rvl-img').forEach((img) => img.classList.add('in'));
           if (e.target.dataset.count) count(e.target);
           io.unobserve(e.target);
         }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-        document.querySelectorAll('.rv, .rv-h, [data-count]').forEach((el) => io.observe(el));
-        document.querySelectorAll('.rv-img').forEach((el) => io.observe(el.parentElement));
+        document.querySelectorAll('.rvl, .rvl-h, [data-count]').forEach((el) => io.observe(el));
+        document.querySelectorAll('.rvl-img').forEach((el) => io.observe(el.parentElement));
 
         // Dot fields: each canvas draws a grid of dots with a slow wave through it. Dots near the pointer turn the
         // accent colour, grow and lean away. A field only draws while it is on screen, and fades out towards its edges.
