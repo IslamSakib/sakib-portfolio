@@ -14,7 +14,7 @@ import { socials } from '../socials.js';
 import { designedOg } from '../ogDesigned.js';
 import { Image } from 'astro:assets';
 import Clock from '../components/Clock.astro';
-import megaVisual from '../assets/visuals/speed.jpg';
+import megaVisual from '../assets/visuals/mayabee.jpg';
 
 const { title, description, jsonld = [], ogImage: ogDefault = '/og.png', ogAlt = `${site.name}, ${site.role}`, focus } = Astro.props;
 // Share images are cached for a long time by LinkedIn and others: raise `v` whenever scripts/og.mjs output changes.
@@ -136,7 +136,7 @@ const agencyGuides = [
                 </ul>
               </div>
               <a class="mega-feature" href="/contact/">
-                <Image src={megaVisual} widths={[320, 480]} sizes="280px" alt="The TubeOnAI website loading in 1.5 seconds after a speed fix, down from 5 seconds" loading="lazy" />
+                <Image src={megaVisual} widths={[320, 480]} sizes="280px" alt="Mayabee, an online shop built from scratch, with the admin dashboard built for it" loading="lazy" />
                 <span class="mega-feature-text"><b>Not sure where to start?</b><small>Send your site URL or project requirements. I reply within 24 hours with clear pricing.</small><span class="mega-cta">Get a free quote <span aria-hidden="true">→</span></span></span>
               </a>
             </div>
