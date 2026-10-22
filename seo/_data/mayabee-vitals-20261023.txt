@@ -1,0 +1,45 @@
+
+> site@0.0.1 vitals
+> node scripts/vitals.mjs --only public
+
+
+Core Web Vitals, phone 390px, 4x slower CPU, slow 4G (https://mayabeebd.com)
+
+Page                          LCP        CLS        INP        FCP        TTFB       TBT        Weight
+/                             792ms      0.000      0ms        792ms      85ms       71ms       253KB/29
+/shop                         840ms      0.000      64ms       352ms      74ms       4ms        249KB/25
+/product/rose-flap-mini       728ms      0.000      56ms       360ms      84ms       223ms !    323KB/26
+/checkout                     668ms      0.000      96ms       516ms      220ms      54ms       251KB/28
+/story                        668ms      0.000      88ms       356ms      67ms       164ms      249KB/25
+/login                        920ms      0.000      88ms       520ms      224ms      117ms      283KB/28
+/track                        568ms      0.000      96ms       512ms      219ms      48ms       251KB/27
+/policies/privacy             588ms      0.000      88ms       360ms      77ms       31ms       249KB/24
+/bn                           1088ms     0.000      48ms       1088ms     108ms      645ms X    505KB/30
+/bn/shop                      1012ms     0.036      48ms       312ms      71ms       4ms        464KB/28
+
+Details
+/
+  LCP element: H1.serif
+  4 images without a fixed size (layout-shift risk)
+/shop
+  LCP element: IMG rose-flap-mini.jpg
+/product/rose-flap-mini
+  LCP element: IMG rose-flap-mini.jpg
+/checkout
+  LCP element: P
+/story
+  LCP element: IMG rose-flap-mini.jpg
+/login
+  LCP element: IMG hero.webp
+/track
+  LCP element: H1.serif
+/policies/privacy
+  LCP element: H1.serif
+/bn
+  LCP element: H1.serif
+  4 images without a fixed size (layout-shift risk)
+/bn/shop
+  LCP element: IMG rose-flap-mini.jpg
+  layout shifts: 0.036 section.sh-main# + div.sh-tools#
+
+1 poor, 1 needs improvement

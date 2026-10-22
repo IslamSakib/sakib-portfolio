@@ -1,0 +1,170 @@
+---
+// One page per place in src/locations.js (/full-stack-developer/<place>/): same layout as a service page, with the place's
+// own industries, time-zone sums, proof and questions. Written to be useful to someone in that place, not a template swap.
+import Base from '../layouts/Base.astro';
+import Connect from '../components/Connect.astro';
+import ServiceArt from '../components/ServiceArt.astro';
+import WorkReel from '../components/WorkReel.astro';
+import Process from '../components/Process.astro';
+import Reviews from '../components/Reviews.astro';
+import Faq from '../components/Faq.astro';
+import { site } from '../site.js';
+import { services } from '../services.js';
+import { roles } from '../roles.js';
+import { work } from '../work.js';
+import { iconFor } from '../icons.js';
+import { prices, usd } from '../prices.js';
+
+const { role, p } = Astro.props;
+const base = `/${role.slug}/`;
+const url = new URL(Astro.url.pathname, Astro.site);
+const pad = (n) => String(n).padStart(2, '0');
+const tidy = (t) => t.replace(/ (\S+)$/, ' $1');
+const proof = p.proof.map((slug) => work.find((w) => w.slug === slug)).filter(Boolean);
+const near = p.near.map((slug) => role.pages.find((x) => x.slug === slug)).filter(Boolean);
+const area = { country: 'Country', state: 'State', city: 'City' }[p.kind];
+const checks = [
+  { name: 'Live projects to click through', text: `Ask for sites you can use, not screenshots. Mine are ${proof.map((w) => w.client).join(', ')}, each with a case study.` },
+  { name: 'The admin side, not only the website', text: 'Orders, users, stock and reports are where a business spends its day. Ask who builds those screens and who keeps them working.' },
+  { name: 'One person from design to launch', text: 'Fewer hand-offs means fewer misunderstandings. I research competitors, design the UI and UX, then build the frontend and backend myself.' },
+  { name: 'A reply you can plan around', text: `You get an answer within 24 hours, prices in US dollars, and a written quote before work starts. WordPress builds from ${usd(prices.build)}; custom work is quoted.` },
+];
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: `${site.name}, ${role.title}`,
+    description: p.description,
+    url,
+    areaServed: { '@type': area, name: p.kind === 'country' ? 'United States' : p.name },
+    provider: { '@type': 'Person', name: site.name, url: Astro.site, jobTitle: site.role },
+    makesOffer: services.map((sv) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: sv.name, url: new URL(`/${sv.slug}/`, Astro.site) } })),
+  },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: p.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: Astro.site },
+      { '@type': 'ListItem', position: 2, name: role.name, item: new URL(base, Astro.site) },
+      { '@type': 'ListItem', position: 3, name: p.name, item: url },
+    ],
+  },
+];
+---
+<Base title={p.title} description={p.description} jsonld={jsonld} focus={p.focus} ogImage={`/og-${role.slug}-${p.slug}.jpg`} ogAlt={`${p.focus}. Sakib Islam, remote ${role.name.toLowerCase()}.`}>
+  <section class="page-head svc-hero">
+    <canvas class="dots" aria-hidden="true"></canvas>
+    <div class="wrap svc-grid">
+      <div class="svc-copy">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span>/</span><a href={base}>{role.name}</a><span>/</span><span>{p.name}</span>
+        </nav>
+        <h1>{p.h1Lines.map((l) => <Fragment><span class="hl">{l}</span>{' '}</Fragment>)}</h1>
+        <p class="lead">{tidy(p.lead)}</p>
+        <p class="label">Remote from Dhaka · reply within 24 hours · written quote first</p>
+        <div class="hero-actions">
+          <a class="btn" href="/contact/?need=build">Get a free quote</a>
+          <a class="btn btn-ghost" href="#proof">See the work</a>
+        </div>
+        <ul class="tags"><li>Custom websites</li><li>Web apps</li><li>WordPress themes and plugins</li><li>Website care</li></ul>
+      </div>
+      <ServiceArt slug="custom-web-development" eager />
+    </div>
+  </section>
+
+  <section class="sec band band-glow">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>{p.kind === 'country' ? 'How I work with US companies from Dhaka' : `How I work with ${p.name} businesses from Dhaka`}</h2>
+        <p class="muted" style="max-width: 70ch">{tidy(p.tz)}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>{p.kind === 'country' ? 'What US businesses ask me to build' : `What ${p.name} businesses ask me to build`}</h2>
+      </div>
+      <ul class="kit">
+        {p.industries.map((item, i) => (
+          <li>
+            <span class="kit-top">
+              <svg class="kit-ico" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d={iconFor(item.name)} /></svg>
+              <span class="idx">{pad(i + 1)}</span>
+            </span>
+            <h3>{item.name}</h3>
+            <p class="muted">{item.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="proof" class="sec tint-a">
+    <div class="wrap">
+      <WorkReel items={proof} title="Projects I've built, with live sites" lead="Pick a project to see the result and the live site." />
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>{`What to check before you pick a ${role.name.toLowerCase()} in ${p.kind === 'country' ? 'the USA' : p.name}`}</h2>
+      </div>
+      <ul class="kit">
+        {checks.map((item, i) => (
+          <li>
+            <span class="kit-top"><span class="idx">{pad(i + 1)}</span></span>
+            <h3>{item.name}</h3>
+            <p class="muted">{item.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec tint-a">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>The three ways I can help</h2>
+      </div>
+      <ul class="kit kit-links">
+        {[...services, { slug: 'website-care', name: 'Website care', short: 'Tested updates, backups, monitoring, fixes and speed, from one developer.', chips: [`From ${usd(prices.care)}/mo`, 'Cancel any month'] }].map((o, i) => (
+          <li>
+            <div class="kit-art"><ServiceArt slug={o.slug} /></div>
+            <h3><a href={`/${o.slug}/`}>{o.name}</a></h3>
+            <p class="muted">{o.short}</p>
+            <ul class="tags">{o.chips.slice(0, 3).map((c) => <li>{c}</li>)}</ul>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <Process title="How your project runs, step by step" variant="build" />
+
+  <Reviews />
+
+  <Faq items={p.faq} title={`Your questions about hiring a ${role.name.toLowerCase()} in ${p.kind === 'country' ? 'the USA' : p.name}`} />
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Also working with businesses in</h2>
+      </div>
+      <ul class="tags">
+        {near.map((n) => <li><a href={`/full-stack-developer/${n.slug}/`}>Full stack developer in {n.name}</a></li>)}
+        <li><a href={base}>{role.hub.focus}</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <Connect heading={`Need a ${role.name.toLowerCase()} in ${p.kind === 'country' ? 'the USA' : p.name}?`} />
+</Base>
+
+<script>
+  import '../scripts/reel.js';
+</script>

@@ -6,18 +6,31 @@ import find from '../assets/visuals/step-find.jpg';
 import fix from '../assets/visuals/step-fix.jpg';
 import measure from '../assets/visuals/step-measure.jpg';
 import hand from '../assets/visuals/step-hand.jpg';
+import research from '../assets/visuals/step-research.jpg';
+import design from '../assets/visuals/step-design.jpg';
+import build from '../assets/visuals/step-build.jpg';
+import launch from '../assets/visuals/step-launch.jpg';
 const pad = (n) => String(n).padStart(2, '0');
-const steps = [
+const { title = 'How I work', variant = 'fix' } = Astro.props;
+// 'build' is for new websites and apps (the Mayabee project, shown in each picture); 'fix' is for a site already in trouble.
+const buildSteps = [
+  { alt: 'A competitor review checklist: layout, product pages, checkout, delivery, language and gaps', img: research, name: 'Study your competitors', text: 'I look at what competitors do well and where they leave gaps, before a single screen is drawn.' },
+  { alt: 'The Mayabee storefront product page and the admin dashboard home, designed together', img: design, name: 'Design the UI and UX', text: 'I design the screens myself, so what you approve is what gets built.' },
+  { alt: 'The Mayabee admin dashboard: the orders list and the delivery and cash screen', img: build, name: 'Build frontend to backend', text: 'Pages, accounts, orders, payments and the admin dashboard, built as one job.' },
+  { alt: 'Core Web Vitals for the Mayabee home page on a throttled phone: 0.8 second LCP, no layout shift, 253 KB', img: launch, name: 'Launch and look after it', text: 'Speed checked on a phone, then backups, monitoring and changes through website care.' },
+];
+const fixSteps = [
   { alt: 'An error log with the line that explains the problem under a magnifying glass', img: find, name: 'Find the cause', text: 'I test the site, read the errors and check what changed before I touch anything.' },
   { alt: 'The fix: a second cache plugin and leftover files removed, one cache set up once', img: fix, name: 'Fix the root', text: 'One clean fix where the problem lives, not a patch on top of it.' },
   { alt: 'TubeOnAI load time measured before and after: 5.0 seconds down to 1.5 seconds', img: measure, name: 'Measure it', text: 'Before and after numbers from PageSpeed Insights that you can check yourself.' },
   { alt: 'Handover notes: what was wrong, what I changed and what to avoid next time', img: hand, name: 'Hand it over', text: 'You get notes on what was done, so the next change does not undo it.' },
 ];
+const steps = variant === 'build' ? buildSteps : fixSteps;
 ---
 <section id="process" class="sec tint-a">
   <div class="wrap">
     <div class="section-head">
-      <h2>How I work</h2>
+      <h2>{title}</h2>
     </div>
     <ol class="steps">
       {steps.map((s, i) => (

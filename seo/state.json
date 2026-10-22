@@ -1,0 +1,100 @@
+{
+  "site": "https://sakib.mywrkbase.com",
+  "db": "us",
+  "started": "2026-10-16",
+  "semrush_host": "Access-5 hit hourly limit; switched to Access-4 (nazsm1)",
+  "semrush_units_start": "1/1,000",
+  "phases": {
+    "1": {
+      "status": "done",
+      "outputs": [
+        "01-research/competitors.md",
+        "01-research/keywords-raw.csv",
+        "01-research/serp-notes.md"
+      ],
+      "evidence": "95 keywords (Semrush US: 30 via bulk on 16 Oct, gap rows from 4 competitor Organic Positions dated 14 Oct, rest from docs/research/03); 5 domain overviews; 11 Semrush page loads on Access-4/5, no limit hit; subdomain has 0 US top-100 rankings"
+    },
+    "2": {
+      "status": "done",
+      "outputs": [
+        "02-strategy/strategy.md",
+        "02-strategy/priorities.csv"
+      ],
+      "evidence": "47 keywords scored BP/RP/T; 0 extra Semrush pulls; G1 waiting on 4 decisions; G1 approved 2026-10-16 (care plans wording, /wordpress-repair/, speed refocus); funnel stages added afterwards (BOFU 10, MOFU 8, TOFU 15); MOFU gaps queued for week 2"
+    },
+    "3": {
+      "status": "done",
+      "outputs": [
+        "03-architecture/keyword-map.csv",
+        "03-architecture/sitemap.md",
+        "03-architecture/link-matrix.md"
+      ],
+      "evidence": "SERP overlap on 7 pairs (Google US, 16 Oct, 0 Semrush units); click depth ≤2, 0 orphans; 4 new pages proposed, 4 refocuses, 0 redirects; G2 approved 2026-10-16"
+    },
+    "4": {
+      "status": "done",
+      "outputs": [
+        "04-content/calendar.md",
+        "04-content/briefs/new-pages.md",
+        "_data/semrush-bulk-refocus-20261016.csv"
+      ],
+      "evidence": "4 briefs, 8-week calendar; 1 Semrush bulk pull (23 kw) on Access-4 after Access-5 hit its hourly limit"
+    },
+    "5": {
+      "status": "done",
+      "outputs": [
+        "src/pages/wordpress-care-plans.astro",
+        "src/pages/white-label-wordpress-maintenance.astro",
+        "src/services.js (fixes: repair, malware)",
+        "4 refocuses, menu, blog side cards, links"
+      ],
+      "evidence": "4 new pages + 6 updated pages + 12 posts relinked; not committed; 16 Oct rewrite: copy standard (Semrush on-page + keyword checklists) and ICP voice applied to 11 core pages, 7 case studies and 20 posts (meta, H1, lead, H2); terms and privacy pages added"
+    },
+    "6": {
+      "status": "done",
+      "outputs": [
+        "06-on-page/onpage-report.md"
+      ],
+      "evidence": "seo-check 40 pages 0 problems; seo-audit no problems; no overflow at 393/430 px"
+    },
+    "7": {
+      "status": "done",
+      "outputs": [
+        "07-technical/technical-report.md"
+      ],
+      "evidence": "sitemap 39 URLs; Lighthouse mobile 99/100/100/100 on two new pages; G3 waiting on deploy go-ahead + content confirmations; 16 Oct follow-up: malware example (anonymised Tabby incident), prices malware $199 + WL care $59/site/mo set at his request, mobile tap sound fixed (click on controls only); build 40/0, audit clean; waiting on explicit deploy; gate now enforces keyword-first title and H1, description ≤105 and keyword in the first paragraph: 42 pages, 0 problems; no overflow or headline-image clash at 393/430/480/1078/1366; G3 passed: owner said \"do it\" / \"once done deploy\""
+    },
+    "8": {
+      "status": "done",
+      "outputs": [
+        "08-publishing/publish-log.md"
+      ],
+      "evidence": "16 Oct 2026: 6 zips (845 files) uploaded to public_html/sakib and extracted with overwrite; live check 843/843 files identical (sha256), .htaccess and lead.php sizes match, lead-config.php untouched (213 B); sitemap 46 URLs live; IndexNow HTTP 200 (46 URLs); Search Console sitemap resubmitted; indexing requested for 4 pages; later same day: Bing sitemap resubmitted (Processing), Bing shows 46 IndexNow URLs, GSC manual actions and security issues clean, indexing requested for 5 pages then Google quota exceeded"
+    },
+    "9": {
+      "status": "drafts-ready",
+      "outputs": [
+        "09-authority/prospects.csv",
+        "09-authority/own-properties.csv",
+        "09-authority/assets.md",
+        "09-authority/outreach/guest-post-pitch-draft.md"
+      ],
+      "evidence": "Backlink Gap on Access-4 (754 prospects AS21-30, 5 qualified); nothing sent, own-property links and pitches need the owner yes"
+    },
+    "10": {
+      "status": "done",
+      "outputs": [
+        "10-tracking/baseline.md"
+      ],
+      "evidence": "baseline 16 Oct: GSC 0 clicks/24 impressions/avg pos 19.2, 12 pages indexed, no manual actions or security issues; Semrush 0 US top-100 keywords; Bing received 46 URLs"
+    },
+    "11": {
+      "status": "queue-written",
+      "outputs": [
+        "11-optimization/refresh-queue.md",
+        "11-optimization/next-cycle.md"
+      ],
+      "evidence": "no 28-day data yet; queue holds known open items; next review 13 Nov 2026"
+    }
+  }
+}

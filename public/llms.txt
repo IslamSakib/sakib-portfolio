@@ -1,33 +1,37 @@
 # Sakib Islam
 
-> Senior WordPress developer in Dhaka, Bangladesh, working alone and remotely, with working hours that overlap the US and UK. He fixes, speeds up and maintains WordPress sites for businesses, and builds WordPress sites from Figma designs for design and marketing agencies under their name (white-label). He also built and runs his own SaaS product, Wrkbase.
+> Full stack web developer in Dhaka, Bangladesh, working alone and remotely, with working hours that overlap the US, UK and Australia. He builds custom websites and web applications (UI/UX, frontend, backend and admin dashboards), WordPress themes and plugins, and looks after live websites. He founded Wrkbase, a team management platform.
 
 ## Services
 
-- [WordPress maintenance and fixes](https://sakib.mywrkbase.com/wordpress-maintenance/): care plans from $149 a month (updates, backups, security monitoring, a monthly report, small changes); single fixes from $150
-- [WordPress speed optimization](https://sakib.mywrkbase.com/wordpress-speed-optimization/): Core Web Vitals, caching, downtime and plugin conflicts, fixed at the cause; from $450 per site
+- [Custom website development](https://sakib.mywrkbase.com/custom-web-development/): websites, online stores and web apps built from scratch, with competitor research, UI/UX design, frontend, backend and an admin dashboard; quoted per project
 - [WordPress development](https://sakib.mywrkbase.com/wordpress-development/): custom themes, custom plugins, WooCommerce, payments and integrations; builds from $2,500
-- [White-label WordPress development for agencies](https://sakib.mywrkbase.com/white-label-wordpress-development/): Figma to WordPress builds, overflow and fixes under the agency's brand; $35 an hour or from $1,200 per site
-- [Custom web development](https://sakib.mywrkbase.com/custom-web-development/): SaaS products, dashboards, AI agents and fast static marketing sites
+- [Website care](https://sakib.mywrkbase.com/website-care/): monthly updates, backups, monitoring, fixes and speed; plans from $149 a month, single fixes from $150, speed fixes from $450
+- [White-label WordPress development for agencies](https://sakib.mywrkbase.com/white-label-wordpress-development/): Figma to WordPress builds under the agency's brand; $35 an hour or from $1,200 per site
+
+## Hire by role and place
+
+- [Hire a full stack developer](https://sakib.mywrkbase.com/full-stack-developer/): pages for the USA, Florida, Texas, California, New York, Miami, Tampa, Orlando, Houston, Chicago and Austin
+- [Hire a web application developer](https://sakib.mywrkbase.com/web-application-developer/): pages for the USA, Florida, Texas, California and New York
+- [Hire a WordPress developer](https://sakib.mywrkbase.com/wordpress-developer/): pages for the USA, Florida, Texas, California, New York and Chicago
 
 ## Case studies
 
+- [Mayabee](https://sakib.mywrkbase.com/work/mayabee/): custom online shop for a Dhaka handbag and jewellery brand, in English and Bangla, with an admin dashboard for orders, delivery and cash on delivery
 - [Tabby](https://sakib.mywrkbase.com/work/tabby/): Figma to WordPress build for an AI bookkeeping product, Core Web Vitals above 90
 - [TubeOnAI](https://sakib.mywrkbase.com/work/tubeonai/): a WordPress site that kept going down, fixed; load time from 5 seconds to 1.5
 - [Moneybag](https://sakib.mywrkbase.com/work/moneybag/): custom WordPress payment gateway plugin and website
 - [Wrkbase](https://sakib.mywrkbase.com/work/wrkbase/): his own SaaS team management platform with an AI agent
 - [Open Alliance Learning](https://sakib.mywrkbase.com/work/open-alliance-learning/): WordPress LMS with dashboards for learners, teachers and assessors
-- [Piola Pizza](https://sakib.mywrkbase.com/work/piola-pizza/): restaurant website with online ordering in Denmark
-- [Pixmge](https://sakib.mywrkbase.com/work/pixmge/): agency website with a quote request flow
 
 ## Blog
 
-- [Blog](https://sakib.mywrkbase.com/blog/): notes from real WordPress maintenance, speed and build work
+- [Blog](https://sakib.mywrkbase.com/blog/): notes from real website build, maintenance and speed work
 
 ## Contact
 
 - Email: islamsakib.official@gmail.com
 - Contact form: https://sakib.mywrkbase.com/contact/
 - WhatsApp: +880 1950 025990
-- LinkedIn: https://www.linkedin.com/in/sakibislamofficial/
+- LinkedIn: https://www.linkedin.com/in/sakib-islam-full-stack-web-developer/
 - GitHub: https://github.com/IslamSakib

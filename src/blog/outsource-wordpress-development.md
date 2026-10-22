@@ -1,7 +1,7 @@
 ---
 title: "How to outsource WordPress development without losing control"
 seoTitle: "Outsource WordPress Development: An Agency Guide"
-description: "How agencies outsource WordPress development safely: what to hand over, how to brief, how to review, and how to keep your client relationship and quality."
+description: "Outsource WordPress development without losing control: briefs, staging, QA and handoff. Learn how."
 focus: outsource WordPress development
 date: "2026-10-15"
 art: outsource
@@ -16,24 +16,24 @@ faq:
   - { q: "Freelancer or agency for outsourced WordPress work?", a: "A freelancer gives you one consistent senior developer and suits a steady flow of builds and fixes. An outsourcing agency suits large volumes or projects that need several specialists at once." }
 ---
 
-Agencies outsource WordPress development for a simple reason: the design is done, the client is waiting, and the build is the bottleneck. Done well, it lets you take on more projects without hiring. Done badly, it costs you deadlines, quality and sometimes the client. This is how to outsource WordPress development so the work comes back the way you would have built it, under your name.
+Your design is done, the client is waiting, and the build is the bottleneck. That's why agencies outsource WordPress development. Done well, it lets you take on more projects without hiring. Done badly, it costs you deadlines, quality and sometimes the client. This is how to outsource WordPress development so the work comes back the way you'd have built it, under your name.
 
-## When outsourcing makes sense
+## When does outsourcing make sense for my agency?
 
-Outsourcing works best when:
+It works best when:
 
 - Your strengths are design, strategy or marketing, and builds are a means to an end
 - WordPress work comes in waves, so a full-time hire would sit idle between projects
 - A deadline needs more hands than your team has this month
 - You need a specialist skill occasionally: custom plugins, WooCommerce payments, speed fixes
 
-It works less well when the scope is still being figured out with the client every day. Outsource the build once the design and requirements are settled.
+It works less well when you're still figuring out the scope with the client every day. Outsource the build once the design and requirements are settled.
 
-## Hiring versus outsourcing
+## Should I hire a developer or outsource?
 
-A full-time developer costs a salary, equipment and management time whether or not there is work, and one person cannot cover every skill. Outsourcing costs more per hour but only when there is work, and you can choose the right person for each job. Many agencies combine them: an in-house person for small client changes, and an outsourced developer for builds and overflow.
+A full-time developer costs a salary, equipment and management time whether or not there's work, and one person can't cover every skill. Outsourcing costs more per hour but only when there's work, and you can pick the right person for each job. Many agencies combine them: an in-house person for small client changes, and an outsourced developer for builds and overflow.
 
-## Choosing who to outsource to
+## How do I choose who to outsource to?
 
 Look for evidence, not promises:
 
@@ -45,7 +45,7 @@ Look for evidence, not promises:
 
 My guide to [choosing a white label WordPress partner](/blog/choosing-a-white-label-wordpress-partner/) has the questions to ask on the first call.
 
-## What to hand over
+## What do I hand my developer before the build?
 
 Most delays in outsourced builds come from missing inputs. Send all of this up front:
 
@@ -59,9 +59,9 @@ Most delays in outsourced builds come from missing inputs. Send all of this up f
 
 [How to hand off Figma designs that build cleanly](/blog/figma-to-wordpress-handoff/) covers the design side in detail.
 
-## Agree the quality bar in writing
+## How do I put my quality bar in writing?
 
-What you consider "done" should not be a surprise at review. Write down:
+What you consider "done" shouldn't be a surprise at review. Write down:
 
 - Which browsers and devices are tested
 - A mobile speed target for key templates
@@ -70,7 +70,7 @@ What you consider "done" should not be a surprise at review. Write down:
 - That the client can edit what they need without breaking the layout
 - What the handover includes: notes, logins and a short editing guide
 
-## Keep the client relationship yours
+## How do I keep the client relationship mine?
 
 White-label outsourcing only works if your client sees your agency and nobody else:
 
@@ -79,15 +79,17 @@ White-label outsourcing only works if your client sees your agency and nobody el
 - **No partner name** in the code, comments, admin users, plugin authors or emails
 - Work in **your tools:** your Slack, your project board, your staging site where possible
 
-## How to review outsourced work
+## How do I review the work I get back?
 
-Review on a staging site, never on the live client site. Collect feedback in one list per round, from one person on your side, with the page and a screenshot for each item. Separate "does not match the design", which is a fix, from "we changed our mind", which is a change. Two rounds should cover most builds when the design was finished first.
+Review on a staging site, never on the live client site. Collect feedback in one list per round, from one person on your side, with the page and a screenshot for each item. Separate "doesn't match the design", which is a fix, from "we changed our mind", which is a change. Two rounds should cover most builds when the design was finished first.
 
-## Start with one small paid task
+## Why start with one small paid task?
 
-Before handing over a full client site, send one paid task: a single template, a fix on an existing client site, or a speed improvement. You learn more from how a developer handles a small job, the questions they ask, the code, whether the deadline holds, than from any portfolio.
+Before you hand over a full client site, send one paid task: a single template, a fix on an existing client site, or a speed improvement. You learn more from how a developer handles a small job, the questions they ask, the code, whether the deadline holds, than from any portfolio.
 
-## Common outsourcing mistakes
+## What outsourcing mistakes cost agencies clients?
+
+Every one of these is avoidable:
 
 - **Choosing on price alone.** Rework after a cheap build costs more than a fair build.
 - **Vague briefs.** Every guess the developer makes is a review comment later.
@@ -95,26 +97,26 @@ Before handing over a full client site, send one paid task: a single template, a
 - **No written ownership.** Make sure your agency or your client owns the code, licences and accounts.
 - **Outsourcing support too late.** Decide before launch who maintains the site. You can resell care plans; see [white label WordPress maintenance](/blog/white-label-wordpress-maintenance/).
 
-## Communication that keeps projects on track
+## How do I keep outsourced projects on track?
 
 Most outsourced builds that go wrong do so quietly: nobody hears anything for a week, then the work arrives late and off-brief. A few habits prevent that:
 
 - **A short kickoff call** to walk through the design, the page list and anything unusual. Thirty minutes here saves days later.
 - **One channel.** A shared Slack channel or project board, not a mix of email, chat and calls.
-- **Progress you can see.** A staging link from early on, updated as templates are finished, so you can catch a misunderstanding on day three instead of day ten.
+- **Progress you can see.** A staging link from early on, updated as templates are finished, so you catch a misunderstanding on day three instead of day ten.
 - **Questions batched,** not drip-fed. A good developer collects questions and sends them together, so your team can answer in one go.
 - **A clear "done" moment.** The developer tells you when a round is ready for review, with a list of what changed.
 
-Time zones can work in your favour. If your developer works while your team sleeps, feedback sent at the end of your day can be done by the next morning, as long as the questions and answers do not have to go back and forth in real time.
+Time zones can work in your favour. If your developer works while your team sleeps, feedback sent at the end of your day can be done by the next morning, as long as questions and answers don't have to go back and forth in real time.
 
-## What a fair contract covers
+## What should my contract with a partner cover?
 
-You do not need a long contract, but it should say who owns the code and design files once paid, that the work is confidential, that the developer will not contact or solicit your clients, how changes outside the scope are quoted, and what happens if a deadline is missed. Putting this in writing once means every later project starts with a short brief instead of a negotiation.
+You don't need a long contract. It should say who owns the code and design files once paid, that the work is confidential, that the developer won't contact or solicit your clients, how changes outside the scope are quoted, and what happens if a deadline is missed. Put this in writing once and every later project starts with a short brief instead of a negotiation.
 
-## Handover and support after launch
+## Who looks after the site after launch?
 
-Decide before launch who looks after the site. If your team will, ask for handover notes: the theme and plugins used, how to edit each template, and anything to avoid. If the developer will, agree a reply time for problems and how small changes are charged. Either way, the client should never find out about a broken form from their own customers.
+Decide before launch. If your team will, ask for handover notes: the theme and plugins used, how to edit each template, and anything to avoid. If the developer will, agree a reply time for problems and how small changes are charged. Either way, the client should never find out about a broken form from their own customers.
 
-## How I work with agencies
+## How do I work with agencies like yours?
 
 I build WordPress sites for design and marketing agencies under their brand: custom themes or Elementor, WooCommerce, custom plugins and speed work. I sign NDAs, never contact your client, work in your tools and overlap with US and UK hours. Pricing starts at $1,200 per site or $35 an hour, and the best way to start is one small paid task. See [white label WordPress development](/white-label-wordpress-development/) for how it works.

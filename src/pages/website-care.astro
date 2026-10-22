@@ -1,18 +1,19 @@
 ---
-// For businesses: monthly care plans, and single fixes for a site that is broken today.
+// Website care: the monthly care plans, plus single fixes (repair, speed, malware) for a site in trouble today.
+// Replaces the old /website-care/ and /website-care/ pages, which now 301 here.
 import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Connect from '../components/Connect.astro';
 import PriceCards from '../components/PriceCards.astro';
 import { site } from '../site.js';
 import { work } from '../work.js';
-import { prices, usd } from '../prices.js';
+import { prices, usd, carePlans } from '../prices.js';
 import heroPhoto from '../assets/visuals/care.jpg';
 
-const focus = 'WordPress maintenance services';
-const title = 'WordPress Maintenance Services from $149/mo | Sakib Islam';
+const focus = 'website maintenance services';
+const title = 'Website Maintenance Services from $149/mo | Sakib Islam';
 const description =
-  'WordPress maintenance services from $149/month: tested updates, daily off-site backups, security monitoring and a monthly report, by one senior developer.';
+  'Website maintenance services from $149/mo: tested updates, backups, monitoring and fixes. See the plans.';
 const url = new URL(Astro.url.pathname, Astro.site);
 const tabby = work.find((w) => w.slug === 'tabby').shot;
 
@@ -22,25 +23,11 @@ const weeks = [
   { t: 'Security', d: 'Monitored daily', p: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z' },
   { t: 'Report', d: 'Plain English', p: 'M6 3h9l4 4v14H6zM9 12h7M9 16h5' },
 ];
-// [label, Care, Care + development]
-const plans = [
-  {
-    name: 'Care', for: 'For a business site that needs to stay safe, current and online.',
-    price: usd(prices.care), unit: '/mo', billing: 'Billed monthly · cancel any month',
-    outcome: 'Your site updated, backed up and watched every month, by one developer who knows it.',
-    items: ['WordPress, theme and plugin updates, tested before they go live', 'Daily backups kept off the server', 'Uptime and security monitoring', 'Monthly report in plain English', '1 hour of changes and fixes a month', 'Urgent reply within 24 hours', { t: 'Monthly mobile speed check', ok: false }],
-    cta: 'Start Care', href: '/contact/?plan=care', note: 'You keep every login',
-  },
-  {
-    name: 'Care + development', for: 'For sites that change often and need a developer on hand.', featured: true, badge: 'More hands-on',
-    price: usd(prices.carePlus), unit: '/mo', billing: 'Billed monthly · cancel any month',
-    outcome: 'Everything in Care, plus three hours a month for changes and a monthly speed check.',
-    items: ['WordPress, theme and plugin updates, tested before they go live', 'Daily backups kept off the server', 'Uptime and security monitoring', 'Monthly report in plain English', '3 hours of changes and fixes a month', 'Urgent reply within 24 hours', 'Monthly mobile speed check'],
-    cta: 'Start Care + development', href: '/contact/?plan=care-plus', note: 'You keep every login',
-  },
-];
+const plans = carePlans;
 const faq = [
-  { q: 'What do WordPress maintenance services include?', a: 'Updates to WordPress, the theme and plugins, tested before they go live; daily backups kept off the server; uptime and security monitoring; and time for small changes. You also get a monthly report written for a non-technical reader.' },
+  { q: 'What do website maintenance services include?', a: 'Updates to the platform, theme and plugins (or the libraries in custom code), tested before they go live; daily backups kept off the server; uptime and security monitoring; and time for small changes. You also get a monthly report written for a non-technical reader.' },
+  { q: 'Do you look after WooCommerce stores?', a: 'Yes. WooCommerce maintenance adds checks a content site does not need: the checkout, payment gateway and order emails are tested after every update. Stores are quoted separately because they need more of that testing.' },
+  { q: 'Why one developer instead of a WordPress maintenance company?', a: 'A maintenance company passes your site between support staff. Here the same senior developer handles every update and fix, so nobody has to learn your site again each time something breaks.' },
   { q: 'What happens if the site goes down at night?', a: 'Monitoring tells me when it happens, and urgent problems get a reply within 24 hours. I work from Dhaka, so a US or UK night is my working day.' },
   { q: 'Can you take over a site another developer built?', a: 'Yes. I start by reading what is there: the theme, the plugins, the errors and what changed recently. You get a short list of what is wrong and what I would fix first before the plan starts.' },
   { q: 'Can I cancel?', a: 'Yes, any month. You keep every login and own everything; I work through my own user account, which you can remove.' },
@@ -50,7 +37,7 @@ const jsonld = [
   {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'WordPress maintenance',
+    name: 'Website care',
     serviceType: focus,
     description,
     url,
@@ -67,19 +54,20 @@ const jsonld = [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: Astro.site },
-      { '@type': 'ListItem', position: 2, name: 'WordPress maintenance', item: url },
+      { '@type': 'ListItem', position: 2, name: 'Website care', item: url },
     ],
   },
 ];
 ---
-<Base title={title} description={description} jsonld={jsonld} focus={focus}>
+<Base title={title} description={description} jsonld={jsonld} focus={focus} ogImage="/og-website-care.jpg" ogAlt={title}>
   <section class="p-hero wrap hero-bg">
     <canvas class="dots dots-bleed" aria-hidden="true"></canvas>
     <div class="p-grid">
       <div class="p-copy">
-        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Maintenance</span></nav>
-        <h1><span class="eyebrow">WordPress maintenance services</span><span class="ln">Your site, looked after</span> <span class="ln">every month.</span></h1>
-        <p class="lead">One senior developer who knows your site looks after it every month: tested updates, backups, security and small changes. Not a ticket queue.</p>
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Website care</span></nav>
+        <p class="eyebrow">Website care · nobody looking after your site?</p>
+        <h1><span class="ln">Website maintenance</span> <span class="ln">services, so your site</span> <span class="ln">stops breaking.</span></h1>
+        <p class="lead">Website maintenance services for when nobody's looking after your site, whether it runs on WordPress or is custom built. I test every update before it goes live, keep daily backups off your server, watch for downtime and hacks, and make your small changes. One developer who knows your site, not a ticket queue.</p>
         <div class="btn-row">
           <a class="btn" href="/contact/?plan=care">Start a care plan</a>
           <a class="btn btn-ghost" href="#fix">Fix one problem first</a>
@@ -105,8 +93,8 @@ const jsonld = [
     <div class="wrap two-col">
       <div style="display: grid; gap: 1.1rem; justify-items: start">
         <p class="label">Why sites fall apart</p>
-        <h2>Fine until nobody owns them.</h2>
-        <p class="mut">TubeOnAI kept going down. Old cache plugins were fighting the host's own. I removed them and kept one layer.</p>
+        <h2>Why a website with no maintainer breaks</h2>
+        <p class="mut">A WordPress site breaks when nobody owns the updates. TubeOnAI kept going down because old cache plugins were fighting the host's own; I removed them and kept one caching layer.</p>
         <a class="more-link" href="/work/tubeonai/">Read the case study →</a>
       </div>
       <figure class="result-card" aria-label="TubeOnAI: load time fell from 5 seconds to 1.5 seconds and server load fell 60 percent">
@@ -124,17 +112,17 @@ const jsonld = [
   </section>
 
   <section class="wrap sec-pad" style="padding-bottom: calc(var(--sec) * 0.6)">
-    <div class="row-head"><h2>Two plans. Cancel any month.</h2></div>
+    <div class="row-head"><h2>What website care costs you each month</h2></div>
     <PriceCards plans={plans} />
-    <p class="mut" style="margin-top: 1.1rem; font-size: 0.9375rem">Stores and high-traffic sites are quoted separately. You keep every login.</p>
+    <p class="mut" style="margin-top: 1.1rem; font-size: 0.9375rem">Stores and high-traffic sites are quoted separately. You keep every login. <a class="more-link" href="/wordpress-care-plans/">Compare the care plans side by side →</a> · <a class="more-link" href="/blog/best-wordpress-maintenance-services/">Comparing providers? →</a> · <a class="more-link" href="/blog/wordpress-hosting-and-maintenance/">Hosting vs maintenance →</a></p>
   </section>
 
   <section id="fix" class="wrap" style="padding-bottom: var(--sec)">
     <div class="fix-panel">
       <div>
         <p class="label">Not ready for a plan?</p>
-        <h2 style="font-size: clamp(1.75rem, 3vw, 2.5rem)">Fix one problem first. From {usd(prices.fix)}.</h2>
-        <p class="mut">White screen, broken form, plugin conflict. The cause written down.</p>
+        <h2 style="font-size: clamp(1.75rem, 3vw, 2.5rem)">Something broken or slow right now?</h2>
+        <p class="mut">Single fixes start at {usd(prices.fix)}: a white screen, broken form or plugin conflict, with the cause written down. A slow site gets a measured speed fix from {usd(prices.speed)}, with before and after numbers on PageSpeed Insights. See <a href="/wordpress-repair/">WordPress repair</a>, or <a href="/wordpress-malware-removal/">malware removal</a> for a hacked site.</p>
       </div>
       <a class="btn" href="/contact/?need=broken">Fix my site from $150</a>
     </div>
@@ -152,7 +140,7 @@ const jsonld = [
   </section>
 
   <section class="wrap sec-pad">
-    <div class="row-head"><h2>To get started</h2></div>
+    <div class="row-head"><h2>What I need from you to start</h2></div>
     <ol class="start-steps">
       <li><span class="n">01</span><strong>An admin login for me</strong><span>In my own name.</span></li>
       <li><span class="n">02</span><strong>Hosting access</strong><span>Or the host's name.</span></li>
@@ -162,12 +150,12 @@ const jsonld = [
 
   <section class="wrap sec-pad" style="padding-top: 0">
     <div class="two-col" style="align-items: start">
-      <h2>About maintenance</h2>
+      <h2>Your questions about website maintenance</h2>
       <div class="qa">
         {faq.map((f, i) => <details open={i === 0}><summary>{f.q}</summary><p>{f.a}</p></details>)}
       </div>
     </div>
   </section>
 
-  <Connect heading="Send the site. Get a free check, whether or not you take a plan." />
+  <Connect heading="Send me your website for a free check" />
 </Base>

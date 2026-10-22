@@ -1,12 +1,12 @@
 ---
 title: "WordPress backup and restore: how to do it so it works when needed"
 seoTitle: "WordPress Backup and Restore: A Complete Guide"
-description: "WordPress backup and restore done right: what to back up, how often, where to keep copies, and how to test a restore before the day you really need it."
+description: "WordPress backup and restore that works: what to back up, where to keep it, how to test. Learn how."
 focus: WordPress backup and restore
 date: "2026-10-15"
 art: backup
 topic: Fixes and maintenance
-service: wordpress-maintenance
+service: wordpress-care-plans
 imageAlt: "A list of daily off-site WordPress backups with one selected and a restore this backup button"
 sources:
   - { name: "WordPress.org Documentation, WordPress Backups", url: "https://wordpress.org/documentation/article/wordpress-backups/" }
@@ -19,9 +19,9 @@ faq:
   - { q: "How long should I keep WordPress backups?", a: "Keep at least 30 days of daily backups, so you can go back to before a hack or a mistake that was noticed late, plus a few older monthly copies." }
 ---
 
-A WordPress backup and restore plan is the one piece of maintenance you only find out about on your worst day. Most site owners have backups of some kind. Far fewer have backups that include everything, are stored somewhere safe, and have actually been restored once to prove they work. Here is how to set them up so a hacked server, a failed update or a deleted page is an inconvenience instead of a disaster.
+You probably have a backup of your WordPress site. The question is whether it would actually bring the site back on your worst day. A WordPress backup and restore plan is the one piece of maintenance you only find out about when something breaks. Most site owners have backups of some kind. Far fewer have backups that include everything, are stored somewhere safe, and have been restored once to prove they work. Here's how to set them up so a hacked server, a failed update or a deleted page is an inconvenience instead of a disaster.
 
-## What a WordPress backup must include
+## What must my backup include?
 
 A WordPress site lives in two places, and a backup needs both ([WordPress.org's backup guide](https://wordpress.org/documentation/article/wordpress-backups/)):
 
@@ -30,7 +30,7 @@ A WordPress site lives in two places, and a backup needs both ([WordPress.org's 
 
 A database-only backup brings back your words but not your images. A files-only backup brings back the design but not your content. Check that your tool takes both.
 
-## How often to back up
+## How often should I back up?
 
 Match the backup to how often the site changes:
 
@@ -40,23 +40,23 @@ Match the backup to how often the site changes:
 
 Always take one more backup right before updating plugins or making changes. It costs a minute and is the quickest way back if the update fails.
 
-## Where to keep backups: the 3-2-1 idea
+## Where should I keep my backups?
 
-A backup stored on the same server as the site disappears with it when the server fails or is hacked. A simple rule of thumb:
+Follow the 3-2-1 rule. A backup stored on the same server as the site disappears with it when the server fails or is hacked. The rule of thumb:
 
 - **3 copies** of your data
 - on **2 different kinds of storage**
-- with **1 copy off-site,** somewhere your hosting company and an attacker on your server cannot reach
+- with **1 copy off-site,** somewhere your hosting company and an attacker on your server can't reach
 
 In practice: your host's backups, plus a backup plugin sending copies to cloud storage you own, such as Google Drive, Dropbox or an S3-compatible bucket.
 
-## How long to keep them
+## How long should I keep backups?
 
 Hacks and mistakes are often noticed late. If you only keep seven days of backups and the site was hacked twelve days ago, every backup you have contains the hack. Keep at least 30 days of daily backups, plus a few monthly copies going further back.
 
-## Testing a restore: the step everyone skips
+## Have I tested a restore?
 
-A backup you have never restored is a hope, not a plan. Every few months:
+This is the step almost everyone skips. A backup you've never restored is a hope, not a plan. Every few months:
 
 1. Create a staging site or a local copy
 2. Restore a recent backup to it
@@ -65,7 +65,9 @@ A backup you have never restored is a hope, not a plan. Every few months:
 
 That last number matters. If restoring takes three hours, you know your site would be down for at least that long on a bad day.
 
-## How to restore WordPress
+## How do I restore WordPress?
+
+It depends on where your backup lives, so start with the option that matches yours.
 
 **With a backup plugin or your host:** choose the backup from before the problem, restore files and database together, then clear every cache and test.
 
@@ -77,11 +79,13 @@ That last number matters. If restoring takes three hours, you know your site wou
 4. If the address changed (for example, restoring to staging), update it in the database with a search-and-replace tool
 5. Log in, re-save permalinks, clear caches and test
 
-## Restoring after a hack: be careful
+## Is it safe to restore after a hack?
 
-Restoring last week's backup after a hack often brings the hack back, because the attacker got in earlier than you noticed. Restore from a backup you are confident predates the hack, then immediately update everything and close the hole that let them in, before the site is public. My guides on [checking if your site is hacked](/blog/how-to-check-if-wordpress-site-is-hacked/) and [fixing a hacked WordPress site](/blog/fix-hacked-wordpress-site/) cover the rest.
+Be careful. Restoring last week's backup after a hack often brings the hack back, because the attacker got in earlier than you noticed. Restore from a backup you're confident predates the hack, then immediately update everything and close the hole that let them in, before the site is public. My guides on [checking if your site is hacked](/blog/how-to-check-if-wordpress-site-is-hacked/) and [fixing a hacked WordPress site](/blog/fix-hacked-wordpress-site/) cover the rest.
 
-## Common backup mistakes
+## Which backup mistakes leave me with nothing?
+
+These are why people find out on their worst day that they have no usable backup:
 
 - **Backups stored only on the same server**
 - **Backups that silently stopped** months ago because storage filled up or a password changed
@@ -90,24 +94,24 @@ Restoring last week's backup after a hack often brings the hack back, because th
 - **Never tested,** so the first restore happens under pressure
 - **No backup before updates,** the single most useful moment to have one
 
-## Making it automatic and checked
+## How do I make backups automatic, then check them?
 
-The ideal set-up runs on its own and tells you when it fails: daily automatic backups, copies sent off-site, an alert if a backup fails, and a test restore every few months. That is part of every [WordPress maintenance plan](/wordpress-maintenance/) I run, alongside tested updates. If you are doing it yourself, add these steps to your [WordPress maintenance checklist](/blog/wordpress-maintenance-checklist/).
+The ideal set-up runs on its own and tells you when it fails: daily automatic backups, copies sent off-site, an alert if a backup fails, and a test restore every few months. That's part of every [WordPress maintenance plan](/website-care/) I run, alongside tested updates. If you're doing it yourself, add these steps to your [WordPress maintenance checklist](/blog/wordpress-maintenance-checklist/).
 
-## Backup plugin, host backups or both
+## Should I use a backup plugin, my host's backups, or both?
 
-**Host backups** are convenient and often free, but they are usually stored on the host's own infrastructure, kept for a limited time, and sometimes charged for when you restore. **A backup plugin** gives you control over how often backups run, how long they are kept and where copies go. The safest set-up uses both: the host's backups for quick restores, and a plugin sending copies somewhere you own.
+**Host backups** are convenient and often free, but they're usually stored on the host's own infrastructure, kept for a limited time, and sometimes charged for when you restore. **A backup plugin** gives you control over how often backups run, how long they're kept and where copies go. The safest set-up uses both: the host's backups for quick restores, and a plugin sending copies somewhere you own.
 
-When choosing a plugin, check that it backs up both files and the database, can send copies to off-site storage, can restore to a different address (useful for staging), alerts you when a backup fails, and does not slow the site down while it runs on large sites.
+When choosing a plugin, check that it backs up both files and the database, can send copies to off-site storage, can restore to a different address (useful for staging), alerts you when a backup fails, and doesn't slow the site down while it runs on large sites.
 
-## Backups for WooCommerce stores
+## What's different for a WooCommerce store?
 
-Stores have one extra problem: orders. If you restore yesterday's backup, today's orders disappear from WordPress, even though the customers paid. Before restoring a store, export recent orders, or choose a restore method that leaves the order tables untouched, and reconcile with your payment gateway afterwards. Back up the database more often on busy stores, so a restore never loses more than a short window.
+Orders. If you restore yesterday's backup, today's orders disappear from WordPress, even though the customers paid. Before restoring a store, export recent orders, or choose a restore method that leaves the order tables untouched, and reconcile with your payment gateway afterwards. Back up the database more often on busy stores, so a restore never loses more than a short window.
 
-## A quick backup health check
+## What's a quick health check for my backups?
 
-Right now, answer three questions: when did your last backup run, where is the copy stored, and when did anyone last restore one? If any answer is "I am not sure", fix that this week. It is the cheapest insurance your website will ever have.
+Right now, answer three questions: when did your last backup run, where is the copy stored, and when did anyone last restore one? If any answer is "I'm not sure", fix that this week. It's the cheapest insurance your website will ever have.
 
-## When you need help
+## What if my site is down and the backup won't restore?
 
-If your site is down and your backup will not restore, do not keep retrying on the live site. Take a copy of what is there, and get help. A one-off fix starts from $150, and it comes with a note of what went wrong so your next restore works first time.
+Don't keep retrying on the live site. Take a copy of what's there, and get help. A one-off fix starts from $150, and it comes with a note of what went wrong so your next restore works first time.

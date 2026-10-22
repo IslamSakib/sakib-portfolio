@@ -1,0 +1,164 @@
+---
+// For businesses comparing plans: the two monthly care plans side by side, with a single fix as the third option.
+// Plans come from src/prices.js (same cards as the maintenance page), so prices and items never drift apart.
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Connect from '../components/Connect.astro';
+import PriceCards from '../components/PriceCards.astro';
+import { site } from '../site.js';
+import { work } from '../work.js';
+import { prices, usd, carePlans } from '../prices.js';
+import heroPhoto from '../assets/visuals/care.jpg';
+
+const focus = 'WordPress care plans';
+const title = 'WordPress Care Plans from $149/mo | Sakib Islam';
+const description =
+  'WordPress care plans from $149/mo: updates, backups, monitoring and developer hours. Compare the plans.';
+const url = new URL(Astro.url.pathname, Astro.site);
+const tabby = work.find((w) => w.slug === 'tabby').shot;
+
+// [what, Care, Care + development, Single fix]. true = included, false = not, text = the limit.
+const rows = [
+  ['Price', `${usd(prices.care)}/mo`, `${usd(prices.carePlus)}/mo`, `from ${usd(prices.fix)}, once`],
+  ['WordPress, theme and plugin updates, tested first', true, true, false],
+  ['Daily backups kept off the server', true, true, false],
+  ['Uptime and security monitoring', true, true, false],
+  ['Monthly report in plain English', true, true, false],
+  ['Developer time for changes and fixes', '1 hour a month', '3 hours a month', 'The one fix'],
+  ['Monthly mobile speed check', false, true, false],
+  ['Urgent reply', 'Within 24 hours', 'Within 24 hours', 'Within 24 hours'],
+  ['Cause written down', true, true, true],
+  ['You keep every login', true, true, true],
+];
+const fits = [
+  { t: 'Care', d: 'A business site that changes now and then: a brochure site, a SaaS marketing site, a school. You want it safe and current without thinking about it.' },
+  { t: 'Care + development', d: 'A site your team changes every month: new pages, landing pages, forms and plugins. You want a developer on hand, and the speed checked as the site grows.' },
+  { t: 'A single fix', d: 'Something is broken today and you are not ready for a plan. Fix it first, then decide.' },
+];
+const faq = [
+  { q: 'What is a WordPress care plan?', a: 'A WordPress care plan is a monthly service that keeps a site updated, backed up, monitored and fixed. Here it is done by one senior developer who knows your site, with a set number of hours for changes each month.' },
+  { q: 'What does a WordPress maintenance plan cost?', a: `My two plans are ${usd(prices.care)} and ${usd(prices.carePlus)} a month. The difference is developer time: one hour a month for changes and fixes, or three hours plus a monthly speed check. Stores and high-traffic sites are quoted separately.` },
+  { q: 'Can I switch plans or cancel?', a: 'Yes. Move between plans at the start of any month, or cancel any month. You keep every login and own everything.' },
+  { q: 'Do unused hours roll over?', a: 'No. The hours are kept free for your site each month, so they do not carry over. If you need more one month, extra work is quoted first. The full rules are in the service terms.' },
+  { q: 'Do you host the site?', a: 'No. Your site stays with your host and your account. I work through my own user account, which you can remove at any time.' },
+  { q: 'What if something breaks between checks?', a: 'Monitoring tells me when the site goes down or something changes, and urgent problems get a reply within 24 hours on both plans.' },
+];
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'WordPress care plans',
+    serviceType: focus,
+    description,
+    url,
+    provider: { '@type': 'Person', name: site.name, url: Astro.site },
+    offers: [
+      { '@type': 'Offer', name: 'Care', priceSpecification: { '@type': 'UnitPriceSpecification', price: prices.care, priceCurrency: 'USD', unitText: 'month' } },
+      { '@type': 'Offer', name: 'Care + development', priceSpecification: { '@type': 'UnitPriceSpecification', price: prices.carePlus, priceCurrency: 'USD', unitText: 'month' } },
+    ],
+  },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: Astro.site },
+      { '@type': 'ListItem', position: 2, name: 'Website care', item: new URL('/website-care/', Astro.site) },
+      { '@type': 'ListItem', position: 3, name: 'Care plans', item: url },
+    ],
+  },
+];
+---
+<Base title={title} description={description} jsonld={jsonld} focus={focus} ogImage="/og-wordpress-care-plans.jpg" ogAlt={title}>
+  <section class="p-hero wrap hero-bg">
+    <canvas class="dots dots-bleed" aria-hidden="true"></canvas>
+    <div class="p-grid">
+      <div class="p-copy">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/website-care/">Website care</a><span>/</span><span>Care plans</span></nav>
+        <p class="eyebrow">Website care · plans and limits</p>
+        <h1><span class="ln">WordPress care plans:</span> <span class="ln">what each plan</span> <span class="ln">includes and costs.</span></h1>
+        <p class="lead">WordPress care plans at {usd(prices.care)} or {usd(prices.carePlus)} a month. Here's exactly what you get each month, how many developer hours that includes, and what happens if something breaks between checks. Cancel any month; you keep every login.</p>
+        <div class="btn-row">
+          <a class="btn" href="#plans">Compare the plans</a>
+          <a class="btn btn-ghost" href="/contact/?plan=care">Ask a question first</a>
+        </div>
+      </div>
+      <div class="p-photo">
+        <Picture src={heroPhoto} formats={['avif', 'webp']} widths={[640, 960, 1280]} sizes="(max-width: 900px) 100vw, 660px" alt="A monthly care report for the Tabby website: updates, backups, monitoring, changes and a plain-English report" loading="eager" fetchpriority="high" />
+      </div>
+    </div>
+  </section>
+
+  <section id="plans" class="wrap sec-pad">
+    <div class="row-head"><h2>Pick the care plan that fits your site</h2></div>
+    <PriceCards plans={carePlans} />
+  </section>
+
+  <section class="on-surface sec-pad">
+    <div class="wrap" style="display: grid; gap: 2rem">
+      <h2>What each plan includes, line by line</h2>
+      <div class="cmp-wrap">
+        <table class="cmp">
+          <thead><tr><th scope="col"><span class="sr-only">What you get</span></th><th scope="col">Care</th><th scope="col">Care + development</th><th scope="col">Single fix</th></tr></thead>
+          <tbody>
+            {rows.map(([what, ...cells]) => (
+              <tr>
+                <th scope="row">{what}</th>
+                {cells.map((c) => <td>{c === true ? <span class="yes" aria-label="Included">✓</span> : c === false ? <span class="no" aria-label="Not included">–</span> : c}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mut" style="font-size: 0.9375rem">Stores and high-traffic sites are quoted separately. Broken today? <a href="/wordpress-repair/">Start with a repair</a>. Hacked? See <a href="/wordpress-malware-removal/">malware removal</a>.</p>
+    </div>
+  </section>
+
+  <section class="wrap sec-pad">
+    <div class="row-head"><h2>Which plan is right for you?</h2></div>
+    <div class="cap-grid">
+      {fits.map((f) => (
+        <div class="tile">
+          <h3>{f.t}</h3>
+          <p class="mut" style="font-size: 0.9375rem">{f.d}</p>
+        </div>
+      ))}
+    </div>
+    <p class="mut" style="margin-top: 1.4rem">Not sure what a plan should cover? <a class="more-link" href="/website-care/">See what website care includes →</a> · <a class="more-link" href="/blog/wordpress-maintenance-cost/">What maintenance costs elsewhere →</a> · <a class="more-link" href="/blog/best-wordpress-maintenance-services/">Comparing providers →</a></p>
+  </section>
+
+  <section class="sec-line sec-pad">
+    <div class="wrap two-col">
+      <figure class="quote-side" style="margin: 0">
+        <span class="ini" aria-hidden="true">AA</span>
+        <blockquote>&ldquo;continuous maintenance and updates on Tabby's website. He is very responsive&rdquo;</blockquote>
+        <figcaption class="mut">Ahad Ali, CPA, Founder of Tabby</figcaption>
+      </figure>
+      <a class="browser" href="/work/tabby/"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>usetabby.com</span></div><Picture src={tabby} formats={['avif', 'webp']} widths={[480, 720, 1040]} sizes="(max-width: 900px) 100vw, 600px" alt="The Tabby website, built and maintained by Sakib Islam since 2025" loading="lazy" /></a>
+    </div>
+  </section>
+
+  <section class="wrap sec-pad">
+    <div class="two-col" style="align-items: start">
+      <h2>Your questions about care plans</h2>
+      <div class="qa">
+        {faq.map((f, i) => <details open={i === 0}><summary>{f.q}</summary><p>{f.a}</p></details>)}
+      </div>
+    </div>
+  </section>
+
+  <Connect heading="Not sure which plan? Send me your site" />
+</Base>
+
+<style>
+  .cmp-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+  .cmp { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 0.9375rem; }
+  .cmp th, .cmp td { padding: 0.85rem 1rem; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .cmp tbody tr:last-child th, .cmp tbody tr:last-child td { border-bottom: 0; }
+  .cmp thead th { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--muted); font-weight: 400; }
+  .cmp tbody th { font-weight: 400; color: var(--text); }
+  .cmp td { color: var(--text); }
+  .cmp .yes { color: var(--accent); font-weight: 700; }
+  .cmp .no { color: var(--line-2); }
+</style>

@@ -1,7 +1,7 @@
 ---
 title: "WordPress Core Web Vitals: how to pass LCP, INP and CLS"
 seoTitle: "WordPress Core Web Vitals: How to Pass LCP, INP, CLS"
-description: "WordPress Core Web Vitals explained: what LCP, INP and CLS measure, how to read your real-visitor data, and the WordPress fixes that move each one."
+description: "WordPress Core Web Vitals: how to pass LCP, INP and CLS on a real site. Learn the fixes that work."
 focus: WordPress Core Web Vitals
 date: "2026-10-15"
 art: rings
@@ -24,9 +24,9 @@ faq:
   - { q: "How long until Core Web Vitals improve in Search Console?", a: "The real visitor data covers the previous 28 days, so improvements show gradually over about four weeks after a fix is deployed. You can then use Search Console's Validate Fix button to confirm." }
 ---
 
-[Core Web Vitals](https://web.dev/articles/vitals) are three measurements Google uses to judge how a page feels to real visitors. On WordPress sites they mostly come down to images, scripts and layout. Here is what each one measures, the target to aim for, and the WordPress fixes that actually move it.
+PageSpeed Insights is showing red, and you want to know what to fix on your site. WordPress [Core Web Vitals](https://web.dev/articles/vitals) are three measurements Google uses to judge how a page feels to real visitors. On WordPress sites they mostly come down to images, scripts and layout. Here's what each one measures, the target to aim for, and the WordPress fixes that actually move it.
 
-## The three measurements
+## What are the three Core Web Vitals, in plain words?
 
 - **LCP, Largest Contentful Paint:** how long the main content takes to appear. Good is 2.5 seconds or less.
 - **INP, Interaction to Next Paint:** how quickly the page responds when someone taps or clicks. Good is 200 milliseconds or less.
@@ -34,23 +34,23 @@ faq:
 
 A page passes when at least 75% of real visits meet all three.
 
-## Read the right numbers
+## Which numbers should I read for my site?
 
 Google PageSpeed Insights shows two sets of numbers. The top box is real visitor data from Chrome users over the previous 28 days ([Google explains the difference](https://developers.google.com/speed/docs/insights/v5/about)), and this is what Google uses. The lab score below it is a simulated test on a slow phone. A site can have a poor lab score and still pass on real visitors, and the other way round. Fix what the real data says first.
 
 New or small sites may have no real visitor data yet. Then the lab test is your best guide.
 
-## Fixing LCP on WordPress
+## How do I fix LCP on my WordPress site?
 
 The largest element is usually the hero image or the main heading.
 
-- Serve the hero image at the size it is shown, in WebP or AVIF
-- Do not lazy-load the hero image; it should load first
+- Serve the hero image at the size it's shown, in WebP or AVIF
+- Don't lazy-load the hero image. It should load first
 - Use one properly configured caching layer, not two
-- Cut render-blocking CSS and JavaScript from plugins that are not needed on that page
+- Cut render-blocking CSS and JavaScript from plugins that aren't needed on that page
 - Self-host your web fonts and preload the main one
 
-## Fixing INP on WordPress
+## How do I fix INP on my WordPress site?
 
 INP suffers when too much JavaScript runs on the page.
 
@@ -58,27 +58,27 @@ INP suffers when too much JavaScript runs on the page.
 - Delay third-party scripts (chat, analytics, ad pixels) until after the page has loaded
 - Rebuild very heavy page-builder layouts, which ship large scripts
 
-## Fixing CLS on WordPress
+## How do I fix CLS on my WordPress site?
 
 CLS is usually the easiest of the three.
 
 - Give every image and video a width and height
 - Reserve space for ads, embeds and cookie banners before they load
-- Load fonts so the text does not change size noticeably after the page appears
+- Load fonts so the text doesn't change size noticeably after the page appears
 
-## Do Core Web Vitals affect rankings?
+## Do Core Web Vitals affect my rankings?
 
 Yes, but as one signal among many. Google uses page experience, including Core Web Vitals, when it ranks pages, but relevant, helpful content still matters more. Where Core Web Vitals help most is between pages of similar quality: if your page and a competitor's answer the same question equally well, the faster, steadier page has the edge.
 
 The bigger effect is on visitors. A page that loads slowly or jumps around while loading loses people before they read a word, and that affects enquiries and sales whether or not rankings move.
 
-## Why your score changes every time you test
+## Why does my score change every time I test?
 
-The lab score in PageSpeed Insights is a single simulated run, so it moves by a few points between tests because of network timing, server load and third-party scripts. Do not chase small changes. Run the test three times and look at the middle result, or better, watch the real visitor data, which is averaged over 28 days and changes slowly.
+The lab score in PageSpeed Insights is a single simulated run, so it moves by a few points between tests because of network timing, server load and third-party scripts. Don't chase small changes. Run the test three times and look at the middle result, or better, watch the real visitor data, which is averaged over 28 days and changes slowly.
 
-If the real visitor box says "not enough data", your site does not have enough Chrome visitors for Google to report on. Google then judges the page mostly on other signals, and the lab test is your best guide.
+If the real visitor box says "not enough data", your site doesn't have enough Chrome visitors for Google to report on. Google then judges the page mostly on other signals, and the lab test is your best guide.
 
-## WordPress plugins that commonly hurt Core Web Vitals
+## Which plugins are probably hurting my Core Web Vitals?
 
 Not every plugin is a problem, but some types are frequent offenders:
 
@@ -88,7 +88,9 @@ Not every plugin is a problem, but some types are frequent offenders:
 - **Social feeds and embedded videos.** Each embed loads code from another site. Load them only when the visitor scrolls to them, or show a static preview image.
 - **Multiple optimisation plugins.** Two plugins rewriting the same CSS and JavaScript can break layouts and undo each other. Keep one.
 
-## A testing routine that works
+## How do I test in a way I can repeat?
+
+Use the same routine every time, so you can compare results fairly:
 
 1. Pick the pages that matter: the home page, your top landing pages and, for stores, a product page and the checkout.
 2. Record mobile results for each before changing anything.
@@ -97,12 +99,12 @@ Not every plugin is a problem, but some types are frequent offenders:
 
 Search Console groups pages with similar problems, so one fix to a shared template often fixes hundreds of URLs at once.
 
-## Core Web Vitals on WooCommerce stores
+## What about my WooCommerce store?
 
-Stores have a harder time with Core Web Vitals because their most important pages cannot be fully cached: the cart and checkout change for every visitor. Product pages carry large galleries, and many stores run several marketing scripts. Focus on the product and category templates first, since those receive most search traffic: size gallery images properly, load reviews and related products after the main content, and remove scripts that only some pages need. Then measure the cart and checkout separately, since those pages are about INP: the time between a tap on "Add to cart" or "Place order" and a visible response.
+Stores have a harder time with Core Web Vitals because their most important pages can't be fully cached: the cart and checkout change for every visitor. Product pages carry large galleries, and many stores run several marketing scripts. Focus on the product and category templates first, since those get most of your search traffic: size gallery images properly, load reviews and related products after the main content, and remove scripts that only some pages need. Then measure the cart and checkout separately. Those pages are about INP: the time between a tap on "Add to cart" or "Place order" and a visible response.
 
-## What this looks like in practice
+## What does passing look like on a real site?
 
-Tabby launched with Core Web Vitals above 90, and TubeOnAI's load time went from 5 seconds to 1.5 once its caching conflict was removed. The fixes were not exotic: the right image sizes, one caching layer and lighter templates. The [TubeOnAI case study](/work/tubeonai/) walks through it.
+Tabby launched with Core Web Vitals above 90, and TubeOnAI's load time went from 5 seconds to 1.5 once I removed its caching conflict. The fixes weren't exotic: the right image sizes, one caching layer and lighter templates. The [TubeOnAI case study](/work/tubeonai/) walks through it.
 
-If you want the work done with before and after numbers on Google's own tool, see [WordPress speed optimization](/wordpress-speed-optimization/).
+If you want the work done with before and after numbers on Google's own tool, see [WordPress speed optimization](/website-care/).

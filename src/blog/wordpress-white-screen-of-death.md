@@ -1,12 +1,12 @@
 ---
 title: "WordPress white screen of death: how to fix it step by step"
 seoTitle: "WordPress White Screen of Death: How to Fix It"
-description: "The WordPress white screen of death usually means a PHP error from a plugin, theme or failed update. How to find the cause and fix it safely, step by step."
+description: "WordPress white screen of death: find the PHP error and fix it step by step. Learn the fix."
 focus: WordPress white screen of death
 date: "2026-10-15"
 art: blank
 topic: Fixes and maintenance
-service: wordpress-maintenance
+service: wordpress-repair
 imageAlt: "A blank white website showing the message There has been a critical error on this website, beside the title WordPress white screen of death"
 stats:
   - { value: "5.2", label: "the WordPress version that added fatal error recovery mode", source: "WordPress.org, Fatal Error Recovery Mode in 5.2", url: "https://make.wordpress.org/core/2019/04/16/fatal-error-recovery-mode-in-5-2/" }
@@ -24,15 +24,15 @@ faq:
   - { q: "How do I stop the white screen happening again?", a: "Test updates on a staging copy before running them on the live site, keep daily backups stored away from the server, and keep the plugin list short. A monthly maintenance plan covers all three." }
 ---
 
-The WordPress white screen of death is a blank page where your site should be. No error, no design, nothing. It looks dramatic, but the cause is usually simple: PHP hit an error it could not recover from and stopped before it printed anything. Here is how to find that error and fix it without making things worse.
+Your site is a blank white page. No error, no design, nothing. It looks bad, but this is the WordPress white screen of death, and the cause is usually simple: PHP hit an error it couldn't recover from and stopped before it printed anything. Your posts, pages and settings are safe in the database. Here's how I find the error and fix it without making things worse.
 
-## First: check your email
+## First: check your inbox for a recovery link
 
-Since WordPress 5.2 ([fatal error recovery mode](https://make.wordpress.org/core/2019/04/16/fatal-error-recovery-mode-in-5-2/)), when a plugin or theme causes a fatal error, WordPress emails the site's admin address a link to recovery mode. Check the inbox (and spam folder) of the admin email. The link lets you log in with the broken plugin paused, so you can deactivate it from the dashboard.
+Since WordPress 5.2 ([fatal error recovery mode](https://make.wordpress.org/core/2019/04/16/fatal-error-recovery-mode-in-5-2/)), when a plugin or theme causes a fatal error, WordPress emails your site's admin address a link to recovery mode. Look in the inbox and the spam folder of that address. The link lets you log in with the broken plugin paused, so you can switch it off from the dashboard. If the email is there, you may be done in two minutes.
 
-## Step 1: Turn on the error log
+## Step 1: Turn on the error log so you can see what broke
 
-You need to see the error ([WordPress.org explains the debug settings](https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/)). Open `wp-config.php` in your host's file manager or over SFTP and set:
+You can't fix an error you can't see ([WordPress.org explains the debug settings](https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/)). Open `wp-config.php` in your host's file manager or over SFTP and set:
 
 ```php
 define( 'WP_DEBUG', true );
@@ -40,41 +40,41 @@ define( 'WP_DEBUG_LOG', true );
 define( 'WP_DEBUG_DISPLAY', false );
 ```
 
-Reload the page, then open `wp-content/debug.log`. The last lines name the file that failed. If the path contains `/plugins/some-plugin/`, you have found the cause. Turn debugging off again when you are done.
+Reload the page, then open `wp-content/debug.log`. The last lines name the file that failed. If the path contains `/plugins/some-plugin/`, you've found the cause. Turn debugging off again when you're done.
 
-## Step 2: Disable plugins without the dashboard
+## Step 2: Can't log in? Switch plugins off from the files
 
-If you cannot log in, rename the `wp-content/plugins` folder to `plugins-off`. WordPress deactivates every plugin. If the site comes back, rename the folder back and rename plugin folders one at a time until the white screen returns. The last one you renamed is the culprit.
+Rename the `wp-content/plugins` folder to `plugins-off`. WordPress deactivates every plugin. If the site comes back, rename the folder back, then rename plugin folders one at a time until the white screen returns. The last one you touched is the culprit.
 
-## Step 3: Switch to a default theme
+## Step 3: Still white? Try a default theme
 
-If plugins were not the cause, the theme may be. Rename your theme's folder inside `wp-content/themes`. WordPress falls back to a default theme such as Twenty Twenty-Five, if one is installed.
+If plugins weren't the cause, the theme may be. Rename your theme's folder inside `wp-content/themes`. WordPress falls back to a default theme such as Twenty Twenty-Five, if one is installed.
 
-## Step 4: Check the memory limit
+## Step 4: "Allowed memory size exhausted" means PHP ran out of memory
 
-An error mentioning "Allowed memory size exhausted" means PHP ran out of memory. Raise it in `wp-config.php` with `define( 'WP_MEMORY_LIMIT', '256M' );`, and ask your host to raise the server limit if needed. Then find out what is using so much memory, because the limit only hides the problem.
+Raise the limit in `wp-config.php` with `define( 'WP_MEMORY_LIMIT', '256M' );`, and ask your host to raise the server limit if needed. Then find out what is eating the memory, because a bigger limit only hides the problem.
 
-## Step 5: A failed update
+## Step 5: The screen went white during an update
 
-If the screen went white during an update, look for a file called `.maintenance` in the site's root folder and delete it. Then run the update again, ideally on a staging copy first.
+Look for a file called `.maintenance` in the site's root folder and delete it. Then run the update again, on a staging copy first if you can.
 
 ## Step 6: Clear every cache
 
-Sometimes the site is fixed but you are still being served a cached blank page. Clear the cache plugin, the host's cache and, if you use one, Cloudflare.
+Sometimes the site is fixed but you're still being served a cached blank page. Clear the cache plugin, the host's cache and, if you use it, Cloudflare.
 
-## White screen or "critical error" message
+## Is "critical error" the same as the white screen?
 
-Since WordPress 5.2 you often see a short message instead of a fully blank page: "There has been a critical error on this website." It is the same problem with a friendlier face. A fatal PHP error stopped the page, and WordPress caught it. Everything in this guide applies to both.
+Yes. Since WordPress 5.2 you often see "There has been a critical error on this website" instead of a fully blank page. It's the same problem with a friendlier face: a fatal PHP error stopped the page and WordPress caught it. Everything in this guide applies to both.
 
-A fully blank page with no message usually means the error happened before WordPress could load its error handler, often in the theme's `functions.php` or in a must-use plugin in `wp-content/mu-plugins`. Check those two places early if the debug log points nowhere obvious.
+A fully blank page with no message usually means the error happened before WordPress could load its error handler. That's often the theme's `functions.php` or a must-use plugin in `wp-content/mu-plugins`, so check those two places early if the debug log points nowhere obvious.
 
-## Only the admin is white, or only one page
+## What if only your dashboard, or one page, is white?
 
-If the front of the site works but the dashboard is blank, the cause is usually an admin-only plugin: a page builder, a security plugin or an SEO plugin. Disable plugins as in step 2.
+If the front of the site works but the dashboard is blank, an admin-only plugin is usually to blame: a page builder, a security plugin or an SEO plugin. Disable plugins as in step 2.
 
-If only one page is white, look at what is special about it: a form, a slider, a shortcode from a plugin, or a custom template. Switch that page to the default template temporarily. If it loads, the template or the block on it is the problem.
+If only one page is white, ask what's special about it: a form, a slider, a plugin shortcode, a custom template. Switch that page to the default template for a moment. If it loads, the template or the block on it is the problem.
 
-## Reading the error log without guessing
+## How do I read the error log without guessing?
 
 A debug log line looks like this:
 
@@ -82,35 +82,35 @@ A debug log line looks like this:
 PHP Fatal error: Uncaught Error: Call to undefined function some_function() in /wp-content/plugins/some-plugin/includes/file.php:42
 ```
 
-Three parts matter. "Fatal error" tells you this line stopped the page. The function name tells you what was missing. The path tells you who owns the code: `/plugins/some-plugin/` is that plugin, `/themes/your-theme/` is the theme, and `/wp-includes/` usually means a plugin called WordPress core in a way it no longer supports after an update.
+Three parts matter. "Fatal error" means this line stopped the page. The function name tells you what was missing. The path tells you who owns the code: `/plugins/some-plugin/` is that plugin, `/themes/your-theme/` is your theme, and `/wp-includes/` usually means a plugin called WordPress core in a way an update no longer supports.
 
-Ignore lines marked "Notice" or "Deprecated" for now. They are warnings, not the reason the page is white.
+Ignore lines marked "Notice" or "Deprecated" for now. They're warnings, not the reason the page is white.
 
-## When it is your host, not WordPress
+## What if it's my host and not WordPress?
 
-Sometimes nothing in WordPress changed. The host upgraded PHP, hit a disk space limit, or a server process crashed. Signs: every site on the account is white, the debug log stays empty, or the host's own error log (in its control panel) shows errors outside WordPress. Contact the host with the time it started; they can see server-level logs you cannot.
+Sometimes nothing in WordPress changed. The host upgraded PHP, you hit a disk space limit, or a server process crashed. The signs: every site on the account is white, the debug log stays empty, or the host's own error log shows errors outside WordPress. Contact the host with the time it started. They can see server logs you can't.
 
-## Restore from backup as a last resort
+## When should I just restore a backup?
 
-If you cannot find the cause and the site has to be up now, restore yesterday's backup. It is a fast way back online, but treat it as a pause, not a fix: if an automatic update caused the white screen, the same update will run again tonight. Find the cause before it repeats. [How WordPress backup and restore should work](/blog/wordpress-backup-and-restore/) covers what a usable backup looks like.
+Only as a last resort. If you can't find the cause and the site has to be up now, restore yesterday's backup. It gets you back online fast, but treat it as a pause, not a fix. If an automatic update caused the white screen, the same update will run again tonight. [How WordPress backup and restore should work](/blog/wordpress-backup-and-restore/) covers what a usable backup looks like.
 
-## What not to do
+## What should I not do while the site is down?
 
-A few common reactions make a white screen worse:
+These reactions make a white screen worse:
 
-- **Reinstalling WordPress from the dashboard installer or deleting folders at random.** You can delete the one file that holds your settings, or remove uploads you have no copy of.
-- **Running every pending update at once to "fix" it.** If an update caused the error, more updates add more unknowns. Find the cause first.
-- **Editing theme files in the dashboard editor.** One missing bracket in `functions.php` is itself a common cause of white screens, and if you break it there you may lose access to the editor.
-- **Leaving debug mode on.** With `WP_DEBUG_DISPLAY` set to true, error details are shown to every visitor, including file paths an attacker can use. Log to the file, not the screen, and switch it off afterwards.
+- **Reinstalling WordPress or deleting folders at random.** You can delete the one file that holds your settings, or remove uploads you have no copy of.
+- **Running every pending update at once "to fix it".** If an update caused the error, more updates add more unknowns. Find the cause first.
+- **Editing theme files in the dashboard editor.** One missing bracket in `functions.php` is itself a common cause of white screens, and breaking it there can lock you out of the editor.
+- **Leaving debug mode on.** With `WP_DEBUG_DISPLAY` set to true, every visitor sees error details, including file paths an attacker can use. Log to the file, not the screen, and switch it off afterwards.
 
-Before you change anything, take a fresh backup of the files and the database, even of the broken site. If a fix goes wrong, you can always get back to where you started.
+Before you change anything, take a fresh backup of the files and the database, even of the broken site. If a fix goes wrong, you can get back to where you started.
 
-## How long a fix usually takes
+## How long will the fix take?
 
-When the cause is a single plugin or theme update, finding it and getting the site back usually takes under an hour for someone used to the steps above. Memory problems and host-level failures take longer because the real fix sits with the code that uses too much memory, or with the hosting company. The step most people skip is the last one: writing down what caused it so the same update does not take the site down again next month.
+When the cause is a single plugin or theme update, finding it and getting the site back usually takes me under an hour. Memory problems and host-level failures take longer, because the real fix sits with the code that uses too much memory or with the hosting company. The step most people skip is the last one: writing down what caused it, so the same update doesn't take the site down again next month.
 
-## Stop it happening again
+## How do I stop it happening again?
 
-White screens almost always follow a change: an update, a new plugin, a host moving PHP versions. Three habits prevent most of them: test updates on a copy of the site first, keep daily backups stored away from the server, and keep the plugin list short.
+White screens almost always follow a change: an update, a new plugin, a host moving PHP versions. Three habits prevent most of them. Test updates on a copy of the site first. Keep daily backups stored away from the server. Keep the plugin list short.
 
-That is what a [WordPress maintenance plan](/wordpress-maintenance/) covers. If your site is white right now and you need it back, a single fix starts from $150 and comes with the cause written down.
+That's what a [WordPress maintenance plan](/website-care/) covers. If your site is white right now and you need it back, send me access and a single fix starts from $150, with the cause written down so you know what happened.

@@ -1,0 +1,122 @@
+---
+// Hub for "hire a full stack developer": what the job covers, the three services, and the place pages.
+import Base from '../layouts/Base.astro';
+import Connect from '../components/Connect.astro';
+import ServiceArt from '../components/ServiceArt.astro';
+import WorkReel from '../components/WorkReel.astro';
+import Process from '../components/Process.astro';
+import Reviews from '../components/Reviews.astro';
+import Faq from '../components/Faq.astro';
+import { site } from '../site.js';
+import { services } from '../services.js';
+import { work } from '../work.js';
+import { iconFor } from '../icons.js';
+import { prices, usd } from '../prices.js';
+
+const { role } = Astro.props;
+const hub = role.hub;
+const { focus, title, description, faq } = hub;
+const base = `/${role.slug}/`;
+const url = new URL(Astro.url.pathname, Astro.site);
+const tidy = (t) => t.replace(/ (\S+)$/, ' $1');
+const pad = (n) => String(n).padStart(2, '0');
+const proof = hub.proof.map((slug) => work.find((w) => w.slug === slug)).filter(Boolean);
+const covers = hub.covers;
+const places = role.pages;
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: `${site.name}, ${role.title}`,
+    description,
+    url,
+    areaServed: ['United States', 'United Kingdom', 'Australia', 'Canada'],
+    provider: { '@type': 'Person', name: site.name, url: Astro.site, jobTitle: site.role },
+    makesOffer: services.map((sv) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: sv.name, url: new URL(`/${sv.slug}/`, Astro.site) } })),
+  },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: Astro.site },
+      { '@type': 'ListItem', position: 2, name: role.name, item: url },
+    ],
+  },
+];
+---
+<Base title={title} description={description} jsonld={jsonld} focus={focus} ogImage={`/og-${role.slug}.jpg`} ogAlt={`${title}. Sakib Islam, remote ${role.name.toLowerCase()}.`}>
+  <section class="page-head svc-hero">
+    <canvas class="dots" aria-hidden="true"></canvas>
+    <div class="wrap svc-grid">
+      <div class="svc-copy">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span>/</span><span>{role.name}</span>
+        </nav>
+        <h1>{hub.h1Lines.map((l) => <Fragment><span class="hl">{l}</span>{' '}</Fragment>)}</h1>
+        <p class="lead">{tidy(hub.lead)}</p>
+        <p class="label">Reply within 24 hours · written quote first</p>
+        <div class="hero-actions">
+          <a class="btn" href="/contact/?need=build">Get a free quote</a>
+          <a class="btn btn-ghost" href="#proof">See the work</a>
+        </div>
+        <ul class="tags"><li>Custom websites</li><li>Web apps</li><li>WordPress themes and plugins</li><li>Website care</li></ul>
+      </div>
+      <ServiceArt slug="custom-web-development" eager />
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="section-head"><h2>{`What a ${role.name.toLowerCase()} covers here`}</h2></div>
+      <ul class="kit">
+        {covers.map((item, i) => (
+          <li>
+            <span class="kit-top">
+              <svg class="kit-ico" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d={iconFor(item.name)} /></svg>
+              <span class="idx">{pad(i + 1)}</span>
+            </span>
+            <h3>{item.name}</h3>
+            <p class="muted">{item.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="proof" class="sec tint-a">
+    <div class="wrap">
+      <WorkReel items={proof} title="Projects I've built, with live sites" lead="Pick a project to see the result and the live site." />
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>{`Find a ${role.name.toLowerCase()} for your state or city`}</h2>
+        <p class="muted" style="max-width: 70ch">I work remotely, so location is about time zone and business context, not an office. Each page covers what that market asks for and how we would work together.</p>
+      </div>
+      <ul class="kit kit-links">
+        {places.map((pl) => (
+          <li>
+            <h3><a href={`${base}${pl.slug}/`}>{role.name} in {pl.name}</a></h3>
+            <p class="muted">{pl.industries.map((i) => i.name).join(', ')}.</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <Process title="How your project runs, step by step" variant="build" />
+
+  <Reviews />
+
+  <Faq items={faq} title={`Your questions about hiring a ${role.name.toLowerCase()}`} />
+
+  <Connect heading={`Need a ${role.name.toLowerCase()}?`} />
+</Base>
+
+<script>
+  import '../scripts/reel.js';
+</script>

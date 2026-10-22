@@ -88,6 +88,25 @@ const jsonld = [
       />
     </figure>
 
+    {w.psi && (
+      <section class="cwv" aria-labelledby="cwv-h">
+        <div class="cwv-head">
+          <h2 id="cwv-h">Google PageSpeed Insights results</h2>
+          <p class="muted">{w.psi.page}, mobile, tested {w.psi.date}. {w.psi.note} <a class="more-link" href={w.psi.report} target="_blank" rel="noopener">Open the Google report ↗</a></p>
+        </div>
+        <dl class="cwv-scores">
+          {[['Performance', w.psi.performance], ['Accessibility', w.psi.accessibility], ['Best practices', w.psi.bestPractices], ['SEO', w.psi.seo]].map(([k, v]) => (
+            <div><dd class="num">{v}</dd><dt>{k}</dt></div>
+          ))}
+        </dl>
+        <dl class="cwv-metrics">
+          {[['Largest Contentful Paint', w.psi.lcp], ['Cumulative Layout Shift', w.psi.cls], ['Total Blocking Time', w.psi.tbt], ['First Contentful Paint', w.psi.fcp], ['Speed Index', w.psi.speedIndex]].map(([k, v]) => (
+            <div><dt>{k}</dt><dd>{v}</dd></div>
+          ))}
+        </dl>
+      </section>
+    )}
+
     <div class="case-body">
       <div class="prose"><Content /></div>
       <aside class="case-aside">
@@ -100,7 +119,7 @@ const jsonld = [
           <p class="label">Related work</p>
           {related.map((x) => (
             <a href={`/work/${x.slug}/`}>
-              <Picture src={x.shot} formats={['avif', 'webp']} widths={[240, 400]} sizes="120px" alt="" loading="lazy" />
+              <Picture src={x.shot} formats={['avif', 'webp']} widths={[240, 400]} sizes="120px" alt={`The ${x.client} website: ${x.chip}`} loading="lazy" />
               <span><b>{x.client}</b><small>{x.chip}</small></span>
             </a>
           ))}

@@ -11,8 +11,6 @@ const names = [
   'Moneybag',
   'Wrkbase',
   'Open Alliance Learning',
-  'Pixmge',
-  'Piola Pizza',
   'Boss Pizza Ellerslie',
   'Orine USA',
   'Fitt Foody',

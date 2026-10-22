@@ -655,3 +655,36 @@ html:has(.mnav[open]) .chat, html:has(.mnav[open]) .to-top { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .ready .rv-item { transition: none; } .rv-band.auto .rv-person.on .rv-bar { animation: none; } }
 @media (hover: none) { .rv-nav button:hover { border-color: var(--line-2); background: var(--bg); } }
+.contact-clock { margin: 0.25rem 0 0.5rem; }
+
+/* Smallest phones (320 px): the hero headline's longest line, the FAQ heading and the contact heading must not widen the page. */
+@media (max-width: 359px) {
+  .h-copy h1 { font-size: 7.4vw; }
+  .faq-top h2 { max-width: 100%; overflow-wrap: break-word; }
+  .contact-side { grid-template-columns: minmax(0, 1fr); }
+  .contact-side h1 { font-size: 2rem; overflow-wrap: break-word; }
+}
+@media (max-width: 359px) {
+  h2 { font-size: clamp(1.55rem, 8vw, 2rem); overflow-wrap: break-word; }
+  .connect .huge { font-size: 3.2rem; }
+  .connect-copy h2 { overflow-wrap: break-word; }
+  .contact-side .clock { white-space: normal; flex-wrap: wrap; }
+}
+/* The LinkedIn address is long: let it wrap instead of widening the page. */
+.connect-ways a, .contact-alt a { overflow-wrap: anywhere; }
+@media (max-width: 359px) { .contact-side [data-clock], .contact-side [data-clock] .clock-you { white-space: normal !important; flex-wrap: wrap !important; } }
+.connect-copy .mono { white-space: normal; overflow-wrap: anywhere; }
+@media (max-width: 359px) { .connect .connect-copy h2 { font-size: 1.5rem; } }
+
+/* Home: tools I use. Five groups in a responsive grid; plain lists, no logos. */
+.tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+.tool-group { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; display: grid; gap: 0.9rem; align-content: start; }
+.tool-group h3 { font-size: 1.125rem; }
+.tool-group ul { display: grid; gap: 0.7rem; }
+.tool-group li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 0.85rem; align-items: start; }
+.tool-logo { fill: var(--text); margin-top: 0.1rem; }
+.tool-text { display: grid; gap: 0.1rem; }
+.tool-group li b { font-weight: 600; }
+.tool-group li span { font-size: 0.9375rem; }
+@media (max-width: 980px) { .tools { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .tools { grid-template-columns: minmax(0, 1fr); } }

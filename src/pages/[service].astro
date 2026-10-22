@@ -9,13 +9,13 @@ import Process from '../components/Process.astro';
 import Reviews from '../components/Reviews.astro';
 import Faq from '../components/Faq.astro';
 import { site } from '../site.js';
-import { services } from '../services.js';
+import { services, fixes } from '../services.js';
 import { work } from '../work.js';
 import { iconFor } from '../icons.js';
 import { prices, usd } from '../prices.js';
 
 export function getStaticPaths() {
-  return services.map((s) => ({ params: { service: s.slug }, props: { s } }));
+  return [...services, ...fixes].map((s) => ({ params: { service: s.slug }, props: { s } }));
 }
 
 const { s } = Astro.props;
@@ -24,9 +24,17 @@ const pad = (n) => String(n).padStart(2, '0');
 // Keeps the last two words of a line together, so no line ends on a single word.
 const tidy = (t) => t.replace(/ (\S+)$/, '\u00a0$1');
 const proof = s.proof.map((slug) => work.find((w) => w.slug === slug)).filter(Boolean);
-const others = services.filter((o) => o.slug !== s.slug);
+const isFix = fixes.includes(s);
+// Fix pages point to the other fix and to Website care; service pages to the other services and to Website care.
+const careCard = { slug: 'website-care', name: 'Website care', short: 'Tested updates, backups, monitoring, fixes and speed, from one developer.', chips: [`From ${usd(prices.care)}/mo`, 'Cancel any month'] };
+const others = isFix
+  ? [...fixes.filter((o) => o.slug !== s.slug), careCard]
+  : [...services.filter((o) => o.slug !== s.slug), careCard];
 // Starting price shown under the hero, from src/prices.js. Custom work is quoted.
-const from = { 'wordpress-speed-optimization': `Speed fixes from ${usd(prices.speed)} per site`, 'wordpress-development': `Builds from ${usd(prices.build)}` }[s.slug];
+const from = { 'wordpress-development': `Builds from ${usd(prices.build)}`, 'wordpress-repair': `Single fixes from ${usd(prices.fix)}`, 'wordpress-malware-removal': `Cleanup from ${usd(prices.malware)} per site` }[s.slug];
+const minPrice = { 'wordpress-repair': prices.fix, 'wordpress-malware-removal': prices.malware }[s.slug];
+const need = { 'wordpress-repair': 'broken', 'wordpress-malware-removal': 'broken' }[s.slug] || 'build';
+const crumb = isFix ? { href: '/website-care/', name: 'Website care' } : { href: '/#services', name: 'Services' };
 
 const jsonld = [
   {
@@ -38,6 +46,7 @@ const jsonld = [
     url,
     areaServed: 'Worldwide',
     provider: { '@type': 'Person', name: site.name, url: Astro.site, jobTitle: site.role },
+    ...(minPrice && { offers: { '@type': 'Offer', priceSpecification: { '@type': 'PriceSpecification', minPrice, priceCurrency: 'USD' } } }),
   },
   {
     '@context': 'https://schema.org',
@@ -49,7 +58,8 @@ const jsonld = [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: Astro.site },
-      { '@type': 'ListItem', position: 2, name: s.name, item: url },
+      ...(isFix ? [{ '@type': 'ListItem', position: 2, name: crumb.name, item: new URL(crumb.href, Astro.site) }] : []),
+      { '@type': 'ListItem', position: isFix ? 3 : 2, name: s.name, item: url },
     ],
   },
 ];
@@ -60,14 +70,14 @@ const jsonld = [
     <div class="wrap svc-grid">
       <div class="svc-copy">
         <nav class="crumbs" aria-label="Breadcrumb">
-          <a href="/">Home</a><span>/</span><a href="/#services">Services</a><span>/</span><span>{s.name}</span>
+          <a href="/">Home</a><span>/</span><a href={crumb.href}>{crumb.name}</a><span>/</span><span>{s.name}</span>
         </nav>
         <h1>{s.h1Lines.map((l) => <Fragment><span class="hl">{l}</span>{' '}</Fragment>)}</h1>
         <p class="lead">{tidy(s.lead)}</p>
         {from && <p class="label">{from} · written quote first</p>}
         <div class="hero-actions">
-          <a class="btn" href={`/contact/?need=${s.slug === 'wordpress-speed-optimization' ? 'speed' : 'build'}`}>Get a free site check</a>
-          <a class="btn btn-ghost" href="#proof">See the proof</a>
+          <a class="btn" href={`/contact/?need=${need}`}>{isFix ? 'Send the site' : 'Get a free site check'}</a>
+          {(proof.length > 0 || s.example) && <a class="btn btn-ghost" href="#proof">{s.example ? 'See a recent cleanup' : 'See the proof'}</a>}
         </div>
         <ul class="tags">{s.chips.map((c) => <li>{c}</li>)}</ul>
       </div>
@@ -92,6 +102,7 @@ const jsonld = [
     <div class="wrap">
       <div class="section-head">
         <h2>{s.problemTitle}</h2>
+        {s.problem && <p class="muted" style="max-width: 70ch">{tidy(s.problem)}</p>}
       </div>
       <div class="versus">
         <div class="vs-card vs-no" data-reveal>
@@ -110,7 +121,7 @@ const jsonld = [
   <section class="sec">
     <div class="wrap">
       <div class="section-head">
-        <h2>What you get</h2>
+        <h2>{s.includesTitle}</h2>
       </div>
       <ul class="kit">
         {s.includes.map((item, i) => (
@@ -124,25 +135,50 @@ const jsonld = [
           </li>
         ))}
       </ul>
+      {s.guides && (
+        <p class="muted" style="margin-top: 1.75rem">Related guides: {s.guides.map((g, i) => <Fragment>{i > 0 && ' · '}<a class="more-link" href={g.href}>{g.t}</a></Fragment>)}</p>
+      )}
     </div>
   </section>
 
+  {s.example && (
   <section id="proof" class="sec tint-a">
     <div class="wrap">
-      <WorkReel items={proof} title="Where I have done this" lead={proof.length > 1 ? "Pick a project to see the result and the live site." : "The worked example, with the result and the live site."} />
+      <div class="section-head">
+        <h2>{s.example.title}</h2>
+        <p class="muted">{tidy(s.example.lead)}</p>
+      </div>
+      <ul class="kit">
+        {s.example.points.map((x, i) => (
+          <li>
+            <span class="kit-top"><span class="idx">{pad(i + 1)}</span></span>
+            <h3>{x.t}</h3>
+            <p class="muted">{x.d}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
+  )}
 
-  <Process />
+  {proof.length > 0 && (
+  <section id="proof" class="sec tint-a">
+    <div class="wrap">
+      <WorkReel items={proof} title={s.proofTitle} lead={proof.length > 1 ? "Pick a project to see the result and the live site." : "The worked example, with the result and the live site."} />
+    </div>
+  </section>
+  )}
+
+  <Process title={s.processTitle} variant={isFix ? 'fix' : 'build'} />
 
   <Reviews />
 
-  <Faq items={s.faq} title={`Questions about ${s.focus}`} />
+  <Faq items={s.faq} title={`Your questions about ${s.focus}`} />
 
   <section class="sec">
     <div class="wrap">
       <div class="section-head">
-        <h2>Other things I do</h2>
+        <h2>{isFix ? 'Related services' : 'Other services'}</h2>
       </div>
       <ul class="kit kit-links">
         {others.map((o, i) => (

@@ -1,0 +1,9 @@
+property,action,link_target,needs_owner,status
+LinkedIn profile,add the site to Contact info and Featured,https://sakib.mywrkbase.com/,yes (he edits his profile or approves),DONE (Contact info website + Featured link existed; new custom URL set 16 Oct 2026)
+LinkedIn posts,link to the matching post when each new guide goes live,/blog/*,yes (each post shown before it goes public),todo
+GitHub profile,"Website field, keyword-first bio, LinkedIn link corrected (was old in/sakib1504)",https://sakib.mywrkbase.com/,yes,DONE 16 Oct 2026
+Wrkbase website (mywrkbase.com),"footer or about line ""Built by Sakib Islam"" linking to the site",https://sakib.mywrkbase.com/,yes (his own site),todo
+Tabby website footer or case page,Website by credit or link to the case study,https://sakib.mywrkbase.com/work/tabby/,client permission,todo
+TubeOnAI / Moneybag / Pixmge / Oxford International School,ask for a credit link or a mention of the work,/work/<client>/,client permission,todo
+Codeable / Upwork / Fiverr profiles,link the site in the profile,https://sakib.mywrkbase.com/,his accounts,todo
+Business directories (Clutch, GoodFirms),one profile each if he qualifies as an individual developer,https://sakib.mywrkbase.com/,his decision,todo

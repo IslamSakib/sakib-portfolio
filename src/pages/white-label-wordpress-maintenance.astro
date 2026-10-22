@@ -1,0 +1,175 @@
+---
+// For agencies that sell care plans: Sakib does the monthly WordPress work quietly under the agency's brand.
+// He works alone, so the copy never says "we". Per-site price from src/prices.js (wholesale, below his own retail plan).
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Connect from '../components/Connect.astro';
+import PriceCards from '../components/PriceCards.astro';
+import { site } from '../site.js';
+import { work } from '../work.js';
+import { prices, usd } from '../prices.js';
+import heroPhoto from '../assets/visuals/care.jpg';
+
+const focus = 'white label WordPress support';
+const title = 'White Label WordPress Support for Agencies | Sakib Islam';
+const description =
+  'White label WordPress support for agencies: care, fixes and branded reports for $59 a site. See how.';
+const url = new URL(Astro.url.pathname, Astro.site);
+const tabby = work.find((w) => w.slug === 'tabby').shot;
+
+const trust = [
+  { t: 'Never contacts your client', d: 'M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c1-4 4-6 8-6s7 2 8 6M3 3l18 18' },
+  { t: 'Reports in your branding', d: 'M6 3h9l4 4v14H6zM9 12h7M9 16h5' },
+  { t: 'NDA on request', d: 'M5 11h14v10H5zM8 11V7a4 4 0 018 0v4' },
+  { t: 'Overlaps US and UK hours', d: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7v5l3 2' },
+  { t: 'Reply within 24 hours', d: 'M4 5h16v11H8l-4 4z' },
+];
+const caps = [
+  { t: 'Updates, tested first', d: 'WordPress, themes and plugins, checked before they go live on a client site.', p: 'M21 12a9 9 0 11-3-6.7M21 4v5h-5' },
+  { t: 'Backups off the server', d: 'Daily, and kept away from the host.', p: 'M4 5c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5' },
+  { t: 'Monitoring', d: 'Uptime and security, so problems are seen before your client sees them.', p: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z' },
+  { t: 'Fixes and small changes', d: 'Conflicts, broken forms, failed updates and content edits from your tickets.', p: 'M14 4l6 6-10 10H4v-6z' },
+  { t: 'Branded monthly reports', d: 'Written for your client, sent by you, with your logo.', p: 'M3 5h18v16H3zM3 10h18M8 3v4M16 3v4' },
+  { t: 'Malware cleanup when needed', d: 'A hacked client site cleaned and the way in closed.', p: 'M3 12a9 9 0 1018 0 9 9 0 00-18 0M9 9l6 6M15 9l-6 6' },
+];
+const steps = [
+  { t: 'Onboard', d: 'You send the client sites. I check each one and list what needs fixing first.' },
+  { t: 'Monthly work', d: 'Updates, backups, monitoring and your tickets, in your Slack or tool.' },
+  { t: 'Report', d: 'A branded report for each site, ready for you to send.' },
+  { t: 'You bill', d: 'Your price, your client, your brand. My invoice comes to you.' },
+];
+const plans = [
+  {
+    name: 'Per site, monthly', for: 'For agencies reselling care plans to their clients.', featured: true, badge: 'Care you resell',
+    price: usd(prices.agencyCare), unit: '/site/mo', billing: 'Billed monthly per site · cancel any month',
+    outcome: 'Your clients’ sites looked after every month, under your brand. You set the price to your client.',
+    items: ['Updates tested before they go live', 'Daily backups off the server', 'Uptime and security monitoring', 'A branded report for each site', `Fixes and changes at ${usd(prices.agencyHour)}/h`, 'Never contacts your client'],
+    cta: 'Send the site list', href: '/contact/?type=agency&plan=care', note: 'Stores and busy sites quoted separately',
+  },
+  {
+    name: 'Hourly', for: 'For one-off fixes and tickets on client sites.',
+    price: usd(prices.agencyHour), unit: '/h', billing: 'Billed by the hour',
+    outcome: 'A senior WordPress developer for the tickets your team can’t get to.',
+    items: ['Fixes: conflicts, downtime, failed updates', 'Malware cleanup on a hacked client site', 'Content and layout changes', 'Updates in your Slack', 'Start with one small paid task'],
+    cta: 'Book hours', href: '/contact/?type=agency&plan=hourly', note: 'Written quote before work starts',
+  },
+];
+const faq = [
+  { q: 'What is white label WordPress support?', a: 'White label WordPress support means a developer looks after your clients’ WordPress sites while you sell the service under your own brand. Your client only ever deals with you.' },
+  { q: 'Will you ever contact our client?', a: 'No. I work through you only. Reports carry your branding and nothing I send carries my name unless you want it to.' },
+  { q: 'How is white label WordPress maintenance priced?', a: `${usd(prices.agencyCare)} per site each month for updates, backups, monitoring and a branded report. Fixes and changes are ${usd(prices.agencyHour)} an hour. Stores and busy sites need more testing, so they are quoted separately. You set your own price to your client.` },
+  { q: 'Can you take over sites another developer built?', a: 'Yes. Each new site starts with a check: the theme, the plugins, the errors and what changed recently. You get a short list of what to fix first before the monthly work begins.' },
+  { q: 'Do you need access to our clients’ hosting?', a: 'An admin login in my own name for each site, and hosting access or the host’s name. Your agency keeps control of every account.' },
+];
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'White label WordPress support and maintenance',
+    serviceType: focus,
+    description,
+    url,
+    audience: { '@type': 'BusinessAudience', audienceType: 'Design and marketing agencies' },
+    provider: { '@type': 'Person', name: site.name, url: Astro.site },
+    offers: [
+      { '@type': 'Offer', name: 'Per site, monthly', priceSpecification: { '@type': 'UnitPriceSpecification', price: prices.agencyCare, priceCurrency: 'USD', unitText: 'site per month' } },
+      { '@type': 'Offer', name: 'Hourly', priceSpecification: { '@type': 'UnitPriceSpecification', price: prices.agencyHour, priceCurrency: 'USD', unitText: 'hour' } },
+    ],
+  },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: Astro.site },
+      { '@type': 'ListItem', position: 2, name: 'For agencies', item: new URL('/white-label-wordpress-development/', Astro.site) },
+      { '@type': 'ListItem', position: 3, name: 'White label support', item: url },
+    ],
+  },
+];
+---
+<Base title={title} description={description} jsonld={jsonld} focus={focus} ogImage="/og-white-label-wordpress-maintenance.jpg" ogAlt={title}>
+  <section class="p-hero wrap hero-bg">
+    <canvas class="dots dots-bleed" aria-hidden="true"></canvas>
+    <div class="p-grid">
+      <div class="p-copy">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/white-label-wordpress-development/">For agencies</a><span>/</span><span>Support</span></nav>
+        <p class="eyebrow">Selling care plans you don't have time to run?</p>
+        <h1><span class="ln">White label WordPress</span> <span class="ln">support you can resell</span> <span class="ln">as your own.</span></h1>
+        <p class="lead">White label WordPress support for agencies that sell care plans but don't have time to run them. I update, back up, monitor and fix your clients' sites, and you send them a report with your logo on it. {usd(prices.agencyCare)} a site a month; you set your own price.</p>
+        <div class="btn-row">
+          <a class="btn" href="/contact/?type=agency&plan=care">Send the site list</a>
+          <a class="btn btn-ghost" href="#how">See how it works</a>
+        </div>
+      </div>
+      <div class="p-photo">
+        <Picture src={heroPhoto} formats={['avif', 'webp']} widths={[640, 960, 1280]} sizes="(max-width: 900px) 100vw, 660px" alt="A monthly care report: updates, backups, monitoring and changes, the kind of report sent under an agency's brand" loading="eager" fetchpriority="high" />
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap trust-wrap">
+    <ul class="trust">
+      {trust.map((x) => <li><svg class="icon" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d={x.d} /></svg>{x.t}</li>)}
+    </ul>
+  </section>
+
+  <section class="wrap sec-pad">
+    <div class="row-head"><h2>What I look after on your clients' sites</h2></div>
+    <div class="cap-grid">
+      {caps.map((c) => (
+        <div class="tile">
+          <svg class="icon" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d={c.p} /></svg>
+          <h3>{c.t}</h3>
+          <p class="mut" style="font-size: 0.9375rem">{c.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="how" class="on-surface sec-pad">
+    <div class="wrap" style="display: grid; gap: 2.75rem">
+      <h2>How it works, from first site to first invoice</h2>
+      <ol class="pipeline">
+        {steps.map((s, i) => <li><span class="node">{String(i + 1).padStart(2, '0')}</span><strong>{s.t}</strong><span>{s.d}</span></li>)}
+      </ol>
+      <p class="mut">The client relationship, the price and the brand stay yours. <a class="more-link" href="/blog/white-label-wordpress-maintenance/">How agencies price and resell care plans →</a></p>
+    </div>
+  </section>
+
+  <section class="wrap sec-pad">
+    <div class="row-head"><h2>What it costs you, and what you can charge</h2></div>
+    <PriceCards plans={plans} />
+    <p class="mut" style="margin-top: 1.4rem">Building new sites too? See <a href="/white-label-wordpress-development/">white label WordPress development</a>.</p>
+  </section>
+
+  <section class="sec-line sec-pad">
+    <div class="wrap two-col">
+      <div style="display: grid; gap: 1.6rem">
+        <figure class="quote-side" style="margin: 0">
+          <span class="ini" aria-hidden="true">SN</span>
+          <blockquote>&ldquo;highly responsive, communicative, and consistently delivers work on time&rdquo;</blockquote>
+          <figcaption class="mut">Shamsi Nur, Musemind · design agency I built for</figcaption>
+        </figure>
+        <figure class="quote-side" style="margin: 0">
+          <span class="ini" aria-hidden="true">AA</span>
+          <blockquote>&ldquo;continuous maintenance and updates on Tabby's website. He is very responsive&rdquo;</blockquote>
+          <figcaption class="mut">Ahad Ali, CPA, Founder of Tabby</figcaption>
+        </figure>
+      </div>
+      <a class="browser" href="/work/tabby/"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>usetabby.com</span></div><Picture src={tabby} formats={['avif', 'webp']} widths={[480, 720, 1040]} sizes="(max-width: 900px) 100vw, 600px" alt="The Tabby website, built and maintained by Sakib Islam since 2025" loading="lazy" /></a>
+    </div>
+  </section>
+
+  <section class="wrap sec-pad">
+    <div class="two-col" style="align-items: start">
+      <h2>Questions agencies ask about white label support</h2>
+      <div class="qa">
+        {faq.map((f, i) => <details open={i === 0}><summary>{f.q}</summary><p>{f.a}</p></details>)}
+      </div>
+    </div>
+  </section>
+
+  <Connect heading="Get white label support for your client sites" />
+</Base>

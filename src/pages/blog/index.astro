@@ -5,9 +5,9 @@ import PostImage from '../../components/PostImage.astro';
 import { posts, topics, longDate } from '../../blog.js';
 import { site } from '../../site.js';
 
-const focus = 'WordPress work';
-const title = 'Notes from Real WordPress Work | Sakib Islam Blog';
-const description = 'Notes from real WordPress work: speed, fixes and maintenance, builds, and working with agencies. Written by Sakib Islam from client projects.';
+const focus = 'WordPress guides';
+const title = 'WordPress Guides for When Your Site Acts Up | Sakib Islam';
+const description = 'WordPress guides for a slow, broken or hacked site, written from real client jobs. Find your fix.';
 const [first, ...rest] = posts;
 // Only topics that have posts get a filter button.
 const used = topics.filter((t) => posts.some((p) => p.topic === t));
@@ -23,10 +23,11 @@ const jsonld = [
   },
 ];
 ---
-<Base title={title} description={description} jsonld={jsonld} focus={focus}>
+<Base title={title} description={description} jsonld={jsonld} focus={focus} ogImage="/og-blog.jpg" ogAlt={title}>
   <section class="wrap sec-pad hero-bg" style="padding-bottom: 2.5rem; display: grid; gap: 1.5rem">
     <canvas class="dots dots-bleed" aria-hidden="true"></canvas>
-    <h1 style="font-size: clamp(2.5rem, 5vw, 4.6rem)">Notes from real WordPress work</h1>
+    <h1 style="font-size: clamp(2.5rem, 5vw, 4.6rem)">WordPress guides for when your site acts up</h1>
+    <p class="lead" style="max-width: 62ch">WordPress guides for the moment something goes wrong: your site's slow, an update broke it, you think it's been hacked, or you're deciding who to hire. Each one comes from a real client job.</p>
     {used.length > 1 && (
       <div class="chips" role="group" aria-label="Filter posts by topic" data-filter>
         <button type="button" aria-pressed="true" data-topic="">All</button>

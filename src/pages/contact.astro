@@ -2,6 +2,7 @@
 // Contact: a guided inquiry, one question at a time, like a short chat. Every step is a real form field, so without
 // script the whole form shows at once and still works. A plan or service picked elsewhere on the site arrives in the
 // URL (?plan=care, ?need=speed, ?type=agency&plan=site) and is filled in for the visitor.
+import Clock from '../components/Clock.astro';
 import Base from '../layouts/Base.astro';
 import { site } from '../site.js';
 import { prices, usd } from '../prices.js';
@@ -9,8 +10,8 @@ import photo from '../assets/sakib-islam.jpg';
 import { Image } from 'astro:assets';
 
 const focus = 'Contact Sakib Islam';
-const title = 'Contact Sakib Islam | WordPress Developer';
-const description = 'Contact Sakib Islam about a WordPress site to fix, maintain or build, or white-label work for your agency. Reply within 24 hours.';
+const title = 'Contact Sakib Islam | Full Stack Developer';
+const description = 'Contact Sakib Islam about a website, web app, WordPress project or care plan. Reply within 24 hours.';
 
 const jsonld = [{ '@context': 'https://schema.org', '@type': 'ContactPage', name: title, url: new URL('/contact/', Astro.site), about: { '@type': 'Person', name: site.name, email: site.email, telephone: site.phone } }];
 
@@ -18,9 +19,9 @@ const jsonld = [{ '@context': 'https://schema.org', '@type': 'ContactPage', name
 const business = [
   { key: 'speed', t: 'Make my site faster', s: `Speed fix · from ${usd(prices.speed)}`, fixed: true },
   { key: 'broken', t: 'Fix something broken', s: `Single fix · from ${usd(prices.fix)}`, fixed: true },
-  { key: 'care', t: 'Look after my site monthly', s: `Care plan · ${usd(prices.care)}/mo`, fixed: true },
-  { key: 'care-plus', t: 'Monthly care plus changes', s: `Care + development · ${usd(prices.carePlus)}/mo`, fixed: true },
-  { key: 'build', t: 'Build or rebuild a site', s: `Custom build · from ${usd(prices.build)}` },
+  { key: 'care', t: 'Look after my website monthly', s: `Website care · ${usd(prices.care)}/mo`, fixed: true },
+  { key: 'care-plus', t: 'Monthly care plus more changes', s: `Care + development · ${usd(prices.carePlus)}/mo`, fixed: true },
+  { key: 'build', t: 'Build a website, web app or WordPress site', s: `WordPress from ${usd(prices.build)} · custom quoted` },
   { key: 'other', t: 'Something else', s: 'Tell me in your own words' },
 ];
 const agency = [
@@ -33,17 +34,19 @@ const agency = [
 const timelines = ['As soon as possible', 'Within a month', 'In 1 to 3 months', 'Just exploring'];
 const budgets = ['Under $500', '$500 to $2,000', '$2,000 to $5,000', 'Over $5,000', 'Not sure yet'];
 ---
-<Base title={title} description={description} jsonld={jsonld} focus={focus}>
+<Base title={title} description={description} jsonld={jsonld} focus={focus} ogImage="/og-contact.jpg" ogAlt={title}>
   <section class="wrap sec-pad hero-bg">
     <canvas class="dots dots-bleed" aria-hidden="true"></canvas>
     <div class="contact-grid">
       <div class="contact-side">
-        <h1 style="font-size: clamp(2.2rem, 3.6vw, 3.4rem)"><span class="eyebrow">Contact Sakib Islam</span><span class="ln">Tell me what is going wrong,</span> <span class="ln">or what you need built.</span></h1>
-        <p class="lead">A few quick questions, about a minute. I reply within 24 hours with what I would check or build first.</p>
+        <p class="eyebrow">Reply within 24 hours</p>
+        <h1 style="font-size: clamp(2.2rem, 3.6vw, 3.4rem)"><span class="ln">Contact Sakib Islam</span> <span class="ln">about your website or web app.</span></h1>
+        <p class="lead">Contact Sakib Islam and tell me what you need built or fixed. It takes about a minute. Within 24 hours you get a reply with questions or a first estimate.</p>
+        <p class="contact-clock"><Clock /></p>
         <ul class="contact-alt">
           <li>Email: <a href={`mailto:${site.email}`}>{site.email}</a></li>
           <li>WhatsApp: <a href={site.whatsapp} target="_blank" rel="noopener">+880 1950 025990</a></li>
-          <li>LinkedIn: <a href={site.linkedin} target="_blank" rel="noopener">in/sakibislamofficial</a></li>
+          <li>LinkedIn: <a href={site.linkedin} target="_blank" rel="noopener">in/sakib-islam-full-stack-web-developer</a></li>
         </ul>
       </div>
 
@@ -56,7 +59,7 @@ const budgets = ['Under $500', '$500 to $2,000', '$2,000 to $5,000', 'Over $5,00
 
         <form class="cform guide" novalidate data-contact data-whatsapp={site.whatsapp} data-email={site.email}>
           <div class="g-head">
-            <Image src={photo} width={88} height={88} alt="" />
+            <Image src={photo} width={88} height={88} alt="Sakib Islam, the full stack developer who replies to your message" />
             <div><b>Sakib Islam</b><span class="g-status">Replies within 24 hours</span></div>
             <span class="g-count" data-count-label aria-live="polite"></span>
           </div>
@@ -117,7 +120,7 @@ const budgets = ['Under $500', '$500 to $2,000', '$2,000 to $5,000', 'Over $5,00
           </fieldset>
 
           <fieldset class="g-step" data-step="message">
-            <legend class="g-q" data-msg-q>What is going on with the site?</legend>
+            <legend class="g-q" data-msg-q>What do you need?</legend>
             <div class="field">
               <label class="sr-only" for="f-msg">Your message</label>
               <textarea id="f-msg" name="message" rows="5" maxlength="2000" required placeholder="A sentence or two is enough."></textarea>

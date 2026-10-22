@@ -5,8 +5,8 @@ focus: WordPress site keeps going down
 clientUrl: https://tubeonai.com/
 title: "A WordPress site keeps going down: the cause was its own speed plugins"
 seoTitle: "WordPress Site Keeps Going Down? How I Fixed TubeOnAI"
-description: "When a WordPress site keeps going down, look at its speed plugins first. TubeOnAI went from a 5 second load to 1.5 once the cause was removed."
-summary: A WordPress site that kept going down, traced to leftover cache plugin files and fixed at the root.
+description: "WordPress site keeps going down? How TubeOnAI's downtime was traced to cache plugins and fixed."
+summary: "Why a WordPress site keeps going down: on TubeOnAI it was leftover cache plugin files, fixed at the root."
 result: Load time from 5 s to 1.5 s after the fix
 chip: "5 s → 1.5 s"
 relevant: "Relevant if your site is slow or keeps going down."
@@ -26,22 +26,22 @@ faq:
     a: "Not always. Some plugins leave files, database entries or server rules behind, especially cache and security plugins. Those leftovers can keep running. Part of a proper clean-up is checking the server for them."
 ---
 
-## The problem
+## What was wrong with TubeOnAI's site?
 
-TubeOnAI is an AI tool that summarises videos, podcasts and articles. I built its marketing site from Figma designs. Later the site became unreliable: it went down again and again, and Google's crawler could not index its pages properly. Every hour offline meant lost signups.
+TubeOnAI is an AI tool that summarises videos, podcasts and articles. I built its marketing site from Figma designs. Later the site became unreliable. It went down again and again, and Google's crawler couldn't index its pages properly. If your WordPress site keeps crashing, you know the feeling: every hour offline meant lost signups.
 
-## The cause
+## Why did the site keep going down?
 
-Several cache plugins had been added over time, each one meant to make the site faster. The site then moved to a host that runs its own speed plugin. The old plugins were removed, but their files stayed on the server and clashed with the new one. Some Elementor pages were also built in the old column style and were heavier than they needed to be.
+Several cache plugins had been added over time, each one meant to make the site faster. Then the site moved to a host that runs its own speed plugin. The old plugins were removed, but their files stayed on the server and clashed with the new one. Some Elementor pages were also built in the old column style and were heavier than they needed to be.
 
-## The fix
+## What did I do to fix it?
 
 - Cleared out the old cache plugins and every leftover file
 - Kept one caching layer
 - Rebuilt the old column layouts
 - Fixed the crawling and indexing issues
 
-## The result
+## What changed after the fix?
 
 - The downtime stopped
 - Load time went from 5 seconds to 1.5 seconds
@@ -49,36 +49,40 @@ Several cache plugins had been added over time, each one meant to make the site 
 - Core Web Vitals above 90
 - An estimated $6,000 in signups was not lost
 
-## How I found it
+## How did I find the cause?
 
-- The symptoms pointed at the server, so I started there: what had changed, and when
+- The symptoms pointed at the server, so I started there and asked what had changed, and when
 - The site had recently moved to a host that runs its own speed plugin
 - The old cache plugins had been switched off, but their files were still on the server and still being loaded
 - Two caching systems were fighting over the same pages, which is what took the site down under load
 
-## Inside the site, 11 October 2026
+If your site has the same symptoms, [why two cache plugins make a site slower](/blog/too-many-wordpress-cache-plugins/) shows how to check your own.
 
-Read from the live site, page by page, and from Google PageSpeed Insights (mobile).
+## What does the TubeOnAI site look like today?
 
-**Size.** 174 pages in the sitemap. Most are articles and tool pages: guides, tool round-ups and pages comparing TubeOnAI with alternatives.
+I read the live site page by page on 11 October 2026, and ran Google PageSpeed Insights on mobile.
 
-**What the pages do.**
+**How big is it?** 174 pages in the sitemap. Most are articles and tool pages: guides, tool round-ups and pages comparing TubeOnAI with alternatives.
 
-- Each tool page follows one pattern: what the tool is, how to use it, who it is for by role, then an FAQ. The YouTube Video Summarizer page is the model
+**What do the pages do?**
+
+- Each tool page follows one pattern: what the tool is, how to use it, who it's for by role, then an FAQ. The YouTube Video Summarizer page is the model
 - A pricing page with the plans side by side and its own FAQ
 - Pages for students, professors, creators, researchers and marketers
 
-**How it is built.**
+**How is it built?**
 
 - WordPress with Elementor Pro, on the Hello Elementor base theme
 - Two plugins written for this site: one for custom Elementor widgets and one for site features
 - Rank Math for search, Fluent Forms for forms
 - Served through Cloudflare with Brotli compression and HTTPS enforced
 
-**What search engines see.**
+**What do search engines see?**
 
 - Best practices score 96 in PageSpeed Insights
 - Structured data for the organisation and the website
 - Every one of the 22 images on the home page has alt text
 
-The speed figures above are from when I did the work. The site has changed a great deal since, so they are not today's numbers.
+The speed figures higher up are from when I did the work. The site has changed a great deal since, so they aren't today's numbers.
+
+Is your site crashing like this? See [WordPress speed optimization](/website-care/) or [WordPress repair](/wordpress-repair/), or send me the address and I'll tell you what I see.

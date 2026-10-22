@@ -1,0 +1,80 @@
+---
+// Service terms. Written 16 Oct 2026 as standard freelance terms; Sakib asked for "the standard policy" and for the
+// details to be decided for him. Every price here comes from src/prices.js, so the terms and the pages never disagree.
+import PolicyPage from '../components/PolicyPage.astro';
+import heroImage from '../assets/visuals/terms.jpg';
+import { site } from '../site.js';
+import { prices, usd } from '../prices.js';
+
+const focus = 'service terms';
+const title = 'Service Terms for WordPress Work | Sakib Islam';
+const description = 'Service terms for WordPress care plans, fixes, builds and white-label work: payment, cancelling, access.';
+const updated = '16 October 2026';
+const url = new URL(Astro.url.pathname, Astro.site);
+const jsonld = [
+  { '@context': 'https://schema.org', '@type': 'WebPage', name: title, url, dateModified: '2026-10-16' },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: Astro.site }, { '@type': 'ListItem', position: 2, name: 'Service terms', item: url }] },
+];
+
+const facts = [
+  { k: 'Cancel any month', v: 'Tell me before your next billing date. You keep every login.' },
+  { k: '24-hour replies', v: 'On every message, and on urgent care-plan problems any day.' },
+  { k: 'You own it all', v: 'Your site, your code, your accounts. I work through my own login.' },
+  { k: '14-day fix promise', v: 'Same problem back within 14 days? I fix it again, free.' },
+];
+
+const sections = [
+  { id: 'quotes', title: 'Quotes', blocks: [
+    { p: 'Every job starts with a <strong>written quote</strong>: what I will do, the price and the expected time. Nothing starts until you agree to it by email or message. A quote stays valid for 30 days.' },
+  ] },
+  { id: 'payment', title: 'Payment', blocks: [{ ul: [
+    `<strong>Care plans</strong> (${usd(prices.care)} and ${usd(prices.carePlus)} a month) are billed monthly in advance, on the day the plan starts.`,
+    '<strong>Single fixes, malware cleanups and speed work</strong> are paid when the work is done and you have checked it.',
+    '<strong>Builds</strong> are paid in two parts: 50% to start and 50% before the site goes live.',
+    `<strong>White-label care</strong> (${usd(prices.agencyCare)} per site a month) is billed monthly in advance. Hourly work (${usd(prices.agencyHour)} an hour) is billed at the end of each month with a log of the hours.`,
+    'Invoices are in US dollars, sent by email and due within 7 days.',
+  ] }] },
+  { id: 'care-plans', title: 'Care plans: cancelling, switching and hours', blocks: [{ ul: [
+    '<strong>Cancel any month.</strong> Tell me before your next billing date and the plan ends when the paid month ends. A month that has started is not refunded.',
+    '<strong>Switch plans</strong> from the start of your next billing month.',
+    '<strong>Hours do not roll over.</strong> The hours in a plan (1 hour on Care, 3 on Care + development) are kept free for your site each month and do not carry into the next one.',
+    '<strong>Extra work</strong> beyond the plan\'s hours is quoted in writing before it starts.',
+    '<strong>WooCommerce stores</strong> are quoted separately. On a store plan, the checkout, the payment gateway and the order emails are tested after every update.',
+  ] }] },
+  { id: 'replies', title: 'Reply times', blocks: [
+    { p: 'I reply to every message within 24 hours on working days, Monday to Friday. On a care plan, an <strong>urgent problem</strong> (the site is down, hacked, or the checkout is broken) gets a reply within 24 hours on any day.' },
+    { p: 'I work from Dhaka (UTC+6), so my working day overlaps US and UK hours. The clock in the footer shows my local time.' },
+  ] },
+  { id: 'guarantees', title: 'If a fix does not work', blocks: [{ ul: [
+    '<strong>Fixes:</strong> if the same problem comes back within 14 days, I fix it again at no charge. If I cannot fix it, you do not pay for it.',
+    '<strong>Malware cleanups:</strong> if the site is reinfected through the same way in within 30 days, I clean it again at no charge. A new way in, such as a new pirated plugin or a stolen password, is a new job.',
+  ] }] },
+  { id: 'access', title: 'Access, ownership and confidentiality', blocks: [{ ul: [
+    'You own your site, its content, code written for you and every account. I work through my own user account, which you can remove at any time.',
+    'I take a backup before changing anything. Backups on a care plan are kept off your server for 30 days.',
+    'Passwords are kept in a password manager and never sent by plain email.',
+    'Your files and data stay private. I sign an NDA on request.',
+  ] }] },
+  { id: 'white-label', title: 'White-label work for agencies', blocks: [{ ul: [
+    'I never contact your client, and nothing I hand over carries my name unless you want it to.',
+    'Care reports carry your agency\'s name and logo.',
+    'You own the client relationship and set your own price to your client.',
+    'I will not offer my services directly to your clients for 12 months after we stop working together.',
+  ] }] },
+  { id: 'limits', title: 'Limits', blocks: [
+    { p: 'I am not responsible for outages or faults caused by your host, third-party plugins or services, or changes made by someone else. My total liability for any job is limited to what you paid me for that job in the previous three months.' },
+    { note: '<strong>Tip:</strong> keep your host\'s own backups switched on as a second copy.' },
+  ] },
+  { id: 'questions', title: 'Questions', blocks: [
+    { p: `Email <a href="mailto:${site.email}">${site.email}</a>, or use the <a href="/contact/">contact form</a>. See also the <a href="/privacy/">privacy policy</a>.` },
+  ] },
+];
+---
+<PolicyPage
+  title={title} description={description} focus={focus} jsonld={jsonld} ogImage="/og-terms.jpg"
+  eyebrow="Service terms · the same for every client"
+  h1="Service terms"
+  lead="These service terms cover every job I take on: care plans, single fixes, malware cleanups, speed work, builds and white-label work for agencies. I work alone, so 'I' is me, Sakib Islam, and 'you' is the business or agency I work for."
+  updated={updated} image={heroImage} imageAlt="A card summarising the service terms: cancel any month and keep every login, replies within 24 hours, you own your site, and a fix redone free if the problem returns within 14 days" facts={facts} sections={sections}
+  connect="Questions about these terms? Ask me"
+/>

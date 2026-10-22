@@ -1,12 +1,12 @@
 ---
 title: "WordPress plugin conflict: how to find it and fix it safely"
 seoTitle: "WordPress Plugin Conflict: How to Find and Fix It"
-description: "A WordPress plugin conflict can break layouts, forms or the whole site. How to find which plugin is at fault, test safely and stop it happening again."
+description: "WordPress plugin conflict: how to find the plugin causing it and fix it without downtime. Learn how."
 focus: WordPress plugin conflict
 date: "2026-10-15"
 art: conflict
 topic: Fixes and maintenance
-service: wordpress-maintenance
+service: wordpress-repair
 imageAlt: "Two plugin cards with a lightning bolt between them and a conflict found message, beside the title WordPress plugin conflict"
 sources:
   - { name: "WordPress.org, Health Check & Troubleshooting plugin", url: "https://wordpress.org/plugins/health-check/" }
@@ -19,38 +19,38 @@ faq:
   - { q: "How do I prevent WordPress plugin conflicts?", a: "Keep the plugin list short, avoid two plugins that do the same job, test updates on a staging copy before running them live, and remove plugins you no longer use." }
 ---
 
-A WordPress plugin conflict happens when two plugins, or a plugin and your theme, try to do the same thing in incompatible ways. The result ranges from a button that stops working to a site that will not load at all. Conflicts are one of the most common reasons a WordPress site breaks after an update, and the good news is that they can be found methodically. Here is how I track one down without making the site worse.
+A button stopped working, or the whole site went blank, right after you updated a plugin. That's usually a WordPress plugin conflict: two plugins, or a plugin and your theme, trying to do the same thing in incompatible ways. The result ranges from a form that stops sending to a site that won't load at all. Conflicts are one of the most common reasons a WordPress site breaks after an update, and the good news is you can find them methodically. Here's how I track one down without making the site worse.
 
-## What a plugin conflict looks like
+## How do I know it's a plugin conflict?
 
-You are probably looking at a conflict if:
+You're probably looking at one if:
 
 - Something broke right after you updated or installed a plugin
 - A form, slider, menu or checkout works on some pages but not others
-- The layout looks different when you are logged in versus logged out
+- The layout looks different when you're logged in versus logged out
 - An admin screen loads blank or spins forever
-- You see a white screen or "There has been a critical error on this website"
+- You see a [white screen](/blog/wordpress-white-screen-of-death/) or "There has been a critical error on this website"
 - The browser console shows JavaScript errors naming plugin files
 
-## Why plugins conflict
+## Why do plugins conflict?
 
-Plugins are written by different people who cannot test against every other plugin. The usual causes:
+Plugins are written by different people who can't test against every other plugin. The usual causes:
 
 1. **Duplicate functions or classes.** Two plugins bundle the same library in different versions, and PHP refuses to load both. This produces a fatal error.
 2. **JavaScript clashes.** Two scripts load different versions of the same library, or one fails and stops the scripts after it from running. Forms and checkout are hit hardest.
-3. **Doing the same job twice.** Two caching plugins, two SEO plugins, two security plugins. Each assumes it is the only one.
+3. **Doing the same job twice.** Two caching plugins, two SEO plugins, two security plugins. Each assumes it's the only one.
 4. **Optimisation plugins rewriting code.** Plugins that combine, minify or delay CSS and JavaScript can change the order other plugins depend on.
 5. **Outdated plugins.** A plugin the developer stopped updating calls WordPress functions that have since changed.
 
 ## Step 1: Back up and write down what changed
 
-Before touching anything, take a full backup of the files and database. Then note what changed recently: which plugins were updated, what was installed, whether the theme or WordPress itself updated, and whether the host changed the PHP version. Most conflicts follow a change within the last few days, so this list is often the shortcut to the answer.
+Before you touch anything, take a full backup of the files and database. Then note what changed recently: which plugins were updated, what was installed, whether the theme or WordPress itself updated, and whether the host changed the PHP version. Most conflicts follow a change within the last few days, so this list is often the shortcut to the answer.
 
 ## Step 2: Read the errors
 
-Turn on WordPress's debug log ([how to](https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/)) and reproduce the problem. Fatal errors in `wp-content/debug.log` include the file path, which names the plugin. For front-end problems, open your browser's developer tools on the broken page and check the Console tab: the error lines usually point to a specific plugin's script.
+Turn on WordPress's debug log ([how to](https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/)) and reproduce the problem. Fatal errors in `wp-content/debug.log` include the file path, which names the plugin. For front-end problems, open your browser's developer tools on the broken page and check the Console tab. The error lines usually point to a specific plugin's script.
 
-If two different plugin names appear in the same error, you have probably found your pair.
+If two different plugin names appear in the same error, you've probably found your pair.
 
 ## Step 3: Test plugins one at a time, safely
 
@@ -75,11 +75,13 @@ Once you know the pair, you have a few options, in order of preference:
 4. **Report it** to both plugin developers with the error message. Good developers fix conflicts quickly.
 5. **Roll back** the updated plugin to its previous version as a temporary fix, and plan a proper fix, because old versions stop receiving security updates.
 
-## Conflicts that only appear after updates
+## What if the conflict only appeared after an update?
 
-The most frustrating conflicts appear the morning after automatic updates ran overnight. Two habits prevent most of them: test updates on a staging copy before they reach the live site, and update in small groups rather than "Update all", so you know which update caused the problem. If your site did break after an update, my guide to [what to do when a WordPress update broke your site](/blog/wordpress-update-broke-site/) walks through getting back online first.
+These are the most frustrating ones: they show up the morning after automatic updates ran overnight. Two habits prevent most of them. Test updates on a staging copy before they reach the live site, and update in small groups rather than "Update all", so you know which update caused the problem. If your site did break after an update, my guide to [what to do when a WordPress update broke your site](/blog/wordpress-update-broke-site/) walks through getting back online first.
 
-## How to prevent plugin conflicts
+## How do I stop plugin conflicts happening again?
+
+Most conflicts are preventable if you build a few habits:
 
 - **Keep the plugin list short.** Every plugin is a possible conflict. Remove anything unused; deactivated plugins can still cause trouble through leftover files.
 - **One plugin per job.** One cache, one SEO plugin, one security plugin, one form builder.
@@ -87,10 +89,10 @@ The most frustrating conflicts appear the morning after automatic updates ran ov
 - **Avoid nulled premium plugins.** Pirated copies are often modified and are a common source of both conflicts and malware.
 - **Watch optimisation plugins carefully.** Many conflicts I see are caused by settings that combine or delay scripts. See [why two cache plugins make a site slower](/blog/too-many-wordpress-cache-plugins/).
 
-## Keep a record of what fixed it
+## Should I keep a note of what fixed it?
 
-When you find a conflict, write down which plugins were involved, which versions, what the error was and what fixed it. Next time either plugin updates, check that note first. Conflicts that were fixed by a setting change can come back if a plugin update resets its options.
+Yes. When you find a conflict, write down which plugins were involved, which versions, what the error was and what fixed it. Next time either plugin updates, check that note first. Conflicts that were fixed by a setting change can come back if a plugin update resets its options.
 
-## When to get help
+## When should I get help?
 
-Get help if the conflict is on a store's checkout, if you cannot log in, or if the fix means choosing between two plugins your business relies on. Finding the cause is usually quick; choosing the right replacement and testing it properly is where experience saves time. Plugin housekeeping and tested updates are part of every [WordPress maintenance plan](/wordpress-maintenance/) I run, and a one-off fix starts from $150.
+Get help if the conflict is on a store's checkout, if you can't log in, or if the fix means choosing between two plugins your business relies on. Finding the cause is usually quick. Choosing the right replacement and testing it properly is where experience saves time. Plugin housekeeping and tested updates are part of every [WordPress maintenance plan](/website-care/) I run, and a one-off fix starts from $150.

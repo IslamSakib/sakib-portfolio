@@ -1,0 +1,121 @@
+# Briefs: four new pages (G2 approved 16 Oct 2026)
+
+SERP reads: Google US, 16 Oct 2026. Volumes and KD: Semrush US, 14–16 Oct 2026.
+
+---
+## 1. /wordpress-care-plans/
+- **Primary:** wordpress care plans (1,000/mo, KD 12)
+- **Secondary:**
+  - wordpress care plan (720/12)
+  - wordpress maintenance plans (1,300/44)
+  - wordpress maintenance packages (880/30)
+  - wordpress support plan (320/16)
+  - wordpress maintenance pricing (170/24)
+  - wordpress website care plan (260/8)
+  - wordpress security care plans (170/9)
+- **Reader:** a business owner comparing plans and prices. They arrive from the maintenance page, the cost post, or search.
+- **SERP:**
+  - Who ranks: inspirable /careplans, wpbuffs /plans, onenine, wp-techsupport, banasweb, emilyjourney (plan tables), plus wp-umbrella, fatlab and codeable explainers.
+  - Winning format: a tier table with a price per month, what's included per tier, and an FAQ.
+  - **Angle (the gap):** every top result is a company with a support desk. Here, one named senior developer looks after the site, the plans state their limits plainly (hours, reply time, never "unlimited"), and you keep every login.
+- **Outline:**
+  - **H1:** "WordPress care plans" + promise.
+  - **Answer-first:** two plans, $149 and $299 a month: what each covers, and who it suits.
+  - **Price cards:** reuse the existing plans exactly.
+  - **"Compare plans" table:** feature rows × 2 plans, plus a "single fix" column from $150.
+  - **What happens each month:** reuse the 4-week strip.
+  - **Who each plan is for.**
+  - **What a care plan doesn't cover:** redesigns, new features (links to development).
+  - **FAQ:** what's included, cancel, can I switch plans, do you host, what if something breaks between checks, stores.
+- **Proof:** Tabby (ongoing maintenance plus the Ahad Ali quote), TubeOnAI (rescue).
+- **Links out:** /wordpress-maintenance/, /wordpress-repair/, /blog/wordpress-maintenance-cost/, /contact/?plan=…
+- **Schema:** Service with two Offers + FAQPage + BreadcrumbList.
+- **Meta:**
+  - Title: "WordPress Care Plans from $149/mo | Sakib Islam" (46)
+  - Description: "WordPress care plans from $149 a month: tested updates, off-site backups, security monitoring and developer hours. Two plans, cancel any month." (≤155)
+
+---
+## 2. /wordpress-repair/
+- **Primary:** wordpress website repair (210/mo, KD 3)
+- **Secondary:**
+  - fix my wordpress site (170/12)
+  - wordpress emergency support (170/10)
+  - wordpress site down (50/29)
+  - wordpress site not working (30/23)
+- **Reader:** someone whose site is broken right now and who wants it fixed fast by someone accountable.
+- **SERP:**
+  - Who ranks: gotechark, fixmysite, fixed.net, wpfixit and sitecare (fix services); emergency support pages (wpsupportspecialists, wpbuffs 24/7, prontomarketing).
+  - Winning format: a single-fix offer, how fast, a price, and the problems they fix.
+  - **Angle:** a written cause, not just "fixed"; one developer; an honest 24-hour reply (no fake "24/7"). Proof: TubeOnAI downtime stopped.
+- **Outline:**
+  - **H1:** "WordPress website repair" + promise.
+  - **Answer-first:** send the URL and what's wrong; reply within 24 hours; single fixes from $150 with a written quote first.
+  - **What I fix:** white screen, critical error after an update, plugin conflicts, broken forms and checkout, a site that keeps going down, a hacked site (→ malware page).
+  - **How a repair runs:** 4 steps: tell me → I find the cause → fix on a copy where possible → written note of the cause.
+  - **Emergency support:** honest hours (US/UK overlap, Dhaka daytime), 24-hour reply.
+  - **Proof:** TubeOnAI.
+  - **Prevent the next one:** care plans.
+  - **FAQ:** cost, speed, access needed, will I lose data, what if you can't fix it.
+- **Links out:** /wordpress-care-plans/, /wordpress-malware-removal/, /work/tubeonai/, white screen post.
+- **Schema:** Service (Offer minPrice 150) + FAQPage + BreadcrumbList.
+- **Meta:**
+  - Title: "WordPress Website Repair from $150 | Sakib Islam" (48)
+  - Description: "WordPress website repair for white screens, critical errors, plugin conflicts and sites that keep going down. Reply within 24 hours, from $150." (≤155)
+
+---
+## 3. /wordpress-malware-removal/
+- **Primary:** wordpress malware removal (880/mo, KD 19)
+- **Secondary:**
+  - wordpress malware removal service (320/11)
+  - hacked wordpress site (110/22)
+  - wordpress hacked (390/30)
+  - remove malware from wordpress (70/21)
+- **Reader:** a site owner seeing spam pages, redirects, a Google warning or a host suspension.
+- **SERP:**
+  - Who ranks: Wordfence and Malcure service pages, CleanTalk, Numinix, webcarestudios, Upwork, and tool listicles.
+  - Winning format: cleanup service with process, price and guarantees.
+  - **Angle:** manual cleanup by one developer who finds *how* they got in (not just what they left), then closes it, plus follow-up monitoring.
+- **Proof:** **no malware case study exists**. The page must not claim past cleanups or invented numbers; it uses process and credentials only. **Ask Sakib at G3 for a real example.**
+- **Price:** no approved malware price. Show "Quoted after a free check" (a single fix starts at $150, but a cleanup is usually more). **Ask at G3.**
+- **Outline:**
+  - **H1:** "WordPress malware removal" + promise.
+  - **Answer-first:** signs of infection; what the cleanup covers; reply within 24 hours.
+  - **Signs you've been hacked:** links to the check post.
+  - **What the cleanup covers:** find the entry point; clean files and database; remove admin users that shouldn't be there; reset keys and passwords; update or replace vulnerable plugins; Google blocklist / Search Console review request; host unsuspension help.
+  - **After the cleanup:** monitoring (→ care plans).
+  - **FAQ:** will I lose content, how long, will Google warnings go away, will it come back, do you need hosting access.
+- **Links out:** /blog/how-to-check-if-wordpress-site-is-hacked/, /blog/fix-hacked-wordpress-site/, /wordpress-care-plans/, /wordpress-repair/
+- **Schema:** Service + FAQPage + BreadcrumbList (no Offer price).
+- **Meta:**
+  - Title: "WordPress Malware Removal, Done by Hand | Sakib Islam" (53)
+  - Description: "WordPress malware removal by a senior developer: find how they got in, clean files and database, close the hole and clear Google warnings." (≤155)
+
+---
+## 4. /white-label-wordpress-maintenance/
+- **Primary:** white label wordpress support (480/mo, KD 1)
+- **Secondary:**
+  - white label wordpress maintenance (260/9)
+  - white label wordpress maintenance service (210/10)
+  - white label wp maintenance (140/3)
+  - white label wordpress care plans (50/3)
+  - white label wordpress service (140/8)
+- **Reader:** an agency owner who sells or wants to sell care plans and needs someone to do the work quietly.
+- **SERP:**
+  - Who ranks: wpremote, e2msolutions, wptandem, accesswp, wpsiteplan /white-label, wpbuffs /plans/white-label, plus fatlab and managewp explainers.
+  - Winning format: service page with how it works, per-site pricing, and reporting under the agency's brand.
+  - **Angle:** a named senior developer instead of a support desk; never contacts the end client; reports under the agency's brand; overlaps US and UK hours.
+- **Proof:** Musemind (Shamsi Nur quote) for white-label work; Tabby maintenance for care quality.
+- **Price:** no approved white-label care price. Show "Quoted per site" in the Monthly block style. **Ask at G3** (suggest a per-site wholesale price for his approval).
+- **Outline:**
+  - **H1:** "White label WordPress support and maintenance" (the eyebrow carries the keyword) + "Your clients' sites, looked after under your name."
+  - **Answer-first block.**
+  - **What I handle:** updates, backups, monitoring, fixes, small changes, reports in your branding.
+  - **How it works:** onboard a site → monthly work → branded report → you bill your client.
+  - **What stays yours:** client relationship, pricing, brand.
+  - **Price cards:** Per site (quoted), Hourly ($35/h, approved).
+  - **FAQ.**
+- **Links out:** /white-label-wordpress-development/, /blog/white-label-wordpress-maintenance/, /wordpress-care-plans/ (what the direct plans include).
+- **Schema:** Service (audience: agencies, Offer $35/h) + FAQPage + BreadcrumbList.
+- **Meta:**
+  - Title: "White Label WordPress Support for Agencies | Sakib Islam" (56)
+  - Description: "White label WordPress support and maintenance for agencies: updates, backups, fixes and branded reports for your clients' sites, under your name." (≤155)

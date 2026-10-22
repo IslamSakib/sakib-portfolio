@@ -5,8 +5,8 @@ focus: WordPress LMS
 clientUrl: https://openalliancelearning.com/
 title: "A WordPress LMS with a dashboard for every role"
 seoTitle: "WordPress LMS With Role Dashboards | Open Alliance Learning"
-description: "A WordPress LMS for Open Alliance Learning on LearnDash and WooCommerce, with separate dashboards for learners, teachers and quality assessors."
-summary: A website and learning platform with separate dashboards for learners, teachers and quality assessors.
+description: "WordPress LMS with separate dashboards for learners, teachers and assessors. See how it works."
+summary: "A WordPress LMS and website with separate dashboards for learners, teachers and quality assessors."
 result: Three role dashboards
 chip: "WordPress LMS"
 relevant: "Relevant if you run courses or memberships on WordPress."
@@ -24,34 +24,36 @@ faq:
     a: "Yes. WooCommerce takes the payment and LearnDash grants access to the course, so a learner pays and starts in one step."
 ---
 
-## The brief
+## What did Open Alliance Learning need?
 
 Open Alliance Learning needed a new website and a learning management system in one place. Three groups use it for different reasons: learners, teachers, and IQA, the people who check the quality of assessment.
 
-## What I built
+## What did I build?
 
 - The new Open Alliance Learning website
 - The LMS, configured on LearnDash
 - A separate dashboard for learners, for teachers and for IQA
 - Course sales through WooCommerce
 
-## What shaped it
+## What shaped the design?
 
 When one system serves several roles, the first design question is who is looking, not what the feature is. Each group sees only what it needs.
 
-## How the WordPress LMS is put together
+## How is the WordPress LMS put together?
 
 - LearnDash runs the courses, lessons and progress
 - WooCommerce handles enrolment and payment, so buying a course and getting access is one step
 - Each role signs in to its own dashboard: a learner sees courses and progress, a teacher sees learners and marking, an assessor sees what needs quality checking
 
-## Inside the site, 11 October 2026
+If you're planning a course site, the same split works for you: decide who signs in first, then build each person's screen.
 
-Read from the live site, page by page.
+## What does the site look like today?
 
-**Size.** 21 pages in the sitemap, including 4 courses on sale.
+I read the live site page by page on 11 October 2026.
 
-**What the pages do.**
+**How big is it?** 21 pages in the sitemap, including 4 courses on sale.
+
+**What do the pages do?**
 
 - A course catalogue in four groups: health care sector, CPD, education and training, and IT and digital skills
 - A courses page with a filter, so a learner can narrow the list
@@ -59,9 +61,11 @@ Read from the live site, page by page.
 - An about page covering who the provider is, how learning works and accreditation
 - Terms of sale and a refund policy, which a site that takes payment needs
 
-**How it is built.**
+**How is it built?**
 
 - WordPress with Elementor, on the Hello Elementor base theme
 - LearnDash for courses and WooCommerce for enrolment and payment
 - Pages served from a LiteSpeed cache with Brotli compression
 - A content security policy in place
+
+Need a WordPress LMS? See [custom WordPress development](/wordpress-development/).

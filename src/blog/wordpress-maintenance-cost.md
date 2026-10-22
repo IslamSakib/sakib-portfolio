@@ -1,12 +1,12 @@
 ---
 title: "WordPress maintenance cost in 2026: what you should pay and why"
 seoTitle: "WordPress Maintenance Cost in 2026: What to Pay"
-description: "WordPress maintenance cost in 2026 ranges from about $75 to over $1,000 a month. What drives the price, what each tier includes, and what to avoid."
+description: "WordPress maintenance cost in 2026: freelance, agency and DIY prices compared. See what to pay."
 focus: WordPress maintenance cost
 date: "2026-10-15"
 art: cost
 topic: Fixes and maintenance
-service: wordpress-maintenance
+service: wordpress-care-plans
 imageAlt: "Monthly WordPress maintenance prices compared: freelancer $75 to $300, agency $200 to $1,000+, and the $149 Care plan"
 stats:
   - { value: "$75 to $300", label: "a month for typical freelancer WordPress maintenance", source: "Sitewired, WordPress maintenance cost (updated Oct 2026)", url: "https://www.sitewired.com/wordpress/how-much-does-wordpress-maintenance-cost" }
@@ -23,50 +23,52 @@ faq:
   - { q: "Why do WooCommerce maintenance plans cost more?", a: "Every update has to be tested against the cart, checkout and payment gateway, and downtime costs real sales. That extra testing and the higher stakes are why store plans are usually priced separately." }
 ---
 
-WordPress maintenance cost depends less on WordPress and more on who does the work and how much your site can break. Published price guides for 2026 put freelance care plans at roughly $75 to $300 a month and agency plans at about $200 to over $1,000 a month ([Sitewired's pricing guide](https://www.sitewired.com/wordpress/how-much-does-wordpress-maintenance-cost), updated October 2026; Codeable data cited by BSS Commerce puts typical small-business plans at $100 to $300). Here is what moves a site up or down that range.
+You're trying to work out what WordPress maintenance should cost, and every quote you see is different. WordPress maintenance cost depends less on WordPress and more on who does the work and how much your site can break. Published price guides for 2026 put freelance care plans at roughly $75 to $300 a month and agency plans at about $200 to over $1,000 a month ([Sitewired's pricing guide](https://www.sitewired.com/wordpress/how-much-does-wordpress-maintenance-cost), updated October 2026; Codeable data cited by BSS Commerce puts typical small-business plans at $100 to $300). Here's what moves your site up or down that range.
 
-## What drives the price
+## What makes my maintenance cost more or less?
+
+Four things move your price, and you can check each one yourself:
 
 - **What the site does.** A brochure site with five pages is cheaper to look after than a WooCommerce store taking payments, because a failed update on a store costs real money. Store plans are usually priced separately.
 - **How many plugins it runs.** Every plugin is something that can update, conflict or be hacked. More plugins mean more testing every month.
 - **How fast you need a reply.** A plan that promises a reply within a working day costs less than one that promises someone awake at 3am.
 - **Whether changes are included.** Some plans cover updates and backups only. Others include an hour or more of small changes each month, which is often where the real value is.
 
-## What a fair plan includes
+## What should I get at any price?
 
-At minimum, at any price:
+At minimum:
 
 1. Updates to WordPress, the theme and plugins, tested before they go live
 2. Daily backups stored away from your server, with restores tested
 3. Uptime and security monitoring
 4. A short monthly report you can understand
 
-If a plan does not test updates before applying them, it is automated updating with a monthly fee on top.
+If a plan doesn't test updates before applying them, it's automated updating with a monthly fee on top.
 
-## The cheap end: what you usually give up
+## What do I give up with a cheap plan?
 
 Very cheap plans are often fully automated: updates run by software, backups on the same server, and no person who knows your site. That can work for a simple site. It fails the day something breaks, because nobody is responsible for fixing it.
 
-## The expensive end: when it is worth it
+## When is an expensive plan worth it?
 
-Higher prices make sense for busy stores, sites with custom code, or businesses that need a guaranteed fast response at any hour. You are paying for a team and round-the-clock availability.
+Higher prices make sense for busy stores, sites with custom code, or businesses that need a guaranteed fast response at any hour. You're paying for a team and round-the-clock availability.
 
-## Where my plans sit
+## What do my plans cost, for comparison?
 
 I keep it to two plans, both done by me personally, not a ticket queue:
 
 - **Care, $149 a month:** tested updates, daily off-site backups, uptime and security monitoring, a monthly report and up to an hour of changes.
 - **Care + development, $299 a month:** the same, plus three hours of changes and a monthly mobile speed check.
 
-Urgent problems get a reply within 24 hours on both, and you keep every login. The full comparison is on the [WordPress maintenance page](/wordpress-maintenance/).
+Urgent problems get a reply within 24 hours on both, and you keep every login. The full comparison is on the [WordPress maintenance page](/website-care/).
 
-## Maintenance cost compared with the cost of not maintaining
+## What does it cost me to skip maintenance?
 
-The honest comparison is not plan against plan. It is a plan against what happens without one. An unmaintained WordPress site collects outdated plugins, and outdated plugins are the main way sites get hacked: Patchstack counted 11,334 new WordPress vulnerabilities in 2025, almost all of them in plugins. Cleaning up a hacked site, restoring lost data or rebuilding after a failed update usually costs more than a year of maintenance, before counting lost sales and the time your site spent showing a warning in Google.
+The honest comparison isn't plan against plan. It's a plan against what happens without one. An unmaintained WordPress site collects outdated plugins, and outdated plugins are the main way sites get hacked: Patchstack counted 11,334 new WordPress vulnerabilities in 2025, almost all of them in plugins. Cleaning up a hacked site, restoring lost data or rebuilding after a failed update usually costs more than a year of maintenance, before you count lost sales and the time your site spent showing a warning in Google.
 
 A useful way to think about it: what would one day of your site being down cost you? For a brochure site, maybe a few enquiries. For a store or a lead-generation site, it can be more than a month of maintenance in a single afternoon.
 
-## Doing it yourself: the real cost
+## What does it really cost to do it myself?
 
 You can maintain a WordPress site yourself. The tools are free. The cost is time and risk:
 
@@ -74,26 +76,26 @@ You can maintain a WordPress site yourself. The tools are free. The cost is time
 - **Testing.** The step most people skip. Clicking "Update all" on the live site is fast until the day an update breaks the checkout or the contact form and nobody notices for a week.
 - **Knowing what to do when it fails.** A failed update at 6pm on a Friday is when maintenance stops being a checklist and becomes a skill.
 
-If your site is simple, you have the time, and a day of downtime would not hurt, doing it yourself is reasonable. Use the [WordPress maintenance checklist](/blog/wordpress-maintenance-checklist/) so nothing gets missed.
+If your site is simple, you have the time, and a day of downtime wouldn't hurt, doing it yourself is reasonable. Use the [WordPress maintenance checklist](/blog/wordpress-maintenance-checklist/) so nothing gets missed. Comparing providers instead? See [the best WordPress maintenance services](/blog/best-wordpress-maintenance-services/).
 
-## Costs that are often extra
+## What might I be charged on top?
 
-Read the plan for what is not included. Common extras:
+Read the plan for what's not included. Common extras:
 
 - **Hack clean-up.** Many plans monitor for malware but charge separately to remove it.
 - **Development time.** "Unlimited small tasks" is rarely unlimited. Look for a stated number of hours.
 - **Premium plugin licences.** Plugins such as page builders, form builders and backup tools often need yearly licences. Ask who pays for them.
-- **Hosting.** Some plans include hosting; most do not. Plans that bundle hosting can look expensive but replace a bill you already pay.
+- **Hosting.** Some plans include hosting; most don't. Plans that bundle hosting can look expensive but replace a bill you already pay.
 - **Store-specific work.** WooCommerce sites usually cost more because updates must be tested against checkout and payments.
 
-## Monthly plan or pay as you go
+## Should I pay monthly or as I go?
 
-Pay-as-you-go suits sites that rarely change and can tolerate some risk: you call someone when something breaks. A monthly plan suits sites that earn money, change often, or run plugins that update weekly. The real difference is prevention. Pay-as-you-go fixes problems after they cost you; a plan catches most of them before.
+Pay-as-you-go suits sites that rarely change and can tolerate some risk: you call someone when something breaks. A monthly plan suits sites that earn money, change often, or run plugins that update weekly. The real difference is prevention. Pay-as-you-go fixes problems after they cost you. A plan catches most of them before.
 
-## How to compare two quotes
+## How do I compare two maintenance quotes?
 
-Put the plans side by side and compare like for like: are updates tested before going live, how often are backups taken and where are they stored, how many hours of changes are included, what is the reply time for an urgent problem, and is hack clean-up included or extra. Then divide the price by what you actually get. A $100 plan with no testing and no hours of work can be worse value than a $200 plan that includes both.
+Put the plans side by side and compare like for like: are updates tested before going live, how often are backups taken and where are they stored, how many hours of changes are included, what's the reply time for an urgent problem, and is hack clean-up included or extra. Then divide the price by what you actually get. A $100 plan with no testing and no hours of work can be worse value than a $200 plan that includes both.
 
-## Questions to ask any provider
+## Which five questions should I ask any provider?
 
-Are updates tested first? Where are backups kept? How fast do you reply when the site is down? What is charged on top? Do I keep ownership of everything? A provider who answers all five clearly is usually worth the price, whatever it is.
+Are updates tested first? Where are backups kept? How fast do you reply when the site is down? What's charged on top? Do I keep ownership of everything? A provider who answers all five clearly is usually worth the price, whatever it is.

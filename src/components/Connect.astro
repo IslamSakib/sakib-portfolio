@@ -3,11 +3,11 @@
 // Sakib and the two contact paths.
 import { site } from '../site.js';
 
-const { heading = 'Send me the site. I will tell you what to fix first.' } = Astro.props;
+const { heading = 'Get a free quote' } = Astro.props;
 const ways = [
   { label: 'Email', value: site.email, href: `mailto:${site.email}` },
   { label: 'WhatsApp', value: '+880 1950 025990', href: site.whatsapp, ext: true },
-  { label: 'LinkedIn', value: 'in/sakibislamofficial', href: site.linkedin, ext: true },
+  { label: 'LinkedIn', value: 'in/sakib-islam-full-stack-web-developer', href: site.linkedin, ext: true },
 ];
 ---
 <section id="contact" class="connect" aria-labelledby="connect-h">
@@ -15,7 +15,7 @@ const ways = [
     <div class="connect-copy">
       <p class="huge" aria-hidden="true">Connect</p>
       <h2 id="connect-h">{heading}</h2>
-      <p class="mono mut">Reply within 24 hours · Hours overlap US and UK</p>
+      <p class="mono mut">Reply within 24 hours · Hours overlap US, UK and Australia</p>
     </div>
     <div class="connect-card">
       <ul class="connect-ways">

@@ -4,12 +4,10 @@ import Base from '../layouts/Base.astro';
 import Connect from '../components/Connect.astro';
 import PostImage from '../components/PostImage.astro';
 import PriceCards from '../components/PriceCards.astro';
+import Clock from '../components/Clock.astro';
+import ServiceArt from '../components/ServiceArt.astro';
 import photo from '../assets/sakib-islam.jpg';
 import appShot from '../assets/work/extra/wrkbase-1.jpg';
-import speedPhoto from '../assets/visuals/speed.jpg';
-import fixPhoto from '../assets/visuals/fixes.jpg';
-import carePhoto from '../assets/visuals/care.jpg';
-import buildPhoto from '../assets/visuals/build.jpg';
 import { site } from '../site.js';
 import { services } from '../services.js';
 import { work } from '../work.js';
@@ -17,43 +15,52 @@ import { reviews, initials, allReviewsUrl } from '../reviews.js';
 import { clients, clientCount } from '../clients.js';
 import { posts } from '../blog.js';
 import { prices, usd } from '../prices.js';
+import { toolLogos } from '../toolLogos.js';
 
 // Focus keyword for this page. It must appear in the title, the description and the H1 (scripts/seo-check.mjs).
-const focus = 'WordPress developer';
-const title = 'WordPress Developer for Businesses & Agencies | Sakib Islam';
+const focus = 'Full stack web developer';
+const title = 'Full Stack Web Developer for Businesses | Sakib Islam';
 const description =
-  'Sakib Islam is a senior WordPress developer: speed fixes, repairs and care plans for businesses, and white-label WordPress builds for agencies.';
+  'Full stack web developer for custom websites and web apps: UI/UX, frontend and backend. Get a quote.';
 
 const shot = (slug) => work.find((w) => w.slug === slug);
 const tabby = shot('tabby');
 // Selected work: the first is shown large. Wrkbase is shown by its app screen, the rest by their home pages.
-const mosaic = ['tabby', 'tubeonai', 'open-alliance-learning', 'wrkbase', 'pixmge'].map(shot).map((w) => ({ ...w, img: w.slug === 'wrkbase' ? appShot : w.shot }));
+const mosaic = ['mayabee', 'tabby', 'wrkbase', 'moneybag', 'open-alliance-learning'].map(shot).map((w) => ({ ...w, img: w.slug === 'wrkbase' ? appShot : w.shot }));
 
 // Trust numbers. Each can be checked: the client list is in src/clients.js (Sakib's own list of sites built or fixed),
 // full-time WordPress work starts at Oxford International School in Feb 2023, and the two results are from the
 // TubeOnAI and Tabby case studies.
 // The logo row shows only the best-known clients; the full list stays in src/clients.js.
-const featured = ['Tabby', 'TubeOnAI', 'Moneybag', 'Wrkbase', 'Pixmge', 'Oxford International School'];
+const featured = ['Tabby', 'TubeOnAI', 'Moneybag', 'Wrkbase', 'Oxford International School'];
 const logos = featured.map((n) => clients.find((c) => c.name === n)).filter(Boolean);
 const trust = [
   { n: `${clientCount}+`, label: 'client websites built or fixed' },
-  { n: '3+', label: 'years building WordPress full-time' },
+  { n: '3+', label: 'years building websites full-time' },
   { n: '70%', label: 'faster page loads for TubeOnAI, 5 s down to 1.5 s' },
   { n: '90+', label: 'Core Web Vitals at launch for Tabby' },
 ];
 const experience = [
   { yr: '2026 →', role: 'IT Executive', org: 'Open Academy London, online education', kind: 'Full-time' },
   { yr: '2026 →', role: 'Founder', org: 'Wrkbase, team management SaaS', kind: 'Own product' },
+  { yr: '2026', role: 'Full-stack developer', org: 'Mayabee, online shop with its own dashboard', kind: 'Project' },
   { yr: '2025 →', role: 'WordPress developer', org: 'Tabby, AI bookkeeping (US)', kind: 'Freelance' },
   { yr: '2025', role: 'Payment gateway plugin', org: 'Moneybag, fintech', kind: 'Project' },
   { yr: '2024', role: 'WordPress developer', org: 'TubeOnAI, AI summaries', kind: 'Part-time' },
   { yr: '2023', role: 'WordPress developer', org: 'Oxford International School, Dhaka', kind: 'Full-time' },
 ];
 const plans = [
-  { name: 'Care plan', for: 'Keep a working site safe and current.', price: usd(prices.care), unit: '/mo', billing: 'Cancel any month', items: ['Updates tested before they go live', 'Daily off-site backups', 'Urgent reply within 24 hours'], cta: 'Start a plan', href: '/contact/?plan=care', featured: true, badge: 'Ongoing' },
-  { name: 'Broken site fix', for: 'One problem, fixed at the cause.', price: usd(prices.fix), unit: ' from', billing: 'One-off', items: ['White screen, broken form or plugin conflict', 'The cause found and written down', 'One clean fix, not a patch'], cta: 'Fix my site', href: '/contact/?need=broken' },
-  { name: 'Speed fix', for: 'A slow site made fast on mobile.', price: usd(prices.speed), unit: ' from', billing: 'Per site', items: ['Caching, images and plugins fixed at the cause', 'Before and after on PageSpeed Insights', 'Numbers you can check yourself'], cta: 'Speed it up', href: '/contact/?need=speed' },
-  { name: 'Custom build', for: 'A WordPress or WooCommerce site from scratch.', price: usd(prices.build), unit: ' from', billing: 'Fixed quote', items: ['Custom theme and plugins', 'WooCommerce, payments and integrations', 'Built to load fast and survive updates'], cta: 'Start a build', href: '/contact/?need=build' },
+  { name: 'Custom website or app', for: 'A website, store or web app built from scratch.', price: 'Quoted', unit: '', billing: 'Written quote first', items: ['Competitor research and UI/UX design', 'Frontend, backend and admin dashboard', 'Core Web Vitals checked on a phone'], cta: 'Get a free quote', href: '/contact/?need=build', featured: true, badge: 'Quoted per project' },
+  { name: 'WordPress build', for: 'A WordPress or WooCommerce site from scratch.', price: usd(prices.build), unit: ' from', billing: 'Fixed quote', items: ['Custom theme and plugins', 'WooCommerce, payments and integrations', 'Built to load fast and survive updates'], cta: 'Start a build', href: '/contact/?need=build' },
+  { name: 'Website care', for: 'Keep a working site safe and current.', price: usd(prices.care), unit: '/mo', billing: 'Cancel any month', items: ['Updates tested before they go live', 'Daily off-site backups', 'Urgent reply within 24 hours'], cta: 'Start a plan', href: '/contact/?plan=care' },
+  { name: 'Repair or speed fix', for: 'One problem, fixed at the cause.', price: usd(prices.fix), unit: ' from', billing: 'One-off', items: ['White screen, broken form or plugin conflict', 'Speed fixes from ' + usd(prices.speed) + ', measured before and after', 'The cause found and written down'], cta: 'Fix my site', href: '/contact/?need=broken' },
+];
+
+const toolGroups = [
+  { name: 'AI assistants', note: 'I use AI to speed up routine work. I read and test everything that ships.', items: [['Claude', 'writing and reviewing code, drafting copy', 'claude'], ['ChatGPT', 'research and second opinions', 'chatgpt'], ['Gemini', 'research and long documents', 'gemini']] },
+  { name: 'Code and build', items: [['VS Code', 'my code editor', 'vscode'], ['Git and GitHub', 'version control', 'github'], ['Astro', 'fast static websites', 'astro'], ['WordPress and WooCommerce', 'themes, plugins and stores', 'wordpress'], ['PHP and MySQL', 'backends and APIs', 'php']] },
+  { name: 'Design', items: [['Figma', 'designs and developer handoff', 'figma'], ['Claude Design', 'UI mockups and brand images', 'claude']] },
+  { name: 'Test and measure', items: [['Chrome DevTools', 'debugging and mobile testing', 'chrome'], ['Google PageSpeed Insights', 'Core Web Vitals scores', 'pagespeed'], ['Google Search Console', 'search performance', 'searchconsole'], ['Semrush', 'keyword research', 'semrush']] },
 ];
 
 const jsonld = [
@@ -61,52 +68,52 @@ const jsonld = [
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: site.name,
-    jobTitle: 'Senior WordPress developer',
+    jobTitle: 'Full Stack Web Developer',
     email: site.email,
     address: { '@type': 'PostalAddress', addressLocality: 'Dhaka', addressCountry: 'BD' },
     url: Astro.site,
-    image: { '@type': 'ImageObject', url: new URL(photo.src, Astro.site), width: photo.width, height: photo.height, caption: 'Sakib Islam, WordPress developer' },
+    image: { '@type': 'ImageObject', url: new URL(photo.src, Astro.site), width: photo.width, height: photo.height, caption: 'Sakib Islam, full stack web developer' },
     telephone: site.phone,
     sameAs: [site.linkedin, site.wrkbase, site.github, site.facebook].filter(Boolean),
-    knowsAbout: ['WordPress development', 'WordPress maintenance', 'WordPress speed optimization', 'Core Web Vitals', 'WooCommerce', 'White-label WordPress development', 'SaaS development'],
+    knowsAbout: ['Full stack web development', 'Custom website development', 'Web application development', 'WordPress theme and plugin development', 'Website maintenance', 'Core Web Vitals', 'WooCommerce', 'White-label WordPress development', 'SaaS development'],
     makesOffer: [
-      { slug: 'wordpress-maintenance', name: 'WordPress maintenance' },
       ...services.map((sv) => ({ slug: sv.slug, name: sv.name })),
+      { slug: 'website-care', name: 'Website care' },
       { slug: 'white-label-wordpress-development', name: 'White-label WordPress development' },
     ].map((sv) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: sv.name, url: new URL(`/${sv.slug}/`, Astro.site) } })),
   },
   { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: Astro.site },
 ];
 const svc = [
-        { img: speedPhoto, alt: 'The TubeOnAI site with a Core Web Vitals score of 90+ and load time cut from 5.0 to 1.5 seconds', label: 'Speed', t: 'A site that loads fast, so visitors stay.', d: 'I find what really slows your site, fix it once, and show you the before and after on mobile, so you can check the result yourself.', proof: 'Tabby: Core Web Vitals above 90 at launch', href: '/wordpress-speed-optimization/', price: `from ${usd(prices.speed)}` },
-        { img: fixPhoto, alt: 'An error log with a fatal error, and the fix: one caching layer set up once', label: 'Fixes', t: 'Problems fixed for good, not patched.', d: 'When something breaks, I trace it to the cause and write down what I changed, so the same problem does not come back next month.', proof: 'TubeOnAI: repeated downtime stopped', href: '/wordpress-maintenance/#fix', price: `from ${usd(prices.fix)}` },
-        { img: carePhoto, alt: 'A monthly care report: updates tested, daily backups, monitoring, changes and a plain-English report', label: 'Care plans', t: 'No more worrying about updates or hacks.', d: 'Tested updates, daily off-site backups and monitoring every month, from one developer who already knows your site. You get a plain-English report.', proof: 'Tabby: built, then still maintained by me', href: '/wordpress-maintenance/', price: `${usd(prices.care)}/mo` },
-        { img: buildPhoto, alt: 'A design turned into the live Tabby website, with a paid WooCommerce checkout', label: 'Builds', t: 'A site that sells and is easy to run.', d: 'Your theme, store, payments and integrations built as one job: fast on phones, simple for your team to edit, and safe to update.', proof: 'Moneybag: a custom payment plugin for WooCommerce', href: '/wordpress-development/', price: `from ${usd(prices.build)}` },
-      ];
+  { slug: 'custom-web-development', name: 'Custom website development', what: 'A website, online store or web app built from scratch for your business, including the admin dashboard your team uses.', gets: ['Competitor research and UI/UX design', 'Frontend and backend development', 'Admin dashboard, user accounts and payments'], price: 'Quoted after a call', proof: 'Example: Mayabee, an online shop with its own dashboard', href: '/custom-web-development/' },
+  { slug: 'wordpress-development', name: 'WordPress development', what: 'Custom WordPress themes and plugins, WooCommerce stores and integrations, built to your design.', gets: ['Custom themes from your Figma design', 'Custom plugins and payment gateways', 'WooCommerce stores and integrations'], price: `From ${usd(prices.build)}`, proof: 'Example: a payment gateway plugin for Moneybag', href: '/wordpress-development/' },
+  { slug: 'website-care', name: 'Website care', what: 'Monthly care for a live website: updates, backups, monitoring, fixes and speed, handled by the developer who knows your site.', gets: ['Tested updates and daily off-site backups', 'Security and uptime monitoring', 'Bug fixes, speed and small changes'], price: `From ${usd(prices.care)} a month`, proof: 'Example: Tabby, built and maintained by me', href: '/website-care/' },
+];
 ---
 <Base title={title} description={description} jsonld={jsonld} focus={focus}>
   <section class="h-hero wrap hero-bg">
     <canvas class="dots dots-bleed" aria-hidden="true"></canvas>
     <div class="h-grid">
       <div class="h-copy">
-        <h1><span class="eyebrow">Senior WordPress developer</span><span class="ln">Fast WordPress sites</span> <span class="ln">that keep working.</span></h1>
-        <p class="lead">I fix, speed up and look after WordPress sites for businesses, and build designs in WordPress for agencies, under their name.</p>
+        <p class="eyebrow">Full stack web developer · Dhaka, working remotely</p>
+        <h1><span class="ln">Full stack web developer</span> <span class="ln">for custom websites</span> <span class="ln">and web apps.</span></h1>
+        <p class="lead">I'm Sakib, a full stack web developer. I start with competitor analysis to find the gaps, design the UI and UX myself, then build everything from frontend to backend. Send me your website URL or project requirements and I'll review your needs and give you clear pricing.</p>
         <div class="btn-row">
-          <a class="btn" href="/contact/">Get a free site check</a>
-          <a class="btn btn-ghost" href="/white-label-wordpress-development/">For agencies</a>
+          <a class="btn" href="/contact/">Get a free quote</a>
+          <a class="btn btn-ghost" href="/#work">See my work</a>
         </div>
-        <p class="mono mut h-meta"><span>Dhaka, remote</span> <span>Overlaps US and UK hours</span> <span>Reply within 24 hours</span></p>
+        <p class="mono mut h-meta"><Clock compact /> <span>Overlaps US and UK hours</span> <span>Reply within 24 hours</span></p>
       </div>
       <div class="h-collage" aria-label="Sites I built">
         <div class="browser c-back">
-          <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>usetabby.com</span></div>
-          <Picture src={tabby.shot} formats={['avif', 'webp']} widths={[560, 860]} sizes="(max-width: 900px) 78vw, 470px" alt="The Tabby website, built by Sakib Islam" loading="eager" fetchpriority="high" />
+          <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>mayabeebd.com</span></div>
+          <Picture src={shot('mayabee').shot} formats={['avif', 'webp']} widths={[560, 860]} sizes="(max-width: 900px) 78vw, 470px" alt="The Mayabee online shop, a custom storefront built by Sakib Islam" loading="eager" fetchpriority="high" />
         </div>
         <div class="browser c-front">
-          <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>tubeonai.com</span></div>
-          <Picture src={shot('tubeonai').shot} formats={['avif', 'webp']} widths={[420, 640]} sizes="(max-width: 900px) 58vw, 340px" alt="The TubeOnAI website, built by Sakib Islam" loading="eager" />
+          <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>usetabby.com</span></div>
+          <Picture src={tabby.shot} formats={['avif', 'webp']} widths={[420, 640]} sizes="(max-width: 900px) 58vw, 340px" alt="The Tabby website, built by Sakib Islam" loading="eager" />
         </div>
-        <p class="h-stat"><small>TubeOnAI load time</small><b>5 s → <em>1.5 s</em></b></p>
+        <p class="h-stat"><small>Mayabee</small><b>Store + <em>dashboard</em></b></p>
       </div>
     </div>
   </section>
@@ -133,63 +140,30 @@ const svc = [
   <section id="services" class="wrap sec-pad">
     <div class="row-head">
       <div style="display: grid; gap: 0.9rem">
-        <p class="label">What I do for you</p>
-        <h2>What you get from working with me.</h2>
+        <p class="label">Services</p>
+        <h2>Custom websites, WordPress development and website care</h2>
       </div>
-      <a href="/white-label-wordpress-development/">Agency? See white-label →</a>
+      <a href="/full-stack-developer/">Hire a full stack developer →</a>
     </div>
-    <div class="ss" data-ss>
-      <ol class="ss-list">
-        {svc.map((r, i) => (
-          <li>
-            <a class:list={['ss-item', { on: i === 0 }]} href={r.href} data-i={i}>
-              <span class="ss-idx">0{i + 1}</span>
-              <span class="ss-t">{r.t}<span class="sr-only"> {r.d} {r.proof}.</span></span>
-              <span class="ss-price">{r.label} · {r.price}</span>
-              <span class="ss-go" aria-hidden="true">→</span>
-            </a>
-            <div class="ss-m" aria-hidden="true">
-              <Picture src={r.img} formats={['avif', 'webp']} widths={[480, 800]} sizes="100vw" alt="" loading="lazy" />
-              <p class="mut">{r.d}</p>
-              <p class="tile-note">{r.proof}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
-      <div class="ss-stage" aria-hidden="true">
-        <div class="ss-frame">
-          {svc.map((r, i) => <Picture class:list={['ss-img', { on: i === 0 }]} data-i={i} src={r.img} formats={['avif', 'webp']} widths={[640, 960, 1280]} sizes="(max-width: 900px) 100vw, 620px" alt={r.alt} loading="lazy" />)}
-          <span class="ss-proof">{svc.map((r, i) => <b class:list={{ on: i === 0 }} data-i={i}>{r.proof}</b>)}</span>
-        </div>
-        <div class="ss-caps">
-          {svc.map((r, i) => (
-            <div class:list={['ss-cap', { on: i === 0 }]} data-i={i}>
-              <p class="label">{r.label} · {r.price}</p>
-              <p class="ss-d">{r.d}</p>
-              <span class="ss-link">See how it works →</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+    <ul class="kit kit-links">
+      {svc.map((r) => (
+        <li>
+          <div class="kit-art"><ServiceArt slug={r.slug} /></div>
+          <h3><a href={r.href}>{r.name}</a></h3>
+          <p class="muted">{r.what}</p>
+          <ul class="tags">{r.gets.map((g) => <li>{g}</li>)}</ul>
+          <p class="mono"><b>{r.price}</b></p>
+          <p class="muted" style="font-size: 0.9375rem">{r.proof}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="muted" style="margin-top: 1.5rem">Site slow, broken or hacked? <a class="more-link" href="/wordpress-repair/">WordPress repair</a>, <a class="more-link" href="/website-care/">speed fixes</a> and <a class="more-link" href="/wordpress-malware-removal/">malware removal</a> are part of website care.</p>
   </section>
-
-  <script>
-    // Service showcase: pointing at or focusing a service shows its picture and details on the stage.
-    const ss = document.querySelector('[data-ss]');
-    if (ss) {
-      const pick = (i) => ss.querySelectorAll('[data-i]').forEach((el) => el.classList.toggle('on', el.dataset.i === i));
-      ss.querySelectorAll('.ss-item').forEach((a) => {
-        a.addEventListener('pointerenter', () => pick(a.dataset.i));
-        a.addEventListener('focus', () => pick(a.dataset.i));
-      });
-    }
-  </script>
 
   <section id="work" class="wrap" style="padding: 0 0 var(--sec)">
     <div class="row-head">
-      <h2>Selected work</h2>
-      <a href="/work/tabby/">Start with Tabby →</a>
+      <h2>Websites and web apps I've built</h2>
+      <a href="/work/mayabee/">Start with Mayabee →</a>
     </div>
     <div class="mosaic">
       {mosaic.map((w, i) => (
@@ -204,18 +178,41 @@ const svc = [
     </div>
   </section>
 
+    <section id="tools" class="wrap sec-pad">
+    <div class="row-head">
+      <div style="display: grid; gap: 0.9rem">
+        <p class="label">Tools</p>
+        <h2>Tools I use to build and host websites</h2>
+      </div>
+    </div>
+    <div class="tools">
+      {toolGroups.map((g) => (
+        <div class="tool-group">
+          <h3>{g.name}</h3>
+          {g.note && <p class="muted" style="font-size: 0.9375rem">{g.note}</p>}
+          <ul>{g.items.map(([n, d, l]) => <li><svg class="tool-logo" viewBox={`0 0 ${toolLogos[l].box} ${toolLogos[l].box}`} width="28" height="28" role="img" aria-label={`${n} logo`}><path d={toolLogos[l].path} /></svg><span class="tool-text"><b>{n}</b><span class="muted">{d}</span></span></li>)}</ul>
+        </div>
+      ))}
+      <div class="tool-group tool-host">
+        <h3>Hosting</h3>
+        <ul><li><svg class="tool-logo" viewBox={`0 0 ${toolLogos.hostinger.box} ${toolLogos.hostinger.box}`} width="28" height="28" role="img" aria-label="Hostinger logo"><path d={toolLogos.hostinger.path} /></svg><span class="tool-text"><b>Hostinger</b><span class="muted">where I host my own websites, including this one and the Mayabee shop</span></span></li></ul>
+        <p class="muted" style="font-size: 0.9375rem">I am a Hostinger affiliate partner. If you sign up through <a class="more-link" href={site.hostinger} target="_blank" rel="sponsored noopener">my Hostinger link</a>, I may earn a commission at no extra cost to you.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="about" class="sec-line sec-pad">
     <div class="wrap about">
       <figure class="about-photo">
         <div class="h-panel">
-          <Picture src={photo} formats={['avif', 'webp']} widths={[480, 800]} sizes="(max-width: 900px) 90vw, 480px" alt="Sakib Islam, WordPress developer" loading="lazy" />
+          <Picture src={photo} formats={['avif', 'webp']} widths={[480, 800]} sizes="(max-width: 900px) 90vw, 480px" alt="Sakib Islam, full stack web developer" loading="lazy" />
         </div>
         <figcaption class="mono mut">Sakib Islam · Dhaka, working remotely</figcaption>
       </figure>
       <div class="about-copy">
         <p class="label">About</p>
-        <h2>I find what is actually wrong, then fix it once.</h2>
-        <p class="mut">WordPress developer in Dhaka, working alone and remotely for companies in the US and UK. I also built and run my own SaaS product, Wrkbase.</p>
+        <h2>About Sakib Islam</h2>
+        <p class="mut">Just me: a full stack web developer in Dhaka, working remotely for companies in the US and UK. No account managers and no hand-offs, so the person who answers your email is the one who designs and builds your site. I also founded Wrkbase, a platform for tasks, attendance, time tracking, payroll and team chat, with an AI agent that runs approved actions.</p>
         <ol class="timeline">
           {experience.map((e) => (
             <li><span class="yr">{e.yr}</span><span><strong>{e.role}</strong><br /><span class="mut" style="font-size: 0.9375rem">{e.org}</span></span><span class="kind">{e.kind}</span></li>
@@ -228,11 +225,11 @@ const svc = [
   <section class="agency-band sec-pad">
     <div class="wrap agency-grid">
       <div class="agency-copy">
-        <p class="label">For agencies · white-label</p>
-        <h2><span class="ln">Your design.</span> <span class="ln">Built under your name.</span></h2>
-        <p class="mut">You keep the client and the credit. I build your Figma file in WordPress on a staging site, you review it, and it launches under your brand. Nothing I hand over carries my name.</p>
+        <p class="label">For agencies</p>
+        <h2><span class="ln">White-label WordPress</span> <span class="ln">development for agencies</span></h2>
+        <p class="mut">I build your agency's Figma designs in WordPress. You review the work on a staging site, then it launches under your brand. You keep the client; nothing I hand over carries my name.</p>
         <div class="hero-actions">
-          <a class="btn" href="/white-label-wordpress-development/">How it works</a>
+          <a class="btn" href="/white-label-wordpress-development/">See how white-label works</a>
           <a class="btn btn-ghost" href="/contact/?type=agency">Send a design</a>
         </div>
       </div>
@@ -251,15 +248,10 @@ const svc = [
     </div>
   </section>
 
-  <section class="motto" aria-label="How I work">
-    <div class="wrap" style="display: grid; gap: 1.25rem">
-      <p class="label">How I work</p>
-      <p class="big"><span class="ln">Fix the cause,</span> <em class="ln">not the symptom.</em></p>
-    </div>
-  </section>
+  
 
   <section class="wrap" style="padding: var(--sec) 0 0">
-    <div class="row-head"><div style="display: grid; gap: 0.9rem"><p class="label">Starting prices, USD</p><h2>Clear prices, written quote first.</h2></div><a href="/white-label-wordpress-development/">Agencies: from {usd(prices.agencySite)} a site →</a></div>
+    <div class="row-head"><div style="display: grid; gap: 0.9rem"><p class="label">Prices in US dollars</p><h2>Starting prices</h2></div><a href="/white-label-wordpress-development/">Agencies: from {usd(prices.agencySite)} a site →</a></div>
     <PriceCards plans={plans} compact />
     <p class="mut" style="margin-top: 1rem; font-size: 0.9375rem">Every job gets a written quote before work starts.</p>
   </section>
@@ -267,8 +259,8 @@ const svc = [
   <section class="rv-band sec-pad" aria-label="Recommendations" data-rv>
     <div class="wrap rv-grid">
       <div class="rv-side">
-        <p class="label">What clients say</p>
-        <h2>Words from the people I have built for.</h2>
+        <p class="label">Recommendations</p>
+        <h2>Client recommendations</h2>
         <div class="rv-people" role="tablist" aria-label="Choose a recommendation">
           {reviews.map((r, i) => (
             <button type="button" role="tab" class:list={['rv-person', { on: i === 0 }]} aria-selected={i === 0 ? 'true' : 'false'} data-rv-to={i}>
@@ -305,7 +297,7 @@ const svc = [
     <section class="sec-line sec-pad">
       <div class="wrap">
         <div class="row-head">
-          <h2>From the blog</h2>
+          <h2>Guides for your website</h2>
           <a href="/blog/">All posts →</a>
         </div>
         <div class="post-grid">

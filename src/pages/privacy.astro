@@ -1,0 +1,54 @@
+---
+// Privacy policy. Matches what the site actually does on 16 Oct 2026: no analytics, no cookies, no browser storage;
+// the contact form is emailed through public/lead.php, which keeps a hashed IP for a minute to stop spam.
+import PolicyPage from '../components/PolicyPage.astro';
+import heroImage from '../assets/visuals/privacy.jpg';
+import { site } from '../site.js';
+
+const focus = 'privacy policy';
+const title = 'Privacy Policy | Sakib Islam';
+const description = 'Privacy policy for sakib.mywrkbase.com: no tracking, no cookies, and what the contact form keeps.';
+const updated = '16 October 2026';
+const url = new URL(Astro.url.pathname, Astro.site);
+const jsonld = [
+  { '@context': 'https://schema.org', '@type': 'WebPage', name: title, url, dateModified: '2026-10-16' },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: Astro.site }, { '@type': 'ListItem', position: 2, name: 'Privacy policy', item: url }] },
+];
+
+const facts = [
+  { k: 'No cookies', v: 'Nothing is stored in your browser, ever.' },
+  { k: 'No trackers', v: 'No analytics, no ad pixels, no third-party scripts.' },
+  { k: 'Inbox only', v: 'The contact form goes to my email and nowhere else.' },
+  { k: 'Delete on request', v: 'Ask and I will remove what I hold within 30 days.' },
+];
+
+const sections = [
+  { id: 'not-collected', title: 'What the site does not collect', blocks: [
+    { p: 'There are <strong>no analytics, no advertising or tracking scripts and no cookies</strong>, and nothing is stored in your browser. Fonts and images are served from this site, not from third parties.' },
+  ] },
+  { id: 'form', title: 'What the contact form collects', blocks: [
+    { p: 'When you send a message, the site collects what you type: your name, email address, website address, the kind of help you need and your message. It is sent to my email inbox and nowhere else. I use it only to reply to you and to do the work you ask for.' },
+    { note: 'To stop spam, the form\'s server keeps a one-way hash of your IP address for about a minute, so the same address cannot send many messages at once. The hash cannot be turned back into your IP address.' },
+  ] },
+  { id: 'hosting', title: 'Hosting', blocks: [
+    { p: 'The site is hosted by Hostinger, which keeps standard server logs (such as IP address, page and time) for security and to keep the service running. Email is handled by Hostinger\'s mail service.' },
+  ] },
+  { id: 'retention', title: 'How long I keep messages', blocks: [
+    { p: 'I keep messages for as long as we are talking or working together, and for up to two years after, in case you come back about the same site. I never sell or share them.' },
+  ] },
+  { id: 'rights', title: 'Your rights', blocks: [
+    { p: `You can ask me to show you, correct or delete what I hold about you at any time. Email <a href="mailto:${site.email}">${site.email}</a> and I will do it within 30 days.` },
+  ] },
+  { id: 'links', title: 'Links to other sites', blocks: [
+    { p: 'Links to client sites, LinkedIn, WhatsApp and others follow those sites\' own privacy policies. See also the <a href="/terms/">service terms</a>.' },
+  ] },
+];
+---
+<PolicyPage
+  title={title} description={description} focus={focus} jsonld={jsonld} ogImage="/og-privacy.jpg"
+  eyebrow="Privacy · short and honest"
+  h1="Privacy policy"
+  lead="This privacy policy explains what this site collects and what I do with it. The short version: no tracking, no cookies, and the contact form only reaches my inbox. I am Sakib Islam, a WordPress developer working alone from Dhaka, Bangladesh, and I am responsible for this site."
+  updated={updated} image={heroImage} imageAlt="A card summarising the privacy policy: no cookies, no analytics or ad trackers, the contact form goes to one inbox, and your data is deleted on request" facts={facts} sections={sections}
+  connect="Questions about your data? Ask me"
+/>

@@ -1,7 +1,7 @@
 // Recommendations copied from Sakib's LinkedIn profile. Text is quoted, never rewritten; long ones are cut to whole sentences.
 // LinkedIn recommendations have no star ratings, so none are shown.
 // Only founders, managers and senior people are listed here, at Sakib's request; the rest stay on LinkedIn.
-export const allReviewsUrl = 'https://www.linkedin.com/in/sakibislamofficial/details/recommendations/';
+export const allReviewsUrl = 'https://www.linkedin.com/in/sakib-islam-wordpress-developer/details/recommendations/';
 
 const li = (slug) => `https://www.linkedin.com/in/${slug}/`;
 

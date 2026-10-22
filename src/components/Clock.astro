@@ -1,0 +1,25 @@
+---
+// A live digital clock for Sakib's local time (Dhaka, UTC+6, no daylight saving), so visitors in other time zones can see
+// where he is in the day. A second line shows the visitor's own time and the gap. The script is at the bottom of the
+// page layout; without JavaScript the static text still says "Dhaka, UTC+6".
+// `compact` is a single line (hero, footer); the default is two lines (contact card).
+const { compact = false } = Astro.props;
+---
+<span class:list={['clock', { compact }]} data-clock>
+  <span class="clock-dot" aria-hidden="true"></span>
+  <span class="clock-main">
+    <span class="clock-label">Dhaka, UTC+6</span>
+    <time class="clock-time" data-clock-time>--:--</time>
+  </span>
+  {!compact && <span class="clock-you" data-clock-you></span>}
+</span>
+
+<style>
+  .clock { display: inline-flex; align-items: center; gap: 0.55rem; font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); white-space: nowrap; }
+  .clock-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex: none; }
+  .clock-main { display: inline-flex; align-items: baseline; gap: 0.55rem; }
+  .clock-time { color: var(--text); font-variant-numeric: tabular-nums; letter-spacing: 0.04em; min-width: 8ch; }
+  .clock-you { flex-basis: 100%; font-size: 0.75rem; }
+  .clock:not(.compact) { flex-wrap: wrap; row-gap: 0.15rem; }
+  .clock:not(.compact) .clock-you { margin-left: calc(7px + 0.55rem); }
+</style>

@@ -175,6 +175,21 @@ const scenes = {
       <p style="font:700 40px/1.1 'B';letter-spacing:-.03em;margin-top:12px">What was done, and why.</p>
       ${['What was wrong', 'What I changed', 'What to avoid next time'].map((t) => `<div class="row" style="margin-top:20px"><span class="ok" style="width:36px;height:36px;font-size:20px">✓</span><span style="font:600 26px 'H'">${t}</span></div>`).join('')}
     </div>`,
+
+  // Policy pages: what the terms and the privacy page promise, as two cards. Every line is stated on the page it illustrates.
+  terms: `
+    <div class="card glow" style="left:150px;top:255px;width:1300px;padding:70px 80px">
+      <p class="lab" style="font-size:22px">Service terms</p>
+      <p style="font:700 70px/1.05 'B';letter-spacing:-.035em;margin-top:22px">Plain terms for every client.</p>
+      <div class="row" style="margin-top:26px;gap:20px"><span class="ok" style="width:44px;height:44px;font-size:24px">✓</span><span style="font:600 34px H">Cancel any month, keep every login</span></div><div class="row" style="margin-top:26px;gap:20px"><span class="ok" style="width:44px;height:44px;font-size:24px">✓</span><span style="font:600 34px H">Replies within 24 hours</span></div><div class="row" style="margin-top:26px;gap:20px"><span class="ok" style="width:44px;height:44px;font-size:24px">✓</span><span style="font:600 34px H">You own your site and your accounts</span></div><div class="row" style="margin-top:26px;gap:20px"><span class="ok" style="width:44px;height:44px;font-size:24px">✓</span><span style="font:600 34px H">Same problem back in 14 days? Fixed free</span></div>
+    </div>`,
+
+  privacy: `
+    <div class="card glow" style="left:150px;top:255px;width:1300px;padding:70px 80px">
+      <p class="lab" style="font-size:22px">Privacy</p>
+      <p style="font:700 70px/1.05 'B';letter-spacing:-.035em;margin-top:22px">Nothing tracked. Nothing stored.</p>
+      <div class="row" style="margin-top:26px;gap:20px"><span class="ok" style="width:44px;height:44px;font-size:24px">✓</span><span style="font:600 34px H">No cookies</span></div><div class="row" style="margin-top:26px;gap:20px"><span class="ok" style="width:44px;height:44px;font-size:24px">✓</span><span style="font:600 34px H">No analytics or ad trackers</span></div><div class="row" style="margin-top:26px;gap:20px"><span class="ok" style="width:44px;height:44px;font-size:24px">✓</span><span style="font:600 34px H">The contact form goes to one inbox</span></div><div class="row" style="margin-top:26px;gap:20px"><span class="ok" style="width:44px;height:44px;font-size:24px">✓</span><span style="font:600 34px H">Delete your data on request</span></div>
+    </div>`,
 };
 
 const only = process.argv.slice(2);

@@ -3,7 +3,8 @@
 // Run with `npm run og` after changing a headline, a result or a screenshot.
 import sharp from 'sharp';
 import { readFileSync, readdirSync } from 'node:fs';
-import { services } from '../src/services.js';
+import { services, fixes } from '../src/services.js';
+import { roleList } from '../src/roles.js';
 
 const W = 1200, H = 630, font = 'Arial, Helvetica, sans-serif';
 const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
@@ -18,24 +19,42 @@ const card = (label, lines, room, right) => {
   const top = 315 - ((lines.length - 1) * size * 1.12) / 2;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
   <defs><pattern id="d" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#f2efe6" fill-opacity="0.1"/></pattern></defs>
-  <rect width="${W}" height="${H}" fill="#0c121b"/><rect width="${W}" height="${H}" fill="url(#d)"/>
+  <rect width="${W}" height="${H}" fill="#0b0a0f"/><rect width="${W}" height="${H}" fill="url(#d)"/>
   ${right}
-  <text x="80" y="110" font-family="${font}" font-size="26" fill="#7aa2ff" letter-spacing="2">${esc(label.toUpperCase())}</text>
+  <text x="80" y="110" font-family="${font}" font-size="26" fill="#a78bfa" letter-spacing="2">${esc(label.toUpperCase())}</text>
   ${lines.map((l, i) => `<text x="80" y="${top + i * size * 1.12}" font-family="${font}" font-size="${size}" font-weight="700" fill="#f2efe6" letter-spacing="-${size / 34}">${esc(l)}</text>`).join('')}
-  <text x="80" y="550" font-family="${font}" font-size="26" fill="#9aa6b8">Sakib Islam · sakib.mywrkbase.com</text>
+  <text x="80" y="550" font-family="${font}" font-size="26" fill="#9a93a8">Sakib Islam · sakib.mywrkbase.com</text>
 </svg>`;
 };
 
-// Photo on the solid blue panel, as in the home page hero.
-const panel = '<rect x="740" y="150" width="380" height="480" rx="6" fill="#1b55ff"/>';
+// Photo on a solid violet panel (the brand accent; navy and blue were retired in the Oct 2026 redesign).
+const panel = '<rect x="740" y="150" width="380" height="480" rx="6" fill="#7048e8"/>';
 const photo = await sharp('src/assets/sakib-islam-cut.png').resize(470, 470).toBuffer();
 const withPhoto = (label, lines) => sharp(Buffer.from(card(label, lines, 600, panel))).composite([{ input: photo, left: 695, top: 160 }]);
 
-await withPhoto('WordPress · Custom development · AI', ['WordPress developer', 'for SaaS and AI startups.']).png({ compressionLevel: 9 }).toFile('public/og.png');
-for (const s of services) await withPhoto(s.name, s.h1Lines).jpeg({ quality: 88 }).toFile(`public/og-${s.slug}.jpg`);
+await withPhoto('Websites · Web apps · WordPress · Care', ['Full stack developer.', 'Custom websites', 'and web apps.']).png({ compressionLevel: 9 }).toFile('public/og.png');
+for (const s of [...services, ...fixes]) await withPhoto(s.name, s.h1Lines).jpeg({ quality: 88 }).toFile(`public/og-${s.slug}.jpg`);
+// Hand-built pages: [file name, label, headline lines]. Keep the lines in step with each page's H1.
+const pages = [
+  ['website-care', 'Website care', ['Website maintenance,', 'so your site', 'stops breaking.']],
+  ['wordpress-care-plans', 'Care plans', ['WordPress care plans:', 'what each plan', 'includes and costs.']],
+  ['white-label-wordpress-development', 'For agencies', ['White label WordPress', 'under your', "agency's name."]],
+  ['white-label-wordpress-maintenance', 'For agencies', ['White label support', 'you can resell', 'as your own.']],
+  ['contact', 'Contact', ['Tell me what', 'you need built.']],
+  ['blog', 'Blog', ['Website guides for', 'owners and teams.']],
+  ['terms', 'Service terms', ['Service terms.']],
+  ['privacy', 'Privacy', ['No tracking.', 'No cookies.']],
+];
+for (const [slug, label, lines] of pages) await withPhoto(label, lines).jpeg({ quality: 88 }).toFile(`public/og-${slug}.jpg`);
+
+// Developer-role pages: a hub per role and one image per place.
+for (const r of roleList) {
+  await withPhoto(r.name, r.hub.h1Lines).jpeg({ quality: 88 }).toFile(`public/og-${r.slug}.jpg`);
+  for (const p of r.pages) await withPhoto(`${r.name} · ${p.name}`, p.h1Lines).jpeg({ quality: 88 }).toFile(`public/og-${r.slug}-${p.slug}.jpg`);
+}
 
 // Case studies: the result as the headline, the client's site in a frame on the right.
-const frame = '<rect x="619" y="151" width="502" height="316" rx="8" fill="#131b27" stroke="#2a3445" stroke-width="2"/>';
+const frame = '<rect x="619" y="151" width="502" height="316" rx="8" fill="#14121a" stroke="#26222f" stroke-width="2"/>';
 const mask = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" width="500" height="313"><rect width="500" height="313" rx="7"/></svg>');
 for (const f of readdirSync('src/work')) {
   const slug = f.replace('.md', ''), md = readFileSync(`src/work/${f}`, 'utf8');

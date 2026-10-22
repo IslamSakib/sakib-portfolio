@@ -1,7 +1,7 @@
 ---
 title: "How to redesign a website without losing SEO"
 seoTitle: "How to Redesign a Website Without Losing SEO"
-description: "How to redesign a website without losing SEO: keep the addresses or redirect them, carry over what ranks, and check Search Console after launch."
+description: "Redesign a website without losing SEO: keep URLs, titles and redirects in place. Get the checklist."
 focus: redesign a website without losing SEO
 date: "2026-10-15"
 art: redesign
@@ -22,37 +22,37 @@ faq:
   - { q: "Can I change my WordPress theme without losing SEO?", a: "Yes, if the page addresses, titles, headings and content stay the same and the new theme is at least as fast on mobile. Test the new theme on a staging copy and compare the source of your top pages before switching." }
 ---
 
-A redesign is when many sites lose the search traffic they spent years building. Not because the new design is worse, but because the pages Google knew quietly changed address, lost their titles or disappeared. You can redesign a website without losing SEO if you treat the move as carefully as the design. This is the checklist I follow, including on Tabby's 2.0 relaunch.
+You're about to redesign your website, and you're worried about your Google traffic. You're right to be. A redesign is when many sites lose the search traffic they spent years building. Not because the new design is worse, but because the pages Google knew quietly changed address, lost their titles or disappeared. You can redesign a website without losing SEO if you treat the move as carefully as the design. This is the checklist I follow, including on Tabby's 2.0 relaunch.
 
-## 1. List every page that brings traffic
+## 1. Which pages bring you traffic right now?
 
 Before anything changes, export the pages that get search clicks from Google Search Console (Performance, then Pages), and crawl the old site to get a full list of addresses. These two lists are what you must protect.
 
-## 2. Keep the addresses, or redirect every one
+## 2. Should the addresses stay the same?
 
-The safest redesign keeps every URL the same. If addresses must change, map each old address to its closest new page and add a permanent (301) redirect for each. [Google's site move guide](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes) recommends 301 or 308 redirects, kept for at least a year. Never send everything to the home page: Google treats that much like the page was deleted.
+Yes, if you can. The safest redesign keeps every URL the same. If addresses must change, map each old address to its closest new page and add a permanent (301) redirect for each. [Google's site move guide](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes) recommends 301 or 308 redirects, kept for at least a year. Never send everything to the home page: Google treats that much like the page was deleted.
 
-## 3. Carry over what ranks
+## 3. What do I carry over from the old pages?
 
-For each page on your traffic list, keep what earned the ranking: the main heading, the title tag, the meta description and the core content. You can rewrite and redesign, but do not drop the topic the page was ranking for. On Tabby's relaunch, the addresses, titles and descriptions that were already ranking were carried into the new site, so Google saw the same pages with a new design instead of a new site. [The Tabby case study](/work/tabby/) has the details.
+For each page on your traffic list, keep what earned the ranking: the main heading, the title tag, the meta description and the core content. You can rewrite and redesign, but don't drop the topic the page was ranking for. On Tabby's relaunch, I carried the addresses, titles and descriptions that were already ranking into the new site, so Google saw the same pages in a new design instead of a new site. [The Tabby case study](/work/tabby/) has the details.
 
-## 4. Keep internal links pointing at real pages
+## 4. Do my internal links still work?
 
-A new menu and new templates change how pages link to each other. Make sure important pages are still linked from the menu or the home page, and that no links point to old addresses that now redirect.
+A new menu and new templates change how pages link to each other. Make sure your important pages are still linked from the menu or the home page, and that no links point to old addresses that now redirect.
 
-## 5. Build on a hidden staging site
+## 5. Where do I build the new site?
 
-Build the new design on a staging copy that search engines cannot index. Before launch, untick "Discourage search engines from indexing this site" (Settings, then Reading) and remove any noindex tags. This one checkbox has de-indexed more relaunched sites than any algorithm update.
+On a hidden staging copy that search engines can't index. Before launch, untick "Discourage search engines from indexing this site" (Settings, then Reading) and remove any noindex tags. This one checkbox has de-indexed more relaunched sites than any algorithm update.
 
-## 6. Do not launch slower than you were
+## 6. Will the new design be slower?
 
-Page speed is part of how Google judges a page. Test the new templates on mobile before launch. A heavier design can cost rankings even when everything else was moved correctly.
+Don't launch slower than you were. Page speed is part of how Google judges a page. Test the new templates on mobile before launch. A heavier design can cost you rankings even when everything else was moved correctly.
 
-## 7. Launch, then watch for two weeks
+## 7. What do I check after launch?
 
-After launch, submit the new sitemap in Search Console, check the Pages report for new "not found" errors, and compare clicks for your traffic list week by week. Small dips in the first days are normal; a steady fall on specific pages means a redirect or a title went missing.
+Launch, then watch for two weeks. Submit the new sitemap in Search Console, check the Pages report for new "not found" errors, and compare clicks for your traffic list week by week. Small dips in the first days are normal. A steady fall on specific pages means a redirect or a title went missing.
 
-## The redirect map, in practice
+## How do I build a redirect map?
 
 The redirect map is a simple spreadsheet with two columns: old address and new address. Fill it from your traffic list first, then from the full crawl. A few rules make it work:
 
@@ -61,21 +61,21 @@ The redirect map is a simple spreadsheet with two columns: old address and new a
 - **Keep the old domain's redirects too.** If the site has ever moved domains or switched from http to https, those rules must survive the redesign.
 - **Test the whole list after launch.** A crawler can check every old address and confirm each one lands on a live page with a 200 response in one hop.
 
-On WordPress, redirects can live in the server configuration or in a redirect plugin. Server rules are faster; a plugin is easier for non-developers to edit. Either is fine as long as there is one place for them.
+On WordPress, redirects can live in the server configuration or in a redirect plugin. Server rules are faster. A plugin is easier for non-developers to edit. Either is fine as long as there is one place for them.
 
-## Content you can safely change
+## What can I safely change in a redesign?
 
-A redesign does not mean freezing every word. Safe changes: improving the layout, rewriting for clarity, adding sections, better images with proper alt text, and adding FAQs that answer real questions. Risky changes: removing the section that answered the search query, merging two ranking pages into one without a redirect, or changing the main heading to something unrelated to the topic people searched for.
+A redesign doesn't mean freezing every word. Safe changes: improving the layout, rewriting for clarity, adding sections, better images with proper alt text, and adding FAQs that answer real questions. Risky changes: removing the section that answered the search query, merging two ranking pages into one without a redirect, or changing the main heading to something unrelated to the topic people searched for.
 
-When in doubt, keep the page's main subject in the title, the H1 and the first paragraph. That is the signal Google uses most to understand what the page is about.
+When in doubt, keep the page's main subject in the title, the H1 and the first paragraph. That's the signal Google uses most to understand what a page is about.
 
-## Structured data and meta tags
+## What hidden tags do I need to keep?
 
-If the old site had structured data (for example FAQ, product or article markup), carry it over. The same goes for canonical tags, Open Graph tags for social sharing, and hreflang tags on multilingual sites. These are invisible on the page, so they are the easiest things to lose in a redesign and the hardest to notice afterwards. Compare the old and new source of your top pages before launch.
+If the old site had structured data (for example FAQ, product or article markup), carry it over. The same goes for canonical tags, Open Graph tags for social sharing, and hreflang tags on multilingual sites. These are invisible on the page, so they're the easiest things to lose in a redesign and the hardest to notice afterwards. Compare the old and new source of your top pages before launch.
 
-## Redesigning on WordPress specifically
+## What are the WordPress-specific traps?
 
-WordPress adds a few traps of its own:
+WordPress adds a few of its own:
 
 - **Permalink settings.** Changing the permalink structure (Settings, then Permalinks) changes every post address at once. Leave it as it was unless you have a redirect for every post.
 - **Category and tag pages.** These often get search traffic too. Keep their base slugs the same.
@@ -84,7 +84,7 @@ WordPress adds a few traps of its own:
 
 If the redesign also moves the site to new hosting, do the move first, confirm traffic is stable, and then launch the design. Two big changes at once make it impossible to tell which one caused a drop.
 
-## A launch-day checklist
+## What is my launch-day checklist?
 
 Print this and tick it off on the day the new site goes live:
 
@@ -92,15 +92,15 @@ Print this and tick it off on the day the new site goes live:
 2. Every old address in the redirect map lands on the right new page in one hop
 3. Titles, meta descriptions and H1s on the top pages match what was planned
 4. The XML sitemap lists only new, live addresses and is submitted in Search Console
-5. Robots.txt does not block anything important (staging sites often ship with a "block everything" rule)
+5. Robots.txt doesn't block anything important (staging sites often ship with a "block everything" rule)
 6. Analytics and Search Console tracking are installed on every template
 7. Forms, checkout and any logins work, tested with a real submission
 8. Mobile speed on the home page and the top three landing pages is checked again on the live server
 
-Most traffic losses after a redesign come from items 1, 2 and 5. They take minutes to check and months to recover from if missed.
+Most traffic losses after a redesign come from items 1, 2 and 5. They take minutes to check and months to recover from if you miss them.
 
-## The short version
+## The short version, if you only read one part
 
-Same addresses or a redirect for every one, the same topic on every ranking page, nothing blocked from Google, and the new site at least as fast as the old one.
+Keep the same addresses or add a redirect for every one. Keep the same topic on every ranking page. Block nothing from Google. Make the new site at least as fast as the old one.
 
-I build and relaunch WordPress sites with this checklist as part of the job. See [custom WordPress development](/wordpress-development/), or send me your current site for a free check.
+I build and relaunch WordPress sites with this checklist as part of the job. See [custom WordPress development](/wordpress-development/), or send me your current site and I'll check it for free.

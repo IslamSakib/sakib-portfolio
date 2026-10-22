@@ -3,10 +3,10 @@ order: 3
 client: Moneybag
 focus: custom WordPress plugin
 clientUrl: https://moneybag.com.bd/
-title: "A custom WordPress plugin and website for a licensed payment gateway"
+title: "Custom WordPress plugin and website for a licensed payment gateway"
 seoTitle: "Custom WordPress Plugin for a Payment Gateway | Moneybag"
-description: "I built a custom WordPress plugin for Moneybag, a licensed payment gateway in Bangladesh, plus OTP sign-in, merchant onboarding and its website."
-summary: The website and custom plugin for a licensed payment gateway, built for security and speed.
+description: "Custom WordPress plugin and website for Moneybag, a licensed payment gateway. See how it was built."
+summary: "A custom WordPress plugin and website for Moneybag, a licensed payment gateway, built for security and speed."
 result: Merchant onboarding time down 60%
 chip: "payment gateway plugin"
 relevant: "Relevant if you need custom checkout or payment work."
@@ -24,11 +24,11 @@ faq:
     a: "Ship as little code as possible. The current Moneybag home page loads no external scripts and two stylesheets, which is why the first response arrives in under half a second."
 ---
 
-## The brief
+## What did Moneybag need?
 
 Moneybag is an online payment gateway in Bangladesh, licensed by Bangladesh Bank as a Payment Service Operator. It needed a platform secure enough for financial transactions, fast enough to convert visitors, and able to grow with its merchants.
 
-## What I built
+## What did I build?
 
 - A custom payment gateway plugin for WordPress and WooCommerce
 - OTP authentication
@@ -37,36 +37,38 @@ Moneybag is an online payment gateway in Bangladesh, licensed by Bangladesh Bank
 - Subscription tiers and dynamic pricing logic
 - The current website at moneybag.com.bd
 
-## The result
+## What was the result?
 
 - Pages load in under 2 seconds
 - Merchant onboarding time fell by 60%
 - The platform handles thousands of transactions a day
 
-## Why a custom WordPress plugin
+## Why did I write a custom WordPress plugin?
 
-A payment gateway cannot be bolted on with a general-purpose plugin. The rules are specific: how a merchant is verified, what happens when a payment fails halfway, which fee applies to which plan. Writing the gateway as its own plugin kept that logic in one place where it can be tested and changed safely.
+A payment gateway can't be bolted on with a general-purpose plugin. The rules are specific: how a merchant is verified, what happens when a payment fails halfway, which fee applies to which plan. Writing the gateway as its own plugin kept that logic in one place where it can be tested and changed safely. If your WooCommerce checkout is failing instead, start with [why a WooCommerce checkout stops working](/blog/woocommerce-checkout-not-working/).
 
-## Inside the site, 11 October 2026
+## What does the Moneybag site look like today?
 
-Read from the live site, page by page.
+I read the live site page by page on 11 October 2026.
 
-**Size.** 77 pages in the sitemap, including a library of articles on how payment gateways work, fraud prevention and WooCommerce payment gateways in Bangladesh, plus 6 support pages.
+**How big is it?** 77 pages in the sitemap, including a library of articles on how payment gateways work, fraud prevention and WooCommerce payment gateways in Bangladesh, plus 6 support pages.
 
-**What the pages do.**
+**What do the pages do?**
 
 - The payment gateway page explains the product in order: how a payment runs, what happens after the customer pays, and five ways to ask for money
 - A developer area: four steps to a first payment, a sandbox, an API lab, maintained libraries and an AI integration kit
 - An onboarding page listing the documents needed for 11 kinds of organisation, from a sole proprietorship to a government agency
 - A pricing page that explains how charges work and how money reaches the merchant
 
-**How it is built.**
+**How is it built?**
 
 - The current site is a static build: the home page loads no external scripts and only two stylesheets
 - The first response arrived in under half a second
 - Served through Cloudflare with Brotli compression
 
-**What search engines see.**
+**What do search engines see?**
 
 - Structured data for the organisation and the website
 - A sitemap referenced from robots.txt, and a canonical address on every page
+
+Need a custom plugin or a payment integration? See [custom WordPress development](/wordpress-development/).

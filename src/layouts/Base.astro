@@ -12,24 +12,35 @@ import { site } from '../site.js';
 import { prices, usd } from '../prices.js';
 import { socials } from '../socials.js';
 import { Image } from 'astro:assets';
+import Clock from '../components/Clock.astro';
 import megaVisual from '../assets/visuals/speed.jpg';
 
 const { title, description, jsonld = [], ogImage = '/og.png', ogAlt = `${site.name}, ${site.role}`, focus } = Astro.props;
 // Share images are cached for a long time by LinkedIn and others: raise `v` whenever scripts/og.mjs output changes.
-const ogUrl = `${new URL(ogImage, Astro.site)}?v=2`;
+const ogUrl = `${new URL(ogImage, Astro.site)}?v=4`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 // The services menu names the job in the visitor's words, not the page's search keyword. `ic` is an icon path drawn in
 // a 24-unit box; `price` is the starting price shown on the card.
 const menu = [
-  { slug: 'wordpress-speed-optimization', name: 'Fix a slow or broken site', short: 'Found at the cause, measured before and after.', price: `from ${usd(prices.speed)}`, ic: 'M13 2L4 14h7l-1 8 9-12h-7z' },
-  { slug: 'wordpress-maintenance', name: 'Look after my site monthly', short: 'Tested updates, off-site backups, monitoring.', price: `${usd(prices.care)}/mo`, ic: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4' },
-  { slug: 'wordpress-development', name: 'Build a new WordPress site', short: 'Theme, plugins, WooCommerce and payments.', price: `from ${usd(prices.build)}`, ic: 'M3 4h18v12H3zM8 20h8M12 16v4' },
-  { slug: 'custom-web-development', name: 'Build a custom web app', short: 'Dashboards and SaaS, when WordPress is the wrong tool.', price: 'Quoted', ic: 'M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16' },
-  { slug: 'white-label-wordpress-development', name: 'White-label work for agencies', short: 'Your design built in WordPress, under your name.', price: `${usd(prices.agencyHour)}/h`, ic: 'M4 7h16v12H4zM9 7V5h6v2' },
+  { slug: 'custom-web-development', name: 'Custom website development', short: 'Websites, stores and web apps: UI/UX, frontend, backend, dashboard.', price: 'Quoted', ic: 'M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16' },
+  { slug: 'wordpress-development', name: 'WordPress development', short: 'Custom themes, plugins, WooCommerce and payments.', price: `from ${usd(prices.build)}`, ic: 'M3 4h18v12H3zM8 20h8M12 16v4' },
+  { slug: 'website-care', name: 'Website care', short: 'Monthly updates, backups, monitoring and fixes.', price: `${usd(prices.care)}/mo`, ic: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4' },
+  { slug: 'wordpress-repair', name: 'WordPress repair and speed fixes', short: 'A broken or slow site fixed at the cause.', price: `from ${usd(prices.fix)}`, ic: 'M13 2L4 14h7l-1 8 9-12h-7z' },
+  { slug: 'white-label-wordpress-development', name: 'White-label WordPress for agencies', short: 'Your design built in WordPress, under your name.', price: `${usd(prices.agencyHour)}/h`, ic: 'M4 7h16v12H4zM9 7V5h6v2' },
 ];
 const businessMenu = menu.slice(0, 4);
 const agencyMenu = menu[4];
+// Smaller pages under the services group, listed as text links under the business cards.
+const careLinks = [
+  { href: '/full-stack-developer/', t: 'Hire a full stack developer' },
+  { href: '/web-application-developer/', t: 'Hire a web application developer' },
+  { href: '/wordpress-developer/', t: 'Hire a WordPress developer' },
+  { href: '/wordpress-care-plans/', t: 'Compare care plans' },
+  { href: '/wordpress-repair/', t: 'Repair a broken site' },
+  { href: '/wordpress-malware-removal/', t: 'Clean a hacked site' },
+];
 const agencyGuides = [
+  { href: '/white-label-wordpress-maintenance/', t: 'White-label support and care' },
   { href: '/blog/choosing-a-white-label-wordpress-partner/', t: 'Choosing a white label partner' },
   { href: '/blog/outsource-wordpress-development/', t: 'Outsourcing WordPress builds' },
   { href: '/blog/white-label-wordpress-maintenance/', t: 'Reselling care plans' },
@@ -92,6 +103,9 @@ const agencyGuides = [
                     </a>
                   ))}
                 </div>
+                <ul class="mega-links mega-care">
+                  {careLinks.map((g) => <li><a href={g.href}>{g.t} <span aria-hidden="true">→</span></a></li>)}
+                </ul>
               </div>
               <div class="mega-col mega-agency">
                 <p class="mega-label">For agencies</p>
@@ -99,14 +113,14 @@ const agencyGuides = [
                   <span class="mega-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d={agencyMenu.ic} /></svg></span>
                   <span class="mega-text"><b>{agencyMenu.name}</b><small>{agencyMenu.short}</small><em>{agencyMenu.price} · from {usd(prices.agencySite)} a site</em></span>
                 </a>
-                <p class="mega-sub">Guides for agencies</p>
+                <p class="mega-sub">Also for agencies</p>
                 <ul class="mega-links">
                   {agencyGuides.map((g) => <li><a href={g.href}>{g.t} <span aria-hidden="true">→</span></a></li>)}
                 </ul>
               </div>
               <a class="mega-feature" href="/contact/">
-                <Image src={megaVisual} widths={[320, 480]} sizes="280px" alt="" loading="lazy" />
-                <span class="mega-feature-text"><b>Not sure where to start?</b><small>Send your site for a free check. I reply within 24 hours with what I would fix first.</small><span class="mega-cta">Get a free site check <span aria-hidden="true">→</span></span></span>
+                <Image src={megaVisual} widths={[320, 480]} sizes="280px" alt="The TubeOnAI website loading in 1.5 seconds after a speed fix, down from 5 seconds" loading="lazy" />
+                <span class="mega-feature-text"><b>Not sure where to start?</b><small>Send your site URL or project requirements. I reply within 24 hours with clear pricing.</small><span class="mega-cta">Get a free quote <span aria-hidden="true">→</span></span></span>
               </a>
             </div>
           </div>
@@ -114,7 +128,7 @@ const agencyGuides = [
           <a href="/#work">Client work</a>
           <a href="/#about">About</a>
           <a href="/blog/">Blog</a>
-          <a class="btn btn-small" href="/contact/">Get a free site check</a>
+          <a class="btn btn-small" href="/contact/">Get a free quote</a>
           <details class="mnav">
             <summary aria-label="Menu"><span class="mnav-open">Menu</span><span class="mnav-close">Close</span><i aria-hidden="true"></i></summary>
             <div class="mnav-panel">
@@ -126,9 +140,10 @@ const agencyGuides = [
               <p class="mnav-label" style="--i:5">How I can help</p>
               <div class="mnav-svc">
                 {menu.map((sv, i) => <a href={`/${sv.slug}/`} style={`--i:${i + 6}`}><span>{String(i + 1).padStart(2, '0')}</span>{sv.name}</a>)}
+                {careLinks.map((g, i) => <a href={g.href} style={`--i:${i + 11}`}><span>{String(i + 6).padStart(2, '0')}</span>{g.t}</a>)}
               </div>
-              <div class="mnav-foot" style="--i:11">
-                <a class="btn" href="/contact/">Get a free site check</a>
+              <div class="mnav-foot" style="--i:14">
+                <a class="btn" href="/contact/">Get a free quote</a>
                 <p><a href={`mailto:${site.email}`}>{site.email}</a><a href={site.whatsapp} target="_blank" rel="noopener">WhatsApp +880 1950 025990</a></p>
               </div>
             </div>
@@ -147,8 +162,9 @@ const agencyGuides = [
       </svg>
       <div class="wrap foot">
         <p>
-          {site.name}, {site.role} in {site.location}. Founder of{' '}<a href={site.wrkbase} target="_blank" rel="noopener">Wrkbase</a>.
+          {site.name}, {site.role} in {site.location}. Founder of{' '}<a href={site.wrkbase} target="_blank" rel="noopener">Wrkbase</a>. <a href="/terms/">Service terms</a> · <a href="/privacy/">Privacy</a>
         </p>
+        <Clock compact />
         <p class="foot-links">
           {socials.map((s) => (
             <a href={s.url} target="_blank" rel="noopener" aria-label={s.name} title={s.name}><svg class="ico" viewBox={`0 0 ${s.box} ${s.box}`} width="18" height="18" aria-hidden="true"><path d={s.path} /></svg></a>
@@ -192,15 +208,33 @@ const agencyGuides = [
       // Small page behaviours: the Dhaka clock, the click and hover sounds and the hero dot fields. Nothing animates in on load or scroll.
       // Skipped under reduced motion.
       (() => {
+        // Clock: Dhaka time (UTC+6, no daylight saving) to the second, and on the full version the visitor's own time and
+        // the gap, so nobody has to work out the time difference. Updates once a second; a hidden tab is not redrawn.
         const clocks = document.querySelectorAll('[data-clock]');
         if (clocks.length) {
-          const show = () => {
-            const now = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Dhaka' }).format(new Date()) + ' local';
-            clocks.forEach((c) => { c.textContent = now; });
+          const fmt = (tz) => new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23', ...(tz && { timeZone: tz }) });
+          const dhaka = fmt('Asia/Dhaka'), mine = fmt(), mineShort = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+          const gap = () => {
+            const d = new Date();
+            const dhakaMin = (d.getUTCHours() * 60 + d.getUTCMinutes() + 360) % 1440;
+            const hereMin = d.getHours() * 60 + d.getMinutes();
+            let diff = dhakaMin - hereMin; if (diff > 720) diff -= 1440; if (diff < -720) diff += 1440;
+            if (!diff) return 'same time as you';
+            const h = Math.floor(Math.abs(diff) / 60), m = Math.abs(diff) % 60;
+            return `${[h && `${h}h`, m && `${m}m`].filter(Boolean).join(' ')} ${diff > 0 ? 'ahead of' : 'behind'} you`;
           };
-          show(); setInterval(show, 30000);
+          const show = () => {
+            if (document.hidden) return;
+            const d = new Date(), t = dhaka.format(d);
+            clocks.forEach((c) => {
+              const el = c.querySelector('[data-clock-time]'); if (el) { el.textContent = t; el.dateTime = t; }
+              const you = c.querySelector('[data-clock-you]'); if (you) you.textContent = `Your time ${mineShort.format(d)} · Dhaka is ${gap()}`;
+            });
+          };
+          show(); setInterval(show, 1000); document.addEventListener('visibilitychange', show);
         }
-        // Sound: a soft tick on every click, made with Web Audio (no audio file). There is no background music.
+        // Sound: a soft tick when a link, button or other control is clicked, made with Web Audio (no audio file).
+        // `click` rather than `pointerdown`, so touching the screen to scroll, or tapping blank space, stays silent.
         let audio;
         const ctx = () => {
           const AC = window.AudioContext || window.webkitAudioContext;
@@ -221,8 +255,8 @@ const agencyGuides = [
           o.connect(g).connect(audio.destination);
           o.start(t); o.stop(t + 0.12);
         };
-        addEventListener('pointerdown', (e) => {
-          tick(e.target.closest && e.target.closest('a, button, summary') ? 880 : 420);
+        addEventListener('click', (e) => {
+          if (e.target.closest?.('a[href], button, summary, label, select, input:not([type=text], [type=email], [type=tel], [type=url]), [role=button]')) tick(880);
         }, { passive: true });
         // Hover sound for buttons: a soft rising swish that lasts as long as the button's fill rising (0.4 s).
         // Only on screens with a real pointer, and only once the visitor has interacted (browsers keep sound off before that).

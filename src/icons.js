@@ -34,5 +34,10 @@ const byTitle = {
   'Marketing sites that load instantly': 'bolt', 'Free tools and calculators': 'calc', 'Help centers and documentation': 'book',
   'AI agents inside your product': 'bot', 'LLM API integration': 'code', 'AI chatbots for WordPress': 'chat',
   'Workflow automation': 'flow', Guardrails: 'shield', 'Debugging AI features': 'bug',
+  'Competitor research first': 'search', 'UI and UX design': 'layout', 'Frontend that loads fast': 'bolt',
+  'Backend and APIs': 'code', 'Admin dashboards': 'chart', 'Web apps and SaaS': 'flag', 'Launch and care': 'shield',
+  'SaaS and startups': 'flag', 'Online stores and DTC brands': 'cart', 'Service businesses': 'calc',
+  'Tourism and hospitality': 'flag', 'Real estate and property services': 'layers', 'Healthcare and wellness practices': 'shield',
+  'Logistics and delivery': 'flow', 'Education and training': 'cap', 'Fintech and payments': 'lock',
 };
 export const iconFor = (title) => icons[byTitle[title]] || icons.layout;

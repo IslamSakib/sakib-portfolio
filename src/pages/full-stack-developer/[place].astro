@@ -1,0 +1,10 @@
+---
+import PlacePage from '../../components/PlacePage.astro';
+import { roles } from '../../roles.js';
+const role = roles['full-stack-developer'];
+export function getStaticPaths() {
+  return roles['full-stack-developer'].pages.map((p) => ({ params: { place: p.slug }, props: { p } }));
+}
+const { p } = Astro.props;
+---
+<PlacePage role={role} p={p} />
