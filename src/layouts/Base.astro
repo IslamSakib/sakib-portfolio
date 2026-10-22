@@ -11,12 +11,14 @@ import '../styles/pages.css';
 import { site } from '../site.js';
 import { prices, usd } from '../prices.js';
 import { socials } from '../socials.js';
+import { designedOg } from '../ogDesigned.js';
 import { Image } from 'astro:assets';
 import Clock from '../components/Clock.astro';
 import megaVisual from '../assets/visuals/speed.jpg';
 
-const { title, description, jsonld = [], ogImage = '/og.png', ogAlt = `${site.name}, ${site.role}`, focus } = Astro.props;
+const { title, description, jsonld = [], ogImage: ogDefault = '/og.png', ogAlt = `${site.name}, ${site.role}`, focus } = Astro.props;
 // Share images are cached for a long time by LinkedIn and others: raise `v` whenever scripts/og.mjs output changes.
+const ogImage = designedOg[Astro.url.pathname] ?? ogDefault;
 const ogUrl = `${new URL(ogImage, Astro.site)}?v=4`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 // The services menu names the job in the visitor's words, not the page's search keyword. `ic` is an icon path drawn in
