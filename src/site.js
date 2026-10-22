@@ -10,6 +10,6 @@ export const site = {
   github: 'https://github.com/IslamSakib',
   facebook: 'https://www.facebook.com/sakib0115/',
   email: 'islamsakib.official@gmail.com',
-  // Hostinger affiliate link. Replace with the personal referral URL from the Hostinger affiliate dashboard; until then it points to the plain site.
-  hostinger: 'https://www.hostinger.com/',
+  // Hostinger affiliate (referral) link. Shown with an affiliate disclosure in the Tools section on the home page.
+  hostinger: 'https://www.hostinger.com?REFERRALCODE=DYXISLAMSX6Q',
 };

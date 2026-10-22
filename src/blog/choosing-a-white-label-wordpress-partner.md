@@ -16,7 +16,7 @@ sources:
   - { name: "W3Techs, 15 Oct 2026", url: "https://w3techs.com/technologies/details/cm-wordpress" }
 faq:
   - { q: "What is a white label WordPress partner?", a: "A developer or company that builds or maintains WordPress sites for your agency's clients under your brand. Your client deals only with you; the partner works in the background and never contacts them." }
-  - { q: "How much does white label WordPress development cost?", a: "It depends on the model: per site, hourly or a monthly block of hours. My white-label work starts at $1,200 per site or $35 an hour. Always ask how rush jobs, unused hours and changes after sign-off are charged." }
+  - { q: "How much does white label WordPress development cost?", a: "It depends on the model: per site, hourly or a monthly block of hours. My white-label work starts at $1,500 per site or $45 an hour. Always ask how rush jobs, unused hours and changes after sign-off are charged." }
   - { q: "How do I protect my client relationship when outsourcing?", a: "Agree on an NDA, no direct contact with your client, no partner branding anywhere in the site or emails, work inside your own tools, and handover notes your team can use." }
   - { q: "Should I use a freelancer or an agency for white label WordPress?", a: "A freelancer suits a steady flow of builds and fixes and gives you one consistent senior developer. A white-label agency suits large volumes or projects that need several specialists at once." }
   - { q: "How do I test a white label partner?", a: "Start with one small paid task, such as a single page build or a fix on a client site. Judge the code, the communication and whether the deadline was met before committing to larger projects." }

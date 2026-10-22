@@ -5,15 +5,17 @@ import { Picture } from 'astro:assets';
 import development from '../assets/visuals/build.jpg';
 import speed from '../assets/visuals/speed.jpg';
 import custom from '../assets/visuals/mayabee.jpg';
+import webapp from '../assets/visuals/custom.jpg';
 import fixes from '../assets/visuals/fixes.jpg';
 import care from '../assets/visuals/care.jpg';
 import find from '../assets/visuals/step-find.jpg';
 
 const { slug, eager = false } = Astro.props;
-const img = { 'wordpress-development': development, 'wordpress-speed-optimization': speed, 'custom-web-development': custom, 'wordpress-repair': fixes, 'wordpress-malware-removal': find,'wordpress-care-plans': care, 'website-care': care }[slug] || development;
+const img = { 'wordpress-development': development, 'wordpress-speed-optimization': speed, 'custom-web-development': custom, 'web-application-development': webapp, 'wordpress-repair': fixes, 'wordpress-malware-removal': find,'wordpress-care-plans': care, 'website-care': care }[slug] || development;
 const alt = {
   'wordpress-development': 'A Figma design of the Tabby website built in WordPress, with a paid WooCommerce checkout',
   'wordpress-speed-optimization': 'The TubeOnAI website with Core Web Vitals above 90 and load time cut from 5.0 to 1.5 seconds',
+  'web-application-development': 'The Wrkbase dashboard, a web application built from scratch, with sign-in, roles, dashboard and API',
   'custom-web-development': 'Mayabee, a custom online shop, with the admin dashboard built for its orders and deliveries',
   'wordpress-repair': 'The TubeOnAI error log showing a fatal error from two cache plugins, and the site back up after the fix',
   'wordpress-malware-removal': 'An error log under a magnifying glass: finding how the problem got in before anything is deleted',

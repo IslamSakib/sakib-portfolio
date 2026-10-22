@@ -12,7 +12,7 @@ import { site } from '../site.js';
 import { services, fixes } from '../services.js';
 import { work } from '../work.js';
 import { iconFor } from '../icons.js';
-import { prices, usd } from '../prices.js';
+import { prices, usd, typical } from '../prices.js';
 
 export function getStaticPaths() {
   return [...services, ...fixes].map((s) => ({ params: { service: s.slug }, props: { s } }));
@@ -30,8 +30,8 @@ const careCard = { slug: 'website-care', name: 'Website care', short: 'Tested up
 const others = isFix
   ? [...fixes.filter((o) => o.slug !== s.slug), careCard]
   : [...services.filter((o) => o.slug !== s.slug), careCard];
-// Starting price shown under the hero, from src/prices.js. Custom work is quoted.
-const from = { 'wordpress-development': `Builds from ${usd(prices.build)}`, 'wordpress-repair': `Single fixes from ${usd(prices.fix)}`, 'wordpress-malware-removal': `Cleanup from ${usd(prices.malware)} per site` }[s.slug];
+// Starting price shown under the hero, from src/prices.js. Every job still gets a written quote.
+const from = { 'custom-web-development': `Websites from ${usd(prices.site)}, stores from ${usd(prices.store)}`, 'web-application-development': `First versions from ${usd(prices.webApp)}, typically ${typical.webApp}`, 'wordpress-development': `Theme builds from ${usd(prices.build)}, WooCommerce stores from ${usd(prices.woo)}`, 'wordpress-repair': `Single fixes from ${usd(prices.fix)}`, 'wordpress-malware-removal': `Cleanup from ${usd(prices.malware)} per site` }[s.slug];
 const minPrice = { 'wordpress-repair': prices.fix, 'wordpress-malware-removal': prices.malware }[s.slug];
 const need = { 'wordpress-repair': 'broken', 'wordpress-malware-removal': 'broken' }[s.slug] || 'build';
 const crumb = isFix ? { href: '/website-care/', name: 'Website care' } : { href: '/#services', name: 'Services' };

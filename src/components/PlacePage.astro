@@ -27,7 +27,7 @@ const checks = [
   { name: 'Live projects to click through', text: `Ask for sites you can use, not screenshots. Mine are ${proof.map((w) => w.client).join(', ')}, each with a case study.` },
   { name: 'The admin side, not only the website', text: 'Orders, users, stock and reports are where a business spends its day. Ask who builds those screens and who keeps them working.' },
   { name: 'One person from design to launch', text: 'Fewer hand-offs means fewer misunderstandings. I research competitors, design the UI and UX, then build the frontend and backend myself.' },
-  { name: 'A reply you can plan around', text: `You get an answer within 24 hours, prices in US dollars, and a written quote before work starts. WordPress builds from ${usd(prices.build)}; custom work is quoted.` },
+  { name: 'A reply you can plan around', text: `You get an answer within 24 hours, prices in US dollars, and a written quote before work starts. Websites from ${usd(prices.site)}, web applications from ${usd(prices.webApp)}, WordPress builds from ${usd(prices.build)}.` },
 ];
 
 const jsonld = [
@@ -129,7 +129,7 @@ const jsonld = [
   <section class="sec tint-a">
     <div class="wrap">
       <div class="section-head">
-        <h2>The three ways I can help</h2>
+        <h2>Services</h2>
       </div>
       <ul class="kit kit-links">
         {[...services, { slug: 'website-care', name: 'Website care', short: 'Tested updates, backups, monitoring, fixes and speed, from one developer.', chips: [`From ${usd(prices.care)}/mo`, 'Cancel any month'] }].map((o, i) => (

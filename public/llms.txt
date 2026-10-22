@@ -4,10 +4,11 @@
 
 ## Services
 
-- [Custom website development](https://sakib.mywrkbase.com/custom-web-development/): websites, online stores and web apps built from scratch, with competitor research, UI/UX design, frontend, backend and an admin dashboard; quoted per project
-- [WordPress development](https://sakib.mywrkbase.com/wordpress-development/): custom themes, custom plugins, WooCommerce, payments and integrations; builds from $2,500
+- [Custom website development](https://sakib.mywrkbase.com/custom-web-development/): business websites and online stores built from scratch, with competitor research, UI/UX design, frontend, backend and an admin dashboard; websites from $3,500, stores from $8,000
+- [Web application development](https://sakib.mywrkbase.com/web-application-development/): customer portals, internal tools and SaaS products with accounts, roles, dashboards and APIs; first versions from $9,000
+- [WordPress development](https://sakib.mywrkbase.com/wordpress-development/): custom themes, custom plugins, WooCommerce, payments and integrations; theme builds from $3,000, WooCommerce stores from $4,500, custom plugins from $1,200
 - [Website care](https://sakib.mywrkbase.com/website-care/): monthly updates, backups, monitoring, fixes and speed; plans from $149 a month, single fixes from $150, speed fixes from $450
-- [White-label WordPress development for agencies](https://sakib.mywrkbase.com/white-label-wordpress-development/): Figma to WordPress builds under the agency's brand; $35 an hour or from $1,200 per site
+- [White-label WordPress development for agencies](https://sakib.mywrkbase.com/white-label-wordpress-development/): Figma to WordPress builds under the agency's brand; $45 an hour or from $1,500 per site
 
 ## Hire by role and place
 

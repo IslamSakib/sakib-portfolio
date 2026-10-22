@@ -1,4 +1,4 @@
-// The three services. Each one is a page (src/pages/[service].astro) and a row on the home page.
+// The services. Each one is a page (src/pages/[service].astro) and a row on the home page.
 // `h1Lines` is the same headline split where it should break on a wide screen.
 // `focus` is the page's focus keyword: it must appear in `title`, `description` and `h1` (scripts/seo-check.mjs checks this).
 // Every claim here comes from the case studies in src/work or from what Sakib has confirmed.
@@ -6,7 +6,7 @@ export const services = [
   {
     slug: 'custom-web-development',
     name: 'Custom website development',
-    short: 'Websites and web apps built from scratch: frontend, backend and dashboard.',
+    short: 'Websites and online stores built from scratch: UI/UX, frontend, backend and admin dashboard.',
     focus: 'custom web development',
     title: 'Custom Web Development Services | Sakib Islam',
     description:
@@ -14,8 +14,8 @@ export const services = [
     h1: 'Custom web development, from design to backend.',
     h1Lines: ['Custom web', 'development, from', 'design to backend.'],
     lead: 'Custom web development for businesses that have outgrown a template. I study your competitors first, design the UI and UX myself, then build the frontend, the backend and the admin dashboard as one job. Mayabee, a store with its own dashboard, and Wrkbase, my own SaaS, are the proof.',
-    row: 'Custom websites, stores and web apps: competitor research, UI/UX, frontend and backend by one developer.',
-    chips: ['Business websites', 'Online stores', 'Web apps and SaaS', 'Admin dashboards', 'APIs', 'UI/UX design'],
+    row: 'Custom websites and online stores: competitor research, UI/UX, frontend, backend and admin dashboard by one developer.',
+    chips: ['Business websites', 'Online stores', 'Admin dashboards', 'Landing pages', 'APIs', 'UI/UX design'],
     problemTitle: 'When a template website is no longer enough',
     includesTitle: 'What I build',
     proofTitle: 'Custom projects I\'ve built',
@@ -30,7 +30,7 @@ export const services = [
       { name: 'Frontend that loads fast', text: 'Hand-built pages with very little code shipped to the browser. Mayabee has a storefront in English and Bangla that is tuned for Google Core Web Vitals.' },
       { name: 'Backend and APIs', text: 'Accounts, orders, payments, emails and integrations, written for how your business works.' },
       { name: 'Admin dashboards', text: 'The screens your team works in: orders, stock, customers, reports and roles for who can do what. Mayabee has owner, manager, orders and content roles.' },
-      { name: 'Web apps and SaaS', text: 'Products where people sign in and work with their own data. Wrkbase is my own team management platform, built from idea to launch.' },
+      { name: 'Web apps and SaaS', text: 'Products where people sign in and work with their own data are a separate service: web application development. Wrkbase is my own team management platform, built from idea to launch.' },
       { name: 'Launch and care', text: 'Deployment, backups, monitoring and changes after launch, through a website care plan.' },
     ],
     proof: ['mayabee', 'wrkbase', 'moneybag'],
@@ -41,6 +41,46 @@ export const services = [
       { q: 'Do you design the UI and UX yourself?', a: 'Yes. I start with competitor analysis, then design the interface myself and build it, so the design you approve is the one that ships.' },
       { q: 'How fast will a custom-built site be?', a: 'A hand-built site ships very little code, so it loads quickly. I measure Core Web Vitals on a throttled phone before launch and show you the numbers.' },
       { q: 'Can you build a SaaS or web app from an idea?', a: 'Yes. I built Wrkbase from an idea to a working platform with sign-in, tasks, time tracking, attendance, payroll and an AI agent. I start with the one thing users must be able to do and build outward from there.' },
+    ],
+  },
+  {
+    slug: 'web-application-development',
+    name: 'Web application development',
+    short: 'Customer portals, internal tools and SaaS: sign-in, roles, dashboards and APIs.',
+    focus: 'web application development',
+    title: 'Web Application Development Services | Sakib Islam',
+    description:
+      'Web application development for portals, dashboards and SaaS, built frontend to backend. Get a quote.',
+    h1: 'Web application development, from first version to launch.',
+    h1Lines: ['Web application', 'development, from first', 'version to launch.'],
+    lead: 'Web application development for software your customers or staff sign in to: a customer portal, an internal tool, a booking system or a SaaS product. I design the UI and UX, build a first version people can use, then grow it. Wrkbase, my own SaaS with an AI agent, is the proof.',
+    row: 'Customer portals, internal tools and SaaS products: accounts, roles, dashboards and APIs, built by one developer.',
+    chips: ['Customer portals', 'Internal tools', 'SaaS products', 'Dashboards', 'APIs', 'AI features'],
+    problemTitle: 'When a website is no longer enough',
+    includesTitle: 'What I build',
+    proofTitle: 'Web applications I\'ve built',
+    processTitle: 'How a web application project runs',
+    before: ['Orders, bookings and users tracked in spreadsheets', 'Business rules forced into plugins', 'Every new request adds manual work'],
+    after: ['One place where people sign in and work', 'Your rules written into the app', 'A product you can keep growing'],
+    problem:
+      'A website shows information. A web application lets people do things with their own data: sign in, place orders, manage a team, read reports. When your process lives in spreadsheets, email and a pile of plugins, an application replaces them with one system that follows your rules. I build the first version around the one thing users must do, ship it, then add the rest in order. Wrkbase went from idea to launch that way: sign-in first, then tasks and time tracking, then attendance, payroll and an AI agent.',
+    includes: [
+      { name: 'A first version you can sell', text: 'The core of the product built first and built properly, so real users can start on it within weeks, not quarters.' },
+      { name: 'Accounts, roles and permissions', text: 'Who can see and do what, decided up front and logged. Mayabee has owner, manager, orders and content roles.' },
+      { name: 'Dashboards and reporting', text: 'The numbers a team needs on one screen, from orders and stock to hours worked and payroll.' },
+      { name: 'Integrations', text: 'Payments, email, CRM, couriers and analytics connected, so data lands where your team already works.' },
+      { name: 'Workflow automation', text: 'Repetitive steps turned into rules the app follows, so your team stops copying data between tools.' },
+      { name: 'AI agents inside your product', text: 'Language models connected to your app, acting only after a person approves, as built into Wrkbase.' },
+      { name: 'Launch and care', text: 'Deployment, backups, monitoring and changes after launch, through a website care plan.' },
+    ],
+    proof: ['wrkbase', 'mayabee', 'moneybag'],
+    faq: [
+      { q: 'How much does web application development cost?', a: 'First versions start at $9,000 and most land between $9,000 and $30,000, with a written quote after I read your brief. Agency price guides put a basic web app MVP at $10,000 to $50,000 or more. I work solo from Dhaka, which is why my starting price is lower, and you still get one developer who designs and builds it.' },
+      { q: 'What is the difference between a website and a web application?', a: 'A website mainly shows information. A web application lets users sign in and work with their own data: orders, bookings, tasks, reports. Many businesses need both, like a store with an order dashboard.' },
+      { q: 'Can you build a SaaS product from an idea?', a: 'Yes. I built Wrkbase from an idea to a working platform with sign-in, tasks, time tracking, attendance, payroll and an AI agent. I start with the one thing users must do and build outward from there.' },
+      { q: 'What technology do you use?', a: 'I choose the stack for the job. Mayabee, for example, uses a fast Astro frontend, a PHP API and a MySQL database, with an admin dashboard on top. You own the code.' },
+      { q: 'Can you add AI features to a web application?', a: 'Yes. Wrkbase includes an AI agent that carries out approved actions and keeps a transparent activity log. I add AI only where it solves a problem your users have.' },
+      { q: 'How long does a first version take?', a: 'Usually 6 to 12 weeks for a focused first version, depending on the screens, roles and integrations. The quote lists the scope and the timeline.' },
     ],
   },
   {

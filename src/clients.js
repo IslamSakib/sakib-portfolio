@@ -6,6 +6,7 @@ const logos = import.meta.glob('./assets/clients/*.png', { eager: true });
 const iconOnly = ['wrkbase', 'tatka'];
 
 const names = [
+  'Mayabee',
   'Tabby',
   'TubeOnAI',
   'Moneybag',

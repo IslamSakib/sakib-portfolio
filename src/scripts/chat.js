@@ -16,16 +16,16 @@ if (root) {
   const steps = [
     {
       key: 'need',
-      ask: () => 'Hi, I am Sakib\'s assistant. I will ask a few quick questions and send your answers straight to him. What do you need help with?',
-      chips: ['My site is slow', 'Something is broken', 'Monthly maintenance', 'A new build or relaunch', 'White-label work for my agency', 'Something else'],
+      ask: () => 'Hi, I am Sakib\'s assistant. Sakib is a full stack web developer. I will ask a few quick questions and send your answers straight to him. What do you need help with?',
+      chips: ['A website or online store', 'A web application', 'A WordPress theme, plugin or store', 'Monthly website care', 'Fix a slow or broken website', 'White-label work for my agency', 'Something else'],
     },
     {
       key: 'site',
       ask: () => (/agency|white/i.test(lead.need)
         ? 'Good. Is there a design or a client site I should look at? Paste a link, or say "no site yet".'
-        : /build|relaunch/i.test(lead.need)
+        : /website or online store|web application|wordpress theme|build|relaunch/i.test(lead.need)
           ? 'Good. Is there an existing site or a reference I should look at? Paste the address, or say "no site yet".'
-          : 'Got it. What is the site address? If there is no site yet, just say so.'),
+          : 'Got it. What is the website address? If there is no site yet, just say so.'),
       chips: ['No site yet'],
     },
     { key: 'goal', ask: () => 'What is the main result you want from this? One or two sentences is plenty.' },
@@ -33,14 +33,18 @@ if (root) {
     {
       key: 'budget',
       // The starting prices from src/prices.js, so the visitor knows the ballpark before answering.
-      ask: () => (/maintenance/i.test(lead.need)
-        ? 'Care plans start at $149 a month, or $299 with development time included. Do you have a budget in mind?'
+      ask: () => (/care|maintenance/i.test(lead.need)
+        ? 'Website care plans start at $149 a month, or $299 with development time included. Do you have a budget in mind?'
         : /agency|white/i.test(lead.need)
-          ? 'White-label work is $35 an hour, or from $1,200 per site from a Figma design. Do you have a budget in mind for this one?'
-          : /slow|broken/i.test(lead.need)
-            ? 'Single fixes start at $150 and speed fixes at $450. Do you have a budget range in mind?'
-            : 'Builds start at $2,500. Do you have a budget range in mind? It helps Sakib suggest the right scope.'),
-      chips: ['Under $500', '$500 to $2,000', '$2,000 to $5,000', 'Above $5,000', 'Not sure yet'],
+          ? 'White-label work is $45 an hour, or from $1,500 per site from a Figma design. Do you have a budget in mind for this one?'
+          : /slow|broken|fix/i.test(lead.need)
+            ? 'Single fixes start at $150, speed fixes at $450 and malware cleanup at $199. Do you have a budget range in mind?'
+            : /web application|web app|portal|saas/i.test(lead.need)
+              ? 'A first version of a web application starts at $9,000 and usually lands between $9,000 and $30,000. Do you have a budget range in mind?'
+              : /wordpress/i.test(lead.need)
+                ? 'WordPress builds start at $3,000, or $4,500 with a WooCommerce store, and custom plugins from $1,200. Do you have a budget range in mind?'
+                : 'Websites start at $3,500 and usually land between $3,500 and $9,000. Online stores with a dashboard start at $8,000. Do you have a budget range in mind?'),
+      chips: ['Under $1,000', '$1,000 to $3,000', '$3,000 to $9,000', '$9,000 to $30,000', 'Above $30,000', 'Not sure yet'],
     },
     { key: 'name', ask: () => 'Almost done. What is your name?' },
     {

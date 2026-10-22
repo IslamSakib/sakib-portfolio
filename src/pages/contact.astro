@@ -21,7 +21,8 @@ const business = [
   { key: 'broken', t: 'Fix something broken', s: `Single fix · from ${usd(prices.fix)}`, fixed: true },
   { key: 'care', t: 'Look after my website monthly', s: `Website care · ${usd(prices.care)}/mo`, fixed: true },
   { key: 'care-plus', t: 'Monthly care plus more changes', s: `Care + development · ${usd(prices.carePlus)}/mo`, fixed: true },
-  { key: 'build', t: 'Build a website, web app or WordPress site', s: `WordPress from ${usd(prices.build)} · custom quoted` },
+  { key: 'build', t: 'Build a website or online store', s: `Websites from ${usd(prices.site)} · WordPress from ${usd(prices.build)}` },
+  { key: 'webapp', t: 'Build a web application', s: `First versions from ${usd(prices.webApp)}` },
   { key: 'other', t: 'Something else', s: 'Tell me in your own words' },
 ];
 const agency = [
@@ -32,7 +33,7 @@ const agency = [
   { key: 'other', t: 'Something else', s: 'Tell me in your own words' },
 ];
 const timelines = ['As soon as possible', 'Within a month', 'In 1 to 3 months', 'Just exploring'];
-const budgets = ['Under $500', '$500 to $2,000', '$2,000 to $5,000', 'Over $5,000', 'Not sure yet'];
+const budgets = ['Under $1,000', '$1,000 to $3,000', '$3,000 to $9,000', '$9,000 to $30,000', 'Over $30,000', 'Not sure yet'];
 ---
 <Base title={title} description={description} jsonld={jsonld} focus={focus} ogImage="/og-contact.jpg" ogAlt={title}>
   <section class="wrap sec-pad hero-bg">

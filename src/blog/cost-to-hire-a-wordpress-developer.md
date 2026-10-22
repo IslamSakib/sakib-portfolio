@@ -18,7 +18,7 @@ sources:
   - { name: "Qualimero, WooCommerce developer cost", url: "https://qualimero.com/en/blog/woocommerce-developer" }
 faq:
   - { q: "How much does a WordPress developer cost per hour?", a: "In 2026, freelance rates run from about $25 to $50 an hour for junior developers to $95 to $160 for senior ones worldwide, vetted platforms such as Codeable charge around $80 to $120, and agencies roughly $90 to $250 or more." }
-  - { q: "How much does a WordPress website cost to build?", a: "A simple brochure site from a theme can cost a few hundred to a couple of thousand dollars. A custom-designed site, a WooCommerce store or a site with custom features usually costs several thousand. My custom builds start at $2,500." }
+  - { q: "How much does a WordPress website cost to build?", a: "A simple brochure site from a theme can cost a few hundred to a couple of thousand dollars. A custom-designed site, a WooCommerce store or a site with custom features usually costs several thousand. My custom builds start at $3,000." }
   - { q: "Should I hire a freelancer or an agency for WordPress?", a: "A freelancer is usually better value for small and mid-sized projects because you work directly with the developer. An agency suits large projects that need design, development and project management at once." }
   - { q: "Is it cheaper to hire a WordPress developer from another country?", a: "Hourly rates vary by region, but the cheapest quote can cost more if the work has to be redone. Judge on past work you can check, clear communication and overlap with your working hours, not the rate alone." }
   - { q: "What should I check before hiring a WordPress developer?", a: "Look at live sites they built and ask what they did on each, ask for a written scope and price, check how they handle updates and problems after launch, and make sure you will own every login, licence and file." }
@@ -106,4 +106,4 @@ Referrals from people whose sites you like are the most reliable route. After th
 
 ## What do I charge, so you can compare?
 
-I publish my starting prices so you can judge before you get in touch: builds from $2,500, speed fixes from $450, single fixes from $150, care plans from $149 a month, and $35 an hour for agency white-label work. Every job gets a written quote first. See [custom WordPress development](/wordpress-development/) for what a build includes.
+I publish my starting prices so you can judge before you get in touch: builds from $3,000, speed fixes from $450, single fixes from $150, care plans from $149 a month, and $45 an hour for agency white-label work. Every job gets a written quote first. See [custom WordPress development](/wordpress-development/) for what a build includes.

@@ -1,22 +1,43 @@
-// Starting prices in US dollars, approved by Sakib on 14 Oct 2026. One source for the home page, the maintenance page,
-// the agency page and the structured data. Every job still gets a written quote first.
+// Starting prices in US dollars. One source for the home page, service pages, the care pages, the agency pages and the
+// structured data. Every job still gets a written quote first. Reset 23 Oct 2026 after a market check (see
+// seo/02-strategy/pricing-20261023.md): US freelance full-stack rates run about $70 to $135 an hour, custom small-business
+// sites $3,000 to $10,000, web app first versions $10,000 to $50,000, small-business care plans $100 to $300 a month, and
+// Bangladesh freelancers about $16 to $62 an hour. Sakib works solo from Dhaka for US, UK and Australian clients, so the
+// "from" prices sit at the low end of the Western range and well above local rates.
 export const prices = {
+  // Websites and web apps
+  site: 3500, // custom business website: UI/UX, frontend, backend, admin
+  store: 8000, // custom online store with its own dashboard (Mayabee type)
+  webApp: 9000, // first version of a web application: sign-in, roles, dashboard, API
+  // WordPress
+  build: 3000, // custom WordPress theme build
+  woo: 4500, // WooCommerce store with custom theme and checkout
+  plugin: 1200, // one custom WordPress plugin
+  // Care and fixes
   care: 149,
   carePlus: 299,
   fix: 150,
   speed: 450,
-  build: 2500,
-  agencyHour: 35,
-  agencySite: 1200,
-  // Set 16 Oct 2026 at Sakib's request ("standard pricing that will be competitive"), from market checks: one-off
-  // cleanups run $79–$497 (hosts $250–$300); white-label care sells wholesale at $39–$89 a site, retail from ~$150.
   malware: 199,
+  // Extra developer time on an existing project
+  hourly: 60,
+  // White-label work for agencies
+  agencyHour: 45,
+  agencySite: 1500,
   agencyCare: 59,
 };
 
 export const usd = (n) => '$' + n.toLocaleString('en-US');
 
-// The two monthly care plans, shown on the maintenance and care plans pages (same cards, one source).
+// What a project usually costs once scoped, shown beside each "from" price so the "from" is not mistaken for the total.
+export const typical = {
+  site: '$3,500 to $9,000',
+  store: '$8,000 to $20,000',
+  webApp: '$9,000 to $30,000',
+  wordpress: '$3,000 to $8,000',
+};
+
+// The two monthly care plans, shown on the website care and care plans pages (same cards, one source).
 export const carePlans = [
   {
     name: 'Care', for: 'For a business site that needs to stay safe, current and online.',

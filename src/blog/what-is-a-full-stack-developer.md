@@ -10,7 +10,7 @@ imageAlt: "What is a full stack developer: one person covering design, frontend,
 faq:
   - { q: "What is a full stack developer in simple terms?", a: "A full stack developer builds both halves of a website or web app: what visitors see (the frontend) and what runs behind it (the backend, database and admin screens). One person can take a project from design to launch." }
   - { q: "Is a full stack developer better than a frontend or backend developer?", a: "Not better, broader. A specialist goes deeper in one area. A full stack developer is the right fit when the whole project is small enough for one person and you want a single point of contact." }
-  - { q: "How much does it cost to hire a full stack developer?", a: "It depends on the project, not a fixed day rate. I quote custom websites and web apps after reading the brief, and WordPress builds start at $2,500, in US dollars, with the price in writing before work starts." }
+  - { q: "How much does it cost to hire a full stack developer?", a: "It depends on the project, not a fixed day rate. I quote custom websites and web apps after reading the brief, and WordPress builds start at $3,000, in US dollars, with the price in writing before work starts." }
   - { q: "Can a full stack developer also design?", a: "Some can. I design the UI and UX myself before building, so the screens you approve are the screens that ship." }
 ---
 

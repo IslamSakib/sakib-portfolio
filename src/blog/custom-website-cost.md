@@ -8,7 +8,7 @@ topic: Builds
 service: custom-web-development
 imageAlt: "Custom website cost: the six things that set the price, from pages and design to accounts, payments and the admin dashboard"
 faq:
-  - { q: "How much does a custom website cost?", a: "There is no single price, because the cost follows the work: pages, design, features, accounts, payments, integrations and an admin dashboard. I quote custom projects in US dollars after reading your brief, with the price in writing before work starts. WordPress builds start at $2,500." }
+  - { q: "How much does a custom website cost?", a: "There is no single price, because the cost follows the work: pages, design, features, accounts, payments, integrations and an admin dashboard. Custom websites start at $3,500, online stores at $8,000, web applications at $9,000 and WordPress builds at $3,000, in US dollars, with the price in writing before work starts." }
   - { q: "Why is a custom website more expensive than a template?", a: "A template spreads its cost across many buyers. A custom website is designed and built for one business, so you pay for design, development and testing that only you use. You get exactly the features you need and nothing else." }
   - { q: "Can I reduce the cost of a custom website?", a: "Yes. Build a first version with the one thing users must do, launch it, then add features in order. Fewer screens and fewer integrations at launch is the biggest saving." }
   - { q: "What is not included in a custom website quote?", a: "Hosting, domain names, paid third-party services and ongoing care are usually separate. I list what is and is not included in the written quote." }
@@ -27,12 +27,14 @@ Custom website cost follows the work, not the page count. Six things move the pr
 
 ## What does a typical project look like?
 
-| Project | What it includes | How I price it |
-|---|---|---|
-| Business website | Design, 5 to 10 page types, contact forms, speed tuned for phones | Quoted after the brief |
-| WordPress theme and plugins | Your design as a theme, custom plugins, WooCommerce | From $2,500 |
-| Online shop with dashboard | Storefront, checkout, orders, delivery, stock, reports | Quoted after the brief |
-| Web app or SaaS | Accounts, roles, dashboard, API, billing | Quoted after the brief |
+| Project | What it includes | My starting price | Typical range |
+|---|---|---|---|
+| Business website | Custom design, 5 to 10 page types, contact forms, speed tuned for phones | $3,500 | $3,500 to $9,000 |
+| WordPress theme and plugins | Your design as a theme, custom plugins, WooCommerce | $3,000 (WooCommerce $4,500) | $3,000 to $8,000 |
+| Online shop with dashboard | Storefront, checkout, orders, delivery, stock, reports | $8,000 | $8,000 to $20,000 |
+| Web application | Accounts, roles, dashboard, API | $9,000 | $9,000 to $30,000 |
+
+All prices are in US dollars, with a written quote after I read your brief. For comparison, 2026 price guides from agencies put a professionally built small-business site at about $3,000 to $10,000 ([Ueni](https://ueni.com/blog/average-cost-for-website/), [Wapiti](https://wapiti.digital/how-much-does-a-custom-website-cost-in-2026-pricing-timelines-and-tradeoffs/)), and a web app first version at $10,000 to $50,000 or more ([Empat](https://www.empat.tech/blog/mvp-development-cost)). These are vendor estimates, not independent surveys. I work solo from Dhaka, so my starting prices sit at the low end of those ranges. Extra developer time is $60 an hour; US freelance full stack rates are commonly quoted at about $70 to $135 an hour ([Second Talent](https://www.secondtalent.com/cost-to-hire/united-states/), [Index.dev](https://index.dev/blog/freelance-developer-rates)).
 
 ## How to get a fair quote
 
@@ -56,7 +58,9 @@ Budget for hosting, a domain and care after launch. A website care plan from me 
 |---|---|---|
 | US monthly searches for "custom website development" | about 3,600 | Semrush, US database, 23 Oct 2026 |
 | US monthly searches for "website maintenance cost" | about 1,300 | Semrush, US database, 23 Oct 2026 |
-| WordPress build, starting price | $2,500 | [My pricing](/wordpress-development/) |
+| Custom website, starting price | $3,500 | [Custom website development](/custom-web-development/) |
+| Web application, starting price | $9,000 | [Web application development](/web-application-development/) |
+| WordPress build, starting price | $3,000 | [WordPress development](/wordpress-development/) |
 | Website care plan, starting price | $149 a month | [Website care](/website-care/) |
 
 Want a price for your project? See [custom website development](/custom-web-development/) or [hire a full stack developer](/full-stack-developer/) and send the brief.

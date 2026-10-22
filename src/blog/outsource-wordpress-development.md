@@ -11,7 +11,7 @@ imageAlt: "Your agency handles design, client and deadline while a developer bui
 faq:
   - { q: "Should my agency outsource WordPress development?", a: "If your team is strong in design, strategy or marketing but WordPress builds are slowing you down or keeping you from taking more clients, outsourcing to a reliable developer is usually cheaper and more flexible than hiring." }
   - { q: "How do I outsource WordPress development without losing quality?", a: "Send a complete brief, agree a quality bar in writing, review on a staging site before anything reaches the client, start with a small paid task, and keep feedback in one list per round." }
-  - { q: "How much does it cost to outsource WordPress development?", a: "It varies by model: per site, hourly or a monthly block of hours. My white-label work starts at $1,200 per site or $35 an hour, with a written quote before work starts." }
+  - { q: "How much does it cost to outsource WordPress development?", a: "It varies by model: per site, hourly or a monthly block of hours. My white-label work starts at $1,500 per site or $45 an hour, with a written quote before work starts." }
   - { q: "Will the developer contact my client?", a: "A proper white-label partner never contacts your client unless you ask. Agree this in writing, along with an NDA and no partner branding in the site, code, admin users or emails." }
   - { q: "Freelancer or agency for outsourced WordPress work?", a: "A freelancer gives you one consistent senior developer and suits a steady flow of builds and fixes. An outsourcing agency suits large volumes or projects that need several specialists at once." }
 ---
@@ -119,4 +119,4 @@ Decide before launch. If your team will, ask for handover notes: the theme and p
 
 ## How do I work with agencies like yours?
 
-I build WordPress sites for design and marketing agencies under their brand: custom themes or Elementor, WooCommerce, custom plugins and speed work. I sign NDAs, never contact your client, work in your tools and overlap with US and UK hours. Pricing starts at $1,200 per site or $35 an hour, and the best way to start is one small paid task. See [white label WordPress development](/white-label-wordpress-development/) for how it works.
+I build WordPress sites for design and marketing agencies under their brand: custom themes or Elementor, WooCommerce, custom plugins and speed work. I sign NDAs, never contact your client, work in your tools and overlap with US and UK hours. Pricing starts at $1,500 per site or $45 an hour, and the best way to start is one small paid task. See [white label WordPress development](/white-label-wordpress-development/) for how it works.

@@ -14,7 +14,7 @@ import { work } from '../work.js';
 import { reviews, initials, allReviewsUrl } from '../reviews.js';
 import { clients, clientCount } from '../clients.js';
 import { posts } from '../blog.js';
-import { prices, usd } from '../prices.js';
+import { prices, usd, typical } from '../prices.js';
 import { toolLogos } from '../toolLogos.js';
 
 // Focus keyword for this page. It must appear in the title, the description and the H1 (scripts/seo-check.mjs).
@@ -32,7 +32,7 @@ const mosaic = ['mayabee', 'tabby', 'wrkbase', 'moneybag', 'open-alliance-learni
 // full-time WordPress work starts at Oxford International School in Feb 2023, and the two results are from the
 // TubeOnAI and Tabby case studies.
 // The logo row shows only the best-known clients; the full list stays in src/clients.js.
-const featured = ['Tabby', 'TubeOnAI', 'Moneybag', 'Wrkbase', 'Oxford International School'];
+const featured = ['Mayabee', 'Tabby', 'TubeOnAI', 'Moneybag', 'Wrkbase', 'Oxford International School'];
 const logos = featured.map((n) => clients.find((c) => c.name === n)).filter(Boolean);
 const trust = [
   { n: `${clientCount}+`, label: 'client websites built or fixed' },
@@ -50,10 +50,10 @@ const experience = [
   { yr: '2023', role: 'WordPress developer', org: 'Oxford International School, Dhaka', kind: 'Full-time' },
 ];
 const plans = [
-  { name: 'Custom website or app', for: 'A website, store or web app built from scratch.', price: 'Quoted', unit: '', billing: 'Written quote first', items: ['Competitor research and UI/UX design', 'Frontend, backend and admin dashboard', 'Core Web Vitals checked on a phone'], cta: 'Get a free quote', href: '/contact/?need=build', featured: true, badge: 'Quoted per project' },
-  { name: 'WordPress build', for: 'A WordPress or WooCommerce site from scratch.', price: usd(prices.build), unit: ' from', billing: 'Fixed quote', items: ['Custom theme and plugins', 'WooCommerce, payments and integrations', 'Built to load fast and survive updates'], cta: 'Start a build', href: '/contact/?need=build' },
-  { name: 'Website care', for: 'Keep a working site safe and current.', price: usd(prices.care), unit: '/mo', billing: 'Cancel any month', items: ['Updates tested before they go live', 'Daily off-site backups', 'Urgent reply within 24 hours'], cta: 'Start a plan', href: '/contact/?plan=care' },
-  { name: 'Repair or speed fix', for: 'One problem, fixed at the cause.', price: usd(prices.fix), unit: ' from', billing: 'One-off', items: ['White screen, broken form or plugin conflict', 'Speed fixes from ' + usd(prices.speed) + ', measured before and after', 'The cause found and written down'], cta: 'Fix my site', href: '/contact/?need=broken' },
+  { name: 'Custom website', for: 'A business website or online store built from scratch.', price: usd(prices.site), unit: ' from', billing: `Typically ${typical.site}`, items: ['Competitor research and UI/UX design', 'Frontend, backend and admin dashboard', 'Core Web Vitals checked on a phone'], cta: 'Get a free quote', href: '/contact/?need=build', featured: true, badge: 'Most projects' },
+  { name: 'Web application', for: 'A portal, internal tool or SaaS first version.', price: usd(prices.webApp), unit: ' from', billing: `Typically ${typical.webApp}`, items: ['Accounts, roles and a dashboard', 'API and integrations', 'A first version users can start on'], cta: 'Get a free quote', href: '/contact/?need=webapp' },
+  { name: 'WordPress build', for: 'A custom WordPress theme, plugin or WooCommerce store.', price: usd(prices.build), unit: ' from', billing: `Typically ${typical.wordpress}`, items: ['Custom theme from your design', 'Custom plugins and payments', 'Built to load fast and survive updates'], cta: 'Start a build', href: '/contact/?need=build' },
+  { name: 'Website care', for: 'Keep a working website safe and current.', price: usd(prices.care), unit: '/mo', billing: 'Cancel any month', items: ['Updates tested before they go live', 'Daily off-site backups', 'Urgent reply within 24 hours'], cta: 'Start a plan', href: '/contact/?plan=care' },
 ];
 
 const toolGroups = [
@@ -85,8 +85,9 @@ const jsonld = [
   { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: Astro.site },
 ];
 const svc = [
-  { slug: 'custom-web-development', name: 'Custom website development', what: 'A website, online store or web app built from scratch for your business, including the admin dashboard your team uses.', gets: ['Competitor research and UI/UX design', 'Frontend and backend development', 'Admin dashboard, user accounts and payments'], price: 'Quoted after a call', proof: 'Example: Mayabee, an online shop with its own dashboard', href: '/custom-web-development/' },
-  { slug: 'wordpress-development', name: 'WordPress development', what: 'Custom WordPress themes and plugins, WooCommerce stores and integrations, built to your design.', gets: ['Custom themes from your Figma design', 'Custom plugins and payment gateways', 'WooCommerce stores and integrations'], price: `From ${usd(prices.build)}`, proof: 'Example: a payment gateway plugin for Moneybag', href: '/wordpress-development/' },
+  { slug: 'custom-web-development', name: 'Custom website development', what: 'A business website or online store built from scratch for your business, with the admin dashboard your team uses.', gets: ['Competitor research and UI/UX design', 'Frontend and backend development', 'Admin dashboard, accounts and payments'], price: `Websites from ${usd(prices.site)}, stores from ${usd(prices.store)}`, proof: 'Example: Mayabee, an online shop with its own dashboard', href: '/custom-web-development/' },
+  { slug: 'web-application-development', name: 'Web application development', what: 'Software your customers or staff sign in to: a portal, an internal tool, a booking system or a SaaS product.', gets: ['Accounts, roles and permissions', 'Dashboards, reports and APIs', 'AI features that ask before they act'], price: `First versions from ${usd(prices.webApp)}`, proof: 'Example: Wrkbase, my own team platform with an AI agent', href: '/web-application-development/' },
+  { slug: 'wordpress-development', name: 'WordPress development', what: 'Custom WordPress themes and plugins, WooCommerce stores and integrations, built to your design.', gets: ['Custom themes from your Figma design', 'Custom plugins and payment gateways', 'WooCommerce stores and integrations'], price: `Themes from ${usd(prices.build)}, stores from ${usd(prices.woo)}`, proof: 'Example: a payment gateway plugin for Moneybag', href: '/wordpress-development/' },
   { slug: 'website-care', name: 'Website care', what: 'Monthly care for a live website: updates, backups, monitoring, fixes and speed, handled by the developer who knows your site.', gets: ['Tested updates and daily off-site backups', 'Security and uptime monitoring', 'Bug fixes, speed and small changes'], price: `From ${usd(prices.care)} a month`, proof: 'Example: Tabby, built and maintained by me', href: '/website-care/' },
 ];
 ---
@@ -140,12 +141,11 @@ const svc = [
   <section id="services" class="wrap sec-pad">
     <div class="row-head">
       <div style="display: grid; gap: 0.9rem">
-        <p class="label">Services</p>
-        <h2>Custom websites, WordPress development and website care</h2>
+        <h2>My services</h2>
       </div>
       <a href="/full-stack-developer/">Hire a full stack developer →</a>
     </div>
-    <ul class="kit kit-links">
+    <ul class="kit kit-links svc4">
       {svc.map((r) => (
         <li>
           <div class="kit-art"><ServiceArt slug={r.slug} /></div>
@@ -157,12 +157,12 @@ const svc = [
         </li>
       ))}
     </ul>
-    <p class="muted" style="margin-top: 1.5rem">Site slow, broken or hacked? <a class="more-link" href="/wordpress-repair/">WordPress repair</a>, <a class="more-link" href="/website-care/">speed fixes</a> and <a class="more-link" href="/wordpress-malware-removal/">malware removal</a> are part of website care.</p>
+    <p class="muted" style="margin-top: 1.5rem">Website slow, broken or hacked? <a class="more-link" href="/wordpress-repair/">Website repair</a> from {usd(prices.fix)}, <a class="more-link" href="/website-care/">speed fixes</a> from {usd(prices.speed)} and <a class="more-link" href="/wordpress-malware-removal/">malware removal</a> from {usd(prices.malware)} are part of website care. Extra developer time is {usd(prices.hourly)} an hour.</p>
   </section>
 
   <section id="work" class="wrap" style="padding: 0 0 var(--sec)">
     <div class="row-head">
-      <h2>Websites and web apps I've built</h2>
+      <h2>Recent projects</h2>
       <a href="/work/mayabee/">Start with Mayabee →</a>
     </div>
     <div class="mosaic">
