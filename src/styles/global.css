@@ -501,7 +501,9 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .chat.open ~ .to-top, .chat.open + .to-top { display: none; }
 
 /* Case study pages */
-.crumbs { font-size: 0.9375rem; color: var(--muted); display: flex; gap: 0.5rem; }
+.crumbs { font-size: 0.9375rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; min-width: 0; }
+.crumbs > * { flex: none; }
+.crumbs > :last-child { flex: 0 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .crumbs a { text-decoration: none; }
 .case-head { padding-top: 4.5rem; display: grid; gap: 1.5rem; }
 .case-head h1 { max-width: none; font-size: clamp(2.25rem, 5vw, 4rem); }
