@@ -36,15 +36,15 @@ if (root) {
       ask: () => (/care|maintenance/i.test(lead.need)
         ? 'Website care plans start at $149 a month, or $299 with development time included. Do you have a budget in mind?'
         : /agency|white/i.test(lead.need)
-          ? 'White-label work is $45 an hour, or from $1,500 per site from a Figma design. Do you have a budget in mind for this one?'
+          ? 'White-label work is $20 an hour, or from $300 per site from a Figma design. Do you have a budget in mind for this one?'
           : /slow|broken|fix/i.test(lead.need)
-            ? 'Single fixes start at $150, speed fixes at $450 and malware cleanup at $199. Do you have a budget range in mind?'
+            ? 'Single fixes start at $50, speed fixes at $150 and malware cleanup at $99. Do you have a budget range in mind?'
             : /web application|web app|portal|saas/i.test(lead.need)
-              ? 'A first version of a web application starts at $9,000 and usually lands between $9,000 and $30,000. Do you have a budget range in mind?'
+              ? 'A first version of a web application starts at $999 and usually lands between $999 and $4,000. Do you have a budget range in mind?'
               : /wordpress/i.test(lead.need)
-                ? 'WordPress builds start at $3,000, or $4,500 with a WooCommerce store, and custom plugins from $1,200. Do you have a budget range in mind?'
-                : 'Websites start at $3,500 and usually land between $3,500 and $9,000. Online stores with a dashboard start at $8,000. Do you have a budget range in mind?'),
-      chips: ['Under $1,000', '$1,000 to $3,000', '$3,000 to $9,000', '$9,000 to $30,000', 'Above $30,000', 'Not sure yet'],
+                ? 'WordPress builds start at $300, or $500 with a WooCommerce store, and custom plugins from $200. Do you have a budget range in mind?'
+                : 'Websites start at $600 and usually land between $600 and $1,500. Online stores with a dashboard start at $800. Do you have a budget range in mind?'),
+      chips: ['Under $300', '$300 to $1,000', '$1,000 to $3,000', '$3,000 to $8,000', 'Above $8,000', 'Not sure yet'],
     },
     { key: 'name', ask: () => 'Almost done. What is your name?' },
     {

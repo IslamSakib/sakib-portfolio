@@ -50,7 +50,7 @@ const experience = [
   { yr: '2023', role: 'WordPress developer', org: 'Oxford International School, Dhaka', kind: 'Full-time' },
 ];
 const plans = [
-  { name: 'Custom website', for: 'A business website or online store built from scratch.', price: usd(prices.site), unit: ' from', billing: `Typically ${typical.site}`, items: ['Competitor research and UI/UX design', 'Frontend, backend and admin dashboard', 'Core Web Vitals checked on a phone'], cta: 'Get a free quote', href: '/contact/?need=build', featured: true, badge: 'Most projects' },
+  { name: 'Custom website', for: 'A business website or online store built from scratch.', price: usd(prices.site), unit: ' from', billing: `Typically ${typical.site}`, items: ['Competitor research and UI/UX design', 'Frontend, backend and admin dashboard', 'Core Web Vitals checked on a phone'], cta: 'Start a website', href: '/contact/?need=build', featured: true, badge: 'Most projects' },
   { name: 'Web application', for: 'A portal, internal tool or SaaS first version.', price: usd(prices.webApp), unit: ' from', billing: `Typically ${typical.webApp}`, items: ['Accounts, roles and a dashboard', 'API and integrations', 'A first version users can start on'], cta: 'Get a free quote', href: '/contact/?need=webapp' },
   { name: 'WordPress build', for: 'A custom WordPress theme, plugin or WooCommerce store.', price: usd(prices.build), unit: ' from', billing: `Typically ${typical.wordpress}`, items: ['Custom theme from your design', 'Custom plugins and payments', 'Built to load fast and survive updates'], cta: 'Start a build', href: '/contact/?need=build' },
   { name: 'Website care', for: 'Keep a working website safe and current.', price: usd(prices.care), unit: '/mo', billing: 'Cancel any month', items: ['Updates tested before they go live', 'Daily off-site backups', 'Urgent reply within 24 hours'], cta: 'Start a plan', href: '/contact/?plan=care' },
@@ -152,12 +152,11 @@ const svc = [
           <h3><a href={r.href}>{r.name}</a></h3>
           <p class="muted">{r.what}</p>
           <ul class="tags">{r.gets.map((g) => <li>{g}</li>)}</ul>
-          <p class="mono"><b>{r.price}</b></p>
           <p class="muted" style="font-size: 0.9375rem">{r.proof}</p>
         </li>
       ))}
     </ul>
-    <p class="muted" style="margin-top: 1.5rem">Website slow, broken or hacked? <a class="more-link" href="/wordpress-repair/">Website repair</a> from {usd(prices.fix)}, <a class="more-link" href="/website-care/">speed fixes</a> from {usd(prices.speed)} and <a class="more-link" href="/wordpress-malware-removal/">malware removal</a> from {usd(prices.malware)} are part of website care. Extra developer time is {usd(prices.hourly)} an hour.</p>
+    <p class="muted" style="margin-top: 1.5rem">Website slow, broken or hacked? <a class="more-link" href="/wordpress-repair/">Website repair</a>, <a class="more-link" href="/website-care/">speed fixes</a> and <a class="more-link" href="/wordpress-malware-removal/">malware removal</a> are part of website care.</p>
   </section>
 
   <section id="work" class="wrap" style="padding: 0 0 var(--sec)">
@@ -253,7 +252,7 @@ const svc = [
   <section class="wrap" style="padding: var(--sec) 0 0">
     <div class="row-head"><div style="display: grid; gap: 0.9rem"><p class="label">Prices in US dollars</p><h2>Starting prices</h2></div><a href="/white-label-wordpress-development/">Agencies: from {usd(prices.agencySite)} a site →</a></div>
     <PriceCards plans={plans} compact />
-    <p class="mut" style="margin-top: 1rem; font-size: 0.9375rem">Every job gets a written quote before work starts.</p>
+    <p class="mut" style="margin: 1rem 0 clamp(2.5rem, 6vw, 4rem); font-size: 0.9375rem">Every job gets a written quote before work starts.</p>
   </section>
 
   <section class="rv-band sec-pad" aria-label="Recommendations" data-rv>

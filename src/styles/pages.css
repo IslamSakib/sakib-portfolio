@@ -447,10 +447,6 @@ html:has(.mnav[open]) .chat, html:has(.mnav[open]) .to-top { display: none; }
   .p-copy, .contact-side { grid-template-columns: min-content; }
   .p-copy > *, .contact-side > * { min-width: 0; }
 }
-@media (min-width: 861px) {
-  .svc-copy { grid-template-columns: min-content; }
-  .svc-copy > * { min-width: 0; }
-}
 .h-copy .lead, .p-copy .lead, .contact-side .lead, .svc-copy .lead { text-wrap: wrap; }
 
 /* Tablets: the hero stacks into one column, so the phrase-line headlines grow to fill it. */

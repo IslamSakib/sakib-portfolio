@@ -24,7 +24,7 @@ const fullStackHub = {
   faq: [
     { q: 'What does a full stack developer do?', a: 'A full stack developer builds both sides of a website or app: the part visitors see (frontend) and the part that runs behind it (backend, database and admin). For a business that means one person can take a project from design to launch.' },
     { q: 'When should I hire a full stack developer instead of an agency?', a: 'Hire one person when you want a direct line to whoever builds your project and your scope fits one developer: a business website, a store with a dashboard, a first product version. An agency makes sense when you need a large team working in parallel.' },
-    { q: 'How much does it cost to hire a full stack developer?', a: 'Custom websites start at $3,500, web applications at $9,000 and WordPress builds at $3,000, each with a written quote after I read your brief, because the price depends on screens, accounts and integrations. You get a written price in US dollars before any work starts.' },
+    { q: 'How much does it cost to hire a full stack developer?', a: 'Custom websites start at $600, web applications at $999 and WordPress builds at $300, each with a written quote after I read your brief, because the price depends on screens, accounts and integrations. You get a written price in US dollars before any work starts.' },
     { q: 'Do you build WordPress sites as well as custom ones?', a: 'Yes. I write custom WordPress themes and plugins, and I build fully custom websites and web apps when WordPress is not the right tool. I will tell you which fits your project.' },
     { q: 'Where do you work from, and which time zones do you cover?', a: 'I work remotely from Dhaka, Bangladesh, on an evening shift that overlaps the US morning and early afternoon, and the UK and Australia too. You get a reply within 24 hours.' },
   ],
@@ -70,7 +70,7 @@ const wordpressHub = {
     { name: 'Care after launch', text: 'Updates, security patches and changes through a website care plan from $149 a month.' },
   ],
   faq: [
-    { q: 'How much does it cost to hire a WordPress developer?', a: 'Custom WordPress builds start at $3,000, with a written quote first. Single fixes start at $150, and a monthly care plan starts at $149. Prices are in US dollars.' },
+    { q: 'How much does it cost to hire a WordPress developer?', a: 'Custom WordPress builds start at $300, with a written quote first. Single fixes start at $50, and a monthly care plan starts at $149. Prices are in US dollars.' },
     { q: 'Do you write custom WordPress themes and plugins?', a: 'Yes. A custom theme gives you a design that fits your brand and loads faster than a bought theme. A custom plugin does one job properly: for Moneybag that was a payment gateway, and for Tabby a tax calculator and AI demo plugins.' },
     { q: 'Can you take over a WordPress site another developer built?', a: 'Yes. I read the theme, the plugins, the errors and what changed recently, then send you a short list of what is wrong and what I would fix first before any work begins.' },
     { q: 'Do you work with WooCommerce?', a: 'Yes. Stores, subscriptions, custom payment gateways and checkouts. I test the checkout and order emails after every change.' },
@@ -163,7 +163,7 @@ const wordpress = {
     ],
     faq: [
       { q: 'Do you work with US companies on WordPress sites?', a: 'Yes. Tabby, a US company, hired me for its v2.0 website and I still maintain it. I overlap US mornings, reply within 24 hours and invoice in US dollars.' },
-      { q: 'What does a WordPress site cost?', a: 'Custom WordPress builds start at $3,000, with a written quote first. Single fixes start at $150 and a care plan at $149 a month.' },
+      { q: 'What does a WordPress site cost?', a: 'Custom WordPress builds start at $300, with a written quote first. Single fixes start at $50 and a care plan at $149 a month.' },
     ],
     proof: ['tabby', 'moneybag', 'open-alliance-learning'],
     near: ['florida', 'texas', 'california', 'new-york'],
@@ -176,7 +176,7 @@ const wordpress = {
       { name: 'Practice and local service sites', text: 'Clear service pages, appointment requests and a monthly care plan so updates never break the site.' },
     ],
     faq: [
-      { q: 'Can you fix or take over my Florida business\'s WordPress site?', a: 'Yes. I read the theme, plugins and errors first and send a short list of what is wrong before any work starts. Repairs start at $150.' },
+      { q: 'Can you fix or take over my Florida business\'s WordPress site?', a: 'Yes. I read the theme, plugins and errors first and send a short list of what is wrong before any work starts. Repairs start at $50.' },
       { q: 'How do I reach you in Florida hours?', a: 'Florida is 10 hours behind Dhaka in summer and 11 in winter. I work an evening shift, so a 9 or 10 am Eastern call works well.' },
     ],
     proof: ['tabby', 'open-alliance-learning', 'moneybag'],
@@ -190,7 +190,7 @@ const wordpress = {
       { name: 'Site rescue and speed', text: 'Slow or broken sites traced to the cause, with before and after numbers from PageSpeed Insights.' },
     ],
     faq: [
-      { q: 'Can you speed up my slow WordPress site?', a: 'Yes. I measure first, fix the cause, and send before and after numbers on mobile. Speed fixes start at $450 per site.' },
+      { q: 'Can you speed up my slow WordPress site?', a: 'Yes. I measure first, fix the cause, and send before and after numbers on mobile. Speed fixes start at $150 per site.' },
       { q: 'How do we work across the time difference?', a: 'Dhaka is 11 hours ahead of Central daylight time, 12 of standard time. We overlap from your 8 am to about 1 pm, and I reply in writing within 24 hours.' },
     ],
     proof: ['tabby', 'moneybag', 'open-alliance-learning'],
@@ -218,7 +218,7 @@ const wordpress = {
       { name: 'Payment and fintech plugins', text: 'Custom gateways and merchant flows for WooCommerce, tested before launch.' },
     ],
     faq: [
-      { q: 'Do you work with New York agencies?', a: 'Yes. I build agency designs in WordPress under the agency\'s name, and the agency keeps the client. From $1,500 per site or $45 an hour.' },
+      { q: 'Do you work with New York agencies?', a: 'Yes. I build agency designs in WordPress under the agency\'s name, and the agency keeps the client. From $300 per site or $20 an hour.' },
       { q: 'When can we talk during New York hours?', a: 'New York is 10 hours behind Dhaka in summer and 11 in winter, so a 10 am Eastern call is 8 pm for me. Messages get a reply within 24 hours.' },
     ],
     proof: ['moneybag', 'tabby', 'open-alliance-learning'],

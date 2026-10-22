@@ -9,7 +9,7 @@ service: custom-web-development
 imageAlt: "Custom ecommerce website example: the Mayabee storefront and its order dashboard, with a mobile PageSpeed Performance score of 100"
 faq:
   - { q: "Is a custom ecommerce website better than Shopify?", a: "Not by default. Shopify is quick to start and handles standard stores well. A custom ecommerce website is better when your shop runs on rules a store builder cannot follow, such as cash on delivery by area, courier payouts or your own order screens." }
-  - { q: "How much does a custom ecommerce website cost?", a: "It depends on the storefront, checkout, payments and dashboard you need. I quote custom shops after reading the brief, in US dollars, with the price in writing before work starts. A WooCommerce store on WordPress starts at $3,000." }
+  - { q: "How much does a custom ecommerce website cost?", a: "It depends on the storefront, checkout, payments and dashboard you need. I quote custom shops after reading the brief, in US dollars, with the price in writing before work starts. A WooCommerce store on WordPress starts at $300." }
   - { q: "Can I use WooCommerce instead?", a: "Yes. WooCommerce on WordPress is a good middle path: your own store with a large plugin ecosystem. I build custom themes and payment plugins for it." }
   - { q: "Can a custom store work in two languages?", a: "Yes. Mayabee runs in English and Bangla across the storefront and the dashboard, with separate pages for each language so both can be found in search." }
 ---

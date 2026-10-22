@@ -75,7 +75,7 @@ export const services = [
     ],
     proof: ['wrkbase', 'mayabee', 'moneybag'],
     faq: [
-      { q: 'How much does web application development cost?', a: 'First versions start at $9,000 and most land between $9,000 and $30,000, with a written quote after I read your brief. Agency price guides put a basic web app MVP at $10,000 to $50,000 or more. I work solo from Dhaka, which is why my starting price is lower, and you still get one developer who designs and builds it.' },
+      { q: 'How much does web application development cost?', a: 'First versions start at $999 and most land between $999 and $4,000, with a written quote after I read your brief. Agency price guides put a basic web app MVP at $10,000 to $50,000 or more. I work solo from Dhaka, which is why my prices are lower, and you still get one developer who designs and builds it.' },
       { q: 'What is the difference between a website and a web application?', a: 'A website mainly shows information. A web application lets users sign in and work with their own data: orders, bookings, tasks, reports. Many businesses need both, like a store with an order dashboard.' },
       { q: 'Can you build a SaaS product from an idea?', a: 'Yes. I built Wrkbase from an idea to a working platform with sign-in, tasks, time tracking, attendance, payroll and an AI agent. I start with the one thing users must do and build outward from there.' },
       { q: 'What technology do you use?', a: 'I choose the stack for the job. Mayabee, for example, uses a fast Astro frontend, a PHP API and a MySQL database, with an admin dashboard on top. You own the code.' },
@@ -131,9 +131,9 @@ export const fixes = [
     name: 'WordPress repair',
     short: 'A broken site fixed at the cause, with the cause written down.',
     focus: 'WordPress website repair',
-    title: 'WordPress Website Repair from $150 | Sakib Islam',
+    title: 'WordPress Website Repair from $50 | Sakib Islam',
     description:
-      'WordPress website repair for white screens, errors and conflicts. Reply in 24 hours, from $150.',
+      'WordPress website repair for white screens, errors and conflicts. Reply in 24 hours, from $50.',
     h1: 'WordPress website repair, fixed at the cause.',
     h1Lines: ['WordPress website', 'repair, fixed', 'at the cause.'],
     lead: 'Site down, blank, or showing a critical error? WordPress website repair starts with you sending the address and what went wrong. You get a reply within 24 hours, a written quote, then the fix and a note of what caused it.',
@@ -160,7 +160,7 @@ export const fixes = [
       { href: '/blog/wordpress-plugin-conflict/', t: 'Finding a plugin conflict' },
     ],
     faq: [
-      { q: 'How much does a WordPress repair cost?', a: 'Single fixes start at $150. You get a written quote after I have looked at the problem, before any work starts.' },
+      { q: 'How much does a WordPress repair cost?', a: 'Single fixes start at $50. You get a written quote after I have looked at the problem, before any work starts.' },
       { q: 'How fast can you fix my site?', a: 'You get a reply within 24 hours, with a time estimate in the written quote. The clock starts once I have access to the site.' },
       { q: 'What access do you need?', a: 'An admin login in my own name and access to the hosting account, or the host\'s name so you can add me. You keep every login and can remove mine when the work is done.' },
       { q: 'Will I lose any content?', a: 'No. I take a backup before changing anything and test the fix on a copy of the site where the host allows it.' },
@@ -175,7 +175,7 @@ export const fixes = [
     focus: 'WordPress malware removal',
     title: 'WordPress Malware Removal, Done by Hand | Sakib Islam',
     description:
-      'WordPress malware removal by hand: find the way in, clean the site, clear Google warnings. From $199.',
+      'WordPress malware removal by hand: find the way in, clean the site, clear Google warnings. From $99.',
     h1: 'WordPress malware removal that closes the way in.',
     h1Lines: ['WordPress malware', 'removal that closes', 'the way in.'],
     lead: 'Seeing spam pages, strange redirects or a Google warning on your site? WordPress malware removal, done by hand: I clean the files and the database, find how the attacker got in and close it, so you don\'t get hacked again next week.',
@@ -217,7 +217,7 @@ export const fixes = [
     ],
     faq: [
       { q: 'How do I know my WordPress site is hacked?', a: 'Common signs are spam pages in Google results for your site, visitors being redirected elsewhere, a "deceptive site" warning in Chrome, new admin users you did not create and a host suspension notice. The guide on checking for a hack walks through each one.' },
-      { q: 'How much does malware removal cost?', a: 'Malware removal starts at $199 for one WordPress site. A deep infection, several sites on one account or a store can cost more, so you get a written quote after a free first look. Nothing starts until you have agreed the price.' },
+      { q: 'How much does malware removal cost?', a: 'Malware removal starts at $99 for one WordPress site. A deep infection, several sites on one account or a store can cost more, so you get a written quote after a free first look. Nothing starts until you have agreed the price.' },
       { q: 'Will I lose my content?', a: 'No. I take a full backup of the infected site first, then clean it. Your pages, posts and orders stay.' },
       { q: 'Will the Google warning go away?', a: 'Once the site is clean, I help you request a review in Google Search Console. Google usually reviews within a few days, and the warning comes off when the review passes.' },
       { q: 'Will it come back?', a: 'Not through the same hole, because closing it is part of the job. Keeping plugins updated and the site monitored afterwards is what stops the next one.' },

@@ -42,7 +42,7 @@ Mayabee is the example. It is a shop with an order dashboard, phone orders, cour
 
 ## What does each cost to change later?
 
-A WordPress site changes cheaply when the change fits a plugin, and expensively when you bend a plugin to do something it was not made for. A custom site costs more at the start and changes in the direction you need, because the code was written for your rules. WordPress builds with me start at $3,000. Custom projects are quoted after I read the brief.
+A WordPress site changes cheaply when the change fits a plugin, and expensively when you bend a plugin to do something it was not made for. A custom site costs more at the start and changes in the direction you need, because the code was written for your rules. WordPress builds with me start at $300. Custom projects are quoted after I read the brief.
 
 ## A quick way to decide
 
