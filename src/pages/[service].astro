@@ -75,7 +75,6 @@ const jsonld = [
         </nav>
         <h1>{s.h1Lines.map((l) => <Fragment><span class="hl">{l}</span>{' '}</Fragment>)}</h1>
         <p class="lead">{heroLead(s.lead, s.focus)}</p>
-        {from && <p class="label">{from} · written quote first</p>}
         <div class="hero-actions">
           <a class="btn" href={`/contact/?need=${need}`}>{isFix ? 'Send the site' : 'Get a free site check'}</a>
           {(proof.length > 0 || s.example) && <a class="btn btn-ghost" href="#proof">{s.example ? 'See a recent cleanup' : 'See the proof'}</a>}

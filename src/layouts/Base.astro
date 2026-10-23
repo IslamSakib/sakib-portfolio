@@ -108,56 +108,45 @@ const agencyGuides = [
         <nav aria-label="Main">
           <div class="has-menu">
             <a href="/#services" aria-haspopup="true">Services <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
-            <div class="menu mega">
-              <div class="mega-col mega-biz">
-                <p class="mega-label">For businesses</p>
-                <div class="mega-grid">
+            <div class="menu mega mega-clean">
+              <div class="mc-main">
+                <p class="mega-label">Services</p>
+                <ul class="mc-list">
                   {businessMenu.map((sv) => (
-                    <a class="mega-item" href={`/${sv.slug}/`}>
-                      <span class="mega-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d={sv.ic} /></svg></span>
-                      <span class="mega-text"><b>{sv.name}</b><small>{sv.short}</small><em>{sv.price}</em></span>
-                    </a>
+                    <li><a href={`/${sv.slug}/`}><span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={sv.ic} /></svg></span><span class="mc-t"><b>{sv.name}</b><small>{sv.short}</small></span><em>{sv.price}</em></a></li>
                   ))}
-                </div>
-                <div class="mega-groups">
-                  <div class="mega-wide">
-                    <p class="mega-sub">Fix and care</p>
-                    <ul class="mega-tiles">
-                      {fixLinks.map((g) => <li><a class="mega-tile" href={g.href}><span class="mega-ti" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={g.ic} /></svg></span><span>{g.m}</span></a></li>)}
-                    </ul>
-                  </div>
-                </div>
+                </ul>
               </div>
-              <div class="mega-col mega-agency">
+              <div class="mc-side">
+                <p class="mega-label">Fix and care</p>
+                <ul class="mc-links">
+                  {fixLinks.map((g) => <li><a href={g.href}><span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={g.ic} /></svg></span><span>{g.m}</span></a></li>)}
+                </ul>
                 <p class="mega-label">For agencies</p>
-                <a class="mega-item" href={`/${agencyMenu.slug}/`}>
-                  <span class="mega-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d={agencyMenu.ic} /></svg></span>
-                  <span class="mega-text"><b>{agencyMenu.name}</b><small>{agencyMenu.short}</small><em>{agencyMenu.price} · from {usd(prices.agencySite)} a site</em></span>
-                </a>
-                <p class="mega-sub">Also for agencies</p>
-                <ul class="mega-tiles">
-                      {agencyGuides.map((g) => <li><a class="mega-tile" href={g.href}><span class="mega-ti" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={g.ic} /></svg></span><span>{g.m}</span></a></li>)}
-                    </ul>
+                <ul class="mc-links">
+                  <li><a href={`/${agencyMenu.slug}/`}><span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={agencyMenu.ic} /></svg></span><span>White-label WordPress</span></a></li>
+                  <li><a href={agencyGuides[0].href}><span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={agencyGuides[0].ic} /></svg></span><span>Support and care</span></a></li>
+                </ul>
               </div>
               <a class="mega-feature" href="/contact/">
                 <Image src={megaVisual} widths={[320, 480]} sizes="280px" alt="Glossy stacked layers: a custom website built from design to backend" loading="lazy" />
-                <span class="mega-feature-text"><b>Not sure where to start?</b><small>Send your site URL or project requirements. I reply within 24 hours with clear pricing.</small><span class="mega-cta">Get a free quote <span aria-hidden="true">→</span></span></span>
+                <span class="mega-feature-text"><b>Not sure where to start?</b><small>Send your site URL or project needs. I reply within 24 hours with clear pricing.</small><span class="mega-cta">Get a free quote <span aria-hidden="true">→</span></span></span>
               </a>
             </div>
           </div>
           <div class="has-menu">
             <a href="/for/" aria-haspopup="true">Who I help <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
-            <div class="menu mega">
-              <div class="mega-col">
+            <div class="menu mega mega-clean">
+              <div class="mc-main">
                 <p class="mega-label">Who I help</p>
-                <ul class="mega-tiles">
-                      {audienceLinks.map((g) => <li><a class="mega-tile" href={g.href}><span class="mega-ti" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={g.ic} /></svg></span><span>{g.m}</span></a></li>)}
-                    </ul>
+                <ul class="mc-list mc-2">
+                  {audienceLinks.map((g) => <li><a href={g.href}><span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={g.ic} /></svg></span><span class="mc-t"><b>{g.m}</b></span></a></li>)}
+                </ul>
               </div>
-              <div class="mega-col mega-agency">
+              <div class="mc-side">
                 <p class="mega-label">Start here</p>
-                <ul class="mega-tiles">
-                  {startLinks.map((g) => <li><a class="mega-tile" href={g.href}><span class="mega-ti" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={g.ic} /></svg></span><span>{g.m}</span></a></li>)}
+                <ul class="mc-links">
+                  {startLinks.map((g) => <li><a href={g.href}><span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={g.ic} /></svg></span><span>{g.m}</span></a></li>)}
                 </ul>
               </div>
               <a class="mega-feature" href="/for/">
