@@ -775,7 +775,7 @@ h1, h2, h3, .page-head h1, .svc-copy h1 { text-wrap: balance; overflow-wrap: nor
 .svc-price { margin-top: auto; font-family: var(--mono); font-size: 0.8125rem; color: var(--accent); }
 
 /* Contact guide: a wider panel, and options as short one-line rows instead of tall boxes */
-.contact-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 3rem; }
+
 .g-opts:not(.chips) { grid-template-columns: minmax(0, 1fr); gap: 0.6rem; }
 .g-opts:not(.chips) .g-opt > span { grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0.25rem 1rem; padding: 0.85rem 1.1rem; }
 .g-opts:not(.chips) .g-opt small { text-align: right; font-size: 0.875rem; }
@@ -811,7 +811,9 @@ h1, h2, h3, .page-head h1, .svc-copy h1 { text-wrap: balance; overflow-wrap: nor
 @media (max-width: 1100px) { .menu.mega-clean { grid-template-columns: minmax(0, 1fr); } .mc-side { border-left: 0; } }
 
 /* Contact page: the two columns sit closer, the panel fills its column */
-.contact-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 2.5rem; }
+@media (min-width: 1101px) { .contact-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 2.5rem; } }
+@media (max-width: 1100px) { .contact-grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; } }
 .contact-side { max-width: none; }
 .guide-wrap { width: 100%; max-width: none; }
 .contact-side { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 480px) { .g-count { display: none; } .g-head { gap: 0.7rem; } }
