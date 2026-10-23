@@ -10,7 +10,7 @@
   --line: #26222f;
   --line-2: #363042;
   --text: #efeaf6;
-  --muted: #9a93a8;
+  --muted: #b0a9bf;
   --accent: #a78bfa;
   --accent-hi: #c4b5fd;
   --accent-fill: #7048e8;
@@ -47,7 +47,7 @@ a { color: inherit; text-underline-offset: 3px; }
 a:hover { color: var(--accent-hi); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 h1, h2, h3, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
-h1, h2, h3 { font-family: var(--display); line-height: 1.08; letter-spacing: -0.03em; font-weight: 700; text-wrap: wrap; padding-bottom: 0.08em; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.08; letter-spacing: -0.03em; font-weight: 700; text-wrap: balance; padding-bottom: 0.08em; }
 h1 { font-size: clamp(2.5rem, 6vw, 4.75rem); }
 h2 { font-size: clamp(2rem, 4.2vw, 3.25rem); }
 h3 { font-size: 1.375rem; line-height: 1.2; letter-spacing: -0.02em; }
@@ -112,7 +112,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .hero-grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: 4rem; align-items: center; }
 .hero-copy { display: grid; gap: 1.75rem; justify-items: start; }
 .hero-copy h1 em { font-style: normal; color: var(--accent); }
-.hero-copy h1 { font-size: clamp(2.1rem, 4.1vw, 3.6rem); line-height: 1.04; letter-spacing: -0.035em; text-wrap: wrap; }
+.hero-copy h1 { font-size: clamp(2.1rem, 4.1vw, 3.6rem); line-height: 1.04; letter-spacing: -0.035em; text-wrap: balance; }
 @media (min-width: 861px) { .hero-copy h1 .hl { display: block; white-space: nowrap; } }
 .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 /* Portrait: a cutout standing in front of a flat accent panel, head breaking out of the top edge */
@@ -351,7 +351,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .page-head .svc-grid { justify-items: stretch; gap: clamp(3rem, 6vw, 6rem); }
 .svc-copy { display: grid; gap: 1.5rem; justify-items: start; min-width: 0; }
 .svc-copy h1 { font-size: clamp(2.2rem, 3.9vw, 3.4rem); line-height: 1.05; }
-@media (min-width: 861px) { .svc-copy h1 .hl { display: block; } }
+@media (min-width: 861px) { .svc-copy h1 .hl { display: inline; } }
 .proof { grid-template-columns: repeat(var(--cols, 4), 1fr); }
 .proof dd b { color: var(--text); font-weight: 600; }
 

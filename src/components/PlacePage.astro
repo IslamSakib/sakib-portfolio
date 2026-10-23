@@ -1,4 +1,5 @@
 ---
+import { heroLead } from '../heroLead.js';
 // One page per place in src/locations.js (/full-stack-developer/<place>/): same layout as a service page, with the place's
 // own industries, time-zone sums, proof and questions. Written to be useful to someone in that place, not a template swap.
 import Base from '../layouts/Base.astro';
@@ -62,13 +63,12 @@ const jsonld = [
           <a href="/">Home</a><span>/</span><a href={base}>{role.name}</a><span>/</span><span>{p.name}</span>
         </nav>
         <h1>{p.h1Lines.map((l) => <Fragment><span class="hl">{l}</span>{' '}</Fragment>)}</h1>
-        <p class="lead">{tidy(p.lead)}</p>
+        <p class="lead">{heroLead(p.lead, p.focus)}</p>
         <p class="label">Remote from Dhaka · reply within 24 hours · written quote first</p>
         <div class="hero-actions">
           <a class="btn" href="/contact/?need=build">Get a free quote</a>
           <a class="btn btn-ghost" href="#proof">See the work</a>
         </div>
-        <ul class="tags"><li>Custom websites</li><li>Web apps</li><li>WordPress themes and plugins</li><li>Website care</li></ul>
       </div>
       <ServiceArt slug="custom-web-development" eager />
     </div>

@@ -684,3 +684,92 @@ html:has(.mnav[open]) .chat, html:has(.mnav[open]) .to-top { display: none; }
 .tool-group li span { font-size: 0.9375rem; }
 @media (max-width: 980px) { .tools { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .tools { grid-template-columns: minmax(0, 1fr); } }
+
+/* Design pass, 23 Oct 2026: the same boxed card was used for every list on the site. Three patterns now:
+   .kit (open columns with a rule on top), .kit-rows (title left, text right, divider between) and
+   .kit-links (index rows with an arrow). Boxed cards stay only where a picture sits inside (.kit-art). */
+.kit { gap: 0 2.5rem; }
+.kit > li { padding: 1.5rem 0 1.75rem; border: 0; border-top: 1px solid var(--line); border-radius: 0; background: none; gap: 0.6rem; transition: border-color 0.3s ease; }
+.kit > li:hover { border-color: var(--accent); box-shadow: none; }
+.kit-top { justify-content: flex-start; align-items: center; gap: 0.9rem; margin-bottom: 0.1rem; }
+.kit-ico { display: none; }
+.kit .idx { color: var(--accent); }
+.kit h3 { font-size: 1.25rem; }
+.kit p.muted, .kit p { color: #b7b0c6; line-height: 1.6; }
+.kit-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.kit-rows { grid-template-columns: minmax(0, 1fr); gap: 0; }
+.kit-rows > li { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); column-gap: 3rem; align-items: start; padding: 1.6rem 0; }
+.kit-rows > li:last-child { border-bottom: 1px solid var(--line); }
+.kit-rows .kit-top { grid-column: 1; grid-row: 1 / span 2; align-self: start; margin: 0; }
+.kit-rows .kit-top .kit-ico { display: none; }
+.kit-rows h3 { grid-column: 1; grid-row: 1; margin-left: 2.6rem; line-height: 1.2; }
+.kit-rows .kit-top { position: absolute; left: 0; top: 1.75rem; }
+.kit-rows p { grid-column: 2; grid-row: 1; }
+
+.kit-links:not(:has(.kit-art)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.kit-links:not(:has(.kit-art)) > li { padding: 1.2rem 2.5rem 1.2rem 0; border-top: 0; border-bottom: 1px solid var(--line); }
+.kit-links:not(:has(.kit-art)) > li::after { content: "→"; position: absolute; right: 0.25rem; top: 1.25rem; color: var(--accent); transition: translate 0.3s var(--ease); }
+.kit-links:not(:has(.kit-art)) > li:hover::after { translate: 4px 0; }
+.kit-links:not(:has(.kit-art)) .kit-top { margin: 0; }
+.kit-links:not(:has(.kit-art)) h3 { font-size: 1.1875rem; }
+.kit-links:has(.kit-art) { gap: 1rem; }
+.kit-links:has(.kit-art) > li { padding: 1.6rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+
+/* Mega menu: readable text, and the feature title no longer takes the muted nav colour */
+.site-header nav .mega-feature-text b { color: var(--text); }
+.site-header nav .mega-feature-text small, .mega-text small { color: #b7b0c6; font-size: 0.875rem; }
+.mega-sub { color: #b7b0c6; }
+.site-header nav .mega-links a { font-size: 0.9375rem; padding: 0.6rem 0.85rem; }
+
+@media (max-width: 900px) {
+  .kit-2, .kit-links:not(:has(.kit-art)) { grid-template-columns: minmax(0, 1fr); }
+  .kit-rows > li { grid-template-columns: minmax(0, 1fr); row-gap: 0.4rem; }
+  .kit-rows p, .kit-rows h3 { grid-column: 1; grid-row: auto; }
+}
+
+/* Dropdown menus: icon tiles instead of text lists with arrows */
+.mega-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; margin-top: 0.3rem; }
+.site-header nav .mega-tile { display: flex; align-items: center; gap: 0.7rem; min-height: 52px; padding: 0.55rem 0.7rem; border: 1px solid var(--line); border-radius: 14px; background: rgb(255 255 255 / 0.02); color: var(--text); font-size: 0.9375rem; font-weight: 500; line-height: 1.25; transition: background-color 0.25s ease, border-color 0.25s ease; }
+.site-header nav .mega-tile:hover { background: rgb(var(--accent-rgb) / 0.1); border-color: rgb(var(--accent-rgb) / 0.35); }
+.mega-ti { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: rgb(var(--accent-rgb) / 0.14); color: var(--accent); transition: background-color 0.25s ease, color 0.25s ease; }
+.mega-ti svg { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.mega-tile:hover .mega-ti { background: var(--accent-fill); color: var(--accent-ink); }
+.mega-agency .mega-tiles, .mega-agency + .mega-feature { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 1100px) { .mega-tiles { grid-template-columns: minmax(0, 1fr); } }
+
+/* Audience tiles: a big icon, a short title and one price line, in place of paragraphs */
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.tiles a { display: grid; gap: 0.5rem; align-content: start; height: 100%; padding: 1.4rem; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(160deg, rgb(var(--accent-rgb) / 0.1), transparent 60%), var(--surface); text-decoration: none; color: var(--text); transition: border-color 0.25s ease, transform 0.3s var(--ease); }
+.tiles a:hover { border-color: var(--accent); transform: translateY(-3px); }
+.tile-ic { display: grid; place-items: center; width: 56px; height: 56px; margin-bottom: 0.7rem; border-radius: 16px; background: rgb(var(--accent-rgb) / 0.16); color: var(--accent); }
+.tile-ic svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.tiles b { font-family: var(--display); font-size: 1.25rem; letter-spacing: -0.02em; line-height: 1.2; }
+.tiles small { font-size: 0.875rem; line-height: 1.4; color: #b7b0c6; }
+@media (max-width: 1100px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .tiles a { padding: 1.1rem; } .tile-ic { width: 48px; height: 48px; } }
+@media (prefers-reduced-motion: reduce) { .tiles a:hover { transform: none; } }
+
+/* Cleaner, more visual lists: icon tile on top, short text, soft tinted surface (replaces the ruled columns above) */
+.tiles-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 700px) { .tiles-3 { grid-template-columns: minmax(0, 1fr); } }
+.kit { gap: 1rem; }
+.kit > li { padding: 1.5rem; border: 1px solid var(--line); border-radius: 20px; background: linear-gradient(160deg, rgb(var(--accent-rgb) / 0.08), transparent 55%), var(--surface); gap: 0.55rem; }
+.kit > li:hover { border-color: rgb(var(--accent-rgb) / 0.5); }
+.kit-top { margin-bottom: 0.5rem; }
+.kit-ico { display: block; box-sizing: content-box; padding: 0.8rem; width: 26px; height: 26px; border-radius: 16px; background: rgb(var(--accent-rgb) / 0.16); stroke: var(--accent); }
+.kit .idx { display: none; }
+.kit-rows > li { background: none; border: 0; border-top: 1px solid var(--line); border-radius: 0; padding: 1.6rem 0; }
+.kit-rows .kit-top { position: static; grid-row: 1 / span 2; }
+.kit-rows h3 { margin-left: 0; }
+.kit-rows > li { grid-template-columns: auto minmax(0, 0.9fr) minmax(0, 1.4fr); }
+.kit-rows .kit-top { grid-column: 1; margin: 0; }
+.kit-rows h3 { grid-column: 2; }
+.kit-rows p { grid-column: 3; }
+.kit-links:not(:has(.kit-art)) > li { background: none; border-radius: 0; }
+@media (max-width: 900px) { .kit-rows > li { grid-template-columns: auto minmax(0, 1fr); } .kit-rows p { grid-column: 2; grid-row: auto; } }
+
+/* Titles wrap to even lines on every device (no forced breaks, no one-word last line); body text avoids a lone last word */
+h1, h2, h3, .page-head h1, .svc-copy h1 { text-wrap: balance; overflow-wrap: normal; }
+.lead, .kit p, .tiles small, .faq details p { text-wrap: pretty; }
+.svc-price { margin-top: auto; font-family: var(--mono); font-size: 0.8125rem; color: var(--accent); }

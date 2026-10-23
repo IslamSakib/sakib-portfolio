@@ -1,4 +1,5 @@
 ---
+import { heroLead } from '../heroLead.js';
 // One page per service in src/services.js, in the same order as the home page: hero with an animated picture, result numbers,
 // the problem as a before and after, what is included, proof, process, recommendations, FAQ and the contact band.
 import Base from '../layouts/Base.astro';
@@ -73,13 +74,12 @@ const jsonld = [
           <a href="/">Home</a><span>/</span><a href={crumb.href}>{crumb.name}</a><span>/</span><span>{s.name}</span>
         </nav>
         <h1>{s.h1Lines.map((l) => <Fragment><span class="hl">{l}</span>{' '}</Fragment>)}</h1>
-        <p class="lead">{tidy(s.lead)}</p>
+        <p class="lead">{heroLead(s.lead, s.focus)}</p>
         {from && <p class="label">{from} · written quote first</p>}
         <div class="hero-actions">
           <a class="btn" href={`/contact/?need=${need}`}>{isFix ? 'Send the site' : 'Get a free site check'}</a>
           {(proof.length > 0 || s.example) && <a class="btn btn-ghost" href="#proof">{s.example ? 'See a recent cleanup' : 'See the proof'}</a>}
         </div>
-        <ul class="tags">{s.chips.map((c) => <li>{c}</li>)}</ul>
       </div>
       <ServiceArt slug={s.slug} eager />
     </div>

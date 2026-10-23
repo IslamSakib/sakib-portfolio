@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Connect from '../../components/Connect.astro';
 import { icps } from '../../icps.js';
 import { site } from '../../site.js';
+import { audienceMeta, roleMeta } from '../../audienceIcons.js';
 
 const title = 'Who I Help: Web Developer for Founders and Owners';
 const description = 'Who I help: SaaS founders, store owners, agencies and small businesses. Pick yours and see the price.';
@@ -40,13 +41,26 @@ const jsonld = [
 
   <section class="sec">
     <div class="wrap">
-      <ul class="kit kit-links">
-        {icps.map((i, n) => (
+      <ul class="tiles">
+        {icps.map((i) => (
           <li>
-            <span class="kit-top"><span class="idx">{pad(n + 1)}</span></span>
-            <h3><a href={`/for/${i.slug}/`}>{i.name}</a></h3>
-            <p class="muted">{i.short}. {i.price}.</p>
+            <a href={`/for/${i.slug}/`}>
+              <span class="tile-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30"><path d={audienceMeta[i.slug][1]} /></svg></span>
+              <b>{audienceMeta[i.slug][0]}</b>
+              <small>{i.price.split(', usually')[0]}</small>
+            </a>
           </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec tint-a">
+    <div class="wrap">
+      <div class="section-head"><h2>Hire by role</h2></div>
+      <ul class="tiles tiles-3">
+        {roleMeta.map((r) => (
+          <li><a href={r.href}><span class="tile-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30"><path d={r.ic} /></svg></span><b>{r.m}</b></a></li>
         ))}
       </ul>
     </div>

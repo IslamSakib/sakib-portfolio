@@ -1,4 +1,5 @@
 ---
+import { heroLead } from '../heroLead.js';
 // Hub for "hire a full stack developer": what the job covers, the three services, and the place pages.
 import Base from '../layouts/Base.astro';
 import Connect from '../components/Connect.astro';
@@ -55,13 +56,12 @@ const jsonld = [
           <a href="/">Home</a><span>/</span><span>{role.name}</span>
         </nav>
         <h1>{hub.h1Lines.map((l) => <Fragment><span class="hl">{l}</span>{' '}</Fragment>)}</h1>
-        <p class="lead">{tidy(hub.lead)}</p>
+        <p class="lead">{heroLead(hub.lead, hub.focus)}</p>
         <p class="label">Reply within 24 hours · written quote first</p>
         <div class="hero-actions">
           <a class="btn" href="/contact/?need=build">Get a free quote</a>
           <a class="btn btn-ghost" href="#proof">See the work</a>
         </div>
-        <ul class="tags"><li>Custom websites</li><li>Web apps</li><li>WordPress themes and plugins</li><li>Website care</li></ul>
       </div>
       <ServiceArt slug="custom-web-development" eager />
     </div>
@@ -70,7 +70,7 @@ const jsonld = [
   <section class="sec">
     <div class="wrap">
       <div class="section-head"><h2>{`What a ${role.name.toLowerCase()} covers here`}</h2></div>
-      <ul class="kit">
+      <ul class="kit kit-rows">
         {covers.map((item, i) => (
           <li>
             <span class="kit-top">

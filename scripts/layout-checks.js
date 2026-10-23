@@ -1,5 +1,5 @@
 // Runs INSIDE the page (page.evaluate). Returns [{level, kind, where, msg}] for the current viewport.
-// kinds: card-width, grid-collapse, text-orphan, text-stack, text-blank, section-padding, section-gap, graphic-broken, graphic-clipped
+// kinds: text-heavy, card-repeat, card-width, grid-collapse, text-orphan, text-stack, text-blank, section-padding, section-gap, graphic-broken, graphic-clipped
 () => {
   const out = [];
   const vw = innerWidth;
@@ -197,5 +197,19 @@
       if (spill > 0.4 && spill < 40) { n++; add('WARN', 'art-overflow', sv, `a ${b.tag}${b.e.textContent ? ' "' + b.e.textContent.trim().slice(0, 14) + '"' : ''} sticks ${spill.toFixed(1)} units outside the card drawn in this graphic`); }
     }));
   });
+  // ---------- 9. visual weight: pages should lean on pictures and icons, not paragraphs, and not repeat one card ----------
+  const words = (e) => (e.innerText || '').trim().split(/\s+/).filter(Boolean).length;
+  const vsecs = [...document.querySelectorAll('main > section, main > div > section')].filter(vis);
+  vsecs.forEach((s) => {
+    const w = words(s); if (w < 110 || s.closest('.faq,.blog,article')) return;
+    const media = s.querySelectorAll('img,picture,video,canvas,svg:not([aria-hidden=true]),.tile-ic,.mega-ti,figure').length;
+    const heads = s.querySelectorAll('h2,h3').length;
+    if (media === 0 && w / Math.max(1, heads) > 45) add('WARN', 'text-heavy', s, `${w} words and no picture, icon or graphic: add a visual, cut the copy, or turn paragraphs into short labels`);
+  });
+  // the same boxed card (border + fill + radius) used in 3 or more sections of one page
+  const boxed = (li) => { const cs = getComputedStyle(li); return cs.borderTopWidth !== '0px' && cs.borderTopStyle !== 'none' && cs.backgroundColor !== 'rgba(0, 0, 0, 0)' && (parseFloat(cs.borderTopLeftRadius) || 0) >= 8; };
+  let boxedSections = 0;
+  vsecs.forEach((s) => { const lis = [...s.querySelectorAll('ul > li, ol > li')].filter((li) => vis(li) && li.getBoundingClientRect().width > 150); if (lis.length >= 3 && lis.filter(boxed).length >= 3 && !s.querySelector('.reel,.rv,.faq')) boxedSections++; });
+  if (boxedSections >= 3) add('WARN', 'card-repeat', document.body, `${boxedSections} sections use the same boxed-card grid; vary the layout (open rows, icon tiles, split text and picture, one large feature)`);
   return out;
 }

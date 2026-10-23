@@ -1,4 +1,5 @@
 ---
+import { heroLead } from '../heroLead.js';
 // One page per ideal customer (see src/icps.js): who it is for, what usually goes wrong, what I do, proof, price and questions.
 import Base from '../layouts/Base.astro';
 import Connect from '../components/Connect.astro';
@@ -52,8 +53,7 @@ const jsonld = [
           <a href="/">Home</a><span>/</span><a href="/for/">Who I help</a><span>/</span><span>{icp.name}</span>
         </nav>
         <h1>{icp.h1Lines.map((l) => <Fragment><span class="hl">{l}</span>{' '}</Fragment>)}</h1>
-        <p class="lead">{icp.lead}</p>
-        <p class="label">Reply within 24 hours · written quote first</p>
+        <p class="lead">{heroLead(icp.lead, icp.focus)}</p>
         <div class="hero-actions">
           <a class="btn" href="/contact/?need=build">Get a free quote</a>
           <a class="btn btn-ghost" href="#proof">See the work</a>
@@ -67,7 +67,7 @@ const jsonld = [
   <section class="sec">
     <div class="wrap">
       <div class="section-head"><h2>Does this sound like you?</h2></div>
-      <ul class="kit">
+      <ul class="kit kit-2">
         {icp.pains.map((item, i) => (
           <li>
             <span class="kit-top">
@@ -85,7 +85,7 @@ const jsonld = [
   <section class="sec tint-a">
     <div class="wrap">
       <div class="section-head"><h2>What I do for you</h2></div>
-      <ul class="kit">
+      <ul class="kit kit-rows">
         {icp.does.map((item, i) => (
           <li>
             <span class="kit-top">

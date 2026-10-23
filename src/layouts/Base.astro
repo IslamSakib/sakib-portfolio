@@ -11,11 +11,13 @@ import '../styles/pages.css';
 import { site } from '../site.js';
 import { prices, usd } from '../prices.js';
 import { icps } from '../icps.js';
+import { audienceMeta } from '../audienceIcons.js';
 import { socials } from '../socials.js';
 import { designedOg } from '../ogDesigned.js';
 import { Image } from 'astro:assets';
 import Clock from '../components/Clock.astro';
 import megaVisual from '../assets/visuals/mayabee.jpg';
+import megaWho from '../assets/visuals/custom.jpg';
 
 const { title, description, jsonld = [], ogImage: ogDefault = '/og.png', ogAlt = `${site.name}, ${site.role}`, focus } = Astro.props;
 // Share images are cached for a long time by LinkedIn and others: raise `v` whenever scripts/og.mjs output changes.
@@ -36,21 +38,28 @@ const businessMenu = menu.slice(0, 4);
 const agencyMenu = menu[menu.length - 1];
 // Text links under the service cards: hire by role, and fixing or caring for a live website.
 const hireLinks = [
-  { href: '/full-stack-developer/', t: 'Hire a full stack developer' },
-  { href: '/web-application-developer/', t: 'Hire a web application developer' },
-  { href: '/wordpress-developer/', t: 'Hire a WordPress developer' },
+  { href: '/full-stack-developer/', t: 'Hire a full stack developer', m: 'Full stack developer', ic: 'M8 8l-4 4 4 4M16 8l4 4-4 4M13 6l-2 12' },
+  { href: '/web-application-developer/', t: 'Hire a web application developer', m: 'Web application developer', ic: 'M3 5h18v14H3zM3 9h18M7 7h.01' },
+  { href: '/wordpress-developer/', t: 'Hire a WordPress developer', m: 'WordPress developer', ic: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM3.5 9h17M3.5 15h17M12 3c3 3 3 15 0 18' },
 ];
 const fixLinks = [
-  { href: '/wordpress-care-plans/', t: 'Compare care plans' },
-  { href: '/wordpress-malware-removal/', t: 'Clean a hacked website' },
-  { href: '/blog/', t: 'Guides and costs' },
+  { href: '/wordpress-repair/', t: 'Website repair and speed fixes', m: 'Repair and speed fixes', ic: 'M13 2L4 14h7l-1 8 9-12h-7z' },
+  { href: '/wordpress-care-plans/', t: 'Compare care plans', m: 'Compare care plans', ic: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4' },
+  { href: '/wordpress-malware-removal/', t: 'Clean a hacked website', m: 'Clean a hacked site', ic: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM12 8v5M12 16v.01' },
+  { href: '/blog/', t: 'Guides and costs', m: 'Guides and costs', ic: 'M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM8 8h7M8 12h5' },
 ];
-const audienceLinks = icps.map((i) => ({ href: `/for/${i.slug}/`, t: i.name }));
+const startLinks = [
+  { href: '/contact/', m: 'Get a free quote', ic: 'M4 5h16v11H9l-5 4z' },
+  { href: '/#work', m: 'See my work', ic: 'M3 5h18v14H3zM3 16l5-5 4 4 3-3 6 6' },
+  { href: '/#pricing', m: 'Prices', ic: 'M12 3v18M16 7c0-2-8-2-8 1s8 2 8 5-8 3-8 1' },
+  { href: '/#about', m: 'About me', ic: 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM4 21c0-4 4-6 8-6s8 2 8 6' },
+];
+const audienceLinks = icps.map((i) => ({ href: `/for/${i.slug}/`, t: i.name, m: audienceMeta[i.slug][0], ic: audienceMeta[i.slug][1] }));
 const agencyGuides = [
-  { href: '/white-label-wordpress-maintenance/', t: 'White-label support and care' },
-  { href: '/blog/choosing-a-white-label-wordpress-partner/', t: 'Choosing a white label partner' },
-  { href: '/blog/outsource-wordpress-development/', t: 'Outsourcing WordPress builds' },
-  { href: '/blog/white-label-wordpress-maintenance/', t: 'Reselling care plans' },
+  { href: '/white-label-wordpress-maintenance/', t: 'White-label support and care', m: 'Support and care', ic: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z' },
+  { href: '/blog/choosing-a-white-label-wordpress-partner/', t: 'Choosing a white label partner', m: 'Choosing a partner', ic: 'M9 12l2 2 4-4M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z' },
+  { href: '/blog/outsource-wordpress-development/', t: 'Outsourcing WordPress builds', m: 'Outsourcing builds', ic: 'M4 7h16v12H4zM9 7V5h6v2' },
+  { href: '/blog/white-label-wordpress-maintenance/', t: 'Reselling care plans', m: 'Reselling care plans', ic: 'M3 17l6-6 4 4 8-8M15 7h6v6' },
 ];
 ---
 <!doctype html>
@@ -113,9 +122,8 @@ const agencyGuides = [
                 <div class="mega-groups">
                   <div class="mega-wide">
                     <p class="mega-sub">Fix and care</p>
-                    <ul class="mega-links mega-care mega-cols">
-                      <li><a href="/wordpress-repair/">Website repair and speed fixes <span aria-hidden="true">→</span></a></li>
-                      {fixLinks.map((g) => <li><a href={g.href}>{g.t} <span aria-hidden="true">→</span></a></li>)}
+                    <ul class="mega-tiles">
+                      {fixLinks.map((g) => <li><a class="mega-tile" href={g.href}><span class="mega-ti" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={g.ic} /></svg></span><span>{g.m}</span></a></li>)}
                     </ul>
                   </div>
                 </div>
@@ -127,9 +135,9 @@ const agencyGuides = [
                   <span class="mega-text"><b>{agencyMenu.name}</b><small>{agencyMenu.short}</small><em>{agencyMenu.price} · from {usd(prices.agencySite)} a site</em></span>
                 </a>
                 <p class="mega-sub">Also for agencies</p>
-                <ul class="mega-links">
-                  {agencyGuides.map((g) => <li><a href={g.href}>{g.t} <span aria-hidden="true">→</span></a></li>)}
-                </ul>
+                <ul class="mega-tiles">
+                      {agencyGuides.map((g) => <li><a class="mega-tile" href={g.href}><span class="mega-ti" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={g.ic} /></svg></span><span>{g.m}</span></a></li>)}
+                    </ul>
               </div>
               <a class="mega-feature" href="/contact/">
                 <Image src={megaVisual} widths={[320, 480]} sizes="280px" alt="Mayabee, an online shop built from scratch, with the admin dashboard built for it" loading="lazy" />
@@ -142,18 +150,18 @@ const agencyGuides = [
             <div class="menu mega">
               <div class="mega-col">
                 <p class="mega-label">Who I help</p>
-                <ul class="mega-links mega-care mega-cols">
-                  {audienceLinks.map((g) => <li><a href={g.href}>{g.t} <span aria-hidden="true">→</span></a></li>)}
-                </ul>
+                <ul class="mega-tiles">
+                      {audienceLinks.map((g) => <li><a class="mega-tile" href={g.href}><span class="mega-ti" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={g.ic} /></svg></span><span>{g.m}</span></a></li>)}
+                    </ul>
               </div>
               <div class="mega-col mega-agency">
-                <p class="mega-label">Hire by role</p>
-                <ul class="mega-links mega-care">
-                  {hireLinks.map((g) => <li><a href={g.href}>{g.t} <span aria-hidden="true">→</span></a></li>)}
+                <p class="mega-label">Start here</p>
+                <ul class="mega-tiles">
+                  {startLinks.map((g) => <li><a class="mega-tile" href={g.href}><span class="mega-ti" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={g.ic} /></svg></span><span>{g.m}</span></a></li>)}
                 </ul>
               </div>
               <a class="mega-feature" href="/for/">
-                <Image src={megaVisual} widths={[320, 480]} sizes="280px" alt="Mayabee, an online shop built from scratch, with the admin dashboard built for it" loading="lazy" />
+                <Image src={megaWho} widths={[320, 480]} sizes="280px" alt="Wrkbase, a team platform built from scratch, with sign-in, roles and a dashboard" loading="lazy" />
                 <span class="mega-feature-text"><b>Not sure which fits?</b><small>Tell me about your business. I reply within 24 hours with clear pricing.</small><span class="mega-cta">See all audiences <span aria-hidden="true">→</span></span></span>
               </a>
             </div>
@@ -174,13 +182,13 @@ const agencyGuides = [
               <p class="mnav-label" style="--i:5">How I can help</p>
               <div class="mnav-svc">
                 {menu.map((sv, i) => <a href={`/${sv.slug}/`} style={`--i:${i + 6}`}><span>{String(i + 1).padStart(2, '0')}</span>{sv.name}</a>)}
-                {[...hireLinks, ...fixLinks].map((g, i) => <a href={g.href} style={`--i:${i + 12}`}><span>{String(menu.length + i + 1).padStart(2, '0')}</span>{g.t}</a>)}
+                {[...hireLinks, ...fixLinks.filter((g) => g.href !== '/wordpress-repair/')].map((g, i) => <a href={g.href} style={`--i:${i + 12}`}><span>{String(menu.length + i + 1).padStart(2, '0')}</span>{g.t}</a>)}
               </div>
-              <p class="mnav-label" style="--i:18">Who I help</p>
+              <p class="mnav-label" style="--i:19">Who I help</p>
               <div class="mnav-svc">
-                {audienceLinks.map((g, i) => <a href={g.href} style={`--i:${i + 19}`}><span>{String(i + 1).padStart(2, '0')}</span>{g.t}</a>)}
+                {audienceLinks.map((g, i) => <a href={g.href} style={`--i:${i + 20}`}><span>{String(i + 1).padStart(2, '0')}</span>{g.t}</a>)}
               </div>
-              <div class="mnav-foot" style="--i:27">
+              <div class="mnav-foot" style="--i:28">
                 <a class="btn" href="/contact/">Get a free quote</a>
                 <p><a href={`mailto:${site.email}`}>{site.email}</a><a href={site.whatsapp} target="_blank" rel="noopener">WhatsApp +880 1950 025990</a></p>
               </div>
@@ -200,7 +208,7 @@ const agencyGuides = [
       </svg>
       <div class="wrap foot">
         <p>
-          {site.name}, {site.role} in {site.location}. Founder of{' '}<a href={site.wrkbase} target="_blank" rel="noopener">Wrkbase</a>.<br /><a href="/terms/">Terms</a> · <a href="/privacy/">Privacy</a>
+          © {new Date().getFullYear()} {site.name}.<br /><a href="/terms/">Terms</a> · <a href="/privacy/">Privacy</a>
         </p>
         <Clock compact />
         <p class="foot-links">
