@@ -60,7 +60,7 @@ I keep it to two plans, both done by me personally, not a ticket queue:
 - **Care, $149 a month:** tested updates, daily off-site backups, uptime and security monitoring, a monthly report and up to an hour of changes.
 - **Care + development, $299 a month:** the same, plus three hours of changes and a monthly mobile speed check.
 
-Urgent problems get a reply within 24 hours on both, and you keep every login. The full comparison is on the [WordPress maintenance page](/website-care/).
+Urgent problems get a reply within 24 hours on both, and you keep every login. The full comparison is on the [WordPress maintenance page](/custom-web-development/website-maintenance/).
 
 ## What does it cost me to skip maintenance?
 

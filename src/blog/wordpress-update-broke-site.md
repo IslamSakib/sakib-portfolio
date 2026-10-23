@@ -101,4 +101,4 @@ Check the things updates often break without an obvious error: contact form emai
 
 ## When should I get help?
 
-If your store can't take orders, if you can't get into the site at all, or if the fix means choosing between plugins your business relies on, get help. Tested updates are the core of every [WordPress maintenance plan](/website-care/) I run, and a one-off fix starts from $150 with the cause written down.
+If your store can't take orders, if you can't get into the site at all, or if the fix means choosing between plugins your business relies on, get help. Tested updates are the core of every [WordPress maintenance plan](/custom-web-development/website-maintenance/) I run, and a one-off fix starts from $150 with the cause written down.

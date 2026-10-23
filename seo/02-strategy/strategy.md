@@ -52,8 +52,8 @@ A senior solo WordPress developer who keeps revenue-earning sites fast and worki
 
 ## G1 decisions needed
 1. Approve the buckets above, or edit them.
-2. **Care plans:** add the wording to `/wordpress-maintenance/` (recommended), or create a separate `/wordpress-care-plans/` pricing page? The SERP overlap check in Phase 3 will confirm.
-3. **Fix/repair service page:** create a new `/wordpress-repair/` page (malware, emergency, repair; about 700/mo, KD 3–11), or fold it into the maintenance page?
+2. **Care plans:** add the wording to `/wordpress-maintenance/` (recommended), or create a separate `/wordpress-development/wordpress-maintenance/` pricing page? The SERP overlap check in Phase 3 will confirm.
+3. **Fix/repair service page:** create a new `/wordpress-development/wordpress-repair/` page (malware, emergency, repair; about 700/mo, KD 3–11), or fold it into the maintenance page?
 4. **Speed page:** switch its focus keyword to "WordPress speed optimization service"?
 
 ## Funnel balance (added 16 Oct 2026; the method was missed at G1 and is now part of the skill)
@@ -61,10 +61,10 @@ Funnel stages: BOFU = ready to hire; MOFU = comparing options or prices; TOFU = 
 
 | Topic | BOFU (live) | MOFU (live) | MOFU missing | TOFU (live) |
 |---|---|---|---|---|
-| Maintenance and care | /wordpress-maintenance/, /wordpress-care-plans/ | /blog/wordpress-maintenance-cost/ | **best WordPress maintenance services** (480/mo, KD 29) | tasks, checklist, backups |
-| Repair and security | /wordpress-repair/, /wordpress-malware-removal/ | – | malware removal cost / service comparison (check volume) | white screen, update broke, plugin conflict, hacked ×2 |
+| Maintenance and care | /wordpress-maintenance/, /wordpress-development/wordpress-maintenance/ | /blog/wordpress-maintenance-cost/ | **best WordPress maintenance services** (480/mo, KD 29) | tasks, checklist, backups |
+| Repair and security | /wordpress-development/wordpress-repair/, /wordpress-development/wordpress-malware-removal/ | – | malware removal cost / service comparison (check volume) | white screen, update broke, plugin conflict, hacked ×2 |
 | Speed | /wordpress-speed-optimization/ | – | speed service cost (check volume) | slow site, CWV, WooCommerce slow, cache plugins |
 | Development | /wordpress-development/, home | /blog/cost-to-hire-a-wordpress-developer/, case studies | **freelancer vs agency vs care-plan company** | redesign, checkout, Figma handoff |
-| Agencies | /white-label-wordpress-development/, /white-label-wordpress-maintenance/ | partner, outsource, maintenance-for-agencies posts | – | – |
+| Agencies | /wordpress-development/white-label-wordpress-development/, /wordpress-development/white-label-wordpress-maintenance/ | partner, outsource, maintenance-for-agencies posts | – | – |
 
 Reading: BOFU is complete (every topic has a service page). MOFU is thin: 6 pages against 15 TOFU. The next content goes to the two bold MOFU gaps, before any new TOFU post.

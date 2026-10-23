@@ -11,12 +11,12 @@ import '../styles/pages.css';
 import { site } from '../site.js';
 import { prices, usd } from '../prices.js';
 import { icps } from '../icps.js';
+import { pillars, pathOf } from '../children.js';
 import { audienceMeta } from '../audienceIcons.js';
 import { socials } from '../socials.js';
 import { designedOg } from '../ogDesigned.js';
 import { Image } from 'astro:assets';
 import Clock from '../components/Clock.astro';
-import megaVisual from '../assets/visuals/svc-website.jpg';
 import megaWho from '../assets/visuals/svc-webapp.jpg';
 
 const { title, description, jsonld = [], ogImage: ogDefault = '/og.png', ogAlt = `${site.name}, ${site.role}`, focus } = Astro.props;
@@ -24,30 +24,8 @@ const { title, description, jsonld = [], ogImage: ogDefault = '/og.png', ogAlt =
 const ogImage = designedOg[Astro.url.pathname] ?? ogDefault;
 const ogUrl = `${new URL(ogImage, Astro.site)}?v=4`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-// The services menu names the job in the visitor's words, not the page's search keyword. `ic` is an icon path drawn in
-// a 24-unit box; `price` is the starting price shown on the card.
-const menu = [
-  { slug: 'custom-web-development', name: 'Custom website development', short: 'Websites and online stores: UI/UX, frontend, backend, dashboard.', price: `from ${usd(prices.site)}`, ic: 'M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16' },
-  { slug: 'web-application-development', name: 'Web application development', short: 'Portals, internal tools and SaaS: sign-in, roles, dashboards, APIs.', price: `from ${usd(prices.webApp)}`, ic: 'M3 4h18v14H3zM3 9h18M7 6.5h.01M10 6.5h.01M8 13h8' },
-  { slug: 'wordpress-development', name: 'WordPress development', short: 'Custom themes, plugins, WooCommerce and payments.', price: `from ${usd(prices.build)}`, ic: 'M3 4h18v12H3zM8 20h8M12 16v4' },
-  { slug: 'website-care', name: 'Website care', short: 'Monthly updates, backups, monitoring and fixes.', price: `${usd(prices.care)}/mo`, ic: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4' },
-  { slug: 'wordpress-repair', name: 'Website repair and speed fixes', short: 'A broken or slow website fixed at the cause.', price: `from ${usd(prices.fix)}`, ic: 'M13 2L4 14h7l-1 8 9-12h-7z' },
-  { slug: 'white-label-wordpress-development', name: 'White-label WordPress for agencies', short: 'Your design built in WordPress, under your name.', price: `${usd(prices.agencyHour)}/h`, ic: 'M4 7h16v12H4zM9 7V5h6v2' },
-];
-const businessMenu = menu.slice(0, 4);
-const agencyMenu = menu[menu.length - 1];
-// Text links under the service cards: hire by role, and fixing or caring for a live website.
-const hireLinks = [
-  { href: '/full-stack-developer/', t: 'Hire a full stack developer', m: 'Full stack developer', ic: 'M8 8l-4 4 4 4M16 8l4 4-4 4M13 6l-2 12' },
-  { href: '/web-application-developer/', t: 'Hire a web application developer', m: 'Web application developer', ic: 'M3 5h18v14H3zM3 9h18M7 7h.01' },
-  { href: '/wordpress-developer/', t: 'Hire a WordPress developer', m: 'WordPress developer', ic: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM3.5 9h17M3.5 15h17M12 3c3 3 3 15 0 18' },
-];
-const fixLinks = [
-  { href: '/wordpress-repair/', t: 'Website repair and speed fixes', m: 'Repair and speed fixes', ic: 'M13 2L4 14h7l-1 8 9-12h-7z' },
-  { href: '/wordpress-care-plans/', t: 'Compare care plans', m: 'Compare care plans', ic: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4' },
-  { href: '/wordpress-malware-removal/', t: 'Clean a hacked website', m: 'Clean a hacked site', ic: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM12 8v5M12 16v.01' },
-  { href: '/blog/', t: 'Guides and costs', m: 'Guides and costs', ic: 'M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM8 8h7M8 12h5' },
-];
+// The services menu is the three pillars with their services (src/children.js). White-label pages are reached through "For agencies".
+const pillarMenu = pillars.map((p) => ({ ...p, kids: p.kids.filter((k) => !k.slug.startsWith('white-label')) }));
 const startLinks = [
   { href: '/contact/', m: 'Get a free quote', ic: 'M4 5h16v11H9l-5 4z' },
   { href: '/#work', m: 'See my work', ic: 'M3 5h18v14H3zM3 16l5-5 4 4 3-3 6 6' },
@@ -55,12 +33,6 @@ const startLinks = [
   { href: '/#about', m: 'About me', ic: 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM4 21c0-4 4-6 8-6s8 2 8 6' },
 ];
 const audienceLinks = icps.map((i) => ({ href: `/for/${i.slug}/`, t: i.name, m: audienceMeta[i.slug][0], ic: audienceMeta[i.slug][1] }));
-const agencyGuides = [
-  { href: '/white-label-wordpress-maintenance/', t: 'White-label support and care', m: 'Support and care', ic: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z' },
-  { href: '/blog/choosing-a-white-label-wordpress-partner/', t: 'Choosing a white label partner', m: 'Choosing a partner', ic: 'M9 12l2 2 4-4M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z' },
-  { href: '/blog/outsource-wordpress-development/', t: 'Outsourcing WordPress builds', m: 'Outsourcing builds', ic: 'M4 7h16v12H4zM9 7V5h6v2' },
-  { href: '/blog/white-label-wordpress-maintenance/', t: 'Reselling care plans', m: 'Reselling care plans', ic: 'M3 17l6-6 4 4 8-8M15 7h6v6' },
-];
 ---
 <!doctype html>
 <html lang="en" data-focus={focus}>
@@ -108,30 +80,16 @@ const agencyGuides = [
         <nav aria-label="Main">
           <div class="has-menu">
             <a href="/#services" aria-haspopup="true">Services <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
-            <div class="menu mega mega-clean">
-              <div class="mc-main">
-                <p class="mega-label">Services</p>
-                <ul class="mc-list">
-                  {businessMenu.map((sv) => (
-                    <li><a href={`/${sv.slug}/`}><span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={sv.ic} /></svg></span><span class="mc-t"><b>{sv.name}</b><small>{sv.short}</small></span><em>{sv.price}</em></a></li>
-                  ))}
-                </ul>
-              </div>
-              <div class="mc-side">
-                <p class="mega-label">Fix and care</p>
-                <ul class="mc-links">
-                  {fixLinks.map((g) => <li><a href={g.href}><span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={g.ic} /></svg></span><span>{g.m}</span></a></li>)}
-                </ul>
-                <p class="mega-label">For agencies</p>
-                <ul class="mc-links">
-                  <li><a href={`/${agencyMenu.slug}/`}><span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={agencyMenu.ic} /></svg></span><span>White-label WordPress</span></a></li>
-                  <li><a href={agencyGuides[0].href}><span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={agencyGuides[0].ic} /></svg></span><span>Support and care</span></a></li>
-                </ul>
-              </div>
-              <a class="mega-feature" href="/contact/">
-                <Image src={megaVisual} widths={[320, 480]} sizes="280px" alt="Glossy stacked layers: a custom website built from design to backend" loading="lazy" />
-                <span class="mega-feature-text"><b>Not sure where to start?</b><small>Send your site URL or project needs. I reply within 24 hours with clear pricing.</small><span class="mega-cta">Get a free quote <span aria-hidden="true">→</span></span></span>
-              </a>
+            <div class="menu mega mega-clean mega-pillars">
+              {pillarMenu.map((p) => (
+                <div class="mc-col">
+                  <a class="mc-head" href={`/${p.slug}/`}><span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={p.ic} /></svg></span><span class="mc-t"><b>{p.menu}</b><small>{p.from}</small></span></a>
+                  <ul class="mc-links">
+                    {p.kids.map((k) => <li><a href={pathOf(k)}><span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d={k.ic} /></svg></span><span>{k.menu}</span></a></li>)}
+                  </ul>
+                </div>
+              ))}
+              <a class="mc-cta" href="/contact/"><b>Not sure where to start?</b><span>Send your site or your idea. I reply within 24 hours with clear pricing.</span><em>Get a free quote <i aria-hidden="true">→</i></em></a>
             </div>
           </div>
           <div class="has-menu">
@@ -155,7 +113,7 @@ const agencyGuides = [
               </a>
             </div>
           </div>
-          <a href="/white-label-wordpress-development/">For agencies</a>
+          <a href="/wordpress-development/white-label-wordpress-development/">For agencies</a>
           <a href="/#work">Client work</a>
           <a href="/#about">About</a>
           <a href="/blog/">Blog</a>
@@ -164,20 +122,27 @@ const agencyGuides = [
             <summary aria-label="Menu"><span class="mnav-open">Menu</span><span class="mnav-close">Close</span><i aria-hidden="true"></i></summary>
             <div class="mnav-panel">
               <div class="mnav-main">
-                {[['For agencies', '/white-label-wordpress-development/'], ['Client work', '/#work'], ['About', '/#about'], ['Blog', '/blog/'], ['Contact', '/contact/']].map(([label, href], i) => (
+                {[['For agencies', '/wordpress-development/white-label-wordpress-development/'], ['Client work', '/#work'], ['About', '/#about'], ['Blog', '/blog/'], ['Contact', '/contact/']].map(([label, href], i) => (
                   <a href={href} style={`--i:${i}`}>{label}</a>
                 ))}
               </div>
-              <p class="mnav-label" style="--i:5">How I can help</p>
+              <p class="mnav-label" style="--i:5">Services</p>
               <div class="mnav-svc">
-                {menu.map((sv, i) => <a href={`/${sv.slug}/`} style={`--i:${i + 6}`}><span>{String(i + 1).padStart(2, '0')}</span>{sv.name}</a>)}
-                {[...hireLinks, ...fixLinks.filter((g) => g.href !== '/wordpress-repair/')].map((g, i) => <a href={g.href} style={`--i:${i + 12}`}><span>{String(menu.length + i + 1).padStart(2, '0')}</span>{g.t}</a>)}
+                {pillarMenu.map((p, i) => (
+                  <details class="mnav-group" style={`--i:${i + 6}`}>
+                    <summary>{p.menu}</summary>
+                    <div class="mnav-sub">
+                      <a href={`/${p.slug}/`}>All {p.menu.toLowerCase()}</a>
+                      {p.kids.map((k) => <a href={pathOf(k)}>{k.menu}</a>)}
+                    </div>
+                  </details>
+                ))}
               </div>
-              <p class="mnav-label" style="--i:19">Who I help</p>
+              <p class="mnav-label" style="--i:10">Who I help</p>
               <div class="mnav-svc">
-                {audienceLinks.map((g, i) => <a href={g.href} style={`--i:${i + 20}`}><span>{String(i + 1).padStart(2, '0')}</span>{g.t}</a>)}
+                {audienceLinks.map((g, i) => <a href={g.href} style={`--i:${i + 11}`}><span>{String(i + 1).padStart(2, '0')}</span>{g.t}</a>)}
               </div>
-              <div class="mnav-foot" style="--i:28">
+              <div class="mnav-foot" style="--i:20">
                 <a class="btn" href="/contact/">Get a free quote</a>
                 <p><a href={`mailto:${site.email}`}>{site.email}</a><a href={site.whatsapp} target="_blank" rel="noopener">WhatsApp +880 1950 025990</a></p>
               </div>

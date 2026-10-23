@@ -4,11 +4,41 @@
 
 ## Services
 
-- [Custom website development](https://sakib.mywrkbase.com/custom-web-development/): business websites and online stores built from scratch, with competitor research, UI/UX design, frontend, backend and an admin dashboard; websites from $600, stores from $800
-- [Web application development](https://sakib.mywrkbase.com/web-application-development/): customer portals, internal tools and SaaS products with accounts, roles, dashboards and APIs; first versions from $999
-- [WordPress development](https://sakib.mywrkbase.com/wordpress-development/): custom themes, custom plugins, WooCommerce, payments and integrations; theme builds from $300, WooCommerce stores from $500, custom plugins from $200
-- [Website care](https://sakib.mywrkbase.com/website-care/): monthly updates, backups, monitoring, fixes and speed; plans from $149 a month, single fixes from $50, speed fixes from $150
-- [White-label WordPress development for agencies](https://sakib.mywrkbase.com/white-label-wordpress-development/): Figma to WordPress builds under the agency's brand; $20 an hour or from $300 per site
+Three service areas, each with its own pages.
+
+### Custom website development
+
+- [Custom website development](https://sakib.mywrkbase.com/custom-web-development/): Websites and online stores built from scratch: UI/UX, frontend, backend and admin dashboard. Websites from $600, stores from $800.
+- [Custom web design](https://sakib.mywrkbase.com/custom-web-development/custom-web-design/): A website designed for your customers and built by the same person. Websites from $600.
+- [Ecommerce website development](https://sakib.mywrkbase.com/custom-web-development/ecommerce-website-development/): Custom online stores with their own dashboard for orders and delivery. Stores from $800.
+- [Landing page design](https://sakib.mywrkbase.com/custom-web-development/landing-page-design/): One focused page for one offer, built to load fast on a phone. From $600, sites with several pages.
+- [Website redesign services](https://sakib.mywrkbase.com/custom-web-development/website-redesign/): A new design and build that keeps the rankings and URLs you already have. Websites from $600.
+- [Website speed optimization](https://sakib.mywrkbase.com/custom-web-development/website-speed-optimization/): Slow pages measured, the cause found and fixed, with before and after numbers. Speed fixes from $150.
+- [Website repair](https://sakib.mywrkbase.com/custom-web-development/website-repair/): A broken, slow or hacked site fixed at the cause, with the cause written down. Repairs from $50.
+- [Website maintenance services](https://sakib.mywrkbase.com/custom-web-development/website-maintenance/):  From $149 a month.
+
+### Web application development
+
+- [Web application development](https://sakib.mywrkbase.com/web-application-development/): Customer portals, internal tools and SaaS: sign-in, roles, dashboards and APIs. First versions from $999.
+- [SaaS development services](https://sakib.mywrkbase.com/web-application-development/saas-development/): A SaaS product from first sketch to launch, with accounts, billing rules and a dashboard. First versions from $999.
+- [Customer portal development](https://sakib.mywrkbase.com/web-application-development/customer-portal-development/): A secure place where your customers sign in to see their own data and requests. First versions from $999.
+- [Dashboard development services](https://sakib.mywrkbase.com/web-application-development/dashboard-development/): Admin dashboards and internal tools that replace spreadsheets and shared inboxes. First versions from $999.
+- [MVP development](https://sakib.mywrkbase.com/web-application-development/mvp-development/): The smallest version of your product that real users can start on. First versions from $999.
+- [API integration services](https://sakib.mywrkbase.com/web-application-development/api-integration/): Payments, email, CRM and couriers connected to your product or website. Quoted per integration, hourly $25/h.
+- [AI integration services](https://sakib.mywrkbase.com/web-application-development/ai-integration/): AI features and agents in your product that ask before they act. Quoted after the brief, hourly $25/h.
+
+### WordPress development
+
+- [WordPress development](https://sakib.mywrkbase.com/wordpress-development/): Themes, plugins, stores and payments, built as one job. Themes from $300, stores from $500.
+- [Custom WordPress theme development](https://sakib.mywrkbase.com/wordpress-development/wordpress-theme-development/): A custom WordPress theme built from your Figma design, not a bought theme bent to fit. Theme builds from $300.
+- [WordPress plugin development](https://sakib.mywrkbase.com/wordpress-development/wordpress-plugin-development/): A custom plugin for the one thing no existing plugin does properly. Plugins from $200.
+- [WooCommerce development services](https://sakib.mywrkbase.com/wordpress-development/woocommerce-development/): WooCommerce stores with a custom theme, checkout and payment setup. Stores from $500.
+- [WordPress speed optimization](https://sakib.mywrkbase.com/wordpress-development/wordpress-speed-optimization/): A slow WordPress site measured, the cause found and fixed, with before and after numbers. Speed fixes from $150.
+- [WordPress repair](https://sakib.mywrkbase.com/wordpress-development/wordpress-repair/): A broken site fixed at the cause, with the cause written down. Repairs from $50.
+- [Malware removal](https://sakib.mywrkbase.com/wordpress-development/wordpress-malware-removal/): A hacked site cleaned by hand, and the way in closed. Cleanup from $99.
+- [WordPress maintenance services](https://sakib.mywrkbase.com/wordpress-development/wordpress-maintenance/):  From $149 a month.
+- [White label WordPress development](https://sakib.mywrkbase.com/wordpress-development/white-label-wordpress-development/):  $20 an hour or $300 a site.
+- [White label WordPress support](https://sakib.mywrkbase.com/wordpress-development/white-label-wordpress-maintenance/):  From $59 per site a month.
 
 ## Hire by role and place
 

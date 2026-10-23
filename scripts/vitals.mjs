@@ -16,7 +16,7 @@ const base = process.env.BASE || 'http://localhost:4400';
 const arg = (n) => { const i = process.argv.indexOf('--' + n); return i > -1 ? process.argv[i + 1] : null; };
 const flag = (n) => process.argv.includes('--' + n);
 
-const PUBLIC = ['/', '/custom-web-development/', '/wordpress-development/', '/website-care/', '/wordpress-care-plans/', '/full-stack-developer/', '/full-stack-developer/florida/', '/full-stack-developer/usa/', '/web-application-developer/', '/web-application-developer/texas/', '/wordpress-developer/', '/wordpress-developer/chicago/', '/work/mayabee/', '/work/tabby/', '/contact/', '/white-label-wordpress-development/', '/blog/'];
+const PUBLIC = ['/', '/custom-web-development/', '/wordpress-development/', '/custom-web-development/website-maintenance/', '/wordpress-development/wordpress-maintenance/', '/full-stack-developer/', '/full-stack-developer/florida/', '/full-stack-developer/usa/', '/web-application-developer/', '/web-application-developer/texas/', '/wordpress-developer/', '/wordpress-developer/chicago/', '/work/mayabee/', '/work/tabby/', '/contact/', '/wordpress-development/white-label-wordpress-development/', '/blog/'];
 const ADMIN = [];
 let pages = flag('only') || arg('only') ? (arg('only') === 'admin' ? ADMIN : PUBLIC) : [...PUBLIC, ...ADMIN];
 if (arg('page')) pages = [('/' + arg('page').replace(/^[A-Za-z]:[\/]Program Files[\/]Git/, '').replace(/^\/+/, ''))]; // Git Bash turns /shop into a C:/ path

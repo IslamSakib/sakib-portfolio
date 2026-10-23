@@ -8,10 +8,16 @@ Options -Indexes
   RewriteCond %{HTTPS} !=on
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   # Pages merged in the October 2026 rebuild
-  RewriteRule ^ai-development/?$ /custom-web-development/ [L,R=301]
-  # Website care replaced the maintenance and speed pages (Oct 2026 full-stack rewrite)
-  RewriteRule ^wordpress-maintenance/?$ /website-care/ [L,R=301]
-  RewriteRule ^wordpress-speed-optimization/?$ /website-care/ [L,R=301]
+  RewriteRule ^ai-development/?$ /web-application-development/ai-integration/ [L,R=301]
+  # Services moved under the three pillars (23 Oct 2026): custom website, web application, WordPress
+  RewriteRule ^website-care/?$ /custom-web-development/website-maintenance/ [L,R=301]
+  RewriteRule ^wordpress-maintenance/?$ /wordpress-development/wordpress-maintenance/ [L,R=301]
+  RewriteRule ^wordpress-speed-optimization/?$ /wordpress-development/wordpress-speed-optimization/ [L,R=301]
+  RewriteRule ^wordpress-care-plans/?$ /wordpress-development/wordpress-maintenance/ [L,R=301]
+  RewriteRule ^wordpress-repair/?$ /wordpress-development/wordpress-repair/ [L,R=301]
+  RewriteRule ^wordpress-malware-removal/?$ /wordpress-development/wordpress-malware-removal/ [L,R=301]
+  RewriteRule ^white-label-wordpress-development/?$ /wordpress-development/white-label-wordpress-development/ [L,R=301]
+  RewriteRule ^white-label-wordpress-maintenance/?$ /wordpress-development/white-label-wordpress-maintenance/ [L,R=301]
 </IfModule>
 
 <IfModule mod_headers.c>

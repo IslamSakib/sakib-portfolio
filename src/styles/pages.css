@@ -841,3 +841,40 @@ h1, h2, h3, .page-head h1, .svc-copy h1 { text-wrap: balance; overflow-wrap: nor
 .svc-grid, .page-head .svc-grid { gap: clamp(2rem, 4vw, 4.5rem); }
 .svc-copy h1 { font-size: clamp(2rem, 3.3vw, 3rem); }
 .h-grid { column-gap: clamp(2rem, 4vw, 4.5rem); }
+
+/* Services menu: three pillar columns with their services, and one call to action */
+.menu.mega-pillars { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; padding: 0; }
+.mega-pillars .mc-col { display: grid; align-content: start; gap: 0.6rem; padding: 1.4rem 1.2rem 1.2rem; }
+.mega-pillars .mc-col + .mc-col { border-left: 1px solid var(--line); }
+.site-header nav .mc-head { display: flex; align-items: center; gap: 0.85rem; padding: 0.5rem 0.6rem 0.9rem; border-bottom: 1px solid var(--line); border-radius: 12px 12px 0 0; color: var(--text); }
+.site-header nav .mc-head:hover { background: rgb(var(--accent-rgb) / 0.08); }
+.mega-pillars .mc-links a { padding: 0.5rem 0.6rem; }
+.mega-pillars .mc-ic { width: 32px; height: 32px; }
+.site-header nav .mc-cta { grid-column: 1 / -1; display: flex; align-items: center; gap: 1.25rem; padding: 1rem 1.6rem; border-top: 1px solid var(--line); background: rgb(var(--accent-rgb) / 0.07); color: var(--text); }
+.mc-cta b { font-family: var(--display); font-size: 1.0625rem; }
+.mc-cta span { color: #b7b0c6; font-size: 0.9375rem; }
+.mc-cta em { margin-left: auto; font-style: normal; font-weight: 600; color: var(--accent); white-space: nowrap; }
+@media (max-width: 1100px) { .menu.mega-pillars { grid-template-columns: minmax(0, 1fr); } }
+/* Mobile menu: one collapsible group per pillar */
+.mnav-group { border-bottom: 1px solid var(--surface-2); }
+.mnav-group summary { display: flex; justify-content: space-between; align-items: center; padding: 0.85rem 0; font-size: 1.0625rem; color: var(--text); cursor: pointer; list-style: none; }
+.mnav-group summary::-webkit-details-marker { display: none; }
+.mnav-group summary::after { content: "+"; color: var(--accent); font-size: 1.4rem; line-height: 1; }
+.mnav-group[open] summary::after { content: "-"; }
+.mnav-sub { display: grid; padding: 0 0 0.75rem 0.25rem; }
+.site-header nav .mnav-svc .mnav-sub a { display: block; padding: 0.55rem 0; font-size: 1rem; color: var(--muted); border-bottom: 0; }
+.mnav-panel .mnav-group { animation: item-in 0.5s var(--ease) both; animation-delay: calc(0.08s + var(--i, 0) * 0.04s); }
+
+.svc3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.svc-links { display: grid; gap: 0.1rem; margin: 0.3rem 0 0.6rem; position: relative; z-index: 1; }
+.svc-links a { display: block; padding: 0.3rem 0; color: var(--text); text-decoration: none; font-size: 0.9375rem; border-bottom: 1px solid var(--line); }
+.svc-links a:hover { color: var(--accent); }
+@media (max-width: 1100px) { .svc3 { grid-template-columns: minmax(0, 1fr); } }
+.mnav .mnav-group summary { display: flex; height: auto; min-height: 0; border: 0; border-radius: 0; background: none; padding: 0.85rem 0; font-family: var(--sans); font-weight: 500; }
+.mnav .mnav-group summary i { display: none; }
+
+/* Service tiles: one column on small phones, three on desktop (six or nine services fill the rows) */
+@media (max-width: 440px) { .tiles { grid-template-columns: minmax(0, 1fr); } }
+@media (min-width: 1101px) { .tiles.tiles-svc { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+@media (max-width: 640px) { .pipeline { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; } .pipeline::before { display: none; } .pipeline li { padding-right: 0; } }

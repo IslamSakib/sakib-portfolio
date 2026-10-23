@@ -1,0 +1,199 @@
+---
+import { heroLead } from '../heroLead.js';
+// One page per service in src/services.js, in the same order as the home page: hero with an animated picture, result numbers,
+// the problem as a before and after, what is included, proof, process, recommendations, FAQ and the contact band.
+import GlyphArt from '../components/GlyphArt.astro';
+import Base from '../layouts/Base.astro';
+import Connect from '../components/Connect.astro';
+import ServiceArt from '../components/ServiceArt.astro';
+import WorkReel from '../components/WorkReel.astro';
+import Process from '../components/Process.astro';
+import Reviews from '../components/Reviews.astro';
+import Faq from '../components/Faq.astro';
+import { site } from '../site.js';
+import { work } from '../work.js';
+import { iconFor } from '../icons.js';
+import { prices, usd, typical } from '../prices.js';
+
+const { s, parent = null, siblings = [], kids = [] } = Astro.props;
+const url = new URL(Astro.url.pathname, Astro.site);
+const pad = (n) => String(n).padStart(2, '0');
+// Keeps the last two words of a line together, so no line ends on a single word.
+const tidy = (t) => t.replace(/ (\S+)$/, '\u00a0$1');
+const shortProblem = (() => { const p = tidy(s.problem || '').split(/(?<=[.?!])\s+(?=[A-Z])/); return p[0].length < 120 && p[1] ? `${p[0]} ${p[1]}` : p[0]; })();
+const proof = s.proof.map((slug) => work.find((w) => w.slug === slug)).filter(Boolean);
+const isChild = !!parent;
+const pathOf = (o) => (o.pillar ? `/${o.pillar}/${o.slug}/` : `/${o.slug}/`);
+// Siblings (same pillar) for a child page; the other two pillars for a pillar page.
+const others = siblings;
+// Starting price shown under the hero, from src/prices.js. Every job still gets a written quote.
+const minPrice = s.minPrice;
+const need = s.need || 'build';
+const crumb = isChild ? { href: `/${parent.slug}/`, name: parent.name } : { href: '/#services', name: 'Services' };
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: s.name,
+    serviceType: s.focus,
+    description: s.description,
+    url,
+    areaServed: 'Worldwide',
+    provider: { '@type': 'Person', name: site.name, url: Astro.site, jobTitle: site.role },
+    ...(minPrice && { offers: { '@type': 'Offer', priceSpecification: { '@type': 'PriceSpecification', minPrice, priceCurrency: 'USD' } } }),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: s.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: Astro.site },
+      { '@type': 'ListItem', position: 2, name: crumb.name, item: new URL(crumb.href, Astro.site) },
+      { '@type': 'ListItem', position: 3, name: s.name, item: url },
+    ],
+  },
+];
+---
+<Base title={s.title} description={s.description} jsonld={jsonld} focus={s.focus} ogImage={`/og-${s.ogSlug || s.slug}.jpg`} ogAlt={`${s.h1} Sakib Islam, ${s.name}.`}>
+  <section class="page-head svc-hero">
+    <canvas class="dots" aria-hidden="true"></canvas>
+    <div class="wrap svc-grid">
+      <div class="svc-copy">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span>/</span><a href={crumb.href}>{crumb.name}</a><span>/</span><span>{s.name}</span>
+        </nav>
+        <h1>{s.h1Lines.map((l) => <Fragment><span class="hl">{l}</span>{' '}</Fragment>)}</h1>
+        <p class="lead">{heroLead(s.lead, s.focus)}</p>
+        <div class="hero-actions">
+          <a class="btn" href={`/contact/?need=${need}`}>{s.cta || 'Get a free quote'}</a>
+          {(proof.length > 0 || s.example) && <a class="btn btn-ghost" href="#proof">{s.example ? 'See a recent cleanup' : 'See the proof'}</a>}
+        </div>
+      </div>
+      <ServiceArt slug={s.art || s.slug} eager />
+    </div>
+  </section>
+
+  {proof.length > 1 && (
+  <section class="proof-wrap" aria-label="Results">
+    <dl class="wrap proof" style={`--cols:${proof.length}`} data-reveal>
+      {proof.map((w) => (
+        <div>
+          <dt class="num">{w.metricValue}</dt>
+          <dd><b>{w.client}.</b> {w.metricLabel}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+  )}
+
+  <section class="sec band band-glow">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>{s.problemTitle}</h2>
+        {s.problem && <p class="lead" style="max-width: 62ch">{shortProblem}</p>}
+      </div>
+      <div class="versus">
+        <div class="vs-card vs-no" data-reveal>
+          <p class="label">The usual way</p>
+          <ul>{s.before.map((t) => <li>{t}</li>)}</ul>
+        </div>
+        <span class="vs-arrow" aria-hidden="true">→</span>
+        <div class="vs-card vs-yes" data-reveal style="--d:0.12s" data-spot>
+          <p class="label">How I do it</p>
+          <ul>{s.after.map((t) => <li>{t}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>{s.includesTitle}</h2>
+      </div>
+      <ul class="kit">
+        {s.includes.map((item, i) => (
+          <li data-reveal style={`--d:${(i % 3) * 0.07}s`}>
+            <GlyphArt title={item.name} />
+            <h3>{item.name}</h3>
+            <p class="muted">{item.text}</p>
+          </li>
+        ))}
+      </ul>
+      {s.guides && (
+        <p class="muted" style="margin-top: 1.75rem">Related guides: {s.guides.map((g, i) => <Fragment>{i > 0 && ' · '}<a class="more-link" href={g.href}>{g.t}</a></Fragment>)}</p>
+      )}
+    </div>
+  </section>
+
+  {s.example && (
+  <section id="proof" class="sec tint-a">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>{s.example.title}</h2>
+        <p class="muted">{tidy(s.example.lead)}</p>
+      </div>
+      <ul class="kit">
+        {s.example.points.map((x, i) => (
+          <li>
+            <span class="kit-top"><span class="idx">{pad(i + 1)}</span></span>
+            <h3>{x.t}</h3>
+            <p class="muted">{x.d}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  )}
+
+  {proof.length > 0 && (
+  <section id="proof" class="sec tint-a">
+    <div class="wrap">
+      <WorkReel items={proof} title={s.proofTitle} lead={proof.length > 1 ? "Pick a project to see the result and the live site." : "The worked example, with the result and the live site."} />
+    </div>
+  </section>
+  )}
+
+  {kids.length > 0 && (
+  <section class="sec">
+    <div class="wrap">
+      <div class="section-head"><h2>{s.kidsTitle || `${s.name} services`}</h2></div>
+      <ul class="tiles tiles-svc">
+        {kids.map((k) => (
+          <li><a href={pathOf(k)}><span class="tile-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30"><path d={k.ic} /></svg></span><b>{k.menu || k.name}</b><small>{k.from}</small></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  )}
+
+  <Process title={s.processTitle} variant={s.fix ? 'fix' : 'build'} />
+
+  <Reviews />
+
+  <Faq items={s.faq} title={`Your questions about ${s.focus}`} />
+
+  {others.length > 0 && (
+  <section class="sec">
+    <div class="wrap">
+      <div class="section-head"><h2>{isChild ? `More ${parent.name.toLowerCase()} services` : 'Other services'}</h2></div>
+      <ul class="tiles tiles-svc">
+        {others.map((o) => (
+          <li><a href={pathOf(o)}><span class="tile-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30"><path d={o.ic} /></svg></span><b>{o.menu || o.name}</b><small>{o.from}</small></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  )}
+
+  <Connect heading={`Need ${s.focus}?`} />
+</Base>
+
+<script>
+  import '../scripts/reel.js';
+</script>

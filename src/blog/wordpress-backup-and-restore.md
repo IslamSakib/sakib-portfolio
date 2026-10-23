@@ -96,7 +96,7 @@ These are why people find out on their worst day that they have no usable backup
 
 ## How do I make backups automatic, then check them?
 
-The ideal set-up runs on its own and tells you when it fails: daily automatic backups, copies sent off-site, an alert if a backup fails, and a test restore every few months. That's part of every [WordPress maintenance plan](/website-care/) I run, alongside tested updates. If you're doing it yourself, add these steps to your [WordPress maintenance checklist](/blog/wordpress-maintenance-checklist/).
+The ideal set-up runs on its own and tells you when it fails: daily automatic backups, copies sent off-site, an alert if a backup fails, and a test restore every few months. That's part of every [WordPress maintenance plan](/custom-web-development/website-maintenance/) I run, alongside tested updates. If you're doing it yourself, add these steps to your [WordPress maintenance checklist](/blog/wordpress-maintenance-checklist/).
 
 ## Should I use a backup plugin, my host's backups, or both?
 

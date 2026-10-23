@@ -28,7 +28,7 @@ export const icps = [
       { name: 'The marketing site', text: 'Designed with the product, built from Figma, and tested on a throttled phone against Google Core Web Vitals. Tabby launched 2.0 above 90.' },
       { name: 'Launch and care', text: 'Deployment, backups, monitoring and changes after launch, on a care plan if you want one.' },
     ],
-    services: ['web-application-development', 'custom-web-development', 'website-care'],
+    services: ['saas-development', 'mvp-development', 'web-application-development'],
     proof: ['wrkbase', 'tabby', 'tubeonai'],
     faq: [
       { q: 'How much does custom SaaS development cost?', a: `A first version of a web application starts at ${usd(prices.webApp)} and most land between ${typical.webApp}, with a written quote after I read your brief. Agency price guides put a basic MVP at $10,000 to $50,000 or more. I work alone from Dhaka, which is why my prices are lower.` },
@@ -62,7 +62,7 @@ export const icps = [
       { name: 'Clean up a hacked site', text: 'I remove the malware by hand, find how it got in, close that door and help clear Google warnings.' },
       { name: 'Keep it healthy', text: 'Tested updates, daily backups off the server, monitoring and a few hours of changes a month on a care plan.' },
     ],
-    services: ['wordpress-repair', 'website-care', 'wordpress-malware-removal'],
+    services: ['website-speed-optimization', 'website-repair', 'website-maintenance'],
     proof: ['tubeonai', 'tabby', 'mayabee'],
     faq: [
       { q: 'How much does a slow website fix cost?', a: `Single fixes start at ${usd(prices.fix)} and speed fixes at ${usd(prices.speed)}. You get a written quote after I have looked at the site, before any work starts.` },
@@ -79,7 +79,7 @@ export const icps = [
     art: 'custom-web-development',
     focus: 'Ecommerce website developer',
     title: 'Ecommerce Website Developer for Stores | Sakib Islam',
-    description: 'Ecommerce website developer for custom online stores and WooCommerce, with a dashboard you can run.',
+    description: 'Ecommerce website developer for custom online stores, with a dashboard your team can run.',
     h1Lines: ['Ecommerce website developer', 'for online stores that', 'need more than a theme.'],
     lead: `An ecommerce website developer who builds the storefront, the checkout and the dashboard your team uses every day. Custom online stores start at ${usd(prices.store)} and WooCommerce stores at ${usd(prices.woo)}. I built Mayabee, a custom shop in English and Bangla, and a payment gateway plugin for Moneybag.`,
     price: `Custom stores from ${usd(prices.store)}, WooCommerce stores from ${usd(prices.woo)}`,
@@ -96,7 +96,7 @@ export const icps = [
       { name: 'Fast on a phone', text: 'Tested on a throttled phone against Google Core Web Vitals. Mayabee scored 100 on mobile PageSpeed in a lab test on 23 October 2026.' },
       { name: 'WooCommerce when it fits', text: 'If WordPress is the right tool, I build custom themes, plugins and checkout changes on WooCommerce.' },
     ],
-    services: ['custom-web-development', 'wordpress-development', 'website-care'],
+    services: ['ecommerce-website-development', 'woocommerce-development', 'website-maintenance'],
     proof: ['mayabee', 'moneybag', 'tabby'],
     faq: [
       { q: 'How much does an ecommerce website cost?', a: `Custom online stores with a dashboard start at ${usd(prices.store)}, usually ${typical.store}. WooCommerce stores start at ${usd(prices.woo)}. You get a written quote after I read your brief.` },
@@ -130,7 +130,7 @@ export const icps = [
       { name: 'Integrations and automation', text: 'Payments, email, CRM and couriers connected, and repetitive steps turned into rules the app follows.' },
       { name: 'Built to grow', text: 'A first version people can start on, then new features added without a rewrite.' },
     ],
-    services: ['web-application-development', 'custom-web-development', 'website-care'],
+    services: ['dashboard-development', 'customer-portal-development', 'api-integration'],
     proof: ['wrkbase', 'mayabee', 'open-alliance-learning'],
     faq: [
       { q: 'What does custom business software cost?', a: `First versions start at ${usd(prices.webApp)} and most land between ${typical.webApp}, with a written quote after I read your brief.` },
@@ -164,7 +164,7 @@ export const icps = [
       { name: 'Care and fixes under your brand', text: 'Tested updates, backups, monitoring and fixes for each site you hand me, with reports you can send on.' },
       { name: 'A trial project first', text: 'Start with one small paid task so you can judge my work before you hand over a client.' },
     ],
-    services: ['wordpress-development', 'website-care', 'custom-web-development'],
+    services: ['white-label-wordpress-development', 'custom-web-design', 'website-maintenance'],
     proof: ['tabby', 'tubeonai', 'moneybag'],
     faq: [
       { q: 'How much does white label web development cost?', a: `Rates start at ${usd(prices.agencyHour)} an hour or ${usd(prices.agencySite)} per site from a Figma design. Care is ${usd(prices.agencyCare)} per site a month. You get a written quote before work starts.` },
@@ -173,7 +173,6 @@ export const icps = [
       { q: 'Do you have agency clients?', a: 'No. I work alone and my clients are businesses I worked with directly, such as Tabby and TubeOnAI, whose sites I built from Figma designs. That is why I suggest a small paid trial project first.' },
       { q: 'What about time zones?', a: 'I work remotely from Dhaka on an evening shift that overlaps the US morning and early afternoon, and the UK and Australian day.' },
     ],
-    extra: { href: '/white-label-wordpress-development/', label: 'White label WordPress development for agencies' },
   },
   {
     slug: 'small-business-owners',
@@ -199,7 +198,7 @@ export const icps = [
       { name: 'Keep it fast', text: 'Tested on a throttled phone against Google Core Web Vitals before launch.' },
       { name: 'Look after it', text: `Updates, backups and small changes on a care plan from ${usd(prices.care)} a month, if you want one.` },
     ],
-    services: ['custom-web-development', 'wordpress-development', 'website-care'],
+    services: ['custom-web-design', 'website-redesign', 'website-maintenance'],
     proof: ['mayabee', 'tubeonai', 'tabby'],
     faq: [
       { q: 'How much does a small business website cost?', a: `Custom websites start at ${usd(prices.site)} and usually land between ${typical.site}. WordPress builds start at ${usd(prices.build)}. You get the price in writing before work starts.` },
@@ -233,7 +232,7 @@ export const icps = [
       { name: 'Custom workflows', text: 'Assessment steps, approvals and certificates built as rules the platform follows.' },
       { name: 'Technical care', text: 'Updates, backups, security and fixes after launch, so staff can focus on teaching.' },
     ],
-    services: ['wordpress-development', 'web-application-development', 'website-care'],
+    services: ['wordpress-theme-development', 'customer-portal-development', 'website-maintenance'],
     proof: ['open-alliance-learning', 'tabby', 'mayabee'],
     faq: [
       { q: 'What does WordPress LMS development cost?', a: `WordPress builds start at ${usd(prices.build)} and WooCommerce stores at ${usd(prices.woo)}. A learning platform with role dashboards is quoted after I read your brief, and a custom web application starts at ${usd(prices.webApp)}.` },
@@ -267,7 +266,7 @@ export const icps = [
       { name: 'Fast and tested', text: 'Core Web Vitals checked on a throttled phone, so the site stays quick as traffic grows.' },
       { name: 'Security upkeep', text: 'Tested updates, backups, monitoring and fixes after launch, on a care plan if you want one.' },
     ],
-    services: ['wordpress-development', 'web-application-development', 'website-care'],
+    services: ['wordpress-plugin-development', 'api-integration', 'website-maintenance'],
     proof: ['moneybag', 'wrkbase', 'tabby'],
     faq: [
       { q: 'What does fintech website development cost?', a: `WordPress builds start at ${usd(prices.build)} and custom plugins at ${usd(prices.plugin)}. A larger web application starts at ${usd(prices.webApp)}. You get a written quote after I read your brief.` },

@@ -101,4 +101,4 @@ After any speed change, place a test order from start to finish, logged out, on 
 
 In my experience the order that pays off fastest is: hosting and object cache if the server is slow, then images, then plugin and script clean-up, then the theme templates. Measure after each step so you know what helped. For the general WordPress causes, see [why is my WordPress site so slow](/blog/why-is-my-wordpress-site-so-slow/).
 
-If you'd rather hand it over, I do [WordPress and WooCommerce speed optimization](/website-care/) with before and after numbers on Google's own tool. I also built Moneybag's payment gateway plugin for WooCommerce, so I know the checkout side from the inside.
+If you'd rather hand it over, I do [WordPress and WooCommerce speed optimization](/custom-web-development/website-maintenance/) with before and after numbers on Google's own tool. I also built Moneybag's payment gateway plugin for WooCommerce, so I know the checkout side from the inside.

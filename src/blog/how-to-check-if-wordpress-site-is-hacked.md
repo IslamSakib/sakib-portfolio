@@ -98,7 +98,7 @@ You don't need to be a security expert to catch problems early. Once a month:
 - Open the site on your phone from a Google search
 - Confirm your last backup ran and is stored off the server
 
-That routine catches most hacks within weeks rather than months. If you'd rather not do it yourself, it's part of every [WordPress maintenance plan](/website-care/) I run, along with tested updates that close the holes before they're used.
+That routine catches most hacks within weeks rather than months. If you'd rather not do it yourself, it's part of every [WordPress maintenance plan](/custom-web-development/website-maintenance/) I run, along with tested updates that close the holes before they're used.
 
 ## When should I call for help?
 

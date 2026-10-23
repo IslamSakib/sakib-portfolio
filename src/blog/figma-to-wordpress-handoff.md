@@ -106,4 +106,4 @@ Collect feedback in one list per round, from one person on your side, with a scr
 
 Tabby and TubeOnAI both started as Figma files. Tabby needed far more than pages: a tax calculator, subscriptions, a help centre and analytics, built to launch on a tight deadline, and it launched with Core Web Vitals above 90. [The Tabby case study](/work/tabby/) shows how.
 
-If your agency has designs waiting to be built, I take them from Figma to WordPress under your name: [see how white label work runs](/white-label-wordpress-development/).
+If your agency has designs waiting to be built, I take them from Figma to WordPress under your name: [see how white label work runs](/wordpress-development/white-label-wordpress-development/).

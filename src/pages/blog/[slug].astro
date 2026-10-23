@@ -21,14 +21,17 @@ const score = (x) => (x.topic === p.topic ? 2 : 0) + (x.service === p.service ? 
 const more = posts.filter((x) => x.slug !== p.slug).sort((a, b) => score(b) - score(a)).slice(0, 3);
 // The side card points to the service the post is about.
 const cards = {
-  'wordpress-maintenance': { label: 'Care plans', price: `${usd(prices.care)}`, unit: '/mo', text: 'Everything in this post, done for you every month.', href: '/website-care/', cta: 'See the plans' },
-  'wordpress-speed-optimization': { label: 'Speed fix', price: `from ${usd(prices.speed)}`, unit: '', text: 'Measured before and after on mobile PageSpeed Insights.', href: '/website-care/', cta: 'See speed work' },
-  'white-label-wordpress-development': { label: 'For agencies', price: `${usd(prices.agencyHour)}`, unit: '/h', text: 'Your design, built in WordPress under your name.', href: '/white-label-wordpress-development/', cta: 'How it works' },
-  'white-label-wordpress-maintenance': { label: 'White-label care', price: `${usd(prices.agencyCare)}`, unit: '/site/mo', text: 'Your clients’ sites looked after, reported under your brand.', href: '/white-label-wordpress-maintenance/', cta: 'How it works' },
-  'wordpress-care-plans': { label: 'Care plans', price: `${usd(prices.care)}`, unit: '/mo', text: 'Everything in this post, done for you every month.', href: '/wordpress-care-plans/', cta: 'Compare the plans' },
-  'wordpress-repair': { label: 'Repair', price: `from ${usd(prices.fix)}`, unit: '', text: 'Broken today? Fixed at the cause, with the cause written down.', href: '/wordpress-repair/', cta: 'Get it fixed' },
-  'wordpress-malware-removal': { label: 'Malware removal', price: `from ${usd(prices.malware)}`, unit: '', text: 'Cleaned by hand, and the way in closed so it stays clean.', href: '/wordpress-malware-removal/', cta: 'Clean my site' },
+  'wordpress-maintenance': { label: 'Care plans', price: `${usd(prices.care)}`, unit: '/mo', text: 'Everything in this post, done for you every month.', href: '/wordpress-development/wordpress-maintenance/', cta: 'See the plans' },
+  'wordpress-speed-optimization': { label: 'Speed fix', price: `from ${usd(prices.speed)}`, unit: '', text: 'Measured before and after on mobile PageSpeed Insights.', href: '/wordpress-development/wordpress-speed-optimization/', cta: 'See speed work' },
+  'white-label-wordpress-development': { label: 'For agencies', price: `${usd(prices.agencyHour)}`, unit: '/h', text: 'Your design, built in WordPress under your name.', href: '/wordpress-development/white-label-wordpress-development/', cta: 'How it works' },
+  'white-label-wordpress-maintenance': { label: 'White-label care', price: `${usd(prices.agencyCare)}`, unit: '/site/mo', text: 'Your clients’ sites looked after, reported under your brand.', href: '/wordpress-development/white-label-wordpress-maintenance/', cta: 'How it works' },
+  'wordpress-care-plans': { label: 'Care plans', price: `${usd(prices.care)}`, unit: '/mo', text: 'Everything in this post, done for you every month.', href: '/wordpress-development/wordpress-maintenance/', cta: 'Compare the plans' },
+  'wordpress-repair': { label: 'Repair', price: `from ${usd(prices.fix)}`, unit: '', text: 'Broken today? Fixed at the cause, with the cause written down.', href: '/wordpress-development/wordpress-repair/', cta: 'Get it fixed' },
+  'wordpress-malware-removal': { label: 'Malware removal', price: `from ${usd(prices.malware)}`, unit: '', text: 'Cleaned by hand, and the way in closed so it stays clean.', href: '/wordpress-development/wordpress-malware-removal/', cta: 'Clean my site' },
 };
+cards['website-maintenance'] = { label: 'Website maintenance', price: `${usd(prices.care)}`, unit: '/mo', text: 'Updates, backups and monitoring for any website, done for you.', href: '/custom-web-development/website-maintenance/', cta: 'See the plans' };
+cards['website-speed-optimization'] = { label: 'Speed fix', price: `from ${usd(prices.speed)}`, unit: '', text: 'Measured before and after on mobile PageSpeed Insights.', href: '/custom-web-development/website-speed-optimization/', cta: 'See speed work' };
+cards['website-repair'] = { label: 'Website repair', price: `from ${usd(prices.fix)}`, unit: '', text: 'A broken or hacked site fixed at the cause.', href: '/custom-web-development/website-repair/', cta: 'Get it fixed' };
 cards['custom-web-development'] = { label: 'Custom website development', price: 'Quoted', unit: '', text: 'A website, shop or web app built from design to backend, with a written price first.', href: '/custom-web-development/', cta: 'Get a free quote' };
 cards['wordpress-development'] = { label: 'WordPress development', price: `from ${usd(prices.build)}`, unit: '', text: 'Custom themes, plugins and WooCommerce, built to your design.', href: '/wordpress-development/', cta: 'See WordPress work' };
 const card = cards[p.service] || cards['wordpress-maintenance'];

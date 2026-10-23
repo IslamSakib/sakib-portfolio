@@ -129,7 +129,7 @@ const jsonld = [
         <h2>Services</h2>
       </div>
       <ul class="kit kit-links">
-        {[...services, { slug: 'website-care', name: 'Website care', short: 'Tested updates, backups, monitoring, fixes and speed, from one developer.', chips: [`From ${usd(prices.care)}/mo`, 'Cancel any month'] }].map((o, i) => (
+        {services.map((o, i) => (
           <li>
             <div class="kit-art"><ServiceArt slug={o.slug} /></div>
             <h3><a href={`/${o.slug}/`}>{o.name}</a></h3>

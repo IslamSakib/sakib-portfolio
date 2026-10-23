@@ -70,4 +70,4 @@ My [WordPress maintenance tasks guide](/blog/what-wordpress-maintenance-includes
 3. What happens if my site is hacked: do you clean it, or suspend it?
 4. If a plugin breaks my site, will you fix it or send me to a developer?
 
-If the answers leave a gap, that gap is what maintenance is for. My [care plans start at $149 a month](/wordpress-care-plans/) and work with the host you already have.
+If the answers leave a gap, that gap is what maintenance is for. My [care plans start at $149 a month](/wordpress-development/wordpress-maintenance/) and work with the host you already have.

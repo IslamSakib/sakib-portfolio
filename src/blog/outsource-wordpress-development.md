@@ -119,4 +119,4 @@ Decide before launch. If your team will, ask for handover notes: the theme and p
 
 ## How do I work with agencies like yours?
 
-I build WordPress sites for design and marketing agencies under their brand: custom themes or Elementor, WooCommerce, custom plugins and speed work. I sign NDAs, never contact your client, work in your tools and overlap with US and UK hours. Pricing starts at $1,500 per site or $45 an hour, and the best way to start is one small paid task. See [white label WordPress development](/white-label-wordpress-development/) for how it works.
+I build WordPress sites for design and marketing agencies under their brand: custom themes or Elementor, WooCommerce, custom plugins and speed work. I sign NDAs, never contact your client, work in your tools and overlap with US and UK hours. Pricing starts at $1,500 per site or $45 an hour, and the best way to start is one small paid task. See [white label WordPress development](/wordpress-development/white-label-wordpress-development/) for how it works.

@@ -16,6 +16,7 @@ import { clients, clientCount } from '../clients.js';
 import { posts } from '../blog.js';
 import { prices, usd, typical } from '../prices.js';
 import { icps } from '../icps.js';
+import { pillars, children, pathOf } from '../children.js';
 import { audienceMeta } from '../audienceIcons.js';
 import { toolLogos } from '../toolLogos.js';
 
@@ -79,19 +80,14 @@ const jsonld = [
     sameAs: [site.linkedin, site.wrkbase, site.github, site.facebook].filter(Boolean),
     knowsAbout: ['Full stack web development', 'Custom website development', 'Web application development', 'WordPress theme and plugin development', 'Website maintenance', 'Core Web Vitals', 'WooCommerce', 'White-label WordPress development', 'SaaS development'],
     makesOffer: [
-      ...services.map((sv) => ({ slug: sv.slug, name: sv.name })),
-      { slug: 'website-care', name: 'Website care' },
-      { slug: 'white-label-wordpress-development', name: 'White-label WordPress development' },
-    ].map((sv) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: sv.name, url: new URL(`/${sv.slug}/`, Astro.site) } })),
+      ...services.map((sv) => ({ path: `/${sv.slug}/`, name: sv.name })),
+      ...children.map((c) => ({ path: pathOf(c), name: c.name })),
+    ].map((sv) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: sv.name, url: new URL(sv.path, Astro.site) } })),
   },
   { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: Astro.site },
 ];
-const svc = [
-  { slug: 'custom-web-development', short: 'Websites and online stores with an admin dashboard.', name: 'Custom website development', what: 'A business website or online store built from scratch for your business, with the admin dashboard your team uses.', gets: ['Competitor research and UI/UX design', 'Frontend and backend development', 'Admin dashboard, accounts and payments'], price: `Websites from ${usd(prices.site)}, stores from ${usd(prices.store)}`, proof: 'Example: Mayabee, an online shop with its own dashboard', href: '/custom-web-development/' },
-  { slug: 'web-application-development', short: 'Portals, internal tools and SaaS first versions.', name: 'Web application development', what: 'Software your customers or staff sign in to: a portal, an internal tool, a booking system or a SaaS product.', gets: ['Accounts, roles and permissions', 'Dashboards, reports and APIs', 'AI features that ask before they act'], price: `First versions from ${usd(prices.webApp)}`, proof: 'Example: Wrkbase, my own team platform with an AI agent', href: '/web-application-development/' },
-  { slug: 'wordpress-development', short: 'Custom themes, plugins and WooCommerce.', name: 'WordPress development', what: 'Custom WordPress themes and plugins, WooCommerce stores and integrations, built to your design.', gets: ['Custom themes from your Figma design', 'Custom plugins and payment gateways', 'WooCommerce stores and integrations'], price: `Themes from ${usd(prices.build)}, stores from ${usd(prices.woo)}`, proof: 'Example: a payment gateway plugin for Moneybag', href: '/wordpress-development/' },
-  { slug: 'website-care', short: 'Updates, backups and monitoring every month.', name: 'Website care', what: 'Monthly care for a live website: updates, backups, monitoring, fixes and speed, handled by the developer who knows your site.', gets: ['Tested updates and daily off-site backups', 'Security and uptime monitoring', 'Bug fixes, speed and small changes'], price: `From ${usd(prices.care)} a month`, proof: 'Example: Tabby, built and maintained by me', href: '/website-care/' },
-];
+// Home page service cards: the three pillars, each with its main services as links (src/children.js).
+const svc = pillars.map((p) => ({ ...p, links: p.kids.filter((k) => !k.slug.startsWith('white-label') && !['wordpress-maintenance', 'wordpress-malware-removal'].includes(k.slug)).slice(0, 5) }));
 ---
 <Base title={title} description={description} jsonld={jsonld} focus={focus}>
   <section class="h-hero wrap hero-bg">
@@ -100,7 +96,7 @@ const svc = [
       <div class="h-copy">
         <p class="eyebrow">Full stack web developer · Dhaka, working remotely</p>
         <h1><span class="ln">Full stack web developer</span> <span class="ln">for custom websites</span> <span class="ln">and web apps.</span></h1>
-        <p class="lead">I'm Sakib, a full stack web developer. I design the UI and UX myself, then build everything from frontend to backend. Send me your site or your idea and I'll reply with clear pricing.</p>
+        <p class="lead">I'm Sakib, a full stack web developer. I design and build websites and web apps, frontend to backend. Send me your site or idea for a clear price.</p>
         <div class="btn-row">
           <a class="btn" href="/contact/">Get a free quote</a>
           <a class="btn btn-ghost" href="/#work">See my work</a>
@@ -146,17 +142,19 @@ const svc = [
       </div>
       <a href="/full-stack-developer/">Hire a full stack developer →</a>
     </div>
-    <ul class="kit kit-links svc4">
+    <ul class="kit kit-links svc3">
       {svc.map((r) => (
         <li>
           <div class="kit-art"><ServiceArt slug={r.slug} /></div>
-          <h3><a href={r.href}>{r.name}</a></h3>
+          <h3><a href={`/${r.slug}/`}>{r.menu}</a></h3>
           <p class="muted">{r.short}</p>
-          <p class="svc-price">{r.price}</p>
+          <ul class="svc-links">{r.links.map((k) => <li><a href={pathOf(k)}>{k.menu}</a></li>)}</ul>
+          <p class="svc-price">{r.from}</p>
         </li>
       ))}
     </ul>
-    <p class="muted" style="margin-top: 1.5rem">Website slow, broken or hacked? <a class="more-link" href="/wordpress-repair/">Website repair</a>, <a class="more-link" href="/website-care/">speed fixes</a> and <a class="more-link" href="/wordpress-malware-removal/">malware removal</a> are part of website care.</p>
+
+    <p class="muted" style="margin-top: 1.5rem">Website slow, broken or hacked? <a class="more-link" href="/custom-web-development/website-repair/">Website repair</a>, <a class="more-link" href="/custom-web-development/website-speed-optimization/">speed optimization</a> and <a class="more-link" href="/custom-web-development/website-maintenance/">website maintenance</a> work on any platform.</p>
   </section>
 
   <section id="who" class="wrap" style="padding: 0 0 var(--sec)">
@@ -246,7 +244,7 @@ const svc = [
         <h2><span class="ln">White-label WordPress</span> <span class="ln">development for agencies</span></h2>
         <p class="mut">I build your agency's Figma designs in WordPress. You review the work on a staging site, then it launches under your brand. You keep the client; nothing I hand over carries my name.</p>
         <div class="hero-actions">
-          <a class="btn" href="/white-label-wordpress-development/">See how white-label works</a>
+          <a class="btn" href="/wordpress-development/white-label-wordpress-development/">See how white-label works</a>
           <a class="btn btn-ghost" href="/contact/?type=agency">Send a design</a>
         </div>
       </div>
@@ -268,7 +266,7 @@ const svc = [
   
 
   <section id="pricing" class="wrap" style="padding: var(--sec) 0 0">
-    <div class="row-head"><div style="display: grid; gap: 0.9rem"><p class="label">Prices in US dollars</p><h2>Starting prices</h2></div><a href="/white-label-wordpress-development/">Agencies: from {usd(prices.agencySite)} a site →</a></div>
+    <div class="row-head"><div style="display: grid; gap: 0.9rem"><p class="label">Prices in US dollars</p><h2>Starting prices</h2></div><a href="/wordpress-development/white-label-wordpress-development/">Agencies: from {usd(prices.agencySite)} a site →</a></div>
     <PriceCards plans={plans} compact />
     <p class="mut" style="margin: 1rem 0 clamp(2.5rem, 6vw, 4rem); font-size: 0.9375rem">Every job gets a written quote before work starts.</p>
   </section>

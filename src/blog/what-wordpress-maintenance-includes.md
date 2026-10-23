@@ -99,4 +99,4 @@ Ask these before you hand over a login, because the answers tell you what you're
 - Do I keep every login, and do I own everything if we stop working together?
 - What's included in the monthly fee, and what's charged on top?
 
-If the answers are vague, the work probably is too. My own answers are on the [WordPress maintenance page](/website-care/).
+If the answers are vague, the work probably is too. My own answers are on the [WordPress maintenance page](/custom-web-development/website-maintenance/).

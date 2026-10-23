@@ -1,14 +1,15 @@
 ---
+import { heroLead } from '../../heroLead.js';
 // For design and marketing agencies: Sakib as a solo white-label WordPress developer. He works alone, so the copy never says "we".
 import { Picture } from 'astro:assets';
-import GlyphArt from '../components/GlyphArt.astro';
-import Base from '../layouts/Base.astro';
-import Connect from '../components/Connect.astro';
-import PriceCards from '../components/PriceCards.astro';
-import { site } from '../site.js';
-import { work } from '../work.js';
-import { prices, usd } from '../prices.js';
-import heroPhoto from '../assets/visuals/svc-wordpress.jpg';
+import GlyphArt from '../../components/GlyphArt.astro';
+import Base from '../../layouts/Base.astro';
+import Connect from '../../components/Connect.astro';
+import PriceCards from '../../components/PriceCards.astro';
+import { site } from '../../site.js';
+import { work } from '../../work.js';
+import { prices, usd } from '../../prices.js';
+import heroPhoto from '../../assets/visuals/svc-wordpress.jpg';
 
 const focus = 'white label WordPress development';
 const title = 'White Label WordPress Development for Agencies | Sakib Islam';
@@ -30,7 +31,7 @@ const caps = [
   { t: 'Custom plugins', d: 'WooCommerce, payments and CRM connections.', p: 'M14 4l6 6-10 10H4v-6z' },
   { t: 'Speed before handover', d: 'Tested on mobile before you see it.', p: 'M12 3a9 9 0 109 9M12 12l6-6' },
   { t: 'Fixes on client sites', d: 'Conflicts, downtime and failed updates.', p: 'M3 12a9 9 0 1018 0 9 9 0 00-18 0M9 9l6 6M15 9l-6 6' },
-  { t: 'Care you can resell', d: 'Monthly maintenance under your brand.', p: 'M3 5h18v16H3zM3 10h18M8 3v4M16 3v4', href: '/white-label-wordpress-maintenance/' },
+  { t: 'Care you can resell', d: 'Monthly maintenance under your brand.', p: 'M3 5h18v16H3zM3 10h18M8 3v4M16 3v4', href: '/wordpress-development/white-label-wordpress-maintenance/' },
 ];
 const steps = [
   { t: 'Brief', d: 'Figma, page list and date. A quote and date back first.' },
@@ -104,7 +105,7 @@ const jsonld = [
         <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>For agencies</span></nav>
         <p class="eyebrow">Signed a project and no developer free?</p>
         <h1><span class="ln">White label WordPress</span> <span class="ln">development under</span> <span class="ln">your agency's name.</span></h1>
-        <p class="lead">White label WordPress development for when your agency has a signed design and no free developer. I build your Figma file in WordPress on your deadline, you review it on staging, and it launches under your brand. Your client never hears my name.</p>
+        <p class="lead">{heroLead(`White label WordPress development for when your agency has a signed design and no free developer. I build your Figma file in WordPress on your deadline, you review it on staging, and it launches under your brand. Your client never hears my name.`, 'White label WordPress development')}</p>
         <div class="btn-row">
           <a class="btn" href="/contact/?type=agency">Start a small paid trial</a>
           <a class="btn btn-ghost" href="#how">See the process</a>

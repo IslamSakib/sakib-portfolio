@@ -4,7 +4,7 @@ export const designedOg = {
   '/custom-web-development/': '/og-li4-custom-web-development.jpg',
   '/web-application-development/': '/og-li4-web-application-development.jpg',
   '/wordpress-development/': '/og-li4-wordpress-development.jpg',
-  '/website-care/': '/og-li4-website-care.jpg',
+  '/custom-web-development/website-maintenance/': '/og-li4-website-care.jpg',
   '/full-stack-developer/': '/og-li5-full-stack-developer.jpg',
   '/work/mayabee/': '/og-li4-work-mayabee.jpg',
   '/work/tabby/': '/og-li4-work-tabby.jpg',

@@ -107,4 +107,4 @@ Stores have a harder time with Core Web Vitals because their most important page
 
 Tabby launched with Core Web Vitals above 90, and TubeOnAI's load time went from 5 seconds to 1.5 once I removed its caching conflict. The fixes weren't exotic: the right image sizes, one caching layer and lighter templates. The [TubeOnAI case study](/work/tubeonai/) walks through it.
 
-If you want the work done with before and after numbers on Google's own tool, see [WordPress speed optimization](/website-care/).
+If you want the work done with before and after numbers on Google's own tool, see [WordPress speed optimization](/custom-web-development/website-maintenance/).

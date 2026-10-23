@@ -116,4 +116,4 @@ Copy it into whatever you already use, a spreadsheet, a project board or a calen
 
 ## Should I do it myself or hand it over?
 
-You can work through this yourself in one to three hours a month for a typical small business site. The harder parts are testing updates properly and knowing what to do when one fails. If you'd rather hand it over, this checklist is exactly what my [WordPress maintenance plans](/website-care/) cover, from $149 a month, with a plain-English report each month. For what plans cost elsewhere, see [WordPress maintenance cost](/blog/wordpress-maintenance-cost/).
+You can work through this yourself in one to three hours a month for a typical small business site. The harder parts are testing updates properly and knowing what to do when one fails. If you'd rather hand it over, this checklist is exactly what my [WordPress maintenance plans](/custom-web-development/website-maintenance/) cover, from $149 a month, with a plain-English report each month. For what plans cost elsewhere, see [WordPress maintenance cost](/blog/wordpress-maintenance-cost/).

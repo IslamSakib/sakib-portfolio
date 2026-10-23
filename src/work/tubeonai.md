@@ -85,4 +85,4 @@ I read the live site page by page on 11 October 2026, and ran Google PageSpeed I
 
 The speed figures higher up are from when I did the work. The site has changed a great deal since, so they aren't today's numbers.
 
-Is your site crashing like this? See [WordPress speed optimization](/website-care/) or [WordPress repair](/wordpress-repair/), or send me the address and I'll tell you what I see.
+Is your site crashing like this? See [WordPress speed optimization](/custom-web-development/website-maintenance/) or [WordPress repair](/wordpress-development/wordpress-repair/), or send me the address and I'll tell you what I see.

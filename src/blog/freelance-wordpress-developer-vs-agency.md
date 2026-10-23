@@ -68,4 +68,4 @@ Care plan companies sell maintenance as a product: a fixed monthly price for upd
 
 ## Where I fit
 
-I'm a freelance WordPress developer working alone from Dhaka, with hours that overlap the US and UK. I fix and speed up WordPress sites, run [care plans from $149 a month](/wordpress-care-plans/) for businesses, and build sites [under agencies' names](/white-label-wordpress-development/). If your site is slow, broken or your developer has gone quiet, [send it over for a free check](/contact/) and you'll hear back within 24 hours.
+I'm a freelance WordPress developer working alone from Dhaka, with hours that overlap the US and UK. I fix and speed up WordPress sites, run [care plans from $149 a month](/wordpress-development/wordpress-maintenance/) for businesses, and build sites [under agencies' names](/wordpress-development/white-label-wordpress-development/). If your site is slow, broken or your developer has gone quiet, [send it over for a free check](/contact/) and you'll hear back within 24 hours.

@@ -96,4 +96,4 @@ My two plans are $149 (1 hour of changes a month) and $299 (3 hours plus a month
 5. Is malware removal included, or charged on top?
 6. Do I keep every login if I leave?
 
-If you'd like to see how my plans answer those, [compare the care plans](/wordpress-care-plans/). If you're still working out what a plan should cover, start with [what WordPress maintenance includes each month](/blog/what-wordpress-maintenance-includes/) and [what WordPress maintenance costs](/blog/wordpress-maintenance-cost/).
+If you'd like to see how my plans answer those, [compare the care plans](/wordpress-development/wordpress-maintenance/). If you're still working out what a plan should cover, start with [what WordPress maintenance includes each month](/blog/what-wordpress-maintenance-includes/) and [what WordPress maintenance costs](/blog/wordpress-maintenance-cost/).

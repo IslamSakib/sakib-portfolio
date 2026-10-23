@@ -103,4 +103,4 @@ If the site only showed spam or redirected visitors, a notice is rarely needed, 
 
 ## How do I keep the site clean from now on?
 
-Hacked sites are almost always unmaintained sites. Tested updates, off-site backups and monitoring for changed files catch problems in hours instead of weeks. That's the core of a [WordPress maintenance plan](/website-care/). If your site is hacked right now, send me the address and I'll tell you what I see before you spend anything.
+Hacked sites are almost always unmaintained sites. Tested updates, off-site backups and monitoring for changed files catch problems in hours instead of weeks. That's the core of a [WordPress maintenance plan](/custom-web-development/website-maintenance/). If your site is hacked right now, send me the address and I'll tell you what I see before you spend anything.

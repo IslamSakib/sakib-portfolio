@@ -238,7 +238,7 @@
     hero.querySelectorAll('.tags, .h-meta, p.label, .hero-meta').forEach((e) => { if (vis(e)) add('WARN', 'hero-extra', e, 'extra line in the hero (labels, tag chips and meta strips confuse the visitor); move it below the hero or remove it'); });
   }
   // 10d. overlap: text on top of other text
-  const leaves = [...document.querySelectorAll('h1,h2,h3,h4,p,li,dt,dd,label,button,a')].filter((e) => vis(e) && !e.closest('.marquee,.reel-track,[aria-hidden=true],.mega,.menu,.mnav') && e.textContent.trim() && !e.querySelector('h1,h2,h3,p,li,a'));
+  const leaves = [...document.querySelectorAll('h1,h2,h3,h4,p,li,dt,dd,label,button,a')].filter((e) => vis(e) && !e.closest('.marquee,.reel-track,[aria-hidden=true],.mega,.menu,.mnav') && !(e.closest('details:not([open])') && e.tagName !== 'SUMMARY' && !e.closest('summary')) && e.textContent.trim() && !e.querySelector('h1,h2,h3,p,li,a') && getComputedStyle(e).display !== 'inline');
   let ov = 0;
   for (let i = 0; i < leaves.length && ov < 8; i++) {
     const a = leaves[i], ra = a.getBoundingClientRect(), pa = getComputedStyle(a).position; if (pa === 'fixed' || pa === 'sticky') continue;

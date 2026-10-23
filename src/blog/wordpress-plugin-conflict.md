@@ -95,4 +95,4 @@ Yes. When you find a conflict, write down which plugins were involved, which ver
 
 ## When should I get help?
 
-Get help if the conflict is on a store's checkout, if you can't log in, or if the fix means choosing between two plugins your business relies on. Finding the cause is usually quick. Choosing the right replacement and testing it properly is where experience saves time. Plugin housekeeping and tested updates are part of every [WordPress maintenance plan](/website-care/) I run, and a one-off fix starts from $150.
+Get help if the conflict is on a store's checkout, if you can't log in, or if the fix means choosing between two plugins your business relies on. Finding the cause is usually quick. Choosing the right replacement and testing it properly is where experience saves time. Plugin housekeeping and tested updates are part of every [WordPress maintenance plan](/custom-web-development/website-maintenance/) I run, and a one-off fix starts from $150.

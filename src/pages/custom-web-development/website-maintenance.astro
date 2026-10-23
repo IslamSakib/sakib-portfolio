@@ -1,14 +1,15 @@
 ---
+import { heroLead } from '../../heroLead.js';
 // Website care: the monthly care plans, plus single fixes (repair, speed, malware) for a site in trouble today.
-// Replaces the old /website-care/ and /website-care/ pages, which now 301 here.
+// Replaces the old /custom-web-development/website-maintenance/ and /custom-web-development/website-maintenance/ pages, which now 301 here.
 import { Picture } from 'astro:assets';
-import Base from '../layouts/Base.astro';
-import Connect from '../components/Connect.astro';
-import PriceCards from '../components/PriceCards.astro';
-import { site } from '../site.js';
-import { work } from '../work.js';
-import { prices, usd, carePlans } from '../prices.js';
-import heroPhoto from '../assets/visuals/svc-care.jpg';
+import Base from '../../layouts/Base.astro';
+import Connect from '../../components/Connect.astro';
+import PriceCards from '../../components/PriceCards.astro';
+import { site } from '../../site.js';
+import { work } from '../../work.js';
+import { prices, usd, carePlans } from '../../prices.js';
+import heroPhoto from '../../assets/visuals/svc-care.jpg';
 
 const focus = 'website maintenance services';
 const title = 'Website Maintenance Services from $149/mo | Sakib Islam';
@@ -67,7 +68,7 @@ const jsonld = [
         <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Website care</span></nav>
         <p class="eyebrow">Website care · nobody looking after your site?</p>
         <h1><span class="ln">Website maintenance</span> <span class="ln">services, so your site</span> <span class="ln">stops breaking.</span></h1>
-        <p class="lead">Website maintenance services for when nobody's looking after your site, whether it runs on WordPress or is custom built. I test every update before it goes live, keep daily backups off your server, watch for downtime and hacks, and make your small changes. One developer who knows your site, not a ticket queue.</p>
+        <p class="lead">{heroLead(`Website maintenance services for when nobody's looking after your site, whether it runs on WordPress or is custom built. I test every update before it goes live, keep daily backups off your server, watch for downtime and hacks, and make your small changes. One developer who knows your site, not a ticket queue.`, 'Website maintenance services')}</p>
         <div class="btn-row">
           <a class="btn" href="/contact/?plan=care">Start a care plan</a>
           <a class="btn btn-ghost" href="#fix">Fix one problem first</a>
@@ -114,7 +115,7 @@ const jsonld = [
   <section class="wrap sec-pad" style="padding-bottom: calc(var(--sec) * 0.6)">
     <div class="row-head"><h2>What website care costs you each month</h2></div>
     <PriceCards plans={plans} />
-    <p class="mut" style="margin-top: 1.1rem; font-size: 0.9375rem">Stores and high-traffic sites are quoted separately. You keep every login. <a class="more-link" href="/wordpress-care-plans/">Compare the care plans side by side →</a> · <a class="more-link" href="/blog/best-wordpress-maintenance-services/">Comparing providers? →</a> · <a class="more-link" href="/blog/wordpress-hosting-and-maintenance/">Hosting vs maintenance →</a></p>
+    <p class="mut" style="margin-top: 1.1rem; font-size: 0.9375rem">Stores and high-traffic sites are quoted separately. You keep every login. <a class="more-link" href="/wordpress-development/wordpress-maintenance/">Compare the care plans side by side →</a> · <a class="more-link" href="/blog/best-wordpress-maintenance-services/">Comparing providers? →</a> · <a class="more-link" href="/blog/wordpress-hosting-and-maintenance/">Hosting vs maintenance →</a></p>
   </section>
 
   <section id="fix" class="wrap" style="padding-bottom: var(--sec)">
@@ -122,7 +123,7 @@ const jsonld = [
       <div>
         <p class="label">Not ready for a plan?</p>
         <h2 style="font-size: clamp(1.75rem, 3vw, 2.5rem)">Something broken or slow right now?</h2>
-        <p class="mut">Single fixes start at {usd(prices.fix)}: a white screen, broken form or plugin conflict, with the cause written down. A slow site gets a measured speed fix from {usd(prices.speed)}, with before and after numbers on PageSpeed Insights. See <a href="/wordpress-repair/">WordPress repair</a>, or <a href="/wordpress-malware-removal/">malware removal</a> for a hacked site.</p>
+        <p class="mut">Single fixes start at {usd(prices.fix)}: a white screen, broken form or plugin conflict, with the cause written down. A slow site gets a measured speed fix from {usd(prices.speed)}, with before and after numbers on PageSpeed Insights. See <a href="/wordpress-development/wordpress-repair/">WordPress repair</a>, or <a href="/wordpress-development/wordpress-malware-removal/">malware removal</a> for a hacked site.</p>
       </div>
       <a class="btn" href="/contact/?need=broken">Fix my site from $50</a>
     </div>

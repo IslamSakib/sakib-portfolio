@@ -116,4 +116,4 @@ A partner who reads this and comes back with questions before quoting is a good 
 
 It's the safest way to choose a partner. One small paid job, such as a single page build or a fix on a client site, shows you how they communicate, how they handle feedback and how clean the result is, before you trust them with a launch.
 
-I work as a solo white label WordPress developer for design and marketing agencies: NDA on request, no contact with your client, overlap with US and UK hours, and a reply within 24 hours. Shamsi Nur at Musemind described my work as "highly responsive, communicative, and consistently delivers work on time". See [how white label work with me runs](/white-label-wordpress-development/).
+I work as a solo white label WordPress developer for design and marketing agencies: NDA on request, no contact with your client, overlap with US and UK hours, and a reply within 24 hours. Shamsi Nur at Musemind described my work as "highly responsive, communicative, and consistently delivers work on time". See [how white label work with me runs](/wordpress-development/white-label-wordpress-development/).

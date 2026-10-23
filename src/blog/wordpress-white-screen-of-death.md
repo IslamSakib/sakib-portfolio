@@ -113,4 +113,4 @@ When the cause is a single plugin or theme update, finding it and getting the si
 
 White screens almost always follow a change: an update, a new plugin, a host moving PHP versions. Three habits prevent most of them. Test updates on a copy of the site first. Keep daily backups stored away from the server. Keep the plugin list short.
 
-That's what a [WordPress maintenance plan](/website-care/) covers. If your site is white right now and you need it back, send me access and a single fix starts from $150, with the cause written down so you know what happened.
+That's what a [WordPress maintenance plan](/custom-web-development/website-maintenance/) covers. If your site is white right now and you need it back, send me access and a single fix starts from $150, with the cause written down so you know what happened.

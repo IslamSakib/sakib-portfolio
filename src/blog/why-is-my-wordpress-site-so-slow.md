@@ -111,4 +111,4 @@ I removed the leftovers, kept one caching layer, rebuilt the old column layouts 
 
 The order matters. Images and duplicate caching are quick wins. Plugins and layouts take longer but last longer. After each change, run the same test on the same page, so you know which fix actually helped.
 
-If you'd rather hand this over, I do [WordPress speed optimization](/website-care/) with before and after numbers on Google's own tool, and the cause written down so it doesn't come back.
+If you'd rather hand this over, I do [WordPress speed optimization](/custom-web-development/website-maintenance/) with before and after numbers on Google's own tool, and the cause written down so it doesn't come back.

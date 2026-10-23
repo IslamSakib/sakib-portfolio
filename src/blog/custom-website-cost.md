@@ -61,6 +61,6 @@ Budget for hosting, a domain and care after launch. A website care plan from me 
 | Custom website, starting price | $600 | [Custom website development](/custom-web-development/) |
 | Web application, starting price | $999 | [Web application development](/web-application-development/) |
 | WordPress build, starting price | $300 | [WordPress development](/wordpress-development/) |
-| Website care plan, starting price | $149 a month | [Website care](/website-care/) |
+| Website care plan, starting price | $149 a month | [Website care](/custom-web-development/website-maintenance/) |
 
 Want a price for your project? See [custom website development](/custom-web-development/) or [hire a full stack developer](/full-stack-developer/) and send the brief.

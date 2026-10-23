@@ -1,0 +1,13 @@
+---
+// The service pages under each pillar, from src/children.js (the hand-built ones have their own files).
+import ServicePage from '../../components/ServicePage.astro';
+import { pillars, dataChildren, kidsOf } from '../../children.js';
+export function getStaticPaths() {
+  return dataChildren.map((c) => {
+    const parent = pillars.find((p) => p.slug === c.pillar);
+    return { params: { pillar: c.pillar, child: c.slug }, props: { s: c, parent, siblings: kidsOf(c.pillar).filter((o) => o.slug !== c.slug).slice(0, 6) } };
+  });
+}
+const { s, parent, siblings } = Astro.props;
+---
+<ServicePage s={s} parent={parent} siblings={siblings} />

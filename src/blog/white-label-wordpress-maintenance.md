@@ -64,7 +64,7 @@ Published 2026 price guides put agency maintenance plans at roughly $200 to over
 
 ## How do I choose a maintenance partner?
 
-If you'd rather not build this in-house, I run [white label WordPress support](/white-label-wordpress-maintenance/) for agencies. Either way, look for the same things you'd want if you were the client:
+If you'd rather not build this in-house, I run [white label WordPress support](/wordpress-development/white-label-wordpress-maintenance/) for agencies. Either way, look for the same things you'd want if you were the client:
 
 - **Updates are tested,** not just switched to automatic
 - **Backups are off-site** and restores are tested
@@ -115,4 +115,4 @@ You don't need to move every client at once. Put one site on the plan, see the f
 
 ## How do I run white label maintenance for agencies?
 
-I maintain WordPress sites for agencies under their brand: tested updates, daily off-site backups, monitoring, changes and a plain-English monthly report you can send as your own. Care starts from $59 per site per month. I never contact your clients, I sign NDAs and I overlap with US and UK hours. Start with one site and judge the work before adding more. See [white label WordPress development](/white-label-wordpress-development/) for how it works, or send me a client site for a free check.
+I maintain WordPress sites for agencies under their brand: tested updates, daily off-site backups, monitoring, changes and a plain-English monthly report you can send as your own. Care starts from $59 per site per month. I never contact your clients, I sign NDAs and I overlap with US and UK hours. Start with one site and judge the work before adding more. See [white label WordPress development](/wordpress-development/white-label-wordpress-development/) for how it works, or send me a client site for a free check.

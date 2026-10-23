@@ -6,6 +6,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { services, fixes } from '../src/services.js';
 import { roleList } from '../src/roles.js';
 import { icps } from '../src/icps.js';
+import { dataChildren } from '../src/children.js';
 
 const W = 1200, H = 630, font = 'Arial, Helvetica, sans-serif';
 const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
@@ -53,6 +54,9 @@ for (const r of roleList) {
   await withPhoto(r.name, r.hub.h1Lines).jpeg({ quality: 88 }).toFile(`public/og-${r.slug}.jpg`);
   for (const p of r.pages) await withPhoto(`${r.name} · ${p.name}`, p.h1Lines).jpeg({ quality: 88 }).toFile(`public/og-${r.slug}-${p.slug}.jpg`);
 }
+
+// Service pages under the three pillars: one image per page.
+for (const c of dataChildren) await withPhoto(c.name, c.h1Lines).jpeg({ quality: 88 }).toFile(`public/og-${c.slug}.jpg`);
 
 // Audience pages: an index and one image per ideal customer.
 await withPhoto('Who I help', ['Who I help:', 'founders, owners,', 'agencies and teams.']).jpeg({ quality: 88 }).toFile('public/og-for.jpg');

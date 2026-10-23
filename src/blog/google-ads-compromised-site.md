@@ -78,8 +78,8 @@ A failed appeal almost always means something is still on the page, or Google's 
 - **Keep everything updated, with a test first.** Updates close the holes Google's policy names.
 - **Keep backups off your server** so you can undo damage quickly.
 - **Turn on Search Console email alerts** so you hear about security issues early.
-- **Get the site watched.** A [care plan](/wordpress-care-plans/) checks updates, backups and security every month.
+- **Get the site watched.** A [care plan](/wordpress-development/wordpress-maintenance/) checks updates, backups and security every month.
 
 ## Want it cleaned properly?
 
-If your ads are stuck, I can clean the site, find how it got in and close it. That's what my [WordPress malware removal](/wordpress-malware-removal/) service does, from $199, with a written quote after a free first look. [Send me your site](/contact/) and you'll hear back within 24 hours.
+If your ads are stuck, I can clean the site, find how it got in and close it. That's what my [WordPress malware removal](/wordpress-development/wordpress-malware-removal/) service does, from $199, with a written quote after a free first look. [Send me your site](/contact/) and you'll hear back within 24 hours.

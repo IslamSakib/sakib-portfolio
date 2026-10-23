@@ -2,18 +2,21 @@
 // `h1Lines` is the same headline split where it should break on a wide screen.
 // `focus` is the page's focus keyword: it must appear in `title`, `description` and `h1` (scripts/seo-check.mjs checks this).
 // Every claim here comes from the case studies in src/work or from what Sakib has confirmed.
+import { prices, usd } from './prices.js';
+
 export const services = [
   {
     slug: 'custom-web-development',
+    menu: 'Custom website development', ic: 'M3 5h18v14H3zM3 9h18M7 7h.01', from: `Websites from ${usd(prices.site)}, stores from ${usd(prices.store)}`, kidsTitle: 'Custom website development services',
     name: 'Custom website development',
     short: 'Websites and online stores built from scratch: UI/UX, frontend, backend and admin dashboard.',
-    focus: 'custom web development',
-    title: 'Custom Web Development Services | Sakib Islam',
+    focus: 'custom website development',
+    title: 'Custom Website Development Services | Sakib Islam',
     description:
-      'Custom web development from UI design to backend: websites, stores and web apps. See Mayabee and Wrkbase.',
-    h1: 'Custom web development, from design to backend.',
-    h1Lines: ['Custom web', 'development, from', 'design to backend.'],
-    lead: 'Custom web development for businesses that have outgrown a template. I study your competitors first, design the UI and UX myself, then build the frontend, the backend and the admin dashboard as one job. Mayabee, a store with its own dashboard, and Wrkbase, my own SaaS, are the proof.',
+      'Custom website development from UI design to backend: sites, stores and landing pages. See Mayabee.',
+    h1: 'Custom website development, from design to backend.',
+    h1Lines: ['Custom website', 'development, from', 'design to backend.'],
+    lead: 'Custom website development for businesses that have outgrown a template. I study your competitors first, design the UI and UX myself, then build the frontend, the backend and the admin dashboard as one job. Mayabee, a store with its own dashboard, and Wrkbase, my own SaaS, are the proof.',
     row: 'Custom websites and online stores: competitor research, UI/UX, frontend, backend and admin dashboard by one developer.',
     chips: ['Business websites', 'Online stores', 'Admin dashboards', 'Landing pages', 'APIs', 'UI/UX design'],
     problemTitle: 'When a template website is no longer enough',
@@ -45,15 +48,16 @@ export const services = [
   },
   {
     slug: 'web-application-development',
+    menu: 'Web application development', ic: 'M4 5h16v14H4zM4 10h16M9 10v9', from: `First versions from ${usd(prices.webApp)}`, kidsTitle: 'Web application development services',
     name: 'Web application development',
     short: 'Customer portals, internal tools and SaaS: sign-in, roles, dashboards and APIs.',
-    focus: 'web application development',
-    title: 'Web Application Development Services | Sakib Islam',
+    focus: 'custom web application development',
+    title: 'Custom Web Application Development | Sakib Islam',
     description:
-      'Web application development for portals, dashboards and SaaS, built frontend to backend. Get a quote.',
-    h1: 'Web application development, from first version to launch.',
-    h1Lines: ['Web application', 'development, from first', 'version to launch.'],
-    lead: 'Web application development for software your customers or staff sign in to: a customer portal, an internal tool, a booking system or a SaaS product. I design the UI and UX, build a first version people can use, then grow it. Wrkbase, my own SaaS with an AI agent, is the proof.',
+      'Custom web application development for portals, dashboards and SaaS, frontend to backend. Get a quote.',
+    h1: 'Custom web application development, from first version to launch.',
+    h1Lines: ['Custom web application', 'development, from first', 'version to launch.'],
+    lead: 'Custom web application development for software your customers or staff sign in to: a customer portal, an internal tool, a booking system or a SaaS product. I design the UI and UX, build a first version people can use, then grow it. Wrkbase, my own SaaS with an AI agent, is the proof.',
     row: 'Customer portals, internal tools and SaaS products: accounts, roles, dashboards and APIs, built by one developer.',
     chips: ['Customer portals', 'Internal tools', 'SaaS products', 'Dashboards', 'APIs', 'AI features'],
     problemTitle: 'When a website is no longer enough',
@@ -85,6 +89,7 @@ export const services = [
   },
   {
     slug: 'wordpress-development',
+    menu: 'WordPress development', ic: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM3.5 9h17M3.5 15h17M12 3c3 3 3 15 0 18', from: `Themes from ${usd(prices.build)}, stores from ${usd(prices.woo)}`, kidsTitle: 'WordPress development services',
     name: 'WordPress development',
     short: 'Themes, plugins, stores and payments, built as one job.',
     focus: 'custom WordPress development',
@@ -178,7 +183,7 @@ export const fixes = [
       'WordPress malware removal by hand: find the way in, clean the site, clear Google warnings. From $99.',
     h1: 'WordPress malware removal that closes the way in.',
     h1Lines: ['WordPress malware', 'removal that closes', 'the way in.'],
-    lead: 'Seeing spam pages, strange redirects or a Google warning on your site? WordPress malware removal, done by hand: I clean the files and the database, find how the attacker got in and close it, so you don\'t get hacked again next week.',
+    lead: 'Spam pages, strange redirects or a Google warning on your site? WordPress malware removal, done by hand, closes the way in so it does not come back.',
     chips: ['Spam pages', 'Redirects', 'Google warnings', 'Host suspension', 'Backdoors'],
     problemTitle: 'Why a scan alone does not stop reinfection',
     includesTitle: 'What the cleanup covers',

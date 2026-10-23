@@ -92,4 +92,4 @@ Some combinations look like doubling up but aren't. A page cache on the server a
 
 ## What's the short fix?
 
-Keep one caching layer, set it up properly, and remove every leftover from the others. Then look at why the pages were heavy in the first place: oversized images, page builder layouts and unused scripts. Caching hides those problems. It doesn't remove them. If you'd rather hand it over, I do [WordPress speed optimization](/website-care/) and write down exactly what was fighting.
+Keep one caching layer, set it up properly, and remove every leftover from the others. Then look at why the pages were heavy in the first place: oversized images, page builder layouts and unused scripts. Caching hides those problems. It doesn't remove them. If you'd rather hand it over, I do [WordPress speed optimization](/custom-web-development/website-maintenance/) and write down exactly what was fighting.
