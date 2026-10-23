@@ -1,0 +1,56 @@
+---
+// Index of the audience pages: one per kind of client.
+import Base from '../../layouts/Base.astro';
+import Connect from '../../components/Connect.astro';
+import { icps } from '../../icps.js';
+import { site } from '../../site.js';
+
+const title = 'Who I Help: Web Developer for Founders and Owners';
+const description = 'Who I help: SaaS founders, store owners, agencies and small businesses. Pick yours and see the price.';
+const url = new URL(Astro.url.pathname, Astro.site);
+const pad = (n) => String(n).padStart(2, '0');
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Who I help',
+    url,
+    description,
+    isPartOf: { '@type': 'WebSite', name: site.name, url: Astro.site },
+    mainEntity: { '@type': 'ItemList', itemListElement: icps.map((i, n) => ({ '@type': 'ListItem', position: n + 1, name: i.name, url: new URL(`/for/${i.slug}/`, Astro.site) })) },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: Astro.site },
+      { '@type': 'ListItem', position: 2, name: 'Who I help', item: url },
+    ],
+  },
+];
+---
+<Base title={title} description={description} jsonld={jsonld} focus="Who I help" ogImage="/og-for.jpg" ogAlt="Who I help. Sakib Islam, remote full stack developer.">
+  <section class="page-head">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Who I help</span></nav>
+      <h1><span class="hl">Who I help:</span> <span class="hl">founders, store owners,</span> <span class="hl">agencies and teams.</span></h1>
+      <p class="lead">Who I help is the quickest way to find the page written for your situation. Each one lists what usually goes wrong, what I do about it, the work that proves it and what it costs.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <ul class="kit kit-links">
+        {icps.map((i, n) => (
+          <li>
+            <span class="kit-top"><span class="idx">{pad(n + 1)}</span></span>
+            <h3><a href={`/for/${i.slug}/`}>{i.name}</a></h3>
+            <p class="muted">{i.short}. {i.price}.</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <Connect heading="Not sure which one is you?" />
+</Base>

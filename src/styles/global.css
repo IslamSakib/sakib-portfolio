@@ -50,7 +50,7 @@ h1, h2, h3, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
 h1, h2, h3 { font-family: var(--display); line-height: 1.08; letter-spacing: -0.03em; font-weight: 700; text-wrap: wrap; padding-bottom: 0.08em; }
 h1 { font-size: clamp(2.5rem, 6vw, 4.75rem); }
 h2 { font-size: clamp(2rem, 4.2vw, 3.25rem); }
-h3 { font-size: 1.375rem; letter-spacing: -0.02em; }
+h3 { font-size: 1.375rem; line-height: 1.2; letter-spacing: -0.02em; }
 ul, ol { padding: 0; list-style: none; }
 /* No single word left alone on a last line: body text avoids short last lines, and short intro lines are evened out. */
 p, li, dd, dt, summary, blockquote, figcaption { text-wrap: wrap; }
@@ -649,6 +649,9 @@ p, li, dd, figcaption { text-wrap: pretty; }
 /* Services menu: the text links under the service cards sit in two groups. */
 .mega-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1.5rem; margin-top: 0.4rem; }
 .mega-groups .mega-links { margin-top: 0.2rem; }
+.mega-groups .mega-wide { grid-column: 1 / -1; }
+.mega-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1.5rem; }
+@media (max-width: 1100px) { .mega-groups .mega-wide { grid-column: auto; } }
 @media (max-width: 1100px) { .mega-groups { grid-template-columns: minmax(0, 1fr); } }
 .svc4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 @media (max-width: 1100px) { .svc4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

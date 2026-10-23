@@ -1,0 +1,9 @@
+---
+import IcpPage from '../../components/IcpPage.astro';
+import { icps } from '../../icps.js';
+export function getStaticPaths() {
+  return icps.map((icp) => ({ params: { icp: icp.slug }, props: { icp } }));
+}
+const { icp } = Astro.props;
+---
+<IcpPage icp={icp} />

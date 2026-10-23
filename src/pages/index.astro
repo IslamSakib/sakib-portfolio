@@ -15,6 +15,7 @@ import { reviews, initials, allReviewsUrl } from '../reviews.js';
 import { clients, clientCount } from '../clients.js';
 import { posts } from '../blog.js';
 import { prices, usd, typical } from '../prices.js';
+import { icps } from '../icps.js';
 import { toolLogos } from '../toolLogos.js';
 
 // Focus keyword for this page. It must appear in the title, the description and the H1 (scripts/seo-check.mjs).
@@ -157,6 +158,16 @@ const svc = [
       ))}
     </ul>
     <p class="muted" style="margin-top: 1.5rem">Website slow, broken or hacked? <a class="more-link" href="/wordpress-repair/">Website repair</a>, <a class="more-link" href="/website-care/">speed fixes</a> and <a class="more-link" href="/wordpress-malware-removal/">malware removal</a> are part of website care.</p>
+  </section>
+
+  <section id="who" class="wrap" style="padding: 0 0 var(--sec)">
+    <div class="row-head">
+      <h2>Who I help</h2>
+      <a href="/for/">All the pages →</a>
+    </div>
+    <ul class="kit kit-links">
+      {icps.map((i) => <li><h3><a href={`/for/${i.slug}/`}>{i.name}</a></h3><p class="muted">{i.short}.</p></li>)}
+    </ul>
   </section>
 
   <section id="work" class="wrap" style="padding: 0 0 var(--sec)">

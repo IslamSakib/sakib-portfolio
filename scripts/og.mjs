@@ -5,6 +5,7 @@ import sharp from 'sharp';
 import { readFileSync, readdirSync } from 'node:fs';
 import { services, fixes } from '../src/services.js';
 import { roleList } from '../src/roles.js';
+import { icps } from '../src/icps.js';
 
 const W = 1200, H = 630, font = 'Arial, Helvetica, sans-serif';
 const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
@@ -52,6 +53,10 @@ for (const r of roleList) {
   await withPhoto(r.name, r.hub.h1Lines).jpeg({ quality: 88 }).toFile(`public/og-${r.slug}.jpg`);
   for (const p of r.pages) await withPhoto(`${r.name} · ${p.name}`, p.h1Lines).jpeg({ quality: 88 }).toFile(`public/og-${r.slug}-${p.slug}.jpg`);
 }
+
+// Audience pages: an index and one image per ideal customer.
+await withPhoto('Who I help', ['Who I help:', 'founders, owners,', 'agencies and teams.']).jpeg({ quality: 88 }).toFile('public/og-for.jpg');
+for (const i of icps) await withPhoto(i.name, i.h1Lines).jpeg({ quality: 88 }).toFile(`public/og-for-${i.slug}.jpg`);
 
 // Case studies: the result as the headline, the client's site in a frame on the right.
 const frame = '<rect x="619" y="151" width="502" height="316" rx="8" fill="#14121a" stroke="#26222f" stroke-width="2"/>';

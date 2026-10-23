@@ -10,6 +10,7 @@ import '../styles/motion.css';
 import '../styles/pages.css';
 import { site } from '../site.js';
 import { prices, usd } from '../prices.js';
+import { icps } from '../icps.js';
 import { socials } from '../socials.js';
 import { designedOg } from '../ogDesigned.js';
 import { Image } from 'astro:assets';
@@ -44,6 +45,7 @@ const fixLinks = [
   { href: '/wordpress-malware-removal/', t: 'Clean a hacked website' },
   { href: '/blog/', t: 'Guides and costs' },
 ];
+const audienceLinks = icps.map((i) => ({ href: `/for/${i.slug}/`, t: i.name }));
 const agencyGuides = [
   { href: '/white-label-wordpress-maintenance/', t: 'White-label support and care' },
   { href: '/blog/choosing-a-white-label-wordpress-partner/', t: 'Choosing a white label partner' },
@@ -115,6 +117,12 @@ const agencyGuides = [
                       {hireLinks.map((g) => <li><a href={g.href}>{g.t} <span aria-hidden="true">→</span></a></li>)}
                     </ul>
                   </div>
+                  <div class="mega-wide">
+                    <p class="mega-sub">Who I help</p>
+                    <ul class="mega-links mega-care mega-cols">
+                      {audienceLinks.map((g) => <li><a href={g.href}>{g.t} <span aria-hidden="true">→</span></a></li>)}
+                    </ul>
+                  </div>
                   <div>
                     <p class="mega-sub">Fix and care</p>
                     <ul class="mega-links mega-care">
@@ -159,7 +167,11 @@ const agencyGuides = [
                 {menu.map((sv, i) => <a href={`/${sv.slug}/`} style={`--i:${i + 6}`}><span>{String(i + 1).padStart(2, '0')}</span>{sv.name}</a>)}
                 {[...hireLinks, ...fixLinks].map((g, i) => <a href={g.href} style={`--i:${i + 12}`}><span>{String(menu.length + i + 1).padStart(2, '0')}</span>{g.t}</a>)}
               </div>
-              <div class="mnav-foot" style="--i:19">
+              <p class="mnav-label" style="--i:18">Who I help</p>
+              <div class="mnav-svc">
+                {audienceLinks.map((g, i) => <a href={g.href} style={`--i:${i + 19}`}><span>{String(i + 1).padStart(2, '0')}</span>{g.t}</a>)}
+              </div>
+              <div class="mnav-foot" style="--i:27">
                 <a class="btn" href="/contact/">Get a free quote</a>
                 <p><a href={`mailto:${site.email}`}>{site.email}</a><a href={site.whatsapp} target="_blank" rel="noopener">WhatsApp +880 1950 025990</a></p>
               </div>

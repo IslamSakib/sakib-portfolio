@@ -28,7 +28,7 @@ let devices = DEVICES;
 if (flag('quick')) devices = DEVICES.filter((d) => QUICK.includes(d[1]));
 if (arg('w')) { const ws = arg('w').split(',').map(Number); devices = DEVICES.filter((d) => ws.includes(d[1])); }
 
-const PUBLIC = ['/', '/custom-web-development/', '/wordpress-development/', '/website-care/', '/wordpress-care-plans/', '/full-stack-developer/', '/full-stack-developer/florida/', '/full-stack-developer/usa/', '/web-application-developer/', '/web-application-developer/texas/', '/wordpress-developer/', '/wordpress-developer/chicago/', '/work/mayabee/', '/work/tabby/', '/contact/', '/white-label-wordpress-development/', '/blog/'];
+const PUBLIC = arg('pages') ? arg('pages').split(',') : ['/', '/custom-web-development/', '/wordpress-development/', '/website-care/', '/wordpress-care-plans/', '/full-stack-developer/', '/full-stack-developer/florida/', '/full-stack-developer/usa/', '/web-application-developer/', '/web-application-developer/texas/', '/wordpress-developer/', '/wordpress-developer/chicago/', '/work/mayabee/', '/work/tabby/', '/contact/', '/white-label-wordpress-development/', '/blog/'];
 const ADMIN = [];
 const only = arg('only');
 const langs = arg('lang') ? [arg('lang') === 'bn' ? '/bn' : ''] : ['', '/bn'];

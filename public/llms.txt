@@ -16,6 +16,18 @@
 - [Hire a web application developer](https://sakib.mywrkbase.com/web-application-developer/): pages for the USA, Florida, Texas, California and New York
 - [Hire a WordPress developer](https://sakib.mywrkbase.com/wordpress-developer/): pages for the USA, Florida, Texas, California, New York and Chicago
 
+## Who I help
+
+- [All audiences](https://sakib.mywrkbase.com/for/): one page for each kind of client
+- [SaaS and AI founders](https://sakib.mywrkbase.com/for/saas-founders/): Founders building a SaaS or AI product
+- [Owners of a slow or broken website](https://sakib.mywrkbase.com/for/slow-broken-website/): Business owners whose site is slow, broken or hacked
+- [Ecommerce store owners](https://sakib.mywrkbase.com/for/ecommerce-store-owners/): Owners of an online store
+- [Teams that outgrew spreadsheets](https://sakib.mywrkbase.com/for/custom-business-software/): Businesses that need a custom web app or internal tool
+- [Design and marketing agencies](https://sakib.mywrkbase.com/for/agencies/): Agencies that need a white-label developer
+- [Small business owners](https://sakib.mywrkbase.com/for/small-business-owners/): Local and service businesses that need a new website
+- [Education and training providers](https://sakib.mywrkbase.com/for/education-training-providers/): Schools, colleges and course providers
+- [Fintech and payments companies](https://sakib.mywrkbase.com/for/fintech-payments-companies/): Payment gateways and fintech products
+
 ## Case studies
 
 - [Mayabee](https://sakib.mywrkbase.com/work/mayabee/): custom online shop for a Dhaka handbag and jewellery brand, in English and Bangla, with an admin dashboard for orders, delivery and cash on delivery
