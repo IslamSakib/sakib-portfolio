@@ -2,6 +2,7 @@
 // For agencies that sell care plans: Sakib does the monthly WordPress work quietly under the agency's brand.
 // He works alone, so the copy never says "we". Per-site price from src/prices.js (wholesale, below his own retail plan).
 import { Picture } from 'astro:assets';
+import GlyphArt from '../components/GlyphArt.astro';
 import Base from '../layouts/Base.astro';
 import Connect from '../components/Connect.astro';
 import PriceCards from '../components/PriceCards.astro';
@@ -120,7 +121,7 @@ const jsonld = [
     <div class="cap-grid">
       {caps.map((c) => (
         <div class="tile">
-          <svg class="icon" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d={c.p} /></svg>
+          <GlyphArt title={c.t} />
           <h3>{c.t}</h3>
           <p class="mut" style="font-size: 0.9375rem">{c.d}</p>
         </div>

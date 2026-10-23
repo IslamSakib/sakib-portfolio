@@ -1,29 +1,21 @@
 ---
 // "How I work": four steps, each with a photo of what happens in it. Shared by the home page and the service pages.
 // Each image has alt text describing what it shows.
-import { Picture } from 'astro:assets';
-import find from '../assets/visuals/step-find.jpg';
-import fix from '../assets/visuals/step-fix.jpg';
-import measure from '../assets/visuals/step-measure.jpg';
-import hand from '../assets/visuals/step-hand.jpg';
-import research from '../assets/visuals/step-research.jpg';
-import design from '../assets/visuals/step-design.jpg';
-import build from '../assets/visuals/step-build.jpg';
-import launch from '../assets/visuals/step-launch.jpg';
+import GlyphArt from './GlyphArt.astro';
 const pad = (n) => String(n).padStart(2, '0');
 const { title = 'How I work', variant = 'fix' } = Astro.props;
 // 'build' is for new websites and apps (the Mayabee project, shown in each picture); 'fix' is for a site already in trouble.
 const buildSteps = [
-  { alt: 'A competitor review checklist: layout, product pages, checkout, delivery, language and gaps', img: research, name: 'Study your competitors', text: 'I look at what competitors do well and where they leave gaps, before a single screen is drawn.' },
-  { alt: 'The Mayabee storefront product page and the admin dashboard home, designed together', img: design, name: 'Design the UI and UX', text: 'I design the screens myself, so what you approve is what gets built.' },
-  { alt: 'The Mayabee admin dashboard: the orders list and the delivery and cash screen', img: build, name: 'Build frontend to backend', text: 'Pages, accounts, orders, payments and the admin dashboard, built as one job.' },
-  { alt: 'Core Web Vitals for the Mayabee home page on a throttled phone: 0.8 second LCP, no layout shift, 253 KB', img: launch, name: 'Launch and look after it', text: 'Speed checked on a phone, then backups, monitoring and changes through website care.' },
+  { alt: 'A competitor review checklist: layout, product pages, checkout, delivery, language and gaps', glyph: 'search', name: 'Study your competitors', text: 'I look at what competitors do well and where they leave gaps, before a single screen is drawn.' },
+  { alt: 'The Mayabee storefront product page and the admin dashboard home, designed together', glyph: 'layout', name: 'Design the UI and UX', text: 'I design the screens myself, so what you approve is what gets built.' },
+  { alt: 'The Mayabee admin dashboard: the orders list and the delivery and cash screen', glyph: 'code', name: 'Build frontend to backend', text: 'Pages, accounts, orders, payments and the admin dashboard, built as one job.' },
+  { alt: 'Core Web Vitals for the Mayabee home page on a throttled phone: 0.8 second LCP, no layout shift, 253 KB', glyph: 'flag', name: 'Launch and look after it', text: 'Speed checked on a phone, then backups, monitoring and changes through website care.' },
 ];
 const fixSteps = [
-  { alt: 'An error log with the line that explains the problem under a magnifying glass', img: find, name: 'Find the cause', text: 'I test the site, read the errors and check what changed before I touch anything.' },
-  { alt: 'The fix: a second cache plugin and leftover files removed, one cache set up once', img: fix, name: 'Fix the root', text: 'One clean fix where the problem lives, not a patch on top of it.' },
-  { alt: 'TubeOnAI load time measured before and after: 5.0 seconds down to 1.5 seconds', img: measure, name: 'Measure it', text: 'Before and after numbers from PageSpeed Insights that you can check yourself.' },
-  { alt: 'Handover notes: what was wrong, what I changed and what to avoid next time', img: hand, name: 'Hand it over', text: 'You get notes on what was done, so the next change does not undo it.' },
+  { alt: 'An error log with the line that explains the problem under a magnifying glass', glyph: 'search', name: 'Find the cause', text: 'I test the site, read the errors and check what changed before I touch anything.' },
+  { alt: 'The fix: a second cache plugin and leftover files removed, one cache set up once', glyph: 'bug', name: 'Fix the root', text: 'One clean fix where the problem lives, not a patch on top of it.' },
+  { alt: 'TubeOnAI load time measured before and after: 5.0 seconds down to 1.5 seconds', glyph: 'gauge', name: 'Measure it', text: 'Before and after numbers from PageSpeed Insights that you can check yourself.' },
+  { alt: 'Handover notes: what was wrong, what I changed and what to avoid next time', glyph: 'book', name: 'Hand it over', text: 'You get notes on what was done, so the next change does not undo it.' },
 ];
 const steps = variant === 'build' ? buildSteps : fixSteps;
 ---
@@ -35,7 +27,7 @@ const steps = variant === 'build' ? buildSteps : fixSteps;
     <ol class="steps">
       {steps.map((s, i) => (
         <li data-reveal style={`--d:${i * 0.1}s`}>
-          <div class="pa"><Picture src={s.img} formats={['avif', 'webp']} widths={[400, 640]} sizes="(max-width: 900px) 100vw, 300px" alt={s.alt} loading="lazy" /></div>
+          <GlyphArt title={s.name} glyph={s.glyph} />
           <span class="idx">Step {pad(i + 1)}</span>
           <h3>{s.name}</h3>
           <p class="muted">{s.text}</p>

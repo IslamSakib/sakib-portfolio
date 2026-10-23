@@ -41,8 +41,9 @@ const byTitle = {
   'Logistics and delivery': 'flow', 'Education and training': 'cap', 'Fintech and payments': 'lock',
 };
 const byWord = [[/research|find|look|study/i, 'search'], [/design|ux|ui|screen/i, 'layout'], [/fast|speed|load|light/i, 'bolt'], [/api|backend|code|integrat|plugin/i, 'code'], [/dashboard|report|number|data|track/i, 'chart'], [/care|backup|monitor|secur|safe|clean|hack/i, 'shield'], [/pay|price|cost|money|quote|billing/i, 'calc'], [/store|shop|order|checkout/i, 'cart'], [/school|learn|train|teach/i, 'cap'], [/ai|agent|model|automat/i, 'bot'], [/account|role|permission|approv|log/i, 'lock'], [/launch|first version|start|sell/i, 'flag'], [/agenc|client|team|people|spreadsheet/i, 'chat'], [/site|page|market|website/i, 'image'], [/slow|down|error|break|broke|fail|quote months|judge/i, 'alert'], [/deadline|time|date|week/i, 'gauge'], [/doc|guide|help/i, 'book']];
-export const iconFor = (title) => {
-  if (byTitle[title]) return icons[byTitle[title]];
+export const iconKeyFor = (title) => {
+  if (byTitle[title]) return byTitle[title];
   const hit = byWord.find(([re]) => re.test(title));
-  return icons[hit ? hit[1] : 'layers'];
+  return hit ? hit[1] : 'layers';
 };
+export const iconFor = (title) => icons[iconKeyFor(title)];

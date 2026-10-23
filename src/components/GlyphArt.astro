@@ -1,0 +1,9 @@
+---
+// The glossy picture on a feature card, chosen from the card title (pictures drawn by scripts/kit-art.mjs).
+import { Image } from 'astro:assets';
+import { iconKeyFor } from '../icons.js';
+const { title, glyph } = Astro.props;
+const pics = import.meta.glob('../assets/visuals/k-*.jpg', { eager: true, import: 'default' });
+const src = pics[`../assets/visuals/k-${glyph || iconKeyFor(title)}.jpg`] || pics['../assets/visuals/k-layers.jpg'];
+---
+<div class="glyph-art" aria-hidden="true"><Image src={src} widths={[320, 480, 640]} sizes="(max-width: 700px) 90vw, 400px" alt={`${title}, illustration`} loading="lazy" /></div>

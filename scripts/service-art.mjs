@@ -18,7 +18,7 @@ const defs = `
   <linearGradient id="rightD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22136a"/><stop offset="1" stop-color="#0f0833"/></linearGradient>
   <linearGradient id="shine" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset=".5" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
   <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c4b5fd" stop-opacity="0"/><stop offset=".5" stop-color="#e9e1ff" stop-opacity=".95"/><stop offset="1" stop-color="#c4b5fd" stop-opacity="0"/></linearGradient>
-  <filter id="blur8"><feGaussianBlur stdDeviation="8"/></filter>
+  <filter id="blur8" x="-300%" y="-300%" width="700%" height="700%"><feGaussianBlur stdDeviation="8"/></filter>
   <filter id="blur24"><feGaussianBlur stdDeviation="24"/></filter>
   <filter id="soft"><feGaussianBlur stdDeviation="1.2"/></filter>
 </defs>`;

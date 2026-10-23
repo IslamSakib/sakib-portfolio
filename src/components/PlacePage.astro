@@ -2,6 +2,7 @@
 import { heroLead } from '../heroLead.js';
 // One page per place in src/locations.js (/full-stack-developer/<place>/): same layout as a service page, with the place's
 // own industries, time-zone sums, proof and questions. Written to be useful to someone in that place, not a template swap.
+import GlyphArt from './GlyphArt.astro';
 import Base from '../layouts/Base.astro';
 import Connect from '../components/Connect.astro';
 import ServiceArt from '../components/ServiceArt.astro';
@@ -90,10 +91,7 @@ const jsonld = [
       <ul class="kit">
         {p.industries.map((item, i) => (
           <li>
-            <span class="kit-top">
-              <svg class="kit-ico" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d={iconFor(item.name)} /></svg>
-              <span class="idx">{pad(i + 1)}</span>
-            </span>
+            <GlyphArt title={item.name} />
             <h3>{item.name}</h3>
             <p class="muted">{item.text}</p>
           </li>

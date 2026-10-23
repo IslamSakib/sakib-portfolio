@@ -817,3 +817,21 @@ h1, h2, h3, .page-head h1, .svc-copy h1 { text-wrap: balance; overflow-wrap: nor
 .guide-wrap { width: 100%; max-width: none; }
 .contact-side { grid-template-columns: minmax(0, 1fr); }
 @media (max-width: 480px) { .g-count { display: none; } .g-head { gap: 0.7rem; } }
+
+/* Feature-card pictures */
+.glyph-art { margin: -0.5rem -0.5rem 0.6rem; border-radius: 14px; overflow: hidden; aspect-ratio: 16 / 9; background: var(--bg); }
+.glyph-art img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.kit > li, .tile { overflow: hidden; }
+.kit-rows > li { grid-template-columns: 170px minmax(0, 0.9fr) minmax(0, 1.4fr); align-items: center; }
+.kit-rows .glyph-art { grid-column: 1; grid-row: 1 / span 2; margin: 0; aspect-ratio: 16 / 10; }
+@media (max-width: 900px) { .kit-rows > li { grid-template-columns: minmax(0, 1fr); } .kit-rows .glyph-art { grid-column: 1; grid-row: auto; max-width: 320px; } }
+
+/* "The usual way" against "How I do it": one split panel, no arrow */
+.versus { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; border: 1px solid var(--line); border-radius: 24px; overflow: hidden; background: var(--surface); }
+.versus .vs-arrow { display: none; }
+.versus .vs-card { border: 0; border-radius: 0; background: none; padding: 2rem; }
+.versus .vs-yes { background: linear-gradient(160deg, rgb(var(--accent-rgb) / 0.16), transparent 70%); border-left: 1px solid var(--line); }
+@media (max-width: 860px) { .versus { grid-template-columns: minmax(0, 1fr); } .versus .vs-yes { border-left: 0; border-top: 1px solid var(--line); } }
+.reel { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.9fr); gap: 3rem; }
+.reel-left h2 { font-size: clamp(1.9rem, 2.9vw, 2.75rem); }
+@media (max-width: 900px) { .reel { grid-template-columns: minmax(0, 1fr); } }
