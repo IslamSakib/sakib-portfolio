@@ -4,6 +4,7 @@ seoTitle: "How to Check if Your WordPress Site Is Hacked"
 description: "How to check if your WordPress site is hacked: 10 signs, from spam pages to new admins. See the list."
 focus: check if your WordPress site is hacked
 date: "2026-10-15"
+updated: "2026-10-24"
 art: hackcheck
 topic: Fixes and maintenance
 service: wordpress-malware-removal
@@ -13,6 +14,8 @@ sources:
   - { name: "WP-CLI, wp core verify-checksums", url: "https://developer.wordpress.org/cli/commands/core/verify-checksums/" }
   - { name: "Patchstack, State of WordPress Security in 2026", url: "https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/" }
 faq:
+  - { q: "How do I know if my WordPress site has been hacked?", a: "Look for spam pages in Google with site:yourdomain.com, redirects that only some visitors see, admin users you did not create, PHP files inside the uploads folder and a warning in Search Console. Check from a phone and through a Google search, because many hacks hide from the site owner." }
+  - { q: "Is there a free tool to check if WordPress is hacked?", a: "Search Console's Security issues report, Google's site: search and WP-CLI checksum commands are free. A scanner plugin can help, but it can miss code hidden in a pirated plugin, so read the results as a lead, not as proof the site is clean." }
   - { q: "How can I check if my WordPress site is hacked for free?", a: "Search Google for site:yourdomain.com to look for spam pages, check Search Console's Security issues report, review your WordPress admin users, look for PHP files in the uploads folder, and run WP-CLI's checksum commands to compare core and plugin files with the official copies." }
   - { q: "Can a WordPress site be hacked without me noticing?", a: "Yes. Many hacks are designed to stay hidden: they redirect only mobile visitors or visitors from Google, or add spam pages that only search engines see. That is why checking from a phone, in a private window and through Google matters." }
   - { q: "Why is my WordPress site redirecting to another site?", a: "Unwanted redirects are one of the most common signs of a hack. Malware often redirects only some visitors, such as first-time visitors on mobile, so the site can look normal to you while customers are sent to spam or scam pages." }
@@ -84,6 +87,10 @@ Stay calm and work through these in order, because deleting things too early can
 3. **Put the site into maintenance mode** if visitors are being redirected or warned, so customers aren't harmed while you clean.
 4. **Clean, then close the door.** Replace core files with clean copies, check plugins and uploads, remove unknown users, and update or remove the plugin that let them in. My step-by-step guide on [how to fix a hacked WordPress site](/blog/fix-hacked-wordpress-site/) covers each step.
 
+## A real example: the scanner said clean, the site was not
+
+A SaaS site had its Google Ads disapproved for "Compromised Site", and an appeal after a scanner cleanup had failed. The way in was a pirated copy of a paid caching plugin. A second pirated plugin, the page builder's Pro add-on, held hidden code that loaded content from an outside server over plain HTTP, and the scanner missed it. WordPress core and every free plugin matched the official checksums, so only a manual check of uploads, the database, scheduled tasks and server keys found the rest. The lesson for your own check: a clean scanner result does not clear a site that runs pirated plugins. See [the Google Ads Compromised Site flag](/blog/google-ads-compromised-site/) for how that case ended.
+
 ## How do attackers usually get in?
 
 Patchstack's [2026 report](https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/) found that 91% of new WordPress vulnerabilities in 2025 were in plugins. In practice, most hacked sites I see share three things: plugins left months behind on updates, a premium plugin or theme downloaded from an unofficial "nulled" site, and an administrator password used somewhere else. Fix those three and you remove most of the risk.
@@ -98,7 +105,7 @@ You don't need to be a security expert to catch problems early. Once a month:
 - Open the site on your phone from a Google search
 - Confirm your last backup ran and is stored off the server
 
-That routine catches most hacks within weeks rather than months. If you'd rather not do it yourself, it's part of every [WordPress maintenance plan](/custom-web-development/website-maintenance/) I run, along with tested updates that close the holes before they're used.
+That routine catches most hacks within weeks rather than months. If you'd rather not do it yourself, it's part of every [WordPress maintenance plan](/wordpress-development/wordpress-maintenance/) I run, along with tested updates that close the holes before they're used.
 
 ## When should I call for help?
 

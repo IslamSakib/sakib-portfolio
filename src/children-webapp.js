@@ -172,7 +172,7 @@ export const webappChildren = [
     proofTitle: 'Integration work I have done',
     processTitle: 'How an integration project runs',
     proof: ['moneybag', 'mayabee'],
-    guides: [{ href: '/blog/api-integration-explained/', t: 'API integration explained' }],
+    guides: [{ href: '/blog/api-integration-explained/', t: 'API integration explained' }, { href: '/blog/payment-gateway-integration/', t: 'Payment gateway integration' }],
     faq: [
       { q: 'How much do API integration services cost?', a: `Integrations are quoted per job after I read the documentation of the services involved. Extra developer time on an existing project is ${usd(prices.hourly)} an hour.` },
       { q: 'Which services can you connect?', a: 'Anything with a documented API: payment gateways, email and SMS, CRM, delivery services and your own systems. If I have not used a service, I read its docs first and tell you what to expect.' },
