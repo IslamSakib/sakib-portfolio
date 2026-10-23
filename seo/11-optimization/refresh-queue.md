@@ -25,3 +25,6 @@ Moved URLs return 301 (checked with curl): website-care, wordpress-care-plans, w
 Requested: /blog/website-maintenance-cost/. Search Console returned "Oops, something went wrong" for /blog/saas-mvp-cost/ (retry).
 Still to request: /blog/saas-mvp-cost/, /blog/what-is-a-customer-portal/, /blog/api-integration-explained/, /blog/landing-page-vs-website/ (plus the earlier service-page queue above).
 Update: /blog/saas-mvp-cost/ accepted. Daily quota then exceeded on /blog/what-is-a-customer-portal/. Still to request tomorrow: /blog/what-is-a-customer-portal/, /blog/api-integration-explained/, /blog/landing-page-vs-website/, then the service-page queue above.
+
+## 24 Oct 2026
+Deployed: new post /blog/payment-gateway-integration/ and the updated /blog/how-to-check-if-wordpress-site-is-hacked/ (real example, query-worded FAQs, link fix). Request indexing for both, then the earlier queue.
