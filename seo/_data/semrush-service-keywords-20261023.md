@@ -28,3 +28,9 @@ white label wordpress development 590 / 10; wordpress customization services 50 
 
 ## Roles
 hire full stack developer 880 / 22; freelance web developer 1,900 / 46; full stack web developer 590 / 57; web developer for hire 320 / 36; full stack developer for hire 260 / 33; freelance full stack developer 110 / 23
+
+## Blog topic candidates (Access-2, smg1.digitavision.com, 23 Oct 2026; volume / KD)
+core web vitals 6,600 / 82; how much does a website cost 2,900 / 58; landing page best practices 1,600 / 41; payment gateway integration 1,300 / 35; website audit checklist 1,300 / 33; how to improve core web vitals 480 / 32; website maintenance checklist 320 / 27
+ai agent for business 210 / 39; custom software vs off the shelf 140 / 12; build vs buy software 210 / 31; how to build an mvp 210 / 40; mvp vs prototype 140 / 22; how much does an ecommerce website cost 140 / 33; why is my website slow 140 / 29; how to speed up a website 110 / 54
+web developer vs web designer 170 / 36; how to hire a full stack developer 90 / 23; how to migrate a website 70 / 42; api integration cost 40 / 12; how to choose a web developer 40 / 11; how to hire a web developer 40 / 17; website requirements document 40 / 10; how to build a saas 40 / 32
+No measurable volume: freelance developer vs agency, my website was hacked what to do, website down what to do, internal tool vs spreadsheet, full stack developer cost, how to fix a hacked website (20), how to write a website brief (20).

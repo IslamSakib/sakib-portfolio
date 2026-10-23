@@ -17,23 +17,23 @@ Positions 45 to 90 are on page 5 to 9. These posts need to become the best answe
 2. outsource-wordpress-development, white-label-wordpress-maintenance, woocommerce-slow, wordpress-update-broke-site: add a worked example in each (one real cause and fix, with numbers), a comparison table, and FAQ questions taken from the Search Console queries above, worded as people type them.
 3. Re-check positions in Search Console two weeks after each update.
 
-## Step 2: ten new posts (platform-neutral first)
-Volumes marked "check" were not measured yet: the Semrush access dropped out mid-pull. Pull them from the Digitavision launcher before writing, and drop any with no volume.
+## Step 2: ten new posts (platform-neutral first), volumes measured
+Semrush US, 23 Oct 2026 (Access-2, smg1.digitavision.com). Volume / KD. Topics with no volume were dropped (hacked and site-down variants are covered by lifting the existing hacked-site post).
 
-| # | Post (working title) | Pillar and link target | Why | Volume |
+| # | Post | Pillar and link target | Volume / KD | Note |
 |---|---|---|---|---|
-| 1 | Why is my website slow? 7 causes and how to fix each | Custom website, speed optimization | Many people search it, and it ties to a measured result | check |
-| 2 | How much does an ecommerce website cost? | Custom website, ecommerce | Buying question, one of the biggest pillar keywords (ecommerce website development 5,400) | check |
-| 3 | Custom software vs off-the-shelf: how to decide | Web application, dashboards | Decision question for the "outgrew spreadsheets" audience | check |
-| 4 | How to hire a full stack developer (and what to ask) | Role pages | hire full stack developer 880 / KD 22 | 880 |
-| 5 | Freelance developer vs agency for a web app | Web application | Hire-intent, matches the existing WordPress version of this post | check |
-| 6 | My website was hacked: what to do in the first hour | Custom website, repair | Same intent as the WordPress hacked-site post, platform-neutral | check |
-| 7 | How to write a project brief a developer can quote from | All pillars, contact | Reduces back-and-forth, links to the quote form | check |
-| 8 | Website maintenance checklist (any platform) | Custom website, maintenance | website maintenance 8,100 / KD 50, pairs with the cost post | 8,100 |
-| 9 | What an AI agent can safely do inside your product | Web application, AI integration | ai integration services 1,900 / KD 43, backed by first-hand build | 1,900 |
-| 10 | Core Web Vitals in plain words: LCP, CLS and INP | Custom website, speed optimization | Teaches the numbers used across the site | check |
+| 1 | Payment gateway integration: how it works and where it fails | Web application, API integration | 1,300 / 35 | Strong fit: I wrote the Moneybag gateway plugin |
+| 2 | Website audit checklist: 25 things to check before you pay for a redesign | Custom website, redesign and speed | 1,300 / 33 | Checklist posts earn links |
+| 3 | Landing page best practices: what to put on one page | Custom website, landing page design | 1,600 / 41 | Pairs with the landing page vs website post |
+| 4 | How much does a website cost? (rework the existing custom website cost post to also answer this) | Custom website | 2,900 / 58 | Lift the existing post, do not duplicate |
+| 5 | How to improve Core Web Vitals: LCP, CLS and INP in plain words | Custom website, speed optimization | 480 / 32 (core web vitals 6,600 / 82 is too hard) | Uses the measured TubeOnAI and Mayabee results |
+| 6 | How to build an MVP, and MVP vs prototype | Web application, MVP | 210 / 40 and 140 / 22 | One post for both |
+| 7 | Custom software vs off the shelf: build or buy? | Web application, dashboards | 210 / 31 and 140 / 12 | Decision guide for the spreadsheet audience |
+| 8 | AI agents for business: what they can safely do | Web application, AI integration | 210 / 39 | Backed by the Wrkbase agent |
+| 9 | How to hire a web developer: full stack vs designer, freelancer vs agency | Role pages | hire full stack developer 880 / 22, web developer vs web designer 170 / 36, how to hire 40 / 17 | One post for the cluster |
+| 10 | Why is my website slow? 7 causes and how to fix each | Custom website, speed optimization | 140 / 29 | Low volume, high relevance, links to the speed fix |
 
-Order: 1, 6, 4, 2, 8, then 3, 5, 7, 9, 10. Each post: 700 to 1,100 words, a table or checklist, 3 to 4 FAQs, one real example in two sentences, one or two cited outside sources, links to the service page and two related posts.
+Order by effort against payoff: 1, 2, 3, 9, 5, then 4, 6, 7, 8, 10. Each post: 700 to 1,100 words, a table or checklist, 3 to 4 FAQs, one real example in two sentences, one or two cited outside sources, links to the service page and two related posts.
 
 ## Step 3: links and mentions (the bigger gap)
 The site has very few links from other sites, which is why impressions are at positions 50 to 90. Posts alone will not fix that.
