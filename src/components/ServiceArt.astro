@@ -2,25 +2,25 @@
 // The picture for each service: its hero image, and the card image under "Other things I do".
 // Photos keep their own proportions (nothing is cropped). Each image shows real client work, so each has its own alt text.
 import { Picture } from 'astro:assets';
-import development from '../assets/visuals/build.jpg';
-import speed from '../assets/visuals/speed.jpg';
-import custom from '../assets/visuals/mayabee.jpg';
-import webapp from '../assets/visuals/custom.jpg';
-import fixes from '../assets/visuals/fixes.jpg';
-import care from '../assets/visuals/care.jpg';
-import find from '../assets/visuals/step-find.jpg';
+import website from '../assets/visuals/svc-website.jpg';
+import webapp from '../assets/visuals/svc-webapp.jpg';
+import wordpress from '../assets/visuals/svc-wordpress.jpg';
+import care from '../assets/visuals/svc-care.jpg';
+import speed from '../assets/visuals/svc-speed.jpg';
+import repair from '../assets/visuals/svc-repair.jpg';
+import malware from '../assets/visuals/svc-malware.jpg';
 
 const { slug, eager = false } = Astro.props;
-const img = { 'wordpress-development': development, 'wordpress-speed-optimization': speed, 'custom-web-development': custom, 'web-application-development': webapp, 'wordpress-repair': fixes, 'wordpress-malware-removal': find,'wordpress-care-plans': care, 'website-care': care }[slug] || development;
+const img = { 'wordpress-development': wordpress, 'wordpress-speed-optimization': speed, 'custom-web-development': website, 'web-application-development': webapp, 'wordpress-repair': repair, 'wordpress-malware-removal': malware, 'wordpress-care-plans': care, 'website-care': care }[slug] || website;
 const alt = {
-  'wordpress-development': 'A Figma design of the Tabby website built in WordPress, with a paid WooCommerce checkout',
-  'wordpress-speed-optimization': 'The TubeOnAI website with Core Web Vitals above 90 and load time cut from 5.0 to 1.5 seconds',
-  'web-application-development': 'The Wrkbase dashboard, a web application built from scratch, with sign-in, roles, dashboard and API',
-  'custom-web-development': 'Mayabee, a custom online shop, with the admin dashboard built for its orders and deliveries',
-  'wordpress-repair': 'The TubeOnAI error log showing a fatal error from two cache plugins, and the site back up after the fix',
-  'wordpress-malware-removal': 'An error log under a magnifying glass: finding how the problem got in before anything is deleted',
-  'website-care': 'A monthly care report for the Tabby website: updates, backups, monitoring, changes and a plain-English report',
-  'wordpress-care-plans': 'A monthly care report for the Tabby website: updates, backups, monitoring, changes and a plain-English report',
+  'wordpress-development': 'Glossy violet blocks with one lifting into place: a WordPress site assembled from custom parts',
+  'wordpress-speed-optimization': 'A glowing speed gauge with a lightning bolt: a fast website',
+  'web-application-development': 'A large glossy cube linked to smaller cubes: a web application and the parts around it',
+  'custom-web-development': 'Three glossy stacked layers from design to backend: a website built as one job',
+  'wordpress-repair': 'A glossy violet gear: a broken website repaired at the cause',
+  'wordpress-malware-removal': 'A shield checked by a magnifying glass: malware found and removed',
+  'website-care': 'A glossy shield with a check mark: a website kept safe and current',
+  'wordpress-care-plans': 'A glossy shield with a check mark: a website kept safe and current',
 }[slug] || '';
 ---
 <figure class="art">

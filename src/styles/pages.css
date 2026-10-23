@@ -773,3 +773,19 @@ html:has(.mnav[open]) .chat, html:has(.mnav[open]) .to-top { display: none; }
 h1, h2, h3, .page-head h1, .svc-copy h1 { text-wrap: balance; overflow-wrap: normal; }
 .lead, .kit p, .tiles small, .faq details p { text-wrap: pretty; }
 .svc-price { margin-top: auto; font-family: var(--mono); font-size: 0.8125rem; color: var(--accent); }
+
+/* Contact guide: a wider panel, and options as short one-line rows instead of tall boxes */
+.contact-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 3rem; }
+.g-opts:not(.chips) { grid-template-columns: minmax(0, 1fr); gap: 0.6rem; }
+.g-opts:not(.chips) .g-opt > span { grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0.25rem 1rem; padding: 0.85rem 1.1rem; }
+.g-opts:not(.chips) .g-opt small { text-align: right; font-size: 0.875rem; }
+.g-opts:not(.chips) .g-opt:hover > span { translate: 0; }
+.g-q { font-size: clamp(1.375rem, 2.2vw, 1.75rem); text-wrap: balance; }
+@media (max-width: 560px) { .g-opts:not(.chips) .g-opt > span { grid-template-columns: minmax(0, 1fr); } .g-opts:not(.chips) .g-opt small { text-align: left; } }
+.contact-grid > * { min-width: 0; }
+.contact-grid h1 { font-size: clamp(2rem, 3.6vw, 3.2rem); max-width: 100%; }
+.contact-grid h1 .hl { display: inline; white-space: normal; }
+@media (max-width: 1100px) { .contact-grid { grid-template-columns: minmax(0, 1fr); } }
+.contact-grid h1 .ln { display: inline; white-space: normal; }
+.contact-grid h1 { font-size: clamp(1.75rem, 2.9vw, 2.9rem); line-height: 1.2; }
+@media (max-width: 1100px) { .contact-grid h1 { font-size: clamp(1.9rem, 6.2vw, 3rem); } }

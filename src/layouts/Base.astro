@@ -16,8 +16,8 @@ import { socials } from '../socials.js';
 import { designedOg } from '../ogDesigned.js';
 import { Image } from 'astro:assets';
 import Clock from '../components/Clock.astro';
-import megaVisual from '../assets/visuals/mayabee.jpg';
-import megaWho from '../assets/visuals/custom.jpg';
+import megaVisual from '../assets/visuals/svc-website.jpg';
+import megaWho from '../assets/visuals/svc-webapp.jpg';
 
 const { title, description, jsonld = [], ogImage: ogDefault = '/og.png', ogAlt = `${site.name}, ${site.role}`, focus } = Astro.props;
 // Share images are cached for a long time by LinkedIn and others: raise `v` whenever scripts/og.mjs output changes.
@@ -140,7 +140,7 @@ const agencyGuides = [
                     </ul>
               </div>
               <a class="mega-feature" href="/contact/">
-                <Image src={megaVisual} widths={[320, 480]} sizes="280px" alt="Mayabee, an online shop built from scratch, with the admin dashboard built for it" loading="lazy" />
+                <Image src={megaVisual} widths={[320, 480]} sizes="280px" alt="Glossy stacked layers: a custom website built from design to backend" loading="lazy" />
                 <span class="mega-feature-text"><b>Not sure where to start?</b><small>Send your site URL or project requirements. I reply within 24 hours with clear pricing.</small><span class="mega-cta">Get a free quote <span aria-hidden="true">→</span></span></span>
               </a>
             </div>
@@ -161,7 +161,7 @@ const agencyGuides = [
                 </ul>
               </div>
               <a class="mega-feature" href="/for/">
-                <Image src={megaWho} widths={[320, 480]} sizes="280px" alt="Wrkbase, a team platform built from scratch, with sign-in, roles and a dashboard" loading="lazy" />
+                <Image src={megaWho} widths={[320, 480]} sizes="280px" alt="A large glossy cube linked to smaller cubes: a web application" loading="lazy" />
                 <span class="mega-feature-text"><b>Not sure which fits?</b><small>Tell me about your business. I reply within 24 hours with clear pricing.</small><span class="mega-cta">See all audiences <span aria-hidden="true">→</span></span></span>
               </a>
             </div>
