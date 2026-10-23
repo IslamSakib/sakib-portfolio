@@ -647,11 +647,9 @@ p, li, dd, figcaption { text-wrap: pretty; }
 @media (max-width: 900px) { .cwv-scores { grid-template-columns: repeat(2, minmax(0, 1fr)); } .cwv-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* Services menu: the text links under the service cards sit in two groups. */
-.mega-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1.5rem; margin-top: 0.4rem; }
+.mega-groups { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 1.5rem; margin-top: 0.4rem; }
 .mega-groups .mega-links { margin-top: 0.2rem; }
-.mega-groups .mega-wide { grid-column: 1 / -1; }
 .mega-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1.5rem; }
-@media (max-width: 1100px) { .mega-groups .mega-wide { grid-column: auto; } }
 @media (max-width: 1100px) { .mega-groups { grid-template-columns: minmax(0, 1fr); } }
 .svc4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 @media (max-width: 1100px) { .svc4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

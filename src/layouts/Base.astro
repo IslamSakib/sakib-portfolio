@@ -111,21 +111,9 @@ const agencyGuides = [
                   ))}
                 </div>
                 <div class="mega-groups">
-                  <div>
-                    <p class="mega-sub">Hire by role</p>
-                    <ul class="mega-links mega-care">
-                      {hireLinks.map((g) => <li><a href={g.href}>{g.t} <span aria-hidden="true">→</span></a></li>)}
-                    </ul>
-                  </div>
                   <div class="mega-wide">
-                    <p class="mega-sub">Who I help</p>
-                    <ul class="mega-links mega-care mega-cols">
-                      {audienceLinks.map((g) => <li><a href={g.href}>{g.t} <span aria-hidden="true">→</span></a></li>)}
-                    </ul>
-                  </div>
-                  <div>
                     <p class="mega-sub">Fix and care</p>
-                    <ul class="mega-links mega-care">
+                    <ul class="mega-links mega-care mega-cols">
                       <li><a href="/wordpress-repair/">Website repair and speed fixes <span aria-hidden="true">→</span></a></li>
                       {fixLinks.map((g) => <li><a href={g.href}>{g.t} <span aria-hidden="true">→</span></a></li>)}
                     </ul>
@@ -146,6 +134,27 @@ const agencyGuides = [
               <a class="mega-feature" href="/contact/">
                 <Image src={megaVisual} widths={[320, 480]} sizes="280px" alt="Mayabee, an online shop built from scratch, with the admin dashboard built for it" loading="lazy" />
                 <span class="mega-feature-text"><b>Not sure where to start?</b><small>Send your site URL or project requirements. I reply within 24 hours with clear pricing.</small><span class="mega-cta">Get a free quote <span aria-hidden="true">→</span></span></span>
+              </a>
+            </div>
+          </div>
+          <div class="has-menu">
+            <a href="/for/" aria-haspopup="true">Who I help <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+            <div class="menu mega">
+              <div class="mega-col">
+                <p class="mega-label">Who I help</p>
+                <ul class="mega-links mega-care mega-cols">
+                  {audienceLinks.map((g) => <li><a href={g.href}>{g.t} <span aria-hidden="true">→</span></a></li>)}
+                </ul>
+              </div>
+              <div class="mega-col mega-agency">
+                <p class="mega-label">Hire by role</p>
+                <ul class="mega-links mega-care">
+                  {hireLinks.map((g) => <li><a href={g.href}>{g.t} <span aria-hidden="true">→</span></a></li>)}
+                </ul>
+              </div>
+              <a class="mega-feature" href="/for/">
+                <Image src={megaVisual} widths={[320, 480]} sizes="280px" alt="Mayabee, an online shop built from scratch, with the admin dashboard built for it" loading="lazy" />
+                <span class="mega-feature-text"><b>Not sure which fits?</b><small>Tell me about your business. I reply within 24 hours with clear pricing.</small><span class="mega-cta">See all audiences <span aria-hidden="true">→</span></span></span>
               </a>
             </div>
           </div>
