@@ -835,3 +835,9 @@ h1, h2, h3, .page-head h1, .svc-copy h1 { text-wrap: balance; overflow-wrap: nor
 .reel { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.9fr); gap: 3rem; }
 .reel-left h2 { font-size: clamp(1.9rem, 2.9vw, 2.75rem); }
 @media (max-width: 900px) { .reel { grid-template-columns: minmax(0, 1fr); } }
+
+/* From the audit's new checks: titles flow on their own, hero columns sit closer, long hero titles get a smaller size */
+.hero-copy h1 .hl { display: inline; white-space: normal; }
+.svc-grid, .page-head .svc-grid { gap: clamp(2rem, 4vw, 4.5rem); }
+.svc-copy h1 { font-size: clamp(2rem, 3.3vw, 3rem); }
+.h-grid { column-gap: clamp(2rem, 4vw, 4.5rem); }

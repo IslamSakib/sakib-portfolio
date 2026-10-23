@@ -30,7 +30,7 @@ if (!pages) {
   pages = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname);
 }
 
-const FAIL = new Set(['card-width', 'grid-collapse', 'text-narrow', 'graphic-broken']);
+const FAIL = new Set(['card-width', 'grid-collapse', 'text-narrow', 'graphic-broken', 'external-link', 'overlap']);
 const browser = await chromium.launch({ channel: 'chrome' }).catch(() => chromium.launch());
 const groups = new Map();
 for (const w of widths) {

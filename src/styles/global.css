@@ -113,7 +113,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 49; pointer-event
 .hero-copy { display: grid; gap: 1.75rem; justify-items: start; }
 .hero-copy h1 em { font-style: normal; color: var(--accent); }
 .hero-copy h1 { font-size: clamp(2.1rem, 4.1vw, 3.6rem); line-height: 1.12; letter-spacing: -0.035em; text-wrap: balance; }
-@media (min-width: 861px) { .hero-copy h1 .hl { display: block; white-space: nowrap; } }
+
 .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 /* Portrait: a cutout standing in front of a flat accent panel, head breaking out of the top edge */
 .hero-photo { justify-self: end; width: min(100%, 460px); }

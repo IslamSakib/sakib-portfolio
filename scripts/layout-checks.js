@@ -1,5 +1,5 @@
 // Runs INSIDE the page (page.evaluate). Returns [{level, kind, where, msg}] for the current viewport.
-// kinds: text-heavy, card-repeat, card-width, grid-collapse, text-orphan, text-stack, text-blank, section-padding, section-gap, graphic-broken, graphic-clipped
+// kinds: external-link, overlap, title-break, title-width, hero-extra, grid-gap, tall-thin, menu-list, text-heavy, card-repeat, card-width, grid-collapse, text-orphan, text-stack, text-blank, section-padding, section-gap, graphic-broken, graphic-clipped
 () => {
   const out = [];
   const vw = innerWidth;
@@ -211,5 +211,52 @@
   let boxedSections = 0;
   vsecs.forEach((s) => { const lis = [...s.querySelectorAll('ul > li, ol > li')].filter((li) => vis(li) && li.getBoundingClientRect().width > 150); if (lis.length >= 3 && lis.filter(boxed).length >= 3 && !s.querySelector('.reel,.rv,.faq')) boxedSections++; });
   if (boxedSections >= 3) add('WARN', 'card-repeat', document.body, `${boxedSections} sections use the same boxed-card grid; vary the layout (open rows, icon tiles, split text and picture, one large feature)`);
+  // ---------- 10. standing rules from the owner (23 Oct 2026) ----------
+  // 10a. every link to another site opens in a new tab
+  document.querySelectorAll('a[href]').forEach((a) => {
+    let u; try { u = new URL(a.href, location.href); } catch { return; }
+    if (!/^https?:$/.test(u.protocol) || u.host === location.host) return;
+    if (a.target !== '_blank') add('FAIL', 'external-link', a, `link to ${u.host} does not open in a new tab (add target="_blank" rel="noopener")`);
+    else if (!/noopener|noreferrer/.test(a.rel)) add('WARN', 'external-link', a, `link to ${u.host} opens a new tab without rel="noopener"`);
+  });
+  // 10b. titles: no forced breaks, no narrow title beside empty space, no four-line title
+  document.querySelectorAll('h1,h2,h3').forEach((h) => {
+    if (!vis(h)) return;
+    const blocks = [...h.children].filter((c) => /^(block|flex|grid)$/.test(getComputedStyle(c).display));
+    if (h.querySelector('br') || blocks.length > 1) add('WARN', 'title-break', h, 'the title has forced line breaks; let it wrap on its own (text-wrap: balance) so no device gets an odd break');
+    const cs = getComputedStyle(h), fs = parseFloat(cs.fontSize), lh = parseFloat(cs.lineHeight) || fs * 1.15, lines = Math.round(h.getBoundingClientRect().height / lh);
+    const pw = h.parentElement.getBoundingClientRect().width, w = h.getBoundingClientRect().width;
+    if (fs >= 28 && lines >= 4 && vw >= 700) add('WARN', 'title-width', h, `a ${Math.round(fs)}px title wraps to ${lines} lines in a ${Math.round(w)}px column; give it more width or a smaller size`);
+    if (fs >= 28 && lines === 2 && vw >= 700 && w < pw * 0.45 && pw > 700) add('WARN', 'title-width', h, `title is ${Math.round(w)}px wide inside a ${Math.round(pw)}px container; widen it`);
+  });
+  // 10c. hero: a title, one short lead and the buttons, nothing else
+  const wordsOf = (e) => (e.innerText || '').trim().split(/\s+/).filter(Boolean).length;
+  const hero = document.querySelector('main > section:first-of-type, main > .page-head, .h-hero');
+  if (hero && vis(hero)) {
+    const lead = hero.querySelector('.lead');
+    if (lead && wordsOf(lead) > 32) add('WARN', 'hero-extra', lead, `the hero lead is ${wordsOf(lead)} words; one or two short sentences are enough`);
+    hero.querySelectorAll('.tags, .h-meta, p.label, .hero-meta').forEach((e) => { if (vis(e)) add('WARN', 'hero-extra', e, 'extra line in the hero (labels, tag chips and meta strips confuse the visitor); move it below the hero or remove it'); });
+  }
+  // 10d. overlap: text on top of other text
+  const leaves = [...document.querySelectorAll('h1,h2,h3,h4,p,li,dt,dd,label,button,a')].filter((e) => vis(e) && !e.closest('.marquee,.reel-track,[aria-hidden=true],.mega,.menu,.mnav') && e.textContent.trim() && !e.querySelector('h1,h2,h3,p,li,a'));
+  let ov = 0;
+  for (let i = 0; i < leaves.length && ov < 8; i++) {
+    const a = leaves[i], ra = a.getBoundingClientRect(), pa = getComputedStyle(a).position; if (pa === 'fixed' || pa === 'sticky') continue;
+    for (let j = i + 1; j < leaves.length && ov < 8; j++) {
+      const b = leaves[j]; if (a.contains(b) || b.contains(a)) continue;
+      const rb = b.getBoundingClientRect(), pb = getComputedStyle(b).position; if (pb === 'fixed' || pb === 'sticky') continue;
+      const ix = Math.min(ra.right, rb.right) - Math.max(ra.left, rb.left), iy = Math.min(ra.bottom, rb.bottom) - Math.max(ra.top, rb.top);
+      if (ix > 4 && iy > 4 && ix * iy > 0.3 * Math.min(ra.width * ra.height, rb.width * rb.height)) { ov++; add('FAIL', 'overlap', a, `"${a.textContent.trim().slice(0, 24)}" overlaps "${b.textContent.trim().slice(0, 24)}" by ${Math.round(ix)}x${Math.round(iy)}px`); }
+    }
+  }
+  // 10e. columns: a gap wider than 4.5rem, and a thin, tall panel
+  document.querySelectorAll('main *').forEach((g) => {
+    if (!vis(g)) return; const cs = getComputedStyle(g);
+    if (cs.display === 'grid' && vw >= 1000 && parseFloat(cs.columnGap) > 72 && cs.gridTemplateColumns.split(' ').length === 2) add('WARN', 'grid-gap', g, `${Math.round(parseFloat(cs.columnGap))}px gap between two columns; keep it under 4.5rem`);
+    const r = g.getBoundingClientRect();
+    if (vw >= 1000 && r.height > 3 * r.width && r.width < 420 && r.height > 700 && g.children.length > 2) add('WARN', 'tall-thin', g, `a ${Math.round(r.width)}px wide, ${Math.round(r.height)}px tall panel; widen it or shorten the content`);
+  });
+  // 10f. dropdown menus use icon tiles, not text lists ending in arrows
+  document.querySelectorAll('.menu a, .mega a, [role=menu] a').forEach((a) => { if (/[→›»]\s*$/.test(a.textContent.trim()) && a.querySelectorAll('svg,img').length === 0) add('WARN', 'menu-list', a, 'dropdown link is plain text with an arrow; use an icon tile'); });
   return out;
 }
