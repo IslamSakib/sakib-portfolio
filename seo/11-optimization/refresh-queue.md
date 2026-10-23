@@ -11,3 +11,7 @@ No page has 28 days of search data yet, so there are no striking-distance or dec
 | 5 | Weekend reply promise in /terms/ | owner works full-time | Owner to confirm or soften |
 | 6 | Leftover sakib-deploy zips in the live folder | HTTP 403, harmless | Delete with the owner's yes |
 | 7 | Malware page proof | no named case study | Ask Tabby for permission to name them, then add the name and a link |
+
+## Request indexing queue (23 Oct 2026)
+Done: /for/saas-founders/, /for/agencies/. Search Console then returned "Quota exceeded" (daily limit). Next, about 5 a day, in this order:
+/for/, /for/ecommerce-store-owners/, /for/custom-business-software/, /for/slow-broken-website/, /for/small-business-owners/, /for/education-training-providers/, /for/fintech-payments-companies/
