@@ -11,7 +11,7 @@ Three service areas, each with its own pages.
 - [Custom website development](https://sakib.mywrkbase.com/custom-web-development/): Websites and online stores built from scratch: UI/UX, frontend, backend and admin dashboard. Websites from $600, stores from $800.
 - [Custom web design](https://sakib.mywrkbase.com/custom-web-development/custom-web-design/): A website designed for your customers and built by the same person. Websites from $600.
 - [Ecommerce website development](https://sakib.mywrkbase.com/custom-web-development/ecommerce-website-development/): Custom online stores with their own dashboard for orders and delivery. Stores from $800.
-- [Landing page design](https://sakib.mywrkbase.com/custom-web-development/landing-page-design/): One focused page for one offer, built to load fast on a phone. From $600, sites with several pages.
+- [Landing page design](https://sakib.mywrkbase.com/custom-web-development/landing-page-design/): One focused page for one offer, built to load fast on a phone. Quoted per page.
 - [Website redesign services](https://sakib.mywrkbase.com/custom-web-development/website-redesign/): A new design and build that keeps the rankings and URLs you already have. Websites from $600.
 - [Website speed optimization](https://sakib.mywrkbase.com/custom-web-development/website-speed-optimization/): Slow pages measured, the cause found and fixed, with before and after numbers. Speed fixes from $150.
 - [Website repair](https://sakib.mywrkbase.com/custom-web-development/website-repair/): A broken, slow or hacked site fixed at the cause, with the cause written down. Repairs from $50.

@@ -32,6 +32,7 @@ export const customChildren = [
     proofTitle: 'Websites I have designed and built',
     processTitle: 'How a custom design project runs',
     proof: ['mayabee', 'tabby', 'tubeonai'],
+    guides: [{ href: '/blog/custom-website-cost/', t: 'What a custom website costs' }],
     faq: [
       { q: 'How much does custom web design cost?', a: `Custom websites start at ${usd(prices.site)} and usually land between ${typical.site}. You get a written quote after I read your brief and before any work starts.` },
       { q: 'Do you design and build, or only design?', a: 'Both. I design the screens and build them myself, which is why nothing gets lost between design and code.' },
@@ -66,6 +67,7 @@ export const customChildren = [
     proofTitle: 'Stores and payment work I have built',
     processTitle: 'How a store project runs',
     proof: ['mayabee', 'moneybag'],
+    guides: [{ href: '/blog/custom-ecommerce-website-vs-shopify/', t: 'Custom ecommerce vs Shopify' }],
     faq: [
       { q: 'How much does an ecommerce website cost?', a: `Custom online stores with a dashboard start at ${usd(prices.store)}, usually ${typical.store}. You get a written quote after I read your brief.` },
       { q: 'Custom store or a platform like WooCommerce?', a: 'A platform suits stores that fit what plugins already do. A custom store suits unusual rules, two languages, cash on delivery or heavy traffic. I build both and will say which fits after reading your brief.' },
@@ -100,6 +102,7 @@ export const customChildren = [
     proofTitle: 'Pages I have built and measured',
     processTitle: 'How a landing page project runs',
     proof: ['tabby', 'tubeonai'],
+    guides: [{ href: '/blog/landing-page-vs-website/', t: 'Landing page vs website' }],
     faq: [
       { q: 'How much does landing page design cost?', a: `Pages are quoted after I read your brief. A single page costs less than a full website, and sites start at ${usd(prices.site)}.` },
       { q: 'Do you write the copy?', a: 'I write a structure and a draft outline from what you tell me, and you correct the facts. I do not invent claims about your business.' },
@@ -134,6 +137,7 @@ export const customChildren = [
     proofTitle: 'Rebuilds I have launched',
     processTitle: 'How a redesign runs',
     proof: ['tabby', 'tubeonai'],
+    guides: [{ href: '/blog/redesign-website-without-losing-seo/', t: 'Redesign without losing SEO' }],
     faq: [
       { q: 'How much does a website redesign cost?', a: `Redesigns are priced like a new website, from ${usd(prices.site)}, usually ${typical.site}. If the site only needs speed or repair work, that costs far less.` },
       { q: 'Will I lose my Google rankings?', a: 'Not if it is done carefully. I keep URLs where possible, redirect every URL that changes and check titles and tracking before and after launch.' },

@@ -32,6 +32,7 @@ export const webappChildren = [
     proofTitle: 'A SaaS I built and run',
     processTitle: 'How a SaaS project runs',
     proof: ['wrkbase', 'tabby'],
+    guides: [{ href: '/blog/saas-mvp-cost/', t: 'What a SaaS MVP costs' }],
     faq: [
       { q: 'How much do SaaS development services cost?', a: `A first version of a web application starts at ${usd(prices.webApp)} and most land between ${typical.webApp}, with a written quote after I read your brief. Agency price guides put a basic MVP at $10,000 to $50,000 or more. I work alone from Dhaka, which is why my prices are lower.` },
       { q: 'How long does a first version take?', a: 'Usually 6 to 12 weeks for a focused first version, depending on the screens, roles and integrations. The quote lists the scope and the timeline.' },
@@ -66,6 +67,7 @@ export const webappChildren = [
     proofTitle: 'Portals and dashboards I have built',
     processTitle: 'How a portal project runs',
     proof: ['open-alliance-learning', 'wrkbase'],
+    guides: [{ href: '/blog/what-is-a-customer-portal/', t: 'What is a customer portal' }],
     faq: [
       { q: 'How much does a customer portal cost?', a: `First versions start at ${usd(prices.webApp)} and usually land between ${typical.webApp}, with a written quote after I read your brief.` },
       { q: 'How do you keep each customer\'s data private?', a: 'Every record belongs to an account, and every screen checks who is asking. Roles decide what each person can see and do, and changes are logged.' },
@@ -100,6 +102,7 @@ export const webappChildren = [
     proofTitle: 'Dashboards I have built',
     processTitle: 'How a dashboard project runs',
     proof: ['wrkbase', 'mayabee'],
+    guides: [{ href: '/blog/web-application-vs-website/', t: 'Web application vs website' }],
     faq: [
       { q: 'How much does a custom dashboard cost?', a: `First versions start at ${usd(prices.webApp)} and most land between ${typical.webApp}, with a written quote after I read your brief.` },
       { q: 'Can you replace my spreadsheets?', a: 'Yes. I start with the one spreadsheet that hurts most, build that flow first and move the rest across in order.' },
@@ -134,6 +137,7 @@ export const webappChildren = [
     proofTitle: 'A product I took from idea to launch',
     processTitle: 'How an MVP project runs',
     proof: ['wrkbase'],
+    guides: [{ href: '/blog/saas-mvp-cost/', t: 'What a SaaS MVP costs' }],
     faq: [
       { q: 'How much does MVP development cost?', a: `A first version starts at ${usd(prices.webApp)} and usually lands between ${typical.webApp}, with a written quote after I read your brief.` },
       { q: 'How long does an MVP take?', a: 'Usually 6 to 12 weeks for a focused first version. The quote lists the scope and the timeline.' },
@@ -168,6 +172,7 @@ export const webappChildren = [
     proofTitle: 'Integration work I have done',
     processTitle: 'How an integration project runs',
     proof: ['moneybag', 'mayabee'],
+    guides: [{ href: '/blog/api-integration-explained/', t: 'API integration explained' }],
     faq: [
       { q: 'How much do API integration services cost?', a: `Integrations are quoted per job after I read the documentation of the services involved. Extra developer time on an existing project is ${usd(prices.hourly)} an hour.` },
       { q: 'Which services can you connect?', a: 'Anything with a documented API: payment gateways, email and SMS, CRM, delivery services and your own systems. If I have not used a service, I read its docs first and tell you what to expect.' },
