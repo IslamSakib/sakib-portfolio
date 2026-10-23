@@ -15,3 +15,8 @@ No page has 28 days of search data yet, so there are no striking-distance or dec
 ## Request indexing queue (23 Oct 2026)
 Done: /for/saas-founders/, /for/agencies/. Search Console then returned "Quota exceeded" (daily limit). Next, about 5 a day, in this order:
 /for/, /for/ecommerce-store-owners/, /for/custom-business-software/, /for/slow-broken-website/, /for/small-business-owners/, /for/education-training-providers/, /for/fintech-payments-companies/
+
+## Indexing queue after the three-pillar remap (23 Oct 2026, deployed)
+Requested today: /custom-web-development/ecommerce-website-development/, /custom-web-development/website-maintenance/, /custom-web-development/website-redesign/, /web-application-development/saas-development/.
+Next, about 5 a day: /custom-web-development/custom-web-design/, /web-application-development/ (pillar), /custom-web-development/ (pillar), /wordpress-development/ (pillar), /web-application-development/mvp-development/, /web-application-development/ai-integration/, /web-application-development/api-integration/, /custom-web-development/landing-page-design/, /custom-web-development/website-speed-optimization/, /custom-web-development/website-repair/, /web-application-development/customer-portal-development/, /web-application-development/dashboard-development/, /wordpress-development/woocommerce-development/, /wordpress-development/wordpress-theme-development/, /wordpress-development/wordpress-plugin-development/, /wordpress-development/wordpress-speed-optimization/.
+Moved URLs return 301 (checked with curl): website-care, wordpress-care-plans, wordpress-repair, wordpress-malware-removal, white-label-wordpress-*, wordpress-maintenance, wordpress-speed-optimization, ai-development.
