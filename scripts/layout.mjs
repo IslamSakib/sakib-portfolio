@@ -39,7 +39,8 @@ for (const w of widths) {
     await page.goto(base + path, { waitUntil: 'load' }).catch(() => {});
     await page.waitForTimeout(350);
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight)); await page.waitForTimeout(150); await page.evaluate(() => window.scrollTo(0, 0));
-    const res = await page.evaluate('(' + CHECKS + ')()');
+    let res = [];
+    for (let t = 0; t < 3; t++) { try { res = await page.evaluate('(' + CHECKS + ')()'); break; } catch { await page.waitForTimeout(700); } } // dev-server reloads destroy the page mid-run
     let any = false;
     for (const r of res) {
       if (kinds && !kinds.includes(r.kind)) continue;

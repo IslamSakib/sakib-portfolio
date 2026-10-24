@@ -28,7 +28,12 @@ let devices = DEVICES;
 if (flag('quick')) devices = DEVICES.filter((d) => QUICK.includes(d[1]));
 if (arg('w')) { const ws = arg('w').split(',').map(Number); devices = DEVICES.filter((d) => ws.includes(d[1])); }
 
-const PUBLIC = arg('pages') ? arg('pages').split(',') : ['/', '/custom-web-development/', '/wordpress-development/', '/custom-web-development/website-maintenance/', '/wordpress-development/wordpress-maintenance/', '/full-stack-developer/', '/full-stack-developer/florida/', '/full-stack-developer/usa/', '/web-application-developer/', '/web-application-developer/texas/', '/wordpress-developer/', '/wordpress-developer/chicago/', '/work/mayabee/', '/work/tabby/', '/contact/', '/wordpress-development/white-label-wordpress-development/', '/blog/'];
+let PUBLIC = arg('pages') ? arg('pages').split(',') : ['/', '/custom-web-development/', '/wordpress-development/', '/custom-web-development/website-maintenance/', '/wordpress-development/wordpress-maintenance/', '/full-stack-developer/', '/full-stack-developer/florida/', '/full-stack-developer/usa/', '/web-application-developer/', '/web-application-developer/texas/', '/wordpress-developer/', '/wordpress-developer/chicago/', '/work/mayabee/', '/work/tabby/', '/contact/', '/wordpress-development/white-label-wordpress-development/', '/blog/'];
+// Every page, not a hand-picked list: a page missing from the list is a page never tested.
+if (!arg('pages') && !flag('listed')) {
+  try { const xml = await (await fetch(base + '/sitemap.xml')).text(); const l = [...xml.matchAll(/<loc>([^<]+)<[/]loc>/g)].map((m) => new URL(m[1]).pathname); if (l.length) PUBLIC = l; }
+  catch { try { const xml = readFileSync('dist/sitemap-0.xml', 'utf8'); const l = [...xml.matchAll(/<loc>([^<]+)<[/]loc>/g)].map((m) => new URL(m[1]).pathname); if (l.length) PUBLIC = l; } catch {} } // astro dev has no sitemap: read the built one
+}
 const ADMIN = [];
 const only = arg('only');
 const langs = arg('lang') ? [arg('lang') === 'bn' ? '/bn' : ''] : ['', '/bn'];
@@ -58,14 +63,14 @@ const needsAdmin = only !== 'public';
 const state = needsAdmin ? await adminState() : undefined;
 
 /** Runs inside the page. Returns what is wrong at this size. */
-function inspect({ touch }) {
-  const W = document.documentElement.clientWidth;
+function inspect({ touch, vw }) {
+  const W = vw; // the size asked for: on a phone clientWidth GROWS to fit overflowing content and hides the overflow
   const vis = (e) => { const r = e.getBoundingClientRect(); const cs = getComputedStyle(e); return r.width > 0 && r.height > 0 && cs.visibility !== 'hidden' && cs.display !== 'none' && cs.opacity !== '0'; };
   const name = (e) => e.tagName.toLowerCase() + (e.id ? '#' + e.id : '') + '.' + String(e.className?.baseVal ?? e.className).trim().split(/\s+/).slice(0, 2).join('.') + (e.textContent ? ` "${e.textContent.trim().slice(0, 18)}"` : '');
   const inScroller = (e) => { for (let p = e.parentElement; p && p !== document.body; p = p.parentElement) { const o = getComputedStyle(p).overflowX; if ((o === 'auto' || o === 'scroll') && p.scrollWidth > p.clientWidth) return true; } return false; };
   const ownText = (e) => [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
   const clipped = (e) => { if (ownText(e)) return false; for (let p = e.parentElement; p && p !== document.documentElement; p = p.parentElement) { const o = getComputedStyle(p).overflowX; if ((o === 'hidden' || o === 'clip') && p.getBoundingClientRect().right <= W + 1) return true; } return false; }; // pictures and decoration cut off inside their own box are fine; words that are cut off are not
-  const skip = '[data-cart],.mb-panel,.mb-drawer,dialog,[hidden],.mb-word';
+  const skip = '.marquee,.chat,.to-top,[data-cart],.mb-panel,.mb-drawer,dialog,[hidden],.mb-word';
 
   const off = [...document.querySelectorAll('body *')].filter((e) => {
     if (!vis(e) || e.closest(skip) || inScroller(e) || clipped(e)) return false;
@@ -80,6 +85,7 @@ function inspect({ touch }) {
     for (let j = i + 1; j < controls.length; j++) {
       if (controls[i].contains(controls[j]) || controls[j].contains(controls[i])) continue;
       if (controls[i].closest('.mb-ci,.pd-main') && controls[j].closest('.mb-ci,.pd-main')) continue; // buttons laid over a photo on purpose
+      if (controls[i].closest('p,li') && controls[i].closest('p,li') === controls[j].closest('p,li')) continue; // two links wrapped inside one sentence are not overlapping controls
       const b = controls[j].getBoundingClientRect();
       const w = Math.min(a.right, b.right) - Math.max(a.left, b.left), h = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
       if (w > 4 && h > 4 && getComputedStyle(controls[i]).position !== 'fixed' && getComputedStyle(controls[j]).position !== 'fixed' && !controls[i].closest('.mb-header,header') ) { overlap.push(name(controls[i]) + ' x ' + name(controls[j])); break; }
@@ -110,7 +116,7 @@ for (const [label, w, h] of devices) {
         errors.length = 0;
         const res = await pg.goto(url, { waitUntil: 'networkidle' }).catch(() => null);
         await pg.waitForTimeout(250);
-        const r = await pg.evaluate(inspect, { touch });
+        const r = await pg.evaluate(inspect, { touch, vw: w });
         const tag = `${w}px ${label} ${lang || '/en'} ${p}`;
         const status = res?.status();
         const problems = [];

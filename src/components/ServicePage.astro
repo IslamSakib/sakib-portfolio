@@ -94,7 +94,7 @@ const jsonld = [
   <section class="sec band band-glow">
     <div class="wrap">
       <div class="section-head">
-        <h2>{s.problemTitle}</h2>
+        <h2 set:html={s.problemTitle.replace(/(\w+-\w+)/g, (m) => `<span class="nb">${m}</span>`)} />
         {s.problem && <p class="lead" style="max-width: 62ch">{shortProblem}</p>}
       </div>
       <div class="versus">
